@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/ForceDebug.gd" type="Script" id=1]
+[ext_resource path="res://src/Rudder.gd" type="Script" id=2]
+[ext_resource path="res://models/rudder.obj" type="ArrayMesh" id=3]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.0238163, 0.42417, 0.0740858 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_use_point_size = true
+vertex_color_use_as_albedo = true
+
+[node name="Rudder" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.659573, 1.83833 )
+script = ExtResource( 2 )
+
+[node name="ForceOffset" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620049, 0.182308 )
+visible = false
+
+[node name="Rudder" type="MeshInstance" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.472123, 0.227822 )
+shape = SubResource( 3 )
+
+[node name="ForceDebug" type="ImmediateGeometry" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36396, 0.185031 )
+material_override = SubResource( 2 )
+script = ExtResource( 1 )

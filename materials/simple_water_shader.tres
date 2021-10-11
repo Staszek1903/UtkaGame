@@ -1,0 +1,53 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec2 offset = vec2(0.0,0.0);
+uniform float amplitude = 0.1;
+uniform float frequency = 5.0;
+uniform float time = 0.0;
+
+uniform vec4 water_color: hint_color = vec4(0.1, 0.1, 0.9, 1.0);
+
+float wave_height(vec2 pos){
+	return amplitude * sin(pos.x * frequency + time) 
+	+ amplitude * sin(pos.y * frequency + time);
+}
+
+void vertex() {
+	vec2 pos = VERTEX.xz - offset;
+	vec4 global_pos = WORLD_MATRIX * vec4(VERTEX,1.0);
+	VERTEX.y += wave_height(global_pos.xz);
+}
+
+void fragment(){
+	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	METALLIC = 0.4;
+	SPECULAR = 0.2;
+	ROUGHNESS = 0.2;
+	
+//	ALPHA = 1.0;
+//
+//	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
+//	depth = depth *2.0 -1.0;
+//	depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
+//	depth = depth + VERTEX.z;
+//	depth = clamp(exp(-depth*1.5), 0.0, 1.0);
+	
+	//float edge = dot(NORMAL, vec3(0,0,1));
+	
+	//vec3 color = mix(water_color.xyz, vec3(1.0,1.0,1.0), depth);
+	ALBEDO = /*color;//*/water_color.xyz;
+	//ALPHA = clamp(1.0 - depth, 0.0, 1.0);*/
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/offset = Vector2( 0, 0 )
+shader_param/amplitude = 0.0
+shader_param/frequency = 0.449
+shader_param/time = -1.99138
+shader_param/water_color = Color( 0.101961, 0.101961, 0.901961, 0.482353 )

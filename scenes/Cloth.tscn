@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="PlaneMesh" id=1]
+subdivide_width = 16
+subdivide_depth = 16
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 1, 0.148896 )
+
+[node name="Cloth" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.906507, 0.422191, 0, -0.422191, 0.906507, 0.0223969, 1.47866, 3.11214 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+
+[node name="SoftBody" type="SoftBody" parent="RigidBody"]
+transform = Transform( 0, 0, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, 0, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+pinned_points = [ 323, 0, 306, 161, 144, 34 ]
+attachments/0/point_index = 323
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3( 0, 0, 0 )
+attachments/1/point_index = 0
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3( 0, 0, 0 )
+attachments/2/point_index = 306
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3( 0, 0, 0 )
+attachments/3/point_index = 161
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3( 0, 0, 0 )
+attachments/4/point_index = 144
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3( 0, 0, 0 )
+attachments/5/point_index = 34
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3( 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.244528 )
+shape = SubResource( 2 )

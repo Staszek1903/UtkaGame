@@ -1,0 +1,163 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/WaterManager.gd" type="Script" id=1]
+[ext_resource path="res://src/RayCast.gd" type="Script" id=2]
+[ext_resource path="res://materials/simple_water_shader.tres" type="Material" id=3]
+[ext_resource path="res://models/decimated_plane.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://scenes/Utka.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game_env.tres" type="Environment" id=7]
+[ext_resource path="res://src/WaterTile.gd" type="Script" id=15]
+[ext_resource path="res://scenes/Island.tscn" type="PackedScene" id=17]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 50, 2, 50 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+
+[sub_resource type="QuadMesh" id=5]
+size = Vector2( 2, 2 )
+
+[sub_resource type="Shader" id=6]
+resource_local_to_scene = true
+code = "//THIS SHADER MUST BE APPLIED TO A QUAD (MeshInstance) WITH A SIZE OF (2, 2)
+//Extra Cull Margin on the quad should be turned up all the way!
+
+shader_type spatial;
+render_mode unshaded;
+
+uniform int outline_mode : hint_range(1, 3, 1) = 3;
+uniform float outline_intensity : hint_range(0, 5) = 1;
+uniform bool _round = false;
+uniform float outline_bias : hint_range(-10, 10) = 0;
+
+uniform vec4 outline_color : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+void vertex() {
+	POSITION = vec4(VERTEX, 1.0);
+}
+
+void fragment() {
+	ALBEDO = outline_color.rgb;
+	//ALPHA = 0.9;
+	
+	vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 1));
+	
+	float px = 0.5/screen_size.x;
+	float py = 0.5/screen_size.y;
+	
+	float d = texture(DEPTH_TEXTURE, SCREEN_UV).x;
+	float du = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(0.0, py)).x;
+	float dd = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(0.0, -py)).x;
+	float dr = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, 0.0)).x;
+	float dl = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(-px, 0.0)).x;
+	
+	if (outline_mode == 1){
+		ALPHA = 0.0 + abs(abs(d)-abs(du)) + abs(abs(d)-abs(dd)) + abs(abs(d)-abs(dl)) + abs(abs(d)-abs(dr));
+			
+		ALPHA *= 1000.0*outline_intensity;
+	} else if (outline_mode == 2) {
+		ALPHA = 0.0 + abs(abs(abs(d)-abs(du)) - abs(abs(d)-abs(dd))) + abs(abs(abs(d)-abs(dl)) - abs(abs(d)-abs(dr)));
+		
+		ALPHA *= 3.0*50000.0*outline_intensity;
+	} else if (outline_mode == 3) {
+		float dq = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(-px, py)).x;
+		float de = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, py)).x;
+		float dz = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(-px, -py)).x;
+		float dc = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, -py)).x;
+		
+		ALPHA = 0.0 + abs(abs(abs(d)-abs(du)) - abs(abs(d)-abs(dd))) + abs(abs(abs(d)-abs(dl)) - abs(abs(d)-abs(dr))) + abs(abs(abs(d)-abs(dq)) - abs(abs(d)-abs(dc))) + abs(abs(abs(d)-abs(dz)) - abs(abs(d)-abs(de)));
+
+		ALPHA *= 50000.0*outline_intensity;
+	}
+	
+	ALPHA += outline_bias;
+	
+	if (_round) {
+		ALPHA = round(ALPHA);
+	}
+	
+	ALPHA *= outline_color.a;
+}
+
+//Written by Warren Jennings"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/outline_mode = 2
+shader_param/outline_intensity = 0.274
+shader_param/_round = false
+shader_param/outline_bias = 0.0
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[node name="Root" type="Spatial"]
+
+[node name="WaterManager" type="Node" parent="."]
+script = ExtResource( 1 )
+amplitude = 0.0
+frequency = 0.449
+timefactor = -0.161
+
+[node name="WaterTile" type="Spatial" parent="."]
+script = ExtResource( 15 )
+
+[node name="Area" type="Area" parent="WaterTile"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="WaterTile/Area"]
+shape = SubResource( 1 )
+
+[node name="WaterMesh" type="MeshInstance" parent="WaterTile"]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.33204, 0.595418, -0.731592, 0.229597, 0.701252, 0.674931, 0.914896, -0.392076, 0.0961373, -0.890042, 1.98229, 3.71607 )
+light_energy = 0.3
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5046, 0 )
+visible = false
+cast_to = Vector3( 0, -10, 0 )
+script = ExtResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 0.345805, 0, 0, 0, 0.345805, 0, 0, 0, 0.345805, 0, -1.35912, 7.66402 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Utka" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.85657, 0.763032, -4.57224 )
+
+[node name="Island" parent="." instance=ExtResource( 17 )]
+
+[node name="island" parent="Island" index="0"]
+material/0 = SubResource( 4 )
+
+[node name="Island2" parent="." instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -400, 0, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 7 )
+
+[node name="OutlinePostProces" type="MeshInstance" parent="."]
+transform = Transform( 31.1354, 0, 0, 0, 31.1354, 0, 0, 0, 31.1354, 0, 0, 0 )
+visible = false
+mesh = SubResource( 5 )
+material/0 = SubResource( 7 )
+
+[connection signal="area_entered" from="WaterTile/Area" to="WaterTile" method="_on_Area_area_entered"]
+
+[editable path="Island"]
+[editable path="Island2"]

@@ -1,0 +1,77 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode cull_disabled;
+
+uniform float amplitude = 0.2;
+uniform float drift_factor = 0.2;
+uniform float frequency = 3.0;
+uniform float time_factor = 1.0;
+uniform vec2 direction = vec2(1.0,0.0);
+
+uniform float amplitude2 = 0.2;
+uniform float drift_factor2 = 0.2;
+uniform float frequency2 = 3.0;
+uniform float time_factor2 = 1.0;
+uniform vec2 direction2 = vec2(1.0,0.0);
+//uniform float beer_factor = 10.0;
+
+uniform vec4 water_color: hint_color = vec4(0.1, 0.1, 0.9, 1.0);
+
+float f(vec2 pos, vec2 dir, float time, float freq, float t_fac){
+	return dot(pos, dir) * freq + time * t_fac;
+}
+
+vec3 gerstner_wave(vec2 pos, vec2 dir, float time, float amp, float drift, float freq, float t_fac){
+	vec3 point = vec3(0.0,0.0,0.0);
+	point.y = amp * sin(f(pos,dir,time, freq, t_fac));
+	point.x = dir.x * cos(f(pos,dir,time, freq, t_fac)) * drift;
+	point.z = dir.y * cos(f(pos,dir,time, freq, t_fac)) * drift;
+	return point;
+}
+
+void vertex() {
+	vec2 pos = VERTEX.xz;
+	vec3 waves = gerstner_wave(pos, normalize(direction), TIME, amplitude, drift_factor, frequency, time_factor) +
+				gerstner_wave(pos, normalize(direction2), TIME, amplitude2, drift_factor2, frequency2, time_factor2);
+				
+	waves /= 2.0;
+	VERTEX += waves;
+
+
+	//TANGENT = normalize(vec3(0.0, height(VERTEX.xz + vec2(0.0, 0.2), TIME) - height(VERTEX.xz + vec2(0.0, -0.2), TIME), 0.4));
+	//BINORMAL = normalize(vec3(0.4, height(VERTEX.xz + vec2(0.2, 0.0), TIME) - height(VERTEX.xz + vec2(-0.2, 0.0), TIME ), 0.0));
+
+}
+
+void fragment(){
+	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	METALLIC = 0.4;
+	SPECULAR = 0.2;
+	ROUGHNESS = 0.2;
+	ALBEDO = water_color.xyz;
+	
+	//float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
+	//depth = depth *2.0 -1.0;
+	//depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
+	//depth = depth + VERTEX.z;
+	
+	//depth = exp(-depth * 10.0);
+	//ALPHA = clamp(1.0 - depth, 0.0, 1.0);
+	//ALBEDO = vec3(depth,depth,depth);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/amplitude = 0.079
+shader_param/drift_factor = 0.015
+shader_param/frequency = 10.0
+shader_param/time_factor = 0.166
+shader_param/direction = Vector2( 0.638, 0.945 )
+shader_param/amplitude2 = 0.049
+shader_param/drift_factor2 = 0.015
+shader_param/frequency2 = 7.0
+shader_param/time_factor2 = 1.0
+shader_param/direction2 = Vector2( 0, 1 )
+shader_param/water_color = Color( 0, 1, 0.976471, 1 )
