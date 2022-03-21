@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/DockPoint.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+emission_enabled = true
+emission = Color( 0.219608, 1, 0, 1 )
+emission_energy = 16.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="DockPoint" type="Position3D"]
+script = ExtResource( 1 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+
+[node name="Indicator" type="CSGSphere" parent="."]
+visible = false
+radius = 0.159654
+material = SubResource( 2 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 0.490844, 0, 0, 0, 0.490844, 0, 0, 0, 0.490844, 0, 0.0582655, 0 )
+radius = 0.200848
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="."]
+transform = Transform( 0.490844, 0, 0, 0, -2.14555e-08, -0.490844, 0, 0.490844, -2.14555e-08, 0, 0.170606, 0 )
+radius = 0.133807
+height = 0.806727

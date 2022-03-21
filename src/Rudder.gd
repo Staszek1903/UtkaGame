@@ -1,4 +1,4 @@
-extends RigidBody
+extends Spatial
 
 export(float) var rudder_speed: float = 1
 export(float) var max_angle: float = 1
@@ -32,7 +32,7 @@ func _physics_process(delta):
 	
 	var offset = force_offset + \
 	to_global(Vector3()) - body.to_global(Vector3())
-	body.add_force(global_impulse * delta * rudder_force, offset)
+	body.add_force(global_impulse * body.mass * delta * rudder_force, offset)
 	
 	debug.clear()
 	debug.draw(global_impulse * delta * 60)

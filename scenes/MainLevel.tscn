@@ -1,0 +1,495 @@
+[gd_scene load_steps=53 format=2]
+
+[ext_resource path="res://src/WaterManager.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Lighthouse.tscn" type="PackedScene" id=2]
+[ext_resource path="res://materials/simple_water_shader.tres" type="Material" id=3]
+[ext_resource path="res://models/decimated_plane.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://terrain1/data.hterrain" type="Resource" id=5]
+[ext_resource path="res://scenes/Utka.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game_env.tres" type="Environment" id=7]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=8]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=9]
+[ext_resource path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" type="Texture" id=10]
+[ext_resource path="res://textures/Bez nazwy.png" type="Texture" id=11]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=12]
+[ext_resource path="res://addons/zylann.hterrain/models/grass_quad_x3.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://scenes/Quai.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/WaterTile.gd" type="Script" id=15]
+[ext_resource path="res://fonts/montreal/Montreal.tres" type="DynamicFont" id=16]
+[ext_resource path="res://objects/WaterGate.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/RaceTimer.gd" type="Script" id=18]
+[ext_resource path="res://objects/Barel.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/WindManager.gd" type="Script" id=20]
+[ext_resource path="res://src/Minimap.gd" type="Script" id=21]
+[ext_resource path="res://scenes/InventoryList.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/ItemSpawn.gd" type="Script" id=23]
+[ext_resource path="res://fonts/montreal/Montreal-Regular.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://src/TaskManager.gd" type="Script" id=25]
+[ext_resource path="res://src/TaskResource.gd" type="Script" id=26]
+[ext_resource path="res://src/InventoryTask.gd" type="Script" id=27]
+[ext_resource path="res://scenes/FortTower.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scenes/LPG.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/Lumbermill.tscn" type="PackedScene" id=30]
+[ext_resource path="res://scenes/Brewery.tscn" type="PackedScene" id=31]
+[ext_resource path="res://scenes/Cabin.tscn" type="PackedScene" id=32]
+[ext_resource path="res://src/Inventory.gd" type="Script" id=33]
+[ext_resource path="res://scenes/ShopList.tscn" type="PackedScene" id=34]
+[ext_resource path="res://scenes/BuildingList.tscn" type="PackedScene" id=35]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 47.803, 2, 47.4266 )
+
+[sub_resource type="QuadMesh" id=3]
+size = Vector2( 2, 2 )
+
+[sub_resource type="Shader" id=4]
+resource_local_to_scene = true
+code = "//THIS SHADER MUST BE APPLIED TO A QUAD (MeshInstance) WITH A SIZE OF (2, 2)
+//Extra Cull Margin on the quad should be turned up all the way!
+
+shader_type spatial;
+render_mode unshaded;
+
+uniform int outline_mode : hint_range(1, 3, 1) = 3;
+uniform float outline_intensity : hint_range(0, 5) = 1;
+uniform bool _round = false;
+uniform float outline_bias : hint_range(-10, 10) = 0;
+
+uniform vec4 outline_color : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+void vertex() {
+	POSITION = vec4(VERTEX, 1.0);
+}
+
+void fragment() {
+	ALBEDO = outline_color.rgb;
+	//ALPHA = 0.9;
+	
+	vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 1));
+	
+	float px = 0.5/screen_size.x;
+	float py = 0.5/screen_size.y;
+	
+	float d = texture(DEPTH_TEXTURE, SCREEN_UV).x;
+	float du = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(0.0, py)).x;
+	float dd = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(0.0, -py)).x;
+	float dr = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, 0.0)).x;
+	float dl = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(-px, 0.0)).x;
+	
+	if (outline_mode == 1){
+		ALPHA = 0.0 + abs(abs(d)-abs(du)) + abs(abs(d)-abs(dd)) + abs(abs(d)-abs(dl)) + abs(abs(d)-abs(dr));
+			
+		ALPHA *= 1000.0*outline_intensity;
+	} else if (outline_mode == 2) {
+		ALPHA = 0.0 + abs(abs(abs(d)-abs(du)) - abs(abs(d)-abs(dd))) + abs(abs(abs(d)-abs(dl)) - abs(abs(d)-abs(dr)));
+		
+		ALPHA *= 3.0*50000.0*outline_intensity;
+	} else if (outline_mode == 3) {
+		float dq = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(-px, py)).x;
+		float de = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, py)).x;
+		float dz = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(-px, -py)).x;
+		float dc = texture(DEPTH_TEXTURE, SCREEN_UV+vec2(px, -py)).x;
+		
+		ALPHA = 0.0 + abs(abs(abs(d)-abs(du)) - abs(abs(d)-abs(dd))) + abs(abs(abs(d)-abs(dl)) - abs(abs(d)-abs(dr))) + abs(abs(abs(d)-abs(dq)) - abs(abs(d)-abs(dc))) + abs(abs(abs(d)-abs(dz)) - abs(abs(d)-abs(de)));
+
+		ALPHA *= 50000.0*outline_intensity;
+	}
+	
+	ALPHA += outline_bias;
+	
+	if (_round) {
+		ALPHA = round(ALPHA);
+	}
+	
+	ALPHA *= outline_color.a;
+}
+
+//Written by Warren Jennings"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/outline_mode = 1
+shader_param/outline_intensity = 0.1
+shader_param/_round = true
+shader_param/outline_bias = 0.0
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="PlaneMesh" id=6]
+size = Vector2( 3000, 3000 )
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="Shader" id=7]
+code = "shader_type spatial;
+render_mode diffuse_lambert;
+
+varying float z_dist;
+uniform float min_dist = 50.0f;
+uniform vec4 color : hint_color;
+
+void vertex() {
+   z_dist = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).z * -1.0;
+}
+
+void fragment() {
+	float d = clamp((z_dist - min_dist)/20.0, 0.0, 1.0);
+	
+	ALPHA = d;
+	ALBEDO = color.rgb;
+	METALLIC = 0.0;
+	SPECULAR = 0.0;
+	ROUGHNESS = 0.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/min_dist = 200.0
+shader_param/color = Color( 0.298039, 0.647059, 0.72549, 1 )
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 9 )
+mode = 0
+textures = [ [  ], [  ] ]
+
+[sub_resource type="Shader" id=10]
+code = "shader_type spatial;
+render_mode cull_disabled;
+
+uniform sampler2D u_terrain_heightmap;
+uniform sampler2D u_terrain_detailmap;
+uniform sampler2D u_terrain_normalmap;
+uniform sampler2D u_terrain_globalmap : hint_albedo;
+uniform mat4 u_terrain_inverse_transform;
+uniform mat3 u_terrain_normal_basis;
+
+uniform sampler2D u_albedo_alpha : hint_albedo;
+uniform float u_view_distance = 100.0;
+uniform float u_globalmap_tint_bottom : hint_range(0.0, 1.0);
+uniform float u_globalmap_tint_top : hint_range(0.0, 1.0);
+uniform float u_bottom_ao : hint_range(0.0, 1.0);
+uniform vec2 u_ambient_wind; // x: amplitude, y: time
+uniform vec3 u_instance_scale = vec3(1.0, 1.0, 1.0);
+
+varying vec3 v_normal;
+varying vec2 v_map_uv;
+
+float get_hash(vec2 c) {
+	return fract(sin(dot(c.xy, vec2(12.9898,78.233))) * 43758.5453);
+}
+
+vec3 unpack_normal(vec4 rgba) {
+	vec3 n = rgba.xzy * 2.0 - vec3(1.0);
+	n.z *= -1.0;
+	return n;
+}
+
+vec3 get_ambient_wind_displacement(vec2 uv, float hash) {
+	// TODO This is an initial basic implementation. It may be improved in the future, especially for strong wind.
+	float t = u_ambient_wind.y;
+	float amp = u_ambient_wind.x * (1.0 - uv.y);
+	// Main displacement
+	vec3 disp = amp * vec3(cos(t), 0, sin(t * 1.2));
+	// Fine displacement
+	float fine_disp_frequency = 2.0;
+	disp += 0.2 * amp * vec3(cos(t * (fine_disp_frequency + hash)), 0, sin(t * (fine_disp_frequency + hash) * 1.2));
+	return disp;
+}
+
+void vertex() {
+	vec4 obj_pos = WORLD_MATRIX * vec4(0, 1, 0, 1);
+	vec3 cell_coords = (u_terrain_inverse_transform * obj_pos).xyz;
+	// Must add a half-offset so that we sample the center of pixels,
+	// otherwise bilinear filtering of the textures will give us mixed results (#183)
+	cell_coords.xz += vec2(0.5);
+	
+	vec2 map_uv = cell_coords.xz / vec2(textureSize(u_terrain_heightmap, 0));
+	v_map_uv = map_uv;
+
+	//float density = 0.5 + 0.5 * sin(4.0*TIME); // test
+	float density = texture(u_terrain_detailmap, map_uv).r;
+	float hash = get_hash(obj_pos.xz);
+	float hash2 = get_hash(obj_pos.zx);
+	
+	if (density > hash) {
+		// Snap model to the terrain
+		float height = texture(u_terrain_heightmap, map_uv).r / cell_coords.y;
+		VERTEX *= u_instance_scale * (1.0f + hash2);
+		VERTEX.y += height;
+		
+		VERTEX += get_ambient_wind_displacement(UV, hash);
+		
+		// Fade alpha with distance
+		vec3 wpos = (WORLD_MATRIX * vec4(VERTEX, 1)).xyz;
+		float dr = distance(wpos, CAMERA_MATRIX[3].xyz) / u_view_distance;
+		COLOR.a = clamp(1.0 - dr * dr * dr, 0.0, 1.0);
+
+		// When using billboards, the normal is the same as the terrain regardless of face orientation
+		v_normal = normalize(u_terrain_normal_basis * unpack_normal(texture(u_terrain_normalmap, map_uv)));
+
+	} else {
+		// Discard, output degenerate triangles
+		VERTEX = vec3(0, 0, 0);
+	}
+}
+
+void fragment() {
+	NORMAL = (INV_CAMERA_MATRIX * (WORLD_MATRIX * vec4(v_normal, 0.0))).xyz;
+	ALPHA_SCISSOR = 0.5;
+	ROUGHNESS = 1.0;
+
+	vec4 col = texture(u_albedo_alpha, UV);
+	ALPHA = col.a * COLOR.a;// - clamp(1.4 - UV.y, 0.0, 1.0);//* 0.5 + 0.5*cos(2.0*TIME);
+	
+	ALBEDO = COLOR.rgb * col.rgb;
+
+	// Blend with ground color
+	float nh = sqrt(1.0 - UV.y);
+	ALBEDO = mix(ALBEDO, texture(u_terrain_globalmap, v_map_uv).rgb, mix(u_globalmap_tint_bottom, u_globalmap_tint_top, nh));
+	
+	// Fake bottom AO
+	ALBEDO = ALBEDO * mix(1.0, 1.0 - u_bottom_ao, UV.y * UV.y);
+}
+"
+
+[sub_resource type="Theme" id=11]
+
+[sub_resource type="Environment" id=12]
+
+[sub_resource type="ViewportTexture" id=13]
+viewport_path = NodePath("MinimapViewport")
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 26 )
+msg = "Win the race "
+node_path = NodePath("../Water Gate")
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 27 )
+msg = "Zbierz beczki"
+node_path = NodePath("../InventoryList")
+required_item_name = "Barrel"
+required_item_count = 5
+
+[sub_resource type="DynamicFont" id=16]
+size = 20
+font_data = ExtResource( 24 )
+
+[sub_resource type="Theme" id=17]
+default_font = SubResource( 16 )
+
+[node name="Root" type="Spatial"]
+
+[node name="WaterManager" type="Node" parent="."]
+script = ExtResource( 1 )
+amplitude = 0.202
+frequency = 0.295
+
+[node name="WindManager" type="Node" parent="."]
+script = ExtResource( 20 )
+wind_speed = 5.0
+
+[node name="ItemSpawn" type="ImmediateGeometry" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0335, -0.286528, -34.8634 )
+material_override = SubResource( 1 )
+script = ExtResource( 23 )
+item_paths = [ ExtResource( 19 ) ]
+radius_max = 70.0
+radius_min = 15.0
+
+[node name="WaterTile" type="Spatial" parent="."]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -0.07 )
+script = ExtResource( 15 )
+
+[node name="Area" type="Area" parent="WaterTile"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="WaterTile/Area"]
+shape = SubResource( 2 )
+
+[node name="WaterMesh" type="MeshInstance" parent="WaterTile"]
+layers = 2
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="Utka" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.85657, 0.170167, -4.57224 )
+
+[node name="Quai" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.477926, 0, 0.878401, 0, 1, 0, -0.878401, 0, 0.477926, -84.1745, 1.15774, 199.233 )
+
+[node name="Lumbermill" parent="." instance=ExtResource( 30 )]
+transform = Transform( 0.506772, 0, -0.86208, 0, 1, 0, 0.86208, 0, 0.506772, 17.5839, 1.15772, 20.6096 )
+
+[node name="LPG" parent="." instance=ExtResource( 29 )]
+transform = Transform( 0.938921, 0, 0.344135, 0, 1, 0, -0.344135, 0, 0.938921, -422.669, 1.15775, -64.2208 )
+
+[node name="Brewery" parent="." instance=ExtResource( 31 )]
+transform = Transform( 0.662189, 0, 0.749338, 0, 1, 0, -0.749338, 0, 0.662189, -24.5623, 1.15774, -140.349 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 7 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.0206108, 0.685533, -0.72775, 0, 0.727904, 0.685679, 0.999788, 0.0141324, -0.0150027, -0.624486, 1.87438, 3.84133 )
+light_color = Color( 1, 0.964706, 0.847059, 1 )
+light_energy = 0.2
+shadow_enabled = true
+
+[node name="OutlinePostProces" type="MeshInstance" parent="."]
+transform = Transform( 31.1354, 0, 0, 0, 31.1354, 0, 0, 0, 31.1354, 0, 0, 0 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.1828, 0, 0 )
+lod_min_distance = 3300.0
+lod_max_distance = 32768.0
+mesh = SubResource( 6 )
+material/0 = SubResource( 8 )
+
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -915.499, -10, -464.723 )
+script = ExtResource( 8 )
+ambient_wind = 0.241
+_terrain_data = ExtResource( 5 )
+chunk_size = 64
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "LowPoly"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 9 )
+
+[node name="HTerrainDetailLayer" type="Spatial" parent="HTerrain"]
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_icon": ExtResource( 10 )
+}
+texture = ExtResource( 11 )
+view_distance = 500.0
+custom_shader = SubResource( 10 )
+density = 0.712
+instance_mesh = ExtResource( 13 )
+shader_params/u_globalmap_tint_bottom = 0.455
+shader_params/u_globalmap_tint_top = 0.0
+shader_params/u_bottom_ao = 0.48
+shader_params/u_instance_scale = Vector3( 1.5, 3, 1.5 )
+
+[node name="Lighthouse2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, -646.191, 4.10153, -378.59 )
+
+[node name="Lighthouse" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 37.3127, 4.90228, 70.067 )
+
+[node name="RaceTimer" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -231.0
+margin_right = 234.0
+margin_bottom = 69.0
+theme = SubResource( 11 )
+custom_fonts/font = ExtResource( 16 )
+text = "SAMPLE TEXT"
+align = 1
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Water Gate" parent="." instance=ExtResource( 17 )]
+transform = Transform( 0.855717, 0, -0.517444, 0, 1, 0, 0.517444, 0, 0.855717, -22.6134, -0.34304, -33.4504 )
+next_gate = NodePath("../Water Gate2")
+active = true
+
+[node name="Water Gate2" parent="." instance=ExtResource( 17 )]
+transform = Transform( 0.913943, 0, -0.405844, 0, 1, 0, 0.405844, 0, 0.913943, -75.6879, -0.34304, -71.3593 )
+next_gate = NodePath("../Water Gate3")
+
+[node name="Water Gate3" parent="." instance=ExtResource( 17 )]
+transform = Transform( 0.857984, 0, -0.513676, 0, 1, 0, 0.513676, 0, 0.857984, -133.42, -0.34304, -109.421 )
+
+[node name="MinimapViewport" type="Viewport" parent="."]
+size = Vector2( 200, 200 )
+
+[node name="Camera" type="Camera" parent="MinimapViewport"]
+transform = Transform( -2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 2.98023e-08, 1.3027e-15, -400, 700, 50 )
+cull_mask = 5
+environment = SubResource( 12 )
+projection = 1
+size = 1000.0
+far = 8192.0
+
+[node name="Minimap" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.941176 )
+margin_right = 150.0
+margin_bottom = 150.0
+texture = SubResource( 13 )
+expand = true
+stretch_mode = 1
+flip_v = true
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Minimap"]
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource( 33 )
+
+[node name="InventoryList" parent="." instance=ExtResource( 22 )]
+
+[node name="ShopList" parent="." instance=ExtResource( 34 )]
+
+[node name="BuildingList" parent="." instance=ExtResource( 35 )]
+
+[node name="TaskManager" type="Control" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.768627 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = 40.0
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+tasks = [ SubResource( 14 ), SubResource( 15 ) ]
+
+[node name="Label" type="Label" parent="TaskManager"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -73.0
+margin_bottom = 26.0
+grow_horizontal = 0
+theme = SubResource( 17 )
+text = "TASKS:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FortTower" parent="." instance=ExtResource( 28 )]
+transform = Transform( 0.956448, 0, 0.291904, 0, 1, 0, -0.291904, 0, 0.956448, 4.07883, -4.33325, -133.716 )
+
+[node name="FortTower2" parent="." instance=ExtResource( 28 )]
+transform = Transform( 0.956448, 0, 0.291904, 0, 1, 0, -0.291904, 0, 0.956448, 15.7058, -4.33325, -123.766 )
+
+[node name="FortTower3" parent="." instance=ExtResource( 28 )]
+transform = Transform( 0.956448, 0, 0.291904, 0, 1, 0, -0.291904, 0, 0.956448, -32.7341, -4.33325, -168.028 )
+
+[node name="FortTower4" parent="." instance=ExtResource( 28 )]
+transform = Transform( 0.956448, 0, 0.291904, 0, 1, 0, -0.291904, 0, 0.956448, -45.2567, -4.33325, -179.055 )
+
+[node name="Cabin" parent="." instance=ExtResource( 32 )]
+transform = Transform( 0.932343, 0, -0.361576, 0, 1, 0, 0.361576, 0, 0.932343, -48.133, 1.17796, 35.6382 )
+
+[connection signal="area_entered" from="WaterTile/Area" to="WaterTile" method="_on_Area_area_entered"]

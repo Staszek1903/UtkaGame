@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Rope.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ForceDebug.tscn" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_ensure_correct_normals = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 1
+params_cull_mode = 2
+
+[node name="Rope" type="Spatial"]
+script = ExtResource( 1 )
+color = Color( 0.14902, 0.196078, 0.462745, 1 )
+
+[node name="EndA" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05067, 0, 0 )
+
+[node name="ForceDebug" parent="EndA" instance=ExtResource( 2 )]
+transform = Transform( 1.002, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="EndB" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54172, 0, 0 )
+
+[node name="ForceDebug" parent="EndB" instance=ExtResource( 2 )]
+transform = Transform( 1.002, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="LineDraw" type="ImmediateGeometry" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0154092, -0.00526214, 0.0101829 )
+material_override = SubResource( 1 )

@@ -1,6 +1,6 @@
 extends Spatial
 
-var tile_width = 99
+var tile_width = 199
 
 enum Direction{
 	E,
@@ -75,10 +75,12 @@ func spawn_tile(direction_index : int):
 	var new_pos = global_transform.origin + coords[direction_index]*tile_width
 	var another:Spatial = duplicate()
 	another.name = "DynWater"
-	another.global_transform.origin = new_pos
+	another.transform.origin = new_pos
+	another.scale = scale
 	get_parent().add_child(another)
 	another.tiles[reverse_dir(direction_index)] = self
 	tiles[direction_index] = another
+	print("created: ", another.name, " scale: ", another.scale);
 	
 func ensure_tile_connections():
 	for direction in Direction:

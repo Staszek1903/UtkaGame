@@ -1,0 +1,452 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=1]
+[ext_resource path="res://scenes/DockPoint.tscn" type="PackedScene" id=2]
+[ext_resource path="res://materials/roof_material.tres" type="Material" id=3]
+[ext_resource path="res://scenes/Button3D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/BuildingArea.gd" type="Script" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 7.87742, 1, 9.04479 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 8.87583, 3.06439, 3.04656 )
+
+[node name="Cabin" type="Spatial"]
+
+[node name="House" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08588, 2.0137, 2.58221 )
+
+[node name="Chimney" type="CSGPolygon" parent="House"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.28682, -2.0011, -0.614008 )
+polygon = PoolVector2Array( -0.703984, 0.0367036, -0.723134, 1.51882, -0.0752349, 3.8078, 0.01965, 5.62216, -0.15141, 8.21141, 0.759504, 8.13804, 0.855826, 5.67213, 0.725418, 3.90326, 1.26987, 1.73545, 1.22283, 0.0594802 )
+material = SubResource( 1 )
+
+[node name="Roof" type="Spatial" parent="House"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0140724, -2.0137, -2.58221 )
+visible = false
+
+[node name="CSGBox" type="CSGBox" parent="House/Roof"]
+transform = Transform( 1, 0, 0, 0, 0.971384, 0.237516, 0, -0.237516, 0.971384, 0.899424, 3.53304, -1.9739 )
+width = 12.0
+height = 0.235991
+depth = 3.29879
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="House/Roof"]
+transform = Transform( 1, 0, 0, 0, 0.712381, 0.701793, 0, -0.701793, 0.712381, 0.841028, 5.37895, 0.79575 )
+width = 12.0
+height = 0.235991
+depth = 4.46802
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="House/Roof"]
+transform = Transform( 1, 0, 0, 0, 0.701792, -0.712381, 0, 0.712381, 0.701792, 0.879036, 5.1885, 4.29968 )
+width = 12.0
+height = 0.235991
+depth = 5.49178
+material = ExtResource( 3 )
+
+[node name="CSGBox17" type="CSGBox" parent="House/Roof"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.40223, 1.37372, -3.4289 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox18" type="CSGBox" parent="House/Roof"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2.57168, 1.37372, -3.4289 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox20" type="CSGBox" parent="House/Roof"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.31258, 2.814, 0.664215 )
+width = 0.238306
+height = 5.31124
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox19" type="CSGBox" parent="House/Roof"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.31258, 2.814, 3.85928 )
+width = 0.238306
+height = 5.31124
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="Foundation" type="CSGCombiner" parent="House"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08588, -2.0137, -2.58221 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="House/Foundation"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.752986, 0.433367, -3.58347 )
+polygon = PoolVector2Array( 2.99635, -2.83282, 3.01226, -9.3322, -5.80833, -9.32331, -5.78146, -6.82164, -6.64157, -6.81174, -6.6514, -4.81518, -5.79766, -4.78123, -5.74186, -0.204561, -2.64378, -0.204104, -2.62989, -2.80499 )
+depth = 0.358
+
+[node name="CSGBox" type="CSGBox" parent="House/Foundation"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16338, 0, 2.56668 )
+operation = 2
+width = 8.01223
+depth = 5.77845
+
+[node name="CSGBox2" type="CSGBox" parent="House/Foundation"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.90684, -9.53674e-07, -1.16049 )
+operation = 2
+width = 3.87134
+depth = 2.44884
+
+[node name="CSGBox3" type="CSGBox" parent="House/Foundation"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.20459, -9.53674e-07, 2.23242 )
+operation = 2
+width = 3.62561
+depth = 1.20346
+
+[node name="1Part" type="Spatial" parent="House"]
+visible = false
+
+[node name="CSGBox22" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 4.12408, -0.114589, 2.97284 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="CSGBox23" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 1.06581e-14, -4.37114e-08, 1, -4.65882e-22, -1, -4.37114e-08, 4.08013, 1.6228, -0.0211291 )
+width = 0.238306
+height = 5.80848
+depth = 0.235515
+
+[node name="CSGBox38" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, 0.707107, 0.707107, 7.53644e-15, -0.707107, 0.707107, 4.08013, 3.18616, 1.38794 )
+width = 0.238306
+height = 4.18802
+depth = 0.235515
+
+[node name="CSGBox39" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, -0.707107, 0.707107, -7.53644e-15, -0.707107, -0.707107, 4.08013, 3.11459, -1.4807 )
+width = 0.238306
+height = 4.14814
+depth = 0.235515
+
+[node name="CSGBox40" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, 0.707107, 0.707107, 7.53644e-15, -0.707107, 0.707107, -4.25824, 3.18616, 1.38794 )
+width = 0.238306
+height = 4.18802
+depth = 0.235515
+
+[node name="CSGBox41" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, -0.707107, 0.707107, -7.53644e-15, -0.707107, -0.707107, -4.25824, 3.11459, -1.4807 )
+width = 0.238306
+height = 4.14814
+depth = 0.235515
+
+[node name="CSGBox33" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 1.06581e-14, -4.37114e-08, 1, -4.65882e-22, -1, -4.37114e-08, -4.2358, 1.6228, 0.00365353 )
+width = 0.238306
+height = 5.9412
+depth = 0.235515
+
+[node name="CSGBox35" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 1.05108e-14, -0.165685, 0.986179, -1.76589e-15, -0.986179, -0.165685, -4.2358, 1.39878, -4.44859 )
+width = 0.238306
+height = 2.85668
+depth = 0.235515
+
+[node name="CSGBox36" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 1.05108e-14, -0.165685, 0.986179, -1.76589e-15, -0.986179, -0.165685, -1.46215, 1.39878, -4.44859 )
+width = 0.238306
+height = 2.85668
+depth = 0.235515
+
+[node name="CSGBox31" type="CSGBox" parent="House/1Part"]
+transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -0.137975, 1.6228, -2.97014 )
+width = 0.238306
+height = 8.21007
+depth = 0.235515
+
+[node name="CSGBox32" type="CSGBox" parent="House/1Part"]
+transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -0.0547562, 1.6228, 2.97925 )
+width = 0.238306
+height = 8.24975
+depth = 0.235515
+
+[node name="CSGBox42" type="CSGBox" parent="House/1Part"]
+transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -0.0547562, 4.59172, 0.00133157 )
+width = 0.238306
+height = 8.24975
+depth = 0.235515
+
+[node name="CSGBox37" type="CSGBox" parent="House/1Part"]
+transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -2.87195, 1.14053, -5.67935 )
+width = 0.238306
+height = 2.88
+depth = 0.235515
+
+[node name="CSGBox21" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 4.08013, -0.114589, -2.97315 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="CSGBox24" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.48597, -0.114589, -2.97315 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="CSGBox34" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.26097, -0.114589, -2.97315 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="CSGBox25" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.48597, -0.114589, -5.8208 )
+width = 0.238306
+height = 2.72971
+depth = 0.235515
+
+[node name="CSGBox26" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.240984, -5.8208 )
+width = 0.238306
+height = 2.99525
+depth = 0.235515
+
+[node name="CSGBox27" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.114589, 2.98553 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="CSGBox29" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.114589, -1.50583 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="CSGBox30" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.114589, 1.14894 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="CSGBox28" type="CSGBox" parent="House/1Part"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.0484457, -0.114589, 2.98553 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+
+[node name="2Part" type="Spatial" parent="House"]
+visible = false
+
+[node name="CSGBox" type="CSGBox" parent="House/2Part"]
+transform = Transform( 0.999982, 0.00602135, 0, -0.00602135, 0.999982, 0, 0, 0, 1, -0.0460348, -0.175712, -0.0551395 )
+width = 8.36749
+height = 3.79574
+depth = 5.86746
+
+[node name="CSGPolygon" type="CSGPolygon" parent="House/2Part"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.14023, 1.6061, 1.60761 )
+polygon = PoolVector2Array( 4.3979, 0.11439, 1.66386, 2.80003, -1.17206, 0.0666759 )
+depth = 0.182
+
+[node name="CSGPolygon2" type="CSGPolygon" parent="House/2Part"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.22342, 1.6061, 1.60761 )
+polygon = PoolVector2Array( 4.3979, 0.11439, 1.66386, 2.80003, -1.17206, 0.0666759 )
+depth = 0.182
+
+[node name="CSGPolygon3" type="CSGPolygon" parent="House/2Part"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.4055, -1.75876, -1.50356 )
+polygon = PoolVector2Array( 4.39692, 0.0378082, 4.29986, 2.85538, 1.51044, 3.39439, 1.60567, -0.05497 )
+depth = 2.922
+
+[node name="Podest" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.01956, 0, -8.94013 )
+
+[node name="CSGBox" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9177, 0, -3.57628e-07 )
+width = 17.6172
+height = 0.177596
+depth = 15.907
+material = ExtResource( 1 )
+
+[node name="CSGBox4" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915363, -1.40017, -8 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox6" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, -6 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox8" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, -4 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox5" type="CSGBox" parent="Podest"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.840387, -1.40017, -7.88111 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox7" type="CSGBox" parent="Podest"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.84039, -1.40017, -7.88111 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox9" type="CSGBox" parent="Podest"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.84039, -1.40017, -7.88111 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox11" type="CSGBox" parent="Podest"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.840387, -1.40017, 7.71192 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox13" type="CSGBox" parent="Podest"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.84039, -1.40017, 7.71192 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox15" type="CSGBox" parent="Podest"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.84039, -1.40017, 7.71192 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox10" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, -2 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox12" type="CSGBox" parent="Podest"]
+transform = Transform( 1, -7.32391e-11, -6.39488e-14, 7.32391e-11, 0.999999, 0.00167552, -6.39488e-14, -0.00167552, 0.999999, -0.915364, -1.40017, 4.76837e-07 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox14" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 2 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox16" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 4 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox18" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 6 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox20" type="CSGBox" parent="Podest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 8 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="DockPoint" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.90556, 0.500977, -9.8393 )
+
+[node name="DockPoint2" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.02635, 0.500977, -9.8393 )
+
+[node name="DockPoint3" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.96625, 0.500977, -9.8393 )
+
+[node name="Table" type="Spatial" parent="."]
+transform = Transform( 0.93833, 0, 0.34574, 0, 1, 0, -0.34574, 0, 0.93833, 3.22446, 1.05467, -8.18107 )
+
+[node name="SpotLight" type="SpotLight" parent="Table"]
+transform = Transform( 0.92002, 1.49012e-07, -0.391872, 0.390723, -0.0764927, 0.917324, -0.0299752, -0.99707, -0.0703749, -0.897594, 0.885021, -0.00655508 )
+visible = false
+shadow_enabled = true
+
+[node name="Spatial" type="Spatial" parent="Table"]
+
+[node name="CSGBox" type="CSGBox" parent="Table/Spatial"]
+height = 0.139334
+depth = 1.487
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="Table/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.910006, -0.48234, -0.692528 )
+width = 0.154594
+height = 0.867357
+depth = 0.0820183
+material = ExtResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="Table/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.910877, -0.48234, -0.692528 )
+width = 0.154594
+height = 0.867357
+depth = 0.0820183
+material = ExtResource( 1 )
+
+[node name="CSGBox4" type="CSGBox" parent="Table/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.910877, -0.48234, 0.656697 )
+width = 0.154594
+height = 0.867357
+depth = 0.0820183
+material = ExtResource( 1 )
+
+[node name="CSGBox5" type="CSGBox" parent="Table/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.903449, -0.48234, 0.656697 )
+width = 0.154594
+height = 0.867357
+depth = 0.0820183
+material = ExtResource( 1 )
+
+[node name="Button3D" parent="Table" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.137808, 0 )
+visible = false
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.986246, -0.834305, -0.853663 )
+shape = SubResource( 2 )
+
+[node name="BuildingArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.1962 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="BuildingArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825765, 0, 0 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="BuildingArea" to="BuildingArea" method="_on_BuildingArea_body_entered"]
+[connection signal="body_exited" from="BuildingArea" to="BuildingArea" method="_on_BuildingArea_body_exited"]

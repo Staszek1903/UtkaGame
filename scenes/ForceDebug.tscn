@@ -8,5 +8,6 @@ vertex_color_use_as_albedo = true
 
 [node name="ForceDebug" type="ImmediateGeometry"]
 transform = Transform( -1.002, 0, 8.7598e-08, 0, 1, 0, -8.74227e-08, 0, -1, 0, 0, 0 )
+visible = false
 material_override = SubResource( 1 )
 script = ExtResource( 1 )

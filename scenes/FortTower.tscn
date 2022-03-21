@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://objects/Cannon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/FortTower.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.823529, 0.588235, 0.25098, 1 )
+
+[sub_resource type="CylinderShape" id=2]
+radius = 5.10819
+height = 7.22028
+
+[sub_resource type="CylinderShape" id=3]
+radius = 6.03436
+height = 2.21628
+
+[sub_resource type="CylinderShape" id=4]
+radius = 108.774
+height = 27.8984
+
+[node name="FortTower" type="RigidBody"]
+mode = 1
+gravity_scale = 0.0
+script = ExtResource( 2 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+transform = Transform( 5.11773, 0, 0, 0, 5.11773, 0, 0, 0, 5.11773, 0, 0, 0 )
+material_override = SubResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner"]
+height = 1.37033
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91194, 0 )
+radius = 1.2
+height = 0.353829
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 0.297644, -4.2819e-08 )
+radius = 1.19472
+height = 1.00753
+cone = true
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1.1068, 0, 1.31941e-07, 0, 0.559338, 0, -1.31941e-07, 0, 1.1068, -0.971494, 1.16365, -0.00193909 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1.1068, 0, 1.31941e-07, 0, 0.559338, 0, -1.31941e-07, 0, 1.1068, 1.00781, 1.16365, -0.00193932 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -0.782624, 0, 0.782624, 0, 0.559338, 0, -0.782624, 0, -0.782624, -0.715938, 1.16365, -0.715937 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -0.782624, 0, 0.782624, 0, 0.559338, 0, -0.782624, 0, -0.782624, 0.68364, 1.16365, 0.68364 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 8.35609e-08, 0, -1.1068, 0, 0.559338, 0, 1.1068, 0, 8.35609e-08, -0.00193889, 1.16365, 1.00781 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="CSGBox6" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 8.35609e-08, 0, -1.1068, 0, 0.559338, 0, 1.1068, 0, 8.35609e-08, -0.00193904, 1.16365, -0.971494 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="CSGBox7" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -0.782624, 0, -0.782624, 0, 0.559338, 0, 0.782624, 0, -0.782624, -0.715937, 1.16365, 0.71206 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="CSGBox8" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -0.782624, 0, -0.782624, 0, 0.559338, 0, 0.782624, 0, -0.782624, 0.68364, 1.16365, -0.687518 )
+width = 0.274943
+height = 0.221934
+depth = 0.516824
+
+[node name="Cannon" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.10726, 0 )
+recoil_time = 3.671
+ball_velocity = 30.0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144662, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87408, 0 )
+shape = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AgrArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="AgrArea"]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="AgrArea" to="." method="_on_AgrArea_body_entered"]
+[connection signal="body_exited" from="AgrArea" to="." method="_on_AgrArea_body_exited"]

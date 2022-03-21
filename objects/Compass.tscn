@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Compass.gd" type="Script" id=1]
+
+[node name="Compass" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner"]
+radius = 1.81784
+height = 0.350239
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCombiner"]
+operation = 2
+radius = 1.63846
+height = 1.34735
+
+[node name="Arrow" type="CSGPolygon" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+polygon = PoolVector2Array( -0.336674, 0.00579411, 0.00148501, 1.47559, 0.310623, 0.00150226 )
+depth = 0.2

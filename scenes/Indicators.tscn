@@ -1,0 +1,419 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/droid-sans/DroidSans.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/SpeedInd.gd" type="Script" id=2]
+[ext_resource path="res://src/TiltInd.gd" type="Script" id=3]
+[ext_resource path="res://src/Indicators.gd" type="Script" id=4]
+[ext_resource path="res://src/WindInd.gd" type="Script" id=5]
+[ext_resource path="res://src/HeadingInd.gd" type="Script" id=6]
+
+[node name="Indicators" type="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TiltInd" type="Node2D" parent="."]
+position = Vector2( 164.907, -110.095 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 3 )
+
+[node name="Circle" type="Polygon2D" parent="TiltInd"]
+antialiased = true
+polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
+
+[node name="Polygon2D" type="Polygon2D" parent="TiltInd/Circle"]
+position = Vector2( 0, -180 )
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="TiltInd/Circle"]
+position = Vector2( 127, -127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="TiltInd/Circle"]
+position = Vector2( -127, -127 )
+rotation = -0.785398
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="PanelContainer" type="PanelContainer" parent="TiltInd"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = 80.0
+margin_right = 100.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 100, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TiltInd/PanelContainer"]
+margin_left = 7.0
+margin_top = 9.0
+margin_right = 193.0
+margin_bottom = 91.0
+custom_fonts/font = ExtResource( 1 )
+text = "-180"
+align = 1
+
+[node name="Needle" type="Polygon2D" parent="TiltInd"]
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -5, -150, -5, 0, -60, 0, -45, 30, -20, 40, 20, 40, 45, 30, 60, 0, 5, 0, 5, -150, 0, -200 )
+
+[node name="SpeedInd" type="Node2D" parent="."]
+position = Vector2( 64.8616, -65.6469 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Circle" type="Polygon2D" parent="SpeedInd"]
+antialiased = true
+polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
+
+[node name="Polygon2D" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 0, -180 )
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 127, -127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 180, 0 )
+rotation = 1.5708
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 127, 127 )
+rotation = 2.35619
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 0, 180 )
+rotation = 3.14159
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="PanelContainer" type="PanelContainer" parent="SpeedInd"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -50.0
+margin_right = -49.9999
+margin_bottom = 61.0
+rect_min_size = Vector2( 80, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SpeedInd/PanelContainer"]
+margin_left = 7.0
+margin_top = 14.0
+margin_right = 143.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+
+[node name="Needle" type="Polygon2D" parent="SpeedInd"]
+color = Color( 1, 0, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -5, -150, -5, 0, 5, 0, 5, -150, 0, -200 )
+
+[node name="Polygon2D" type="Polygon2D" parent="SpeedInd/Needle"]
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -20, -20, 20, -20, 40, 0, 20, 20, -20, 20, -40, 0 )
+
+[node name="WindInd" type="Node2D" parent="."]
+position = Vector2( 269.557, -108.906 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 5 )
+
+[node name="Circle" type="Polygon2D" parent="WindInd"]
+antialiased = true
+polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
+
+[node name="Polygon2D" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( 0, -180 )
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( 127, -127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( 180, 0 )
+rotation = 1.5708
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( 127, 127 )
+rotation = 2.35619
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D6" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( -127, -127 )
+rotation = -0.785398
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D7" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( -180, 0 )
+rotation = 1.5708
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D8" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( -127, 127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( 0, 180 )
+rotation = 3.14159
+scale = Vector2( 0.0200116, 0.132 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="ship" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( 0, 13.3484 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -50, -80, -70, 0, -70, 70, -50, 120, 50, 120, 70, 70, 70, 0, 50, -80 )
+
+[node name="ship2" type="Polygon2D" parent="WindInd/Circle"]
+position = Vector2( 0, 13.3484 )
+scale = Vector2( 0.927859, 0.927859 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -50, -80, -70, 0, -70, 70, -50, 120, 50, 120, 70, 70, 70, 0, 50, -80 )
+
+[node name="PanelAngle" type="PanelContainer" parent="WindInd"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -55.5
+margin_right = -50.0
+margin_bottom = 55.5
+rect_min_size = Vector2( 80, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WindInd/PanelAngle"]
+margin_left = 7.0
+margin_top = 14.0
+margin_right = 143.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+
+[node name="PanelSpeed" type="PanelContainer" parent="WindInd"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 48.1571
+margin_top = -55.5
+margin_right = 198.157
+margin_bottom = 55.5
+rect_min_size = Vector2( 80, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WindInd/PanelSpeed"]
+margin_left = 7.0
+margin_top = 14.0
+margin_right = 143.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+
+[node name="NeedleAux" type="Polygon2D" parent="WindInd"]
+scale = Vector2( 2, -1 )
+color = Color( 0.396078, 0.431373, 1, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 100, -15, 0, 0, -100, 15, 0 )
+
+[node name="Needle" type="Polygon2D" parent="WindInd"]
+scale = Vector2( 2, -1 )
+color = Color( 1, 0, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 5, 140, 5, -150, 0, -200, -5, -150, -5, 140, -25, 170, 25, 170 )
+
+[node name="Polygon2D" type="Polygon2D" parent="WindInd/Needle"]
+scale = Vector2( 0.5, 1 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -20, -20, 20, -20, 40, 0, 20, 20, -20, 20, -40, 0 )
+
+[node name="HeadingInd" type="Node2D" parent="."]
+position = Vector2( 371.829, -69.6618 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 6 )
+
+[node name="Circle" type="Polygon2D" parent="HeadingInd"]
+antialiased = true
+polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
+
+[node name="Polygon2D" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( 0, -180 )
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 1, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( 127, -127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.109 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( 180, 0 )
+rotation = 1.5708
+scale = Vector2( 0.0200116, 0.109 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( 127, 127 )
+rotation = 2.35619
+scale = Vector2( 0.0200116, 0.109 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D6" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( -127, -127 )
+rotation = -0.785398
+scale = Vector2( 0.0200116, 0.109 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D7" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( -180, 0 )
+rotation = 1.5708
+scale = Vector2( 0.0200116, 0.109 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D8" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( -127, 127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.109 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="HeadingInd/Circle"]
+position = Vector2( 0, 180 )
+rotation = 3.14159
+scale = Vector2( 0.0200116, 0.109 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="PanelContainer" type="PanelContainer" parent="HeadingInd"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = 54.6243
+margin_right = 75.0
+margin_bottom = 165.624
+rect_min_size = Vector2( 80, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HeadingInd/PanelContainer"]
+margin_left = 7.0
+margin_top = 14.0
+margin_right = 143.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+
+[node name="Needle" type="Position2D" parent="HeadingInd"]
+
+[node name="Polygon2D" type="Polygon2D" parent="HeadingInd/Needle"]
+rotation = -1.5708
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -10, -20, 10, -20, 40, 20, 0, 150, -40, 20 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="HeadingInd/Needle"]
+rotation = -1.5708
+color = Color( 1, 0, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -40, -20, -20, 10, 20, 10, 40, -20, 0, -170 )

@@ -1,6 +1,7 @@
 extends Position3D
 
-# Called when the node enters the scene tree for the first time.
+signal rotated
+
 var angle = 0
 var pitch = 0
 
@@ -27,7 +28,8 @@ var pressed = false
 func _input(event):
 	if pressed and event is InputEventMouseMotion:
 		angle += event.speed.x /10000
-		pitch += event.speed.y /10000		
+		pitch += event.speed.y /10000
+		emit_signal("rotated", angle, pitch)
 	
-	if event is InputEventMouseButton :
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		pressed = event.is_pressed()

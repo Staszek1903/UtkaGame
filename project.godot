@@ -8,15 +8,79 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "RigidBody",
+"class": "Catchable",
+"language": "GDScript",
+"path": "res://src/catchable.gd"
+}, {
+"base": "",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "ResourceFormatLoader",
+"class": "HTerrainDataLoader",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "HTerrainDataSaver",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+}, {
+"base": "TaskResource",
+"class": "InventoryTask",
+"language": "GDScript",
+"path": "res://src/InventoryTask.gd"
+}, {
+"base": "Area",
+"class": "ShopArea",
+"language": "GDScript",
+"path": "res://src/ShopArea.gd"
+}, {
+"base": "Resource",
+"class": "TaskResource",
+"language": "GDScript",
+"path": "res://src/TaskResource.gd"
+}, {
+"base": "Spatial",
+"class": "WaterGate",
+"language": "GDScript",
+"path": "res://src/WaterGate.gd"
+} ]
 _global_script_class_icons={
+"Catchable": "",
+"GitAPI": "",
+"HTerrainDataLoader": "",
+"HTerrainDataSaver": "",
+"InventoryTask": "",
+"ShopArea": "",
+"TaskResource": "",
+"WaterGate": ""
 }
 
 [application]
 
 config/name="UtkaGame"
-run/main_scene="res://scenes/WaterTest.tscn"
+run/main_scene="res://scenes/MainLevel.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/always_on_top=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+
+[global]
+
+layer=false
 
 [input]
 
@@ -30,34 +94,70 @@ rudder_left={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
  ]
 }
-heave_mainsheet={
+heave={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
-ease_mainsheet={
+ease={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
  ]
 }
-motor_fwd={
+toggle={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+togle_alt={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+action={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shoot={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_map={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+change_device={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"unicode":0,"echo":false,"script":null)
  ]
 }
 
 [layer_names]
 
+3d_render/layer_1="Everywhere"
+3d_render/layer_2="MainCameraOnly"
 3d_physics/layer_2="CameraLayer"
+3d_render/layer_3="MiniMapOnly"
 3d_physics/layer_3="rolCylinder"
 3d_physics/layer_4="moorings"
+3d_physics/layer_5="boat"
+3d_physics/layer_6="items"
 
 [physics]
 
 3d/physics_engine="Bullet"
 3d/default_gravity=10.0
-3d/default_gravity_vector=Vector3( 1, 0, 0 )
 
 [rendering]
 
+quality/filters/use_nearest_mipmap_filter=true
+quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"

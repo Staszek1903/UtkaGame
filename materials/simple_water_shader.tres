@@ -2,7 +2,9 @@
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
-render_mode unshaded;
+
+varying float z_dist;
+//uniform float max_dist = 50.0f;
 
 uniform vec2 offset = vec2(0.0,0.0);
 uniform float amplitude = 0.1;
@@ -16,30 +18,42 @@ float wave_height(vec2 pos){
 	+ amplitude * sin(pos.y * frequency + time);
 }
 
+vec3 sin_noise(vec3 pos){
+	
+	float y = 0.1 * sin(pos.x * 3.0 + time) 
+			+ 0.1 * sin(pos.z * 3.0 + time);
+	float x = 0.1 * cos(pos.x * 3.0 + time);
+	float z = 0.1 * cos(pos.z * 3.0 + time);
+	return vec3(x,y,z);
+}
+
 void vertex() {
 	vec2 pos = VERTEX.xz - offset;
 	vec4 global_pos = WORLD_MATRIX * vec4(VERTEX,1.0);
 	VERTEX.y += wave_height(global_pos.xz);
+	VERTEX += sin_noise(global_pos.xyz);
+	
+	z_dist = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).z * -1.0;
 }
 
 void fragment(){
 	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
-	METALLIC = 0.4;
-	SPECULAR = 0.2;
-	ROUGHNESS = 0.2;
+	METALLIC = 0.0;
+	SPECULAR = 0.0;
+	ROUGHNESS = 0.0;
 	
-//	ALPHA = 1.0;
-//
-//	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
-//	depth = depth *2.0 -1.0;
-//	depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
-//	depth = depth + VERTEX.z;
-//	depth = clamp(exp(-depth*1.5), 0.0, 1.0);
+	//ALPHA = float(z_dist < max_dist);
+
+	float depth = textureLod(DEPTH_TEXTURE, SCREEN_UV, 0.0).r;
+	vec3 screen_tex_col = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb * 3.15;
+	depth = depth *2.0 -1.0;
+	depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
+	depth = depth + VERTEX.z;
+	depth = clamp(exp(-depth*1.5), 0.0, 1.0);
 	
-	//float edge = dot(NORMAL, vec3(0,0,1));
-	
-	//vec3 color = mix(water_color.xyz, vec3(1.0,1.0,1.0), depth);
-	ALBEDO = /*color;//*/water_color.xyz;
+	vec3 color = water_color.xyz;
+	color = mix(water_color.xyz, screen_tex_col, depth);
+	ALBEDO = color;
 	//ALPHA = clamp(1.0 - depth, 0.0, 1.0);*/
 }
 "
@@ -47,7 +61,7 @@ void fragment(){
 [resource]
 shader = SubResource( 1 )
 shader_param/offset = Vector2( 0, 0 )
-shader_param/amplitude = 0.0
-shader_param/frequency = 0.449
-shader_param/time = -1.99138
-shader_param/water_color = Color( 0.101961, 0.101961, 0.901961, 0.482353 )
+shader_param/amplitude = 0.202
+shader_param/frequency = 0.295
+shader_param/time = 1529.74
+shader_param/water_color = Color( 0.298039, 0.647059, 0.72549, 1 )

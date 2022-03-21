@@ -6,8 +6,9 @@ onready var body: RigidBody =$"../"
 #onready var gravity_magnitude : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 #onready var gravity_vector  = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 export(bool) var enabled = true
-export(float) var depthBeforeSubmerged = 0.1
-export(float) var impulseMultipier = 3.0
+export(float,0.001,100) var depthBeforeSubmerged = 0.5
+export(float) var impulseMultipier = 100.0
+export(bool) var apply_gravity = false
 #export(int) var floatersCount = 1
 
 var gravity_magnitude : float = 9.8
@@ -15,11 +16,11 @@ onready var gravity_vector = Vector3(0,-1,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	assert(waterManager)
 	#print(gravity_magnitude)
 	#body.linear_damp = 0.9
 	#body.angular_damp = 1
-#	body.gravity_scale = 1.0
+
 
 func _physics_process(delta):
 	if not enabled: return
@@ -53,7 +54,8 @@ func _physics_process(delta):
 		
 		body.add_force(-gravity_vector * impulse,
 		global_offset)
-		
+	
+	body.add_central_force(float(apply_gravity) * gravity_vector * 9.8 * body.mass)
 		
 		
 #
