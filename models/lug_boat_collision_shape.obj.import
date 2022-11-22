@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/lug_boat_collision_shape.obj-66f5b05cfa4a8641fb0c33ac3a02d5ec.mesh"
+
+[deps]
+
+files=[ "res://.import/lug_boat_collision_shape.obj-66f5b05cfa4a8641fb0c33ac3a02d5ec.mesh" ]
+
+source_file="res://models/lug_boat_collision_shape.obj"
+dest_files=[ "res://.import/lug_boat_collision_shape.obj-66f5b05cfa4a8641fb0c33ac3a02d5ec.mesh", "res://.import/lug_boat_collision_shape.obj-66f5b05cfa4a8641fb0c33ac3a02d5ec.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

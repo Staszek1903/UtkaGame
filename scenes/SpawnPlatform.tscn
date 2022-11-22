@@ -1,0 +1,199 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=2]
+[ext_resource path="res://src/SpawnPlatform.gd" type="Script" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+rough = true
+absorbent = true
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.203431
+height = 3.26478
+
+[sub_resource type="Animation" id=3]
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorR:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ), Vector3( 0, -45, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorL:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -135, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Cart:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 3.7, 4.9, 10 ),
+"transitions": PoolRealArray( 1, 1.62451, 0.965936, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.58395, 0 ), Vector3( 0, -0.58395, 0 ), Vector3( 0, -0.58395, -5.11698 ), Vector3( 0, -1.00882, -9.07737 ), Vector3( 0, -6.71323, -34.9676 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cart:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5, 3.7, 4.9, 10 ),
+"transitions": PoolRealArray( 1, 1.62451, 0.965936, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( -13.012, 0, 0 ), Vector3( -13.012, 0, 0 ) ]
+}
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 1, 1, 3.08536 )
+
+[node name="SpawnPlatform" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="boat" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502252, -0.28374 )
+
+[node name="House" type="CSGCombiner" parent="."]
+transform = Transform( -4.10621e-08, 0, 1.48388, 0, 1.32932, 0, -0.939391, 0, -6.48623e-08, 0, 2.51011, -0.900455 )
+visible = false
+
+[node name="CSGBox" type="CSGBox" parent="House"]
+width = 8.71532
+height = 5.29578
+depth = 7.4695
+
+[node name="CSGBox2" type="CSGBox" parent="House"]
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0.714913, 0, 3.12498e-08 )
+operation = 2
+width = 9.40366
+height = 5.77105
+depth = 6.55745
+
+[node name="CSGPolygon" type="CSGPolygon" parent="House"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.03058, 2.52714, 1.65062 )
+polygon = PoolVector2Array( 5.70483, 0.051338, 1.62542, 2.01, -2.56576, 0.0837715 )
+depth = 10.156
+material = ExtResource( 2 )
+
+[node name="Cart" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.58395, 0 )
+mode = 3
+physics_material_override = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Cart"]
+transform = Transform( 1, 0, 0, 0, 0.97152, 0.236957, 0, -0.236957, 0.97152, -0.710981, 0, 1.45664 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Cart"]
+transform = Transform( 1, 0, 0, 0, 0.97152, 0.236957, 0, -0.236957, 0.97152, 0.650822, 0, 1.4665 )
+shape = SubResource( 2 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Cart"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.54587 )
+polygon = PoolVector2Array( -0.681631, 0.134263, -0.539624, 0.200532, -0.432634, 0.199047, -0.316859, 0.09749, -0.0284014, -0.414829, 0.0662694, -0.395895, 0.308734, 0.0690539, 0.387949, 0.184829, 0.522005, 0.211234, 0.729182, 0.0263999, 0.255611, -0.660973, -0.302947, -0.642039, -0.714964, -0.0325034 )
+depth = 0.202
+
+[node name="CollisionShape3" type="CollisionShape" parent="Cart"]
+transform = Transform( 1, 0, 0, 0, 0.975465, -0.220153, 0, 0.220153, 0.975465, -0.710981, 0, -2.09556 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Cart"]
+transform = Transform( 1, 0, 0, 0, 0.975465, -0.220153, 0, 0.220153, 0.975465, 0.650822, 0, -2.0857 )
+shape = SubResource( 2 )
+
+[node name="CSGPolygon2" type="CSGPolygon" parent="Cart"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.00634 )
+polygon = PoolVector2Array( -0.681631, 0.134263, -0.539624, 0.200532, -0.432634, 0.199047, -0.316859, 0.09749, -0.0284014, -0.414829, 0.0662694, -0.395895, 0.308734, 0.0690539, 0.387949, 0.184829, 0.522005, 0.211234, 0.729182, 0.0263999, 0.255611, -0.660973, -0.302947, -0.642039, -0.714964, -0.0325034 )
+depth = 0.202
+
+[node name="CSGBox" type="CSGBox" parent="Cart"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.550519, -0.316544 )
+width = 0.467445
+height = 0.139394
+depth = 3.64431
+
+[node name="DoorL" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0977, 2.45057, -4.77514 )
+visible = false
+
+[node name="CSGBox" type="CSGBox" parent="DoorL"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35442, 0, 0 )
+width = 5.03628
+height = 6.77965
+depth = 0.262844
+
+[node name="DoorR" type="Spatial" parent="."]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.15908, 2.35869, -4.62886 )
+visible = false
+
+[node name="CSGBox" type="CSGBox" parent="DoorR"]
+transform = Transform( 1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, -2.76097, 0, 9.53674e-07 )
+width = 5.14618
+height = 6.92485
+depth = 0.262844
+
+[node name="Rail" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.48013, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Rail"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625984, 0.140378, -2.91469 )
+width = 0.202849
+height = 0.173443
+depth = 8.94765
+
+[node name="CSGBox2" type="CSGBox" parent="Rail"]
+transform = Transform( 1, 0, 0, 0, 0.977915, 0.209004, 0, -0.209004, 0.977915, 0.625984, -2.9977, -22.2175 )
+width = 0.202849
+height = 0.173443
+depth = 30.1657
+
+[node name="CSGBox3" type="CSGBox" parent="Rail"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.472288, 0.140378, -2.91469 )
+width = 0.202849
+height = 0.173443
+depth = 8.94765
+
+[node name="CSGBox4" type="CSGBox" parent="Rail"]
+transform = Transform( 1, 0, 0, 0, 0.977915, 0.209004, 0, -0.209004, 0.977915, -0.472288, -2.9977, -22.2175 )
+width = 0.202849
+height = 0.173443
+depth = 30.1657
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/go = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.713996, 0.272209, -0.645067, 0, 0.921328, 0.388787, 0.70015, 0.277592, -0.657825, -10.0111, 6.06538, -12.7064 )
+cull_mask = 3
+far = 1000.0
+
+[node name="Floor" type="CSGBox" parent="."]
+transform = Transform( -4.10621e-08, 0, 1.48388, 0, 1.32932, 0, -0.939391, 0, -6.48623e-08, 9.87366e-08, -2.65183, 1.35838 )
+width = 13.8451
+height = 2.40972
+depth = 10.7959
+
+[node name="Boat_Detect" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Boat_Detect"]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Boat_Detect" to="." method="_on_Boat_Detect_body_entered"]

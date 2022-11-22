@@ -1,0 +1,196 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://materials/black_material.tres" type="Material" id=1]
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=2]
+[ext_resource path="res://src/Cannon.gd" type="Script" id=3]
+[ext_resource path="res://src/CanonBall.gd" type="Script" id=4]
+[ext_resource path="res://scenes/WaserKeelF.tscn" type="PackedScene" id=5]
+[ext_resource path="res://souds/cannon_fire.wav" type="AudioStream" id=6]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.285068, 0.850679, 1 )
+colors = PoolColorArray( 0.974121, 0.616458, 0.022831, 1, 0.333496, 0.333496, 0.333496, 1, 1, 1, 1, 0.690196, 0.980392, 0.980392, 0.980392, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00409836, 0.219318 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 1.16618, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+width = 256
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.5
+direction = Vector3( 0, 0, -1 )
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+linear_accel = -100.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id=7]
+material = SubResource( 6 )
+radial_segments = 8
+rings = 8
+
+[sub_resource type="SphereShape" id=8]
+radius = 0.287145
+
+[sub_resource type="SphereShape" id=9]
+radius = 0.574033
+
+[node name="Cannon" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19902, 0 )
+script = ExtResource( 3 )
+
+[node name="CanonBarrel" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.97367, -0.22796, 0, 0.22796, 0.97367, 0, 0, 0 )
+material_override = ExtResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.578039 )
+radius = 0.361858
+height = 2.39613
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.34178 )
+radius = 0.506782
+height = 0.684191
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.314407 )
+radius = 0.440546
+height = 0.684191
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.7426 )
+radius = 0.440546
+height = 0.270564
+
+[node name="CSGCylinder5" type="CSGCylinder" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.39851 )
+operation = 2
+radius = 0.260647
+height = 1.38162
+
+[node name="CSGSphere" type="CSGSphere" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.609226 )
+radius = 0.419542
+
+[node name="CSGSphere2" type="CSGSphere" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.09296 )
+radius = 0.1214
+
+[node name="CSGCylinder6" type="CSGCylinder" parent="CanonBarrel"]
+transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, -0.000587732 )
+radius = 0.0774845
+height = 1.42374
+
+[node name="Particles" type="Particles" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, 0.999494, -0.0318118, 0, 0.0318118, 0.999494, 0, 0.0418378, -2.18483 )
+emitting = false
+amount = 64
+one_shot = true
+visibility_aabb = AABB( -3.22553, -3.19567, -13.7374, 6.45107, 6.39135, 27.4748 )
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="ShootPos" type="Position3D" parent="CanonBarrel"]
+transform = Transform( 1, 0, 0, 0, 0.999494, -0.0318118, 0, 0.0318118, 0.999494, 0, 0.0676084, -2.83301 )
+
+[node name="Stand" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.384759 )
+material_override = ExtResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="Stand"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.581406, -0.421704, 0.0397246 )
+width = 0.083765
+height = 0.894937
+depth = 1.74739
+
+[node name="CSGBox2" type="CSGBox" parent="Stand"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.581, -0.422, 0.04 )
+width = 0.083765
+height = 0.894937
+depth = 1.74739
+
+[node name="CSGBox3" type="CSGBox" parent="Stand"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.817628, 0.04 )
+width = 0.083765
+height = 1.17678
+depth = 1.74739
+
+[node name="CSGBox4" type="CSGBox" parent="Stand"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0517042, 0.6475 )
+operation = 2
+width = 0.297808
+height = 2.28317
+depth = 1.42701
+
+[node name="CSGBox5" type="CSGBox" parent="Stand"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -4.76837e-07, -0.255741, 0.90364 )
+operation = 2
+width = 0.297808
+height = 2.28317
+depth = 1.42701
+
+[node name="CSGBox6" type="CSGBox" parent="Stand"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -7.15256e-07, -0.434203, 1.18892 )
+operation = 2
+width = 0.297808
+height = 2.28317
+depth = 1.42701
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Stand"]
+transform = Transform( 2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, -0.718762, -0.740811, -0.535332 )
+radius = 0.223082
+height = 0.167741
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Stand"]
+transform = Transform( 2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, -0.718762, -0.740811, 0.539557 )
+radius = 0.223082
+height = 0.167741
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Stand"]
+transform = Transform( 2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, 0.719, -0.740811, -0.535332 )
+radius = 0.223082
+height = 0.167741
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="Stand"]
+transform = Transform( 2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, 0.719, -0.740811, 0.539557 )
+radius = 0.223082
+height = 0.167741
+
+[node name="CanonBall" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 1, 0 )
+gravity_scale = 0.0
+script = ExtResource( 4 )
+
+[node name="Ball" type="CSGSphere" parent="CanonBall"]
+radius = 0.487567
+material = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CanonBall"]
+shape = SubResource( 8 )
+
+[node name="WaserKeelF" parent="CanonBall" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="DamageTrigger" type="Area" parent="CanonBall"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CanonBall/DamageTrigger"]
+shape = SubResource( 9 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_db = 14.953
+
+[connection signal="body_entered" from="CanonBall/DamageTrigger" to="CanonBall" method="_on_DamageTrigger_body_entered"]

@@ -1,0 +1,64 @@
+{
+	"events": [
+		{
+			"event_id": "dialogic_015",
+			"id": "anchor-1655119131",
+			"index": 0,
+			"name": "loop"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Whelcome to [PortName] port.\nCurrently [WorkerCount] people work."
+		},
+		{
+			"choice": "purchase 1",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"emit_signal": "purchase1",
+			"event_id": "dialogic_040"
+		},
+		{
+			"choice": "purchase 5",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"emit_signal": "purchase5",
+			"event_id": "dialogic_040"
+		},
+		{
+			"choice": "exit",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"anchor_id": "anchor-1655119131",
+			"event_id": "dialogic_016"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.1",
+		"file": "timeline-1652958712.json",
+		"name": "Port"
+	}
+}

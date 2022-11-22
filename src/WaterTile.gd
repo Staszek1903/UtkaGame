@@ -39,6 +39,8 @@ var marked_in_sight : = false
 
 func _ready():
 	add_to_group("watertile")
+	if name == "WaterTile": 
+		call_deferred("spawn_tiles_around")
 	
 func clean_tile():
 	if marked_in_sight:
@@ -61,6 +63,11 @@ func reverse_dir(direction:int) -> int:
 	return (direction+4)%8
 
 func _on_Area_area_entered(area):
+	var camera = area.get_node("../Camera")
+	assert(camera)
+	if camera.current: spawn_tiles_around()
+	
+func spawn_tiles_around():
 	for direction in Direction:
 		direction = Direction[direction]
 		spawn_tile(direction)
@@ -113,3 +120,25 @@ func connect_tiles(tile1, tile2, direction_index:int):
 	var rev_dir = reverse_dir(direction_index)
 	tile1.tiles[direction_index] = tile2
 	tile2.tiles[rev_dir] = tile1
+	
+func group_reposition(center:Vector2):
+	var is_center:bool = true
+	for tile in tiles:
+		if not tile: is_center = false
+		
+	if is_center: print("CENTER")
+	else: 
+		print("not center")
+		return
+	
+	for tile in tiles:
+		tile.marked_in_sight = false
+	marked_in_sight = true
+	
+	get_tree().call_group("watertile", "clean_tile")
+	
+	global_transform.origin.x= center.x
+	global_transform.origin.z= center.y
+	
+	
+	

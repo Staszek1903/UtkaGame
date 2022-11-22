@@ -13,7 +13,6 @@ params_cull_mode = 2
 script = ExtResource( 1 )
 segment_length = 0.204
 segment_thicc = 0.195
-cur_len = 11.148
 color = Color( 0.14902, 0.196078, 0.462745, 1 )
 
 [node name="EndA" type="Position3D" parent="."]

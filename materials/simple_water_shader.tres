@@ -44,8 +44,8 @@ void fragment(){
 	
 	//ALPHA = float(z_dist < max_dist);
 
-	float depth = textureLod(DEPTH_TEXTURE, SCREEN_UV, 0.0).r;
-	vec3 screen_tex_col = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb * 3.15;
+	float depth = 1.0; //textureLod(DEPTH_TEXTURE, SCREEN_UV, 0.0).r;
+	vec3 screen_tex_col = vec3(1.0,1.0,1.0); //textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb * 3.15;
 	depth = depth *2.0 -1.0;
 	depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
 	depth = depth + VERTEX.z;
@@ -63,5 +63,5 @@ shader = SubResource( 1 )
 shader_param/offset = Vector2( 0, 0 )
 shader_param/amplitude = 0.202
 shader_param/frequency = 0.295
-shader_param/time = 1529.74
+shader_param/time = 98.0542
 shader_param/water_color = Color( 0.298039, 0.647059, 0.72549, 1 )

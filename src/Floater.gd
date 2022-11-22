@@ -34,7 +34,9 @@ func _physics_process(delta):
 	
 	var global_pos = to_global(Vector3.ZERO)
 	var h = global_pos.y
-	var wave_h = waterManager.wave(Vector2(global_pos.x, global_pos.z))
+	var wave_h = 0.0
+	#if is_instance_valid(waterManager):
+	wave_h = waterManager.wave(Vector2(global_pos.x, global_pos.z))
 	
 	h = h - wave_h
 	

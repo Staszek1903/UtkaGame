@@ -32,7 +32,7 @@ func _process(delta):
 	cannon.shoot()
 
 func receive_damage(dmg:int = 1):
-	cannon.queue_free()
+	if cannon : cannon.queue_free()
 	cannon = null
 	var t = $CSGCombiner.transform
 	var t2 = t

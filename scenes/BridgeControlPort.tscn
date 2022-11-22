@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/BridgeControlPort.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Quai.tscn" type="PackedScene" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 14.4196, 2.94282, 11.0909 )
+
+[node name="BridgeControlPort" type="StaticBody"]
+script = ExtResource( 1 )
+
+[node name="Quai" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6034, 0, 0 )
+
+[node name="Quai2" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.1205, 0, 0 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.31204, -3.05117, -0.102839 )
+shape = SubResource( 1 )
+
+[node name="Building" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6034, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Building"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.313, -3.71157, 0 )
+width = 22.0081
+height = 7.57978
+depth = 28.3299
+
+[node name="CSGBox3" type="CSGBox" parent="Building"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2145, 8.11103, 0 )
+width = 12.4344
+height = 0.677981
+depth = 22.136
+
+[node name="CSGBox2" type="CSGBox" parent="Building"]
+transform = Transform( 1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 26.8695, 2.6844, 1.19464 )
+width = 1.0683
+height = 13.8672
+depth = 2.43738
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Building"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 30.9517, 2.35752, -8.09897 )
+radius = 1.63093
+height = 6.39629
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Building"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 23.9045, 2.35752, -8.09897 )
+radius = 1.63093
+height = 6.39629
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Building"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 30.9517, 2.35752, 7.77169 )
+radius = 1.63093
+height = 6.39629
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="Building"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 23.9045, 2.35752, 7.77169 )
+radius = 1.63093
+height = 6.39629
+
+[connection signal="action" from="Quai" to="." method="_on_Quai_action"]
+[connection signal="action" from="Quai2" to="." method="_on_Quai_action"]

@@ -6,12 +6,12 @@ onready var needle = $Needle
 onready var needleAux = $NeedleAux
 onready var label_angle = $PanelAngle/Label
 onready var label_speed = $PanelSpeed/Label
-onready var wind_manager = $"/root/Root/WindManager"
+onready var wind_manager = $"/root/WindManager"
 
 func _ready():
 	assert(wind_manager)
 
-func _process(delta):
+func _process(_delta):
 	if body:
 		var basis = body.global_transform.basis
 		var global_real_wind : Vector3 = wind_manager.global_wind_vector \

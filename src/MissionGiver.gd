@@ -39,6 +39,8 @@ var timer:float = 0.0
 #	print("----------F END----------")
 	
 #func _process(delta):
+
+			
 #	#assert(player_inventory)
 ##	if next_text.length() > next_text_counter:
 ##		timer += delta
@@ -58,7 +60,9 @@ var timer:float = 0.0
 
 func _on_Area_body_entered(body):
 	boat_in_proximity = true
-	$OldClassy_Male/AnimationPlayer.play("Victory")
+	#$OldClassy_Male/AnimationPlayer.play("Victory")
+	var dialog = Dialogic.start("first")#"first","","res://addons/dialogic/Nodes/DialogNode.tscn",false)
+	add_child(dialog)
 #	next_text = text_pool[0]
 #	next_text_counter = 0
 	

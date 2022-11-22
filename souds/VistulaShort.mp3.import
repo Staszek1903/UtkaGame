@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/VistulaShort.mp3-0f38509fd0cfbfd84d53f4c14706acc9.mp3str"
+
+[deps]
+
+source_file="res://souds/VistulaShort.mp3"
+dest_files=[ "res://.import/VistulaShort.mp3-0f38509fd0cfbfd84d53f4c14706acc9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,42 +1,71 @@
-extends Area
+extends Node
 class_name ShopArea
 
-onready var player_inventory = $"/root/Root/Inventory"
-onready var frontend = $"/root/Root/ShopList"
+#onready var trade_interface = $"/root/TradeInterface"
 
-export(Array,String) var producing = []
-#export(Array, float) var price_quotient = []
+export(Resource) var producing
 
 var inventory = {}
+var production_inventory = {}
+var is_open = false
 
+var production_stage:int = 0 setget set_production_stage
+var production_time:float = 3.0
+var production_base_time:float = 3.0
 func _ready():
-	assert(player_inventory)
-	assert(frontend)
-	for i in player_inventory.item_prices:
+	assert(producing)
+	#assert(trade_interface)
+	for i in ItemsEnum.Items.values():
 		inventory[i] = 0
-	for i in producing:
-		assert(i in player_inventory.item_prices)
-		inventory[i] = 100
+		production_inventory[i] = 0.0
+#	for i in producing.item_names:
+#		assert(i in trade_interface.item_prices)
 
-func add_item(name:String, value:int):
-	assert( inventory.has(name) )
-	inventory[name] += value
-	frontend.update_front()
+func set_production_stage(val: int):
+	production_stage = val
+	production_time = production_base_time / pow(1.5, float(production_stage))
 
-func remove_item(name:String, value:int):
-	assert( inventory.has(name) )
-	inventory[name] -= value
-	frontend.update_front()
+var timer:float = 0.0
+func _process(delta):
+	timer += delta
+	if timer >= production_time:
+		timer = 0.0
+		production()
+		#trade_interface.update_shop_front()
+
+
+func production():
+	var items = producing.item_names
+	for item in items:
+		var quot = producing.get_property(item,"quotient")
+		production_inventory[item] += quot
+		
+	for item in producing.item_names:
+		inventory[item] += floor(production_inventory[item])
+		production_inventory[item] -= int(floor(production_inventory[item]))
+		var max_val = producing.get_property(item,"max_value")
+		inventory[item] = clamp(inventory[item], 0, max_val)
+
+func add_item(item:int, quantity:int):
+	assert( inventory.has(item) )
+	inventory[item] += quantity
+
+
+func remove_item(item:int, quantity:int):
+	assert( inventory.has(item) )
+	inventory[item] -= quantity
 	
-func sell(item_name, count):
-	player_inventory.buy(item_name,count)
 
-func _on_ShopArea_body_exited(body):
-	if body.name != "Boat": return
-	frontend.shop_available(null)
-	player_inventory.shop_available(null)
+func close_shop_area():
+	is_open = false
+	#trade_interface.set_shop_area(null)
+	
 
-func _on_ShopArea_body_entered(body):
-	if body.name != "Boat": return
-	frontend.shop_available(self)
-	player_inventory.shop_available(self)
+func open_shop_area():
+	is_open = true
+	#trade_interface.set_shop_area(self)
+
+
+func _on_BuildingArea_stage_complete(nr:int):
+	set_production_stage(nr+1)
+	

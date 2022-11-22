@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/Button3D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/IconBaner.gd" type="Script" id=2]
+[ext_resource path="res://src/ProductionBuilding.gd" type="Script" id=5]
+[ext_resource path="res://fonts/montreal/Montreal-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://RoundedStyleBox.tres" type="StyleBox" id=7]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 0.05, 0.05 )
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("IconBaner/Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_no_depth_test = true
+flags_fixed_size = true
+flags_do_not_receive_shadows = true
+params_billboard_mode = 3
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.5
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0.501961, 1, 1 )
+border_color = Color( 0.0980392, 0.0666667, 0.0666667, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 6 )
+
+[node name="ProductionBuilding" type="Spatial"]
+transform = Transform( 1, 5.96046e-08, 3.55271e-15, 5.96046e-08, 1, -1.77636e-15, -3.55271e-15, -9.47311e-16, 1, 5.33649, 1.63956, -1.017 )
+script = ExtResource( 5 )
+
+[node name="Button3D" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.04836e-07, -0.707107, 2.29165, -5.35004e-08, 0.707107, 2.29165, -3.62232, 1.00211e-08, -1.00171e-07, 0, 0, 0 )
+
+[node name="IconBaner" type="Spatial" parent="."]
+transform = Transform( 1, 3.36552e-30, 0, -6.31089e-30, 1, 8.47033e-22, 0, 0, 1, 0.354073, 0.613134, 0 )
+script = ExtResource( 2 )
+dimentions = Vector2( 0.05, 0.05 )
+resolution = 2400
+text = "0"
+value = 50
+
+[node name="MeshInstance" type="MeshInstance" parent="IconBaner"]
+transform = Transform( 7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="Viewport" type="Viewport" parent="IconBaner"]
+size = Vector2( 120, 120 )
+transparent_bg = true
+render_direct_to_screen = true
+render_target_v_flip = true
+
+[node name="KeyIcon" type="ProgressBar" parent="IconBaner/Viewport"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 46.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 46, 46 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = ExtResource( 7 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="IconBaner/Viewport/KeyIcon"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 43.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button3D" to="." method="_on_button_pressed"]

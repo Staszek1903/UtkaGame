@@ -5,7 +5,7 @@ var body: RigidBody
 onready var needle = $Needle
 onready var label = $PanelContainer/Label
 
-func _process(delta):
+func _process(_delta):
 	if body:
 		var basis = body.global_transform.basis
 		var angle = atan2(basis.z.x, basis.z.z)

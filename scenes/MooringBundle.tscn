@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/objects/Rope.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/MouseArea.gd" type="Script" id=2]
+[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=3]
+[ext_resource path="res://src/MooringBundle.gd" type="Script" id=4]
+[ext_resource path="res://materials/green_light_material.tres" type="Material" id=5]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.146394
+height = 0.16
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_use_point_size = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_ensure_correct_normals = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 1
+params_cull_mode = 2
+
+[node name="MooringBundle" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="MooringTrigger" type="Area" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="Collision" type="CollisionShape" parent="MooringTrigger"]
+shape = SubResource( 1 )
+
+[node name="Indicator" type="CSGCylinder" parent="MooringTrigger"]
+visible = false
+invert_faces = true
+radius = 0.139164
+height = 0.164
+material = ExtResource( 3 )
+
+[node name="MooringEnd" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Mooring" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.103551, -0.238437 )
+segment_length = 0.22
+segment_thicc = 0.047
+length = 1.575
+color = Color( 0.905882, 0.937255, 0.537255, 1 )
+atachmentNodePathA = NodePath("..")
+atachmentNodePathB = NodePath("../MooringEnd")
+
+[node name="EndA" parent="Mooring" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103551, 0.238437 )
+
+[node name="ForceDebug" parent="Mooring/EndA" index="0"]
+material_override = SubResource( 2 )
+
+[node name="EndB" parent="Mooring" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10355, 0.238437 )
+
+[node name="ForceDebug" parent="Mooring/EndB" index="0"]
+material_override = SubResource( 2 )
+
+[node name="LineDraw" parent="Mooring" index="2"]
+material_override = SubResource( 3 )
+
+[node name="Indicator" type="CSGCylinder" parent="."]
+visible = false
+radius = 0.125044
+height = 0.139716
+material = ExtResource( 5 )
+
+[connection signal="pressed" from="MooringTrigger" to="." method="_on_MouseArea_pressed"]
+
+[editable path="Mooring"]

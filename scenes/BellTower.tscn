@@ -1,70 +1,220 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://materials/black_material.tres" type="Material" id=1]
 [ext_resource path="res://materials/red_material.tres" type="Material" id=2]
+[ext_resource path="res://scenes/Tentacle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://souds/churchbell.wav" type="AudioStream" id=4]
+[ext_resource path="res://src/Bell.gd" type="Script" id=5]
+[ext_resource path="res://scenes/KrakenEye.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CylinderShape" id=1]
+height = 2.47204
+
+[sub_resource type="Animation" id=2]
+resource_name = "bell"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bell:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3 ),
+"transitions": PoolRealArray( 0.420448, 2.21914, 0.420448, 1.93187, 0.420448, 2.21914, 0.420448 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -17.904, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 8.798, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( -3.095, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
 
 [node name="BellTower" type="Spatial"]
 
-[node name="CSGCombiner" type="CSGCombiner" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3774, 0 )
+[node name="Bell" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.63866, 0 )
+script = ExtResource( 5 )
+
+[node name="BellModel" type="CSGCombiner" parent="Bell"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.86226, 0 )
 material_override = ExtResource( 1 )
 
-[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner"]
+[node name="CSGCylinder" type="CSGCylinder" parent="Bell/BellModel"]
 
-[node name="CSGCylinder3" type="CSGCylinder" parent="CSGCombiner"]
+[node name="CSGCylinder3" type="CSGCylinder" parent="Bell/BellModel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.515688, 0 )
 radius = 1.07627
 height = 0.309821
 
-[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCombiner"]
+[node name="CSGCylinder2" type="CSGCylinder" parent="Bell/BellModel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645541, 0 )
 radius = 0.902793
 
-[node name="CSGCylinder4" type="CSGCylinder" parent="CSGCombiner"]
+[node name="CSGCylinder4" type="CSGCylinder" parent="Bell/BellModel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0818296, 0 )
 operation = 2
 radius = 0.775669
 height = 1.83048
 
-[node name="CSGSphere" type="CSGSphere" parent="CSGCombiner"]
+[node name="CSGSphere" type="CSGSphere" parent="Bell/BellModel"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978419, 0 )
 radius = 0.837169
 
-[node name="CSGCombiner2" type="CSGCombiner" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="Bell"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.30973, 0 )
+shape = SubResource( 1 )
 
-[node name="CSGBox" type="CSGBox" parent="CSGCombiner2"]
+[node name="Tower" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Tower"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.6519, 0 )
+use_collision = true
 width = 3.03173
-height = 8.29645
+height = 5.17285
 depth = 2.98022
 
-[node name="CSGBox2" type="CSGBox" parent="CSGCombiner2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3525, 0 )
-operation = 2
-width = 1.96237
-height = 2.60986
-depth = 4.57849
+[node name="CSGBox2" type="CSGBox" parent="Tower"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16278, 1.50051, 1.19068 )
+width = 0.343165
+height = 3.12611
+depth = 0.327488
 
-[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner2"]
-transform = Transform( -0.58976, -3.53004e-08, -0.807578, -0.807578, 2.57792e-08, 0.58976, 0, 1, -4.37114e-08, 0, 2.66693, 0 )
-operation = 2
-height = 4.81085
+[node name="CSGBox3" type="CSGBox" parent="Tower"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16278, 1.50051, -1.2044 )
+width = 0.343165
+height = 3.12611
+depth = 0.327488
 
-[node name="CSGBox3" type="CSGBox" parent="CSGCombiner2"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.3525, 0 )
-operation = 2
-width = 1.96237
-height = 2.60986
-depth = 4.57849
+[node name="CSGBox4" type="CSGBox" parent="Tower"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18262, 1.50051, -1.2044 )
+width = 0.343165
+height = 3.12611
+depth = 0.327488
 
-[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCombiner2"]
-transform = Transform( -4.37114e-08, -1, 4.37114e-08, -0.97782, 3.35866e-08, -0.209448, 0.209448, -5.18971e-08, -0.97782, 0, 2.66693, 0 )
-operation = 2
-height = 4.81085
+[node name="CSGBox5" type="CSGBox" parent="Tower"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18262, 1.50051, 1.19068 )
+width = 0.343165
+height = 3.12611
+depth = 0.327488
 
-[node name="CSGCylinder3" type="CSGCylinder" parent="CSGCombiner2"]
+[node name="CSGCylinder3" type="CSGCylinder" parent="Tower"]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 5.56931, 0 )
+use_collision = true
 radius = 1.99665
 height = 2.934
 sides = 4
 cone = true
+smooth_faces = false
 material = ExtResource( 2 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="Tower"]
+
+[node name="CSGBox5" type="CSGBox" parent="Tower/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57247, -1.22968 )
+width = 2.72786
+height = 1.04616
+depth = 0.263649
+
+[node name="CSGBox6" type="CSGBox" parent="Tower/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57247, 1.23179 )
+width = 2.72786
+height = 1.04616
+depth = 0.263649
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Tower/CSGCombiner"]
+transform = Transform( 0.866025, -5.85622e-09, -0.5, -0.5, -2.18557e-08, -0.866025, -5.85621e-09, 1, -2.18557e-08, 0, 2.74081, 0 )
+operation = 2
+radius = 1.08767
+height = 4.81085
+sides = 12
+
+[node name="CSGCombiner2" type="CSGCombiner" parent="Tower"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="CSGBox5" type="CSGBox" parent="Tower/CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57247, -1.22968 )
+width = 2.72786
+height = 1.04616
+depth = 0.263649
+
+[node name="CSGBox6" type="CSGBox" parent="Tower/CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57247, 1.23179 )
+width = 2.72786
+height = 1.04616
+depth = 0.263649
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Tower/CSGCombiner2"]
+transform = Transform( 0.866025, -5.85622e-09, -0.5, -0.5, -2.18557e-08, -0.866025, -5.85621e-09, 1, -2.18557e-08, 0, 2.74081, 0 )
+operation = 2
+radius = 1.08767
+height = 4.81085
+sides = 12
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.63866, 0 )
+stream = ExtResource( 4 )
+unit_db = 31.402
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bell = SubResource( 2 )
+
+[node name="TentacleProto1" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -5.715, -19.2201 )
+visible = false
+
+[node name="TentacleProto2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 9.61004, -5.715, -16.6451 )
+visible = false
+
+[node name="TentacleProto3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 16.6451, -5.715, -9.61004 )
+visible = false
+
+[node name="TentacleProto4" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2201, -5.715, 8.40136e-07 )
+visible = false
+
+[node name="TentacleProto5" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 16.6451, -5.715, 9.61004 )
+visible = false
+
+[node name="TentacleProto6" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 9.61004, -5.715, 16.6451 )
+visible = false
+
+[node name="TentacleProto7" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.68027e-06, -5.715, 19.2201 )
+visible = false
+
+[node name="TentacleProto8" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -9.61004, -5.715, 16.6451 )
+visible = false
+
+[node name="TentacleProto9" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -16.6451, -5.715, 9.61003 )
+visible = false
+
+[node name="TentacleProto10" parent="." instance=ExtResource( 3 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -19.2201, -5.715, -2.52041e-06 )
+visible = false
+
+[node name="TentacleProto11" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -16.6451, -5.715, -9.61004 )
+visible = false
+
+[node name="TentacleProto12" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -9.61003, -5.715, -16.6451 )
+visible = false
+
+[node name="KrakenEye1" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.78702, -5.82962, 0 )
+visible = false
+
+[node name="KrakenEye2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.87654, -5.82962, 0 )
+visible = false
+
+[node name="KrakenEye3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.544761, -5.82962, 8.33178 )
+visible = false
+
+[node name="KrakenEye4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.54476, -5.82962, -8.33178 )
+visible = false

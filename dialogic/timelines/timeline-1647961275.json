@@ -1,0 +1,75 @@
+{
+	"events": [
+		{
+			"condition": "!=",
+			"definition": "1648021788-439",
+			"event_id": "dialogic_012",
+			"value": "True"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Siema\t[BridgeRepaired] AAAAA"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Most ziepsiuty"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Czekamy na dostawe części do mostu od producenta części do mostu"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Jeśli chcesz przekroczyć most udaj sie do producenta części do mostu i przywiez nam części do mostu żeby most miał części"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Części znajdziusz u producenta części do mostu"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Narka"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"condition": "==",
+			"definition": "1648021788-439",
+			"event_id": "dialogic_012",
+			"value": "True"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Most w pełni sprawny"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Można przepływać"
+		},
+		{
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.1",
+		"file": "timeline-1647961275.json",
+		"name": "Bridge"
+	}
+}

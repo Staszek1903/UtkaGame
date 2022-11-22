@@ -1,63 +1,40 @@
 extends Node
 
-onready var frontend = $"/root/Root/InventoryList"
-var shop_area = null
-
-const item_prices = {
-	"Barrel":1,
-	"Rum":1.5,
-	"Fuel":0.2,
-	"Planks":0.5,
-	"CBall":0.1,
-	#"Powder":0.1,
-	"Food":0.1
-}
+onready var trade_interface = $"/root/TradeInterface"
 
 var cash = 999
 var inventory = {}
 
 func _ready():
-	assert(frontend)
-	for i in item_prices:
-		inventory[i] = 0
+	assert(trade_interface)
+	for i in ItemsEnum.Items.ITEM_COUNT:
+		inventory[i] = 1000
 	
-	load_inventory()
-	frontend.call_deferred("update_front")
-	
-func shop_available(node):
-	shop_area = node
+#	load_inventory()
 
-func add_item(name:String, value:int):
-	assert( inventory.has(name) )
-	inventory[name] += value
-	frontend.update_front()
 
-func remove_item(name:String, value:int):
-	assert( inventory.has(name) )
-	inventory[name] -= value
-	frontend.update_front()
-		
+func add_item(item:int, value:int):
+	assert( inventory.has(item) )
+	inventory[item] += value
+
+
+func remove_item(item:int, value:int):
+	assert( inventory.has(item) )
+	inventory[item] -= value
+
+
 func clear_inventory():
 	for k in inventory.keys():
 		inventory[k] = 0
-		
-func sell(item_name, count):
-	if shop_area:
-		shop_area.add_item(item_name,count)
-		remove_item(item_name,count)
-		var price = item_prices[item_name]*count
-		cash += price
-		
-		frontend.update_front()
 
-func buy(item_name, count):
-	if shop_area:
-		shop_area.remove_item(item_name,count)
-		add_item(item_name,count)
-		var price = item_prices[item_name]*count
-		cash -= price
-		
-		frontend.update_front()
+func get_quantity(item:int) -> int:
+	assert( inventory.has(item) )
+	return inventory[item]
+	
+
+############################
+#   SAVING LOADING         #
+############################
 
 var save_dir = "res://save/"
 var save_file = "res://save/inventory_save.txt"
@@ -75,6 +52,7 @@ func save_inventory():
 	else:
 		print("SAVING ERROR")
 
+
 func load_inventory():
 	var dir = Directory.new()
 	if not dir.dir_exists(save_dir): return
@@ -85,12 +63,14 @@ func load_inventory():
 		file.close()
 		save_content = JSON.parse(save_content).result
 		cash = save_content["Cash"]
-		inventory = save_content["Inventory"]
+		var temp_inv = save_content["Inventory"]
+		for key in temp_inv:
+			inventory[int(key)] = temp_inv[key]
 		print("LOADED")
 	else:
 		print("LOADING ERROR")
 
-#func _notification(what):
-#	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-#		print("saving inventory")
-#		save_inventory()
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		print("saving inventory")
+		save_inventory()

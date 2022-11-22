@@ -1,0 +1,190 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://materials/tentacle_material.tres" type="Material" id=1]
+[ext_resource path="res://src/KrakenMouth.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CSGPolygon:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -23.306, 0 ), Vector3( -45, -23.306, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CSGPolygon2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 23.559, 0 ), Vector3( -45, 23.559, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CSGPolygon3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 69.072, 0 ), Vector3( -45, 69.072, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CSGPolygon4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 116.438, 0 ), Vector3( -45, 116.438, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CSGPolygon5:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 159.988, 0 ), Vector3( -45, 159.988, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CSGPolygon6:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -155.458, 0 ), Vector3( -45, -155.458, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CSGPolygon7:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -111.639, 0 ), Vector3( -45, -111.639, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CSGPolygon8:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -65.71, 0 ), Vector3( -45, -65.71, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "rise"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -33.1352, 0 ), Vector3( 0, -8.52, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="KrakenMouth" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33.1352, 0 )
+script = ExtResource( 2 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+material_override = ExtResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner"]
+radius = 6.84735
+height = 19.543
+smooth_faces = false
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCombiner"]
+operation = 2
+radius = 4.72021
+height = 21.2201
+smooth_faces = false
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.93985, 0 )
+radius = 6.55684
+height = 3.65206
+smooth_faces = false
+
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+transform = Transform( 0.918405, 0, -0.395642, 0, 1, 0, 0.395642, 0, 0.918405, -2.50426, 10.1581, 5.53675 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="CSGPolygon2" type="CSGPolygon" parent="."]
+transform = Transform( 0.916649, 0, 0.399693, 0, 1, 0, -0.399693, 0, 0.916649, 2.3282, 10.1581, 5.61306 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="CSGPolygon3" type="CSGPolygon" parent="."]
+transform = Transform( 0.357194, 0, 0.93403, 0, 1, 0, -0.93403, 0, 0.357194, 5.63588, 10.1581, 2.27238 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="CSGPolygon4" type="CSGPolygon" parent="."]
+transform = Transform( -0.445229, 0, 0.895416, 0, 1, 0, -0.895416, 0, -0.445229, 5.48903, 10.1581, -2.60718 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="CSGPolygon5" type="CSGPolygon" parent="."]
+transform = Transform( -0.939621, 0, 0.342217, 0, 1, 0, -0.342217, 0, -0.939621, 2.18199, 10.1581, -5.67149 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="CSGPolygon6" type="CSGPolygon" parent="."]
+transform = Transform( -0.909657, 0, -0.41536, 0, 1, 0, 0.41536, 0, -0.909657, -2.42415, 10.1581, -5.57229 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="CSGPolygon7" type="CSGPolygon" parent="."]
+transform = Transform( -0.368757, 0, -0.929525, 0, 1, 0, 0.929525, 0, -0.368757, -5.60725, 10.1581, -2.34214 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="CSGPolygon8" type="CSGPolygon" parent="."]
+transform = Transform( 0.411355, 0, -0.911475, 0, 1, 0, 0.911475, 0, 0.411355, -5.5829, 10.1581, 2.39962 )
+polygon = PoolVector2Array( -1.93163, -0.224997, 2.19492, -0.229359, 0.0264083, 8.2143 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/close = SubResource( 1 )
+anims/rise = SubResource( 2 )

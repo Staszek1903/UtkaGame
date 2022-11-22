@@ -32,9 +32,8 @@ func _ready():
 		
 		
 func _process(delta):
-	add_points()
-	draw_rope()
 	update_ends_pos()
+	add_points()
 	
 	#gravity
 	for i in points.size():
@@ -54,9 +53,15 @@ func _process(delta):
 		for i in range(points.size()-1, -1, -1):
 			points[i] = adjust_point(points[i],target,segment_length)
 			target = points[i]
-	
+			
+	draw_rope()
+
+
 func _physics_process(delta):
 	pass
+#	var posA = $EndA.transform.origin
+#	var posB = $EndB.transform.origin
+#	print(length, " ", (posA - posB).length())
 	
 	
 func adjust_point(point:Vector3, target:Vector3, seg_len:float)-> Vector3:
@@ -150,23 +155,30 @@ func update_ends_pos():
 	endB.global_transform.origin = atachmentNodeB.global_transform.origin + offB
 	
 func apply_force(magnitude:float):
-	if not atachmentNodeA or not atachmentNodeB : return  
-	var pointA = atachmentNodeA.global_transform.basis.xform(offsetA)
-	var pointB = atachmentNodeB.global_transform.basis.xform(offsetA)
-	var global_posA = pointA + atachmentNodeA.global_transform.origin
-	var global_posB = pointB + atachmentNodeB.global_transform.origin
+	if not atachmentNodeA or not atachmentNodeB : return
+	var aNA = atachmentNodeA
+	var aNB = atachmentNodeB
+	if not aNA is RigidBody: 
+		aNA = aNA.get_parent()
+	if not aNB is RigidBody: 
+		aNB = aNB.get_parent()
+	
+	var pointA = aNA.global_transform.basis.xform(offsetA)
+	var pointB = aNB.global_transform.basis.xform(offsetA)
+	var global_posA = pointA + aNA.global_transform.origin
+	var global_posB = pointB + aNB.global_transform.origin
 	var difference_vect:Vector3 = endA.global_transform.origin - endB.global_transform.origin
 	
 	if difference_vect.length() < length : return
 	
 	var force = difference_vect.normalized() * magnitude
 	
-	if atachmentNodeB is RigidBody:
-		atachmentNodeB.add_force(force, pointB)
+	if aNB is RigidBody:
+		aNB.add_force(force, pointB)  
 		$EndB/ForceDebug.clear()
 		$EndB/ForceDebug.draw(force*10)
-	if atachmentNodeA is RigidBody:
-		atachmentNodeA.add_force(-force, pointA)
+	if aNA is RigidBody:
+		aNA.add_force(-force, pointA)
 		$EndA/ForceDebug.clear()
 		$EndA/ForceDebug.draw(-force*10)
 	

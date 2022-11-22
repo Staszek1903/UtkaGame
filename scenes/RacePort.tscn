@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=1]
+[ext_resource path="res://scenes/Quai.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/RacePort.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 14.4196, 2.94282, 11.0909 )
+
+[node name="RacePort" type="StaticBody"]
+script = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.313, -3.71157, 0 )
+width = 22.0081
+height = 7.57978
+depth = 28.3299
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26.2914, -3.05117, -0.102839 )
+shape = SubResource( 1 )
+
+[node name="Barrel" type="CSGCombiner" parent="."]
+transform = Transform( 1.9549, 0, 0, 0, 1.9549, 0, 0, 0, 1.9549, 25.861, 0.537743, 6.34404 )
+material_override = ExtResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Barrel"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6783, 0 )
+radius = 2.20705
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Barrel"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.90351, 0 )
+radius = 2.20705
+height = 5.33786
+cone = true
+
+[node name="CSGBox" type="CSGBox" parent="Barrel"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.02296, 0 )
+operation = 2
+width = 4.70185
+height = 4.82882
+depth = 8.57547
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Barrel"]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4.89328e-08, -1.536, 0 )
+radius = 2.20705
+height = 5.33786
+cone = true
+
+[node name="CSGBox2" type="CSGBox" parent="Barrel"]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 4.89327e-08, -2.65545, 0 )
+operation = 2
+width = 4.70185
+height = 4.82882
+depth = 8.57547
+
+[node name="House" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6624, 2.82504, -5.107 )
+
+[node name="CSGBox" type="CSGBox" parent="House"]
+width = 8.71532
+height = 5.29578
+depth = 7.4695
+
+[node name="CSGBox2" type="CSGBox" parent="House"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2555, 0, 0 )
+operation = 2
+width = 9.40366
+height = 5.77105
+depth = 6.55745
+
+[node name="CSGPolygon" type="CSGPolygon" parent="House"]
+transform = Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, -4.34233, 2.50558, -1.54277 )
+polygon = PoolVector2Array( 5.33736, 0.127417, 1.62542, 2.01, -2.24128, 0.112159 )
+depth = 8.715
+material = ExtResource( 1 )
+
+[node name="Quai" parent="." instance=ExtResource( 2 )]
+
+[connection signal="action" from="Quai" to="." method="_on_Quai_action"]

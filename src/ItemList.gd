@@ -20,7 +20,7 @@ func set_item_list(list):
 			var new_record = record_proto.duplicate()
 			add_child(new_record)
 			move_child(new_record,0)
-			new_record.set_item_name(i)
+			new_record.set_item_name(ItemsEnum.Items.keys()[i])
 			record_list[i] = new_record
 			record_list[i].connect("selected", self, "_on_item_selected")
 	

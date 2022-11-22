@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=1]
+
+[node name="Pier" type="CSGCombiner"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+height = 0.177596
+depth = 15.907
+material = ExtResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, -8 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox4" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, -8 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox5" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, -6 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox6" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, -6 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox7" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, -4 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox8" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, -4 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox9" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, -2 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox10" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, -2 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox11" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, 0 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox12" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 0 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox13" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, 2 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox14" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 2 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox15" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, 4 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox16" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 4 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox17" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, 6 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox18" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 6 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox19" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899226, -1.40017, 8 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )
+
+[node name="CSGBox20" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915364, -1.40017, 8 )
+width = 0.238306
+height = 3.64734
+depth = 0.235515
+material = ExtResource( 1 )

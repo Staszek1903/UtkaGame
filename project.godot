@@ -10,9 +10,64 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "RigidBody",
+"class": "BasicBoat",
+"language": "GDScript",
+"path": "res://src/BasicBoat.gd"
+}, {
+"base": "RigidBody",
 "class": "Catchable",
 "language": "GDScript",
 "path": "res://src/catchable.gd"
+}, {
+"base": "Reference",
+"class": "DTS",
+"language": "GDScript",
+"path": "res://addons/dialogic/Localization/translation_service.gd"
+}, {
+"base": "Node",
+"class": "Dialogic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicClass.gd"
+}, {
+"base": "Reference",
+"class": "DialogicAnimaPropertiesHelper",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/Anima/DialogicAnimaPropertiesHelper.gd"
+}, {
+"base": "Node",
+"class": "DialogicAnimaResources",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/Anima/DialogicAnimaResources.gd"
+}, {
+"base": "Control",
+"class": "DialogicBackgroundMusic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
+}, {
+"base": "Node",
+"class": "DialogicCustomEvents",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/DialogicCustomEvents.gd"
+}, {
+"base": "Node",
+"class": "DialogicDefinitionsUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
+}, {
+"base": "Node",
+"class": "DialogicParser",
+"language": "GDScript",
+"path": "res://addons/dialogic/Parser/DialogicParser.gd"
+}, {
+"base": "Reference",
+"class": "DialogicResources",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicResources.gd"
+}, {
+"base": "Reference",
+"class": "DialogicUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
 "base": "",
 "class": "GitAPI",
@@ -29,15 +84,40 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
 }, {
+"base": "PanelContainer",
+"class": "HistoryRow",
+"language": "GDScript",
+"path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
+}, {
 "base": "TaskResource",
 "class": "InventoryTask",
 "language": "GDScript",
 "path": "res://src/InventoryTask.gd"
 }, {
-"base": "Area",
+"base": "Resource",
+"class": "ItemProperties",
+"language": "GDScript",
+"path": "res://src/ItemProperties.gd"
+}, {
+"base": "Reference",
+"class": "ItemsEnum",
+"language": "GDScript",
+"path": "res://src/ItemsEnum.gd"
+}, {
+"base": "Resource",
+"class": "PlyMesh",
+"language": "GDScript",
+"path": "res://addons/ply/resources/ply_mesh.gd"
+}, {
+"base": "Node",
 "class": "ShopArea",
 "language": "GDScript",
 "path": "res://src/ShopArea.gd"
+}, {
+"base": "Spatial",
+"class": "SteeringPoint",
+"language": "GDScript",
+"path": "res://src/SteeringPoint.gd"
 }, {
 "base": "Resource",
 "class": "TaskResource",
@@ -45,34 +125,72 @@ _global_script_classes=[ {
 "path": "res://src/TaskResource.gd"
 }, {
 "base": "Spatial",
+"class": "Vip",
+"language": "GDScript",
+"path": "res://src/Vip.gd"
+}, {
+"base": "Spatial",
 "class": "WaterGate",
 "language": "GDScript",
 "path": "res://src/WaterGate.gd"
+}, {
+"base": "Node",
+"class": "WaterManager",
+"language": "GDScript",
+"path": "res://src/WaterManager.gd"
 } ]
 _global_script_class_icons={
+"BasicBoat": "",
 "Catchable": "",
+"DTS": "",
+"Dialogic": "",
+"DialogicAnimaPropertiesHelper": "",
+"DialogicAnimaResources": "",
+"DialogicBackgroundMusic": "",
+"DialogicCustomEvents": "",
+"DialogicDefinitionsUtil": "",
+"DialogicParser": "",
+"DialogicResources": "",
+"DialogicUtil": "",
 "GitAPI": "",
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
+"HistoryRow": "",
 "InventoryTask": "",
+"ItemProperties": "",
+"ItemsEnum": "",
+"PlyMesh": "",
 "ShopArea": "",
+"SteeringPoint": "",
 "TaskResource": "",
-"WaterGate": ""
+"Vip": "",
+"WaterGate": "",
+"WaterManager": ""
 }
 
 [application]
 
 config/name="UtkaGame"
-run/main_scene="res://scenes/MainLevel.tscn"
+run/main_scene="res://scenes/BaseIsland.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+RaceTimer="*res://scenes/RaceTimer.tscn"
+BossHp="*res://scenes/BossHP.tscn"
+WindManager="*res://scenes/WindManager.tscn"
+CashWallet="res://scenes/CashWallet.tscn"
+Ui="*res://scenes/UI.tscn"
 
 [display]
 
+window/size/width=1700
+window/size/height=950
 window/size/always_on_top=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/ply/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [gdnative]
 
@@ -81,6 +199,9 @@ singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 [global]
 
 layer=false
+alwa=false
+always=false
+envi=false
 
 [input]
 
@@ -139,6 +260,15 @@ toggle_inventory={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"unicode":0,"echo":false,"script":null)
  ]
 }
+dialogic_default_action={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":true,"doubleclick":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -150,11 +280,13 @@ toggle_inventory={
 3d_physics/layer_4="moorings"
 3d_physics/layer_5="boat"
 3d_physics/layer_6="items"
+3d_physics/layer_7="sails"
 
 [physics]
 
 3d/physics_engine="Bullet"
 3d/default_gravity=10.0
+3d/default_gravity_vector=Vector3( 0, 0, 1 )
 
 [rendering]
 

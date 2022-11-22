@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ItemStack.gd" type="Script" id=1]
+
+[node name="ItemStack" type="Position3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4187, 0.506847, -0.0564365 )
+script = ExtResource( 1 )

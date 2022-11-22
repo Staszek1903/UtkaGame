@@ -31,5 +31,20 @@ func _input(event):
 		pitch += event.speed.y /10000
 		emit_signal("rotated", angle, pitch)
 	
-	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
-		pressed = event.is_pressed()
+	if event is InputEventMouseButton:
+		#print("button: ", event.button_index)
+		match event.button_index:
+			BUTTON_RIGHT:
+				pressed = event.is_pressed()
+			BUTTON_WHEEL_UP:
+				$Camera.translate(Vector3.FORWARD)
+			BUTTON_WHEEL_DOWN:
+				$Camera.translate(Vector3.BACK)
+				
+func get_boat()->RigidBody:
+	var parent = get_parent()
+	if  parent.is_in_group("boat"):
+		print("CAMERA: returning boat")
+		return parent
+	print("CAMERA: not boat children, returning null")
+	return null

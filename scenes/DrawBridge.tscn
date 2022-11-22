@@ -1,0 +1,392 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=1]
+[ext_resource path="res://src/DrawBridge.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1.59874, 7.596 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Crane:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bridge:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Line:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.904666, 4.06756, 3.39393 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Line:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -48.332, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Crane:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -45, 0, 0 ), Vector3( -90, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bridge:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -30.087, 0, 0 ), Vector3( -58.674, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Line:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.904666, 4.06756, 3.39393 ), Vector3( -0.904666, 6.37612, 3.096 ), Vector3( -0.904666, 8.73283, 2.2563 ), Vector3( -0.904666, 10.8487, 0.838698 ), Vector3( -0.904666, 12.4939, -0.930598 ), Vector3( -0.904666, 13.7417, -2.88049 ), Vector3( -0.904666, 14.5561, -5.11933 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Line:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -48.332, 0, 0 ), Vector3( -44.5527, 0, 0 ), Vector3( -42.9968, 0, 0 ), Vector3( -44.119, 0, 0 ), Vector3( -45.9017, 0, 0 ), Vector3( -50.2413, 0, 0 ), Vector3( -57.381, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Cog:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -90, 0, 0 ), Vector3( -180, 0, 0 ), Vector3( -270, 0, 0 ), Vector3( -360, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( -90, 0, 0 ), Vector3( -180, 0, 0 ), Vector3( -270, 0, 0 ), Vector3( -360, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Cog2:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 90, 0, 0 ), Vector3( 180, 0, 0 ), Vector3( 270, 0, 0 ), Vector3( 360, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 90, 0, 0 ), Vector3( 180, 0, 0 ), Vector3( 270, 0, 0 ), Vector3( 360, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 90, 0, 0 ), Vector3( 180, 0, 0 ), Vector3( 270, 0, 0 ), Vector3( 360, 0, 0 ) ]
+}
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 9.61602, 7.60867, 8.84823 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 6.16814, 8.21856, 10.9412 )
+
+[node name="Bridge" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="bridge" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.15549 )
+
+[node name="CSGBox" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.85622 )
+height = 0.177596
+depth = 15.907
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.785736, 1.87778, 7.85622 )
+width = 0.312676
+height = 0.209639
+depth = 12.5016
+
+[node name="CSGBox24" type="CSGBox" parent="bridge"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.104053, 1.87778, 7.85622 )
+width = 0.312676
+height = 0.209639
+depth = 2.37468
+
+[node name="CSGBox25" type="CSGBox" parent="bridge"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.104053, 1.87778, 1.80709 )
+width = 0.312676
+height = 0.209639
+depth = 2.37468
+
+[node name="CSGBox26" type="CSGBox" parent="bridge"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.104053, 1.87778, 13.8661 )
+width = 0.312676
+height = 0.209639
+depth = 2.37468
+
+[node name="CSGBox3" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.785736, 0.933804, 14.8398 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox9" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.785736, 0.933804, 11.4227 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox10" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.785736, 0.933804, 8.27645 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox11" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.785736, 0.933804, 5.35941 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox12" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.785736, 0.933804, 2.27569 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox4" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, -0.785736, 0.933805, 0.83801 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox5" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, -0.785736, 0.933805, 6.92211 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox7" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, -0.785736, 0.933805, 9.85998 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox8" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, -0.785736, 0.933805, 13.1521 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox6" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, -0.785736, 0.933805, 3.83839 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox13" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.835291, 1.87778, 7.85622 )
+width = 0.312676
+height = 0.209639
+depth = 12.5016
+
+[node name="CSGBox14" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.835291, 0.933804, 14.8398 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox15" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.835291, 0.933804, 11.4227 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox16" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.835291, 0.933804, 8.27645 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox17" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.835291, 0.933804, 5.35941 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox18" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.835291, 0.933804, 2.27569 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox19" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, 0.835291, 0.933805, 0.83801 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox20" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, 0.835291, 0.933805, 6.92211 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox21" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, 0.835291, 0.933805, 9.85998 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox22" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, 0.835291, 0.933805, 13.1521 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CSGBox23" type="CSGBox" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, -0.707107, -0.707107, 0, 0.707107, -0.707107, 0.835291, 0.933805, 3.83839 )
+width = 0.312676
+height = 0.209639
+depth = 2.41657
+
+[node name="CollisionShape" type="CollisionShape" parent="bridge"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.899532, 8.17527 )
+shape = SubResource( 1 )
+
+[node name="tower" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.20172 )
+
+[node name="CSGBox" type="CSGBox" parent="tower"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07415, 3.74241, 0 )
+width = 0.677972
+height = 7.90599
+
+[node name="Crane" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.70852, -8.31353 )
+
+[node name="CSGBox2" type="CSGPolygon" parent="Crane"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.650252, 0.00540352, 2.85215 )
+polygon = PoolVector2Array( -6.82609, -0.692385, -6.69429, 0.208264, -5.69949, 0.674967, -0.609414, 1.04301, 2.72958, 1.04301, 6.02464, 0.669573, 6.66168, -0.714352 )
+depth = 0.54
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Crane"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.908156, 0.211518, 2.15566 )
+operation = 2
+radius = 0.748834
+height = 3.35932
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Crane"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.908156, 0.165443, 4.13998 )
+operation = 2
+radius = 0.748834
+height = 3.35932
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Crane"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.908156, 0.122437, 6.32554 )
+operation = 2
+radius = 0.564701
+height = 3.35932
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="Crane"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.908156, 0.00244045, 8.11751 )
+operation = 2
+radius = 0.564701
+height = 3.35932
+
+[node name="CSGCylinder5" type="CSGCylinder" parent="Crane"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.908156, 0.00244045, -1.99789 )
+operation = 2
+radius = 0.564701
+height = 3.35932
+
+[node name="Line" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.664813, 0.74701, 0, -0.74701, 0.664813, -0.904666, 4.06756, 3.39393 )
+width = 0.194863
+height = 6.27535
+depth = 0.400926
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/open = SubResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 4 )
+
+[node name="AutoRepairArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95151, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="AutoRepairArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48858, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="Cog" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 2.00022, 0, 0, 0, 2.00022, -0.529418, 2.29269, -9.30869 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Cog"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+height = 0.295097
+
+[node name="Cog2" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 2.00022, 0, 0, 0, 2.00022, -0.529418, 4.76333, -10.9489 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Cog2"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+radius = 0.426733
+height = 0.295097
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
+[connection signal="body_entered" from="AutoRepairArea" to="." method="_on_AutoRepairArea_body_entered"]

@@ -1,22 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=1]
 [ext_resource path="res://scenes/Text3D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Button3D.gd" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.377272, 0.0273448, 0.100608 )
+extents = Vector3( 0.370513, 0.0472987, 0.0932724 )
 
-[node name="Button3D" type="StaticBody"]
+[node name="Button3D" type="Area"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 script = ExtResource( 3 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
 
 [node name="Text3D" parent="." instance=ExtResource( 2 )]
 transform = Transform( 4.44089e-16, -1.49012e-08, -0.364835, -0.364835, -1.59475e-08, 0, -1.59475e-08, 0.364835, -1.49012e-08, 0, 0, 0 )
 resolution = 139
-text = "  PLANKS x3"
 
-[connection signal="input_event" from="." to="." method="_on_Button3D_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_Button3D_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_Button3D_mouse_exited"]
+[node name="Collision" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Indicator" type="CSGBox" parent="."]
+visible = false
+invert_faces = true
+width = 0.760314
+height = 0.019596
+depth = 0.206958
+material = ExtResource( 1 )
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

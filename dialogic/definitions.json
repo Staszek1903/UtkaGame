@@ -1,0 +1,43 @@
+{
+	"glossary": [
+
+	],
+	"variables": [
+		{
+			"id": "1648021788-439",
+			"name": "BridgeRepaired",
+			"type": 0,
+			"value": "false"
+		},
+		{
+			"id": "1655575370-772",
+			"name": "PortName",
+			"type": 0,
+			"value": "PortName"
+		},
+		{
+			"id": "1655575478-286",
+			"name": "WorkerCount",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1655575509-932",
+			"name": "RequiredItem",
+			"type": 0,
+			"value": "N/A"
+		},
+		{
+			"id": "1655575815-769",
+			"name": "Eficiency",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1655722986-684",
+			"name": "WorkersAvailable",
+			"type": 0,
+			"value": "----"
+		}
+	]
+}

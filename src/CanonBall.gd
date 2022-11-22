@@ -11,7 +11,12 @@ func decay(seconds):
 
 
 func _on_DamageTrigger_body_entered(body):
-	var velocity:Vector3 = Vector3.ZERO
+	print("DAMAGE TRIGGE: ", body.name)
+	if body.has_method("receive_damage"):
+		print("damage dealt")
+		body.receive_damage(1)
+	
+	#var velocity:Vector3 = Vector3.ZERO
 #	var has_vel = ("linear_velocity" in body)
 #	print("damage linear_velocity: ", has_vel)
 #	if(has_vel):
@@ -19,8 +24,3 @@ func _on_DamageTrigger_body_entered(body):
 #
 #	print("other vel: ", body.linear_velocity)
 #	print("vel:", linear_velocity)
-	if body.has_method("receive_damage"):
-		print("damage dealt")
-		body.receive_damage(1)
-#	else:
-#		print("doesnt")

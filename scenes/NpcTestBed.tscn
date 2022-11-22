@@ -1,0 +1,118 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/SpawnPlatform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://models/decimated_plane.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://src/WaterTile.gd" type="Script" id=3]
+[ext_resource path="res://src/WaterManager.gd" type="Script" id=4]
+[ext_resource path="res://materials/simple_water_shader.tres" type="Material" id=5]
+[ext_resource path="res://scenes/Lighthouse.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=7]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=8]
+[ext_resource path="res://terrains/final_island_terrain/data.hterrain" type="Resource" id=9]
+[ext_resource path="res://scenes/boats/NPCUtka.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/free_camera.gd" type="Script" id=11]
+[ext_resource path="res://src/pathImmediateGeometry.gd" type="Script" id=12]
+[ext_resource path="res://objects/WaterGate.tscn" type="PackedScene" id=13]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 47.803, 13.6902, 47.4266 )
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 8 )
+mode = 0
+textures = [ [  ], [  ] ]
+
+[sub_resource type="Curve3D" id=3]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 1.21715, 0.000198342, -26.8845, 0, 0, 0, 0, 0, 0, 110.538, 1.10797, -26.6057, 0, 0, 0, 0, 0, 0, -2.50364, -0.671967, -57.9825, 0, 0, 0, 0, 0, 0, 134.837, -4.07666, -73.6162, 0, 0, 0, 0, 0, 0, -1.03882, 0.663907, -103.473, 0, 0, 0, 0, 0, 0, 123.737, -7.84276, -132.207, 0, 0, 0, 0, 0, 0, 0.645627, -4.6443, -162.345, 0, 0, 0, 0, 0, 0, -57.5204, -2.07738, -161.327, 0, 0, 0, 0, 0, 0, -83.7766, -0.000198387, -135.644, 0, 0, 0, 0, 0, 0, -83.1372, 1.52364e-05, -78.4228, 0, 0, 0, 0, 0, 0, -65.8749, 0.000152566, -39.103, 0, 0, 0, 0, 0, 0, -33.5879, 0.000198342, -25.3571 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="Root" type="Spatial"]
+
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 0.514649, 0.341449, -0.786479, 0, 0.917283, 0.398237, 0.857401, -0.204952, 0.472079, -49.3194, 20.1653, -71.5622 )
+far = 1000.0
+script = ExtResource( 11 )
+
+[node name="WaterManager" type="Node" parent="."]
+script = ExtResource( 4 )
+amplitude = 0.202
+frequency = 0.295
+
+[node name="WaterTile" type="Spatial" parent="."]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -93.1954 )
+script = ExtResource( 3 )
+
+[node name="Area" type="Area" parent="WaterTile"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="WaterTile/Area"]
+shape = SubResource( 1 )
+
+[node name="WaterMesh" type="MeshInstance" parent="WaterTile"]
+layers = 2
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="Lighthouse" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7637, 9.40503, -213.885 )
+
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -100, -256 )
+script = ExtResource( 7 )
+_terrain_data = ExtResource( 9 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 2 )
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+
+[node name="SpawnPlatform" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88202, 0 )
+
+[node name="NPCUtka" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.0291778, 0, -0.999574, 0, 1, 0, 0.999574, 0, 0.0291778, 33.7461, 20.0976, -132.766 )
+
+[node name="Boat" parent="NPCUtka" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103551, 0.238436 )
+next_gate = NodePath("../../Gates/WaterGate")
+
+[node name="Path" type="Path" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.488144, -0.0554199, 0.558372 )
+visible = false
+curve = SubResource( 3 )
+
+[node name="PathFollow" type="PathFollow" parent="Path"]
+transform = Transform( -0.567079, 0.0355374, 0.822896, 0.0442278, 0.998942, -0.0126614, -0.822473, 0.0292149, -0.568051, 42.6242, 0.419785, -26.7789 )
+offset = 41.6545
+
+[node name="pathImmediateGeometry" type="ImmediateGeometry" parent="Path"]
+script = ExtResource( 12 )
+
+[node name="Gates" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8147e-06, 0, 1.90735e-06 )
+
+[node name="WaterGate" parent="Gates" instance=ExtResource( 13 )]
+transform = Transform( -0.999984, 0, -0.00565466, 0, 1, 0, 0.00565466, 0, -0.999984, 27.7923, 0, -163.417 )
+next_gate = NodePath("../WaterGate2")
+active = true
+
+[node name="WaterGate2" parent="Gates" instance=ExtResource( 13 )]
+transform = Transform( -0.997464, 0, -0.0711665, 0, 1, 0, 0.0711665, 0, -0.997464, 27.2305, 0, -65.7548 )
+next_gate = NodePath("../WaterGate")
+
+[connection signal="area_entered" from="WaterTile/Area" to="WaterTile" method="_on_Area_area_entered"]
+
+[editable path="NPCUtka"]
+[editable path="NPCUtka/Boat/Engine"]

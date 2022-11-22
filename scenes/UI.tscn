@@ -1,0 +1,206 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/WaterLevel.gd" type="Script" id=1]
+[ext_resource path="res://src/HungerLevel.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+resource_local_to_scene = true
+bg_color = Color( 0, 0.803922, 1, 1 )
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.282353, 0.317647, 0.352941, 0.709804 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id=3]
+resource_local_to_scene = true
+bg_color = Color( 1, 0, 0, 1 )
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.282353, 0.317647, 0.352941, 0.709804 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 1, 0.701961, 0, 1 )
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=6]
+resource_local_to_scene = true
+bg_color = Color( 0.282353, 0.317647, 0.352941, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+rect_pivot_offset = Vector2( -718, -283 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaterLevel" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="WaterLevel"]
+modulate = Color( 1, 1, 1, 0.596078 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.1101
+margin_top = -124.709
+margin_right = 256.11
+margin_bottom = -87.7093
+rect_rotation = -89.9999
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 1.0
+value = 0.5
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitBar1" type="ProgressBar" parent="WaterLevel"]
+visible = false
+modulate = Color( 1, 1, 1, 0.596078 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 72.8616
+margin_top = -352.246
+margin_right = 111.862
+margin_bottom = -315.246
+max_value = 1.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitBar2" type="ProgressBar" parent="WaterLevel"]
+visible = false
+modulate = Color( 1, 1, 1, 0.596078 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 72.8616
+margin_top = -315.246
+margin_right = 111.862
+margin_bottom = -278.246
+min_value = 1.0
+max_value = 2.0
+value = 1.0
+percent_visible = false
+
+[node name="HitBar3" type="ProgressBar" parent="WaterLevel"]
+visible = false
+modulate = Color( 1, 1, 1, 0.596078 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 72.8616
+margin_top = -278.246
+margin_right = 111.862
+margin_bottom = -241.246
+min_value = 2.0
+max_value = 3.0
+value = 2.0
+percent_visible = false
+
+[node name="HungerLevel" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 79.783
+margin_right = 79.783
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarvationBar" type="ProgressBar" parent="HungerLevel"]
+modulate = Color( 1, 1, 1, 0.596078 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -125.0
+margin_right = 228.0
+margin_bottom = -85.0
+rect_rotation = -89.9999
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+max_value = 1.0
+value = 0.64
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HungerBar" type="ProgressBar" parent="HungerLevel"]
+modulate = Color( 1, 1, 1, 0.596078 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -1.302
+margin_top = -124.709
+margin_right = 227.698
+margin_bottom = -84.709
+rect_rotation = -89.9999
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+max_value = 1.0
+value = 0.5
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

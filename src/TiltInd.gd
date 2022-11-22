@@ -5,7 +5,7 @@ var body: Spatial = null
 onready var needle = $Needle
 onready var label = $PanelContainer/Label
 	
-func _process(delta):
+func _process(_delta):
 	if body:
 		var basis:Basis = body.global_transform.basis
 		var for_vect = basis.z

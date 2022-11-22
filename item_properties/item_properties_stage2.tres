@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/ItemProperties.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+item_names = [ 10, 7 ]
+item_properties = [ "quantity" ]
+properties_db = {
+7: {
+"quantity": 20.0
+},
+10: {
+"quantity": 20.0
+}
+}

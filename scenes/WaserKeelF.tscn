@@ -2,28 +2,28 @@
 
 [ext_resource path="res://addons/Trail/trail_3d.gd" type="Script" id=1]
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=1]
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=2]
 max_value = 2.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.496324, 0.981818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.105222, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=13]
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="WaserKeelF" type="Position3D"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0344806, 0.507013, -3.14519 )
 
 [node name="Trail3D" type="ImmediateGeometry" parent="."]
-material_override = SubResource( 11 )
+material_override = SubResource( 1 )
 script = ExtResource( 1 )
 distance = 0.5
 lifetime = 10.0
 base_width = 0.2
-width_profile = SubResource( 12 )
-color_gradient = SubResource( 13 )
+width_profile = SubResource( 2 )
+color_gradient = SubResource( 3 )
 axe = "X"
 show_wireframe = true

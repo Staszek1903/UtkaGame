@@ -1,0 +1,57 @@
+{
+	"events": [
+		{
+			"character": "",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Witaj chcesz sie pościgać?"
+		},
+		{
+			"choice": "Jasne",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Wspaniale, przepłym przez wszystkie bramki przede mną"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "3... 2... 1.. START!"
+		},
+		{
+			"emit_signal": "start_race",
+			"event_id": "dialogic_040"
+		},
+		{
+			"choice": "Może kiedy indziej",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Wbijaj kiedy chcesz"
+		},
+		{
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.1",
+		"file": "timeline-1652101023.json",
+		"name": "Race"
+	}
+}

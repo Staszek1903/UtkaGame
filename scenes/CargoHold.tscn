@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/CargoHold.gd" type="Script" id=1]
+[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=2]
+[ext_resource path="res://scenes/TextBaner.tscn" type="PackedScene" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 0.511438, 1 )
+
+[node name="CargoHold" type="Area"]
+script = ExtResource( 1 )
+
+[node name="Collision" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Indicator" type="CSGBox" parent="."]
+visible = false
+invert_faces = true
+height = 0.961903
+material = ExtResource( 2 )
+
+[node name="TextBanner" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[connection signal="mouse_entered" from="." to="." method="_on_CargoHold_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_CargoHold_mouse_exited"]

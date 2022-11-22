@@ -4,6 +4,7 @@ var active:bool = false
 var ready_to_respawn:bool = false
 var time:float = 0.0
 onready var control = $Control
+onready var water_manager:WaterManager = $"/root/Root/WaterManager"
 
 func activate():
 	active= true
@@ -27,3 +28,4 @@ func _input(event):
 			ready_to_respawn = false
 			time = 0.0
 			get_parent().respawn()
+			water_manager.set_default_water_params()

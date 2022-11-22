@@ -5,7 +5,7 @@
 [ext_resource path="res://src/Record.gd" type="Script" id=3]
 [ext_resource path="res://src/ItemList.gd" type="Script" id=4]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:anchor_left")
 tracks/0/interp = 1
@@ -42,7 +42,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/out = SubResource( 3 )
+anims/out = SubResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -62,8 +62,8 @@ __meta__ = {
 }
 
 [node name="YourInventory" type="ScrollContainer" parent="VBoxContainer"]
-margin_right = 153.0
-margin_bottom = 499.0
+margin_right = 288.0
+margin_bottom = 979.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -72,7 +72,7 @@ __meta__ = {
 
 [node name="ItemList" type="VBoxContainer" parent="VBoxContainer/YourInventory"]
 visible = false
-margin_right = 153.0
+margin_right = 288.0
 size_flags_horizontal = 3
 script = ExtResource( 4 )
 __meta__ = {
@@ -116,35 +116,35 @@ __meta__ = {
 }
 
 [node name="CashLabel" type="Label" parent="VBoxContainer"]
-margin_top = 503.0
-margin_right = 153.0
-margin_bottom = 524.0
+margin_top = 983.0
+margin_right = 288.0
+margin_bottom = 1004.0
 text = "0 Piniondz"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AmountLabel" type="Label" parent="VBoxContainer"]
-margin_top = 528.0
-margin_right = 153.0
-margin_bottom = 549.0
+margin_top = 1008.0
+margin_right = 288.0
+margin_bottom = 1029.0
 text = "to sell/buy"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AmountSlider" type="HSlider" parent="VBoxContainer"]
-margin_top = 553.0
-margin_right = 153.0
-margin_bottom = 569.0
+margin_top = 1033.0
+margin_right = 288.0
+margin_bottom = 1049.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 573.0
-margin_right = 153.0
-margin_bottom = 600.0
+margin_top = 1053.0
+margin_right = 288.0
+margin_bottom = 1080.0
 text = "SELL"
 
 [connection signal="item_selected" from="VBoxContainer/YourInventory/ItemList" to="." method="_on_inv_item_selected"]

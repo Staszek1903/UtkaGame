@@ -3,15 +3,16 @@
 [ext_resource path="res://src/Text3D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/LabelScene.tscn" type="PackedScene" id=2]
 
-[sub_resource type="QuadMesh" id=1]
+[sub_resource type="QuadMesh" id=4]
+resource_local_to_scene = true
 size = Vector2( 2, 0.5 )
 
-[sub_resource type="ViewportTexture" id=4]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
-albedo_texture = SubResource( 4 )
+albedo_texture = SubResource( 2 )
 
 [node name="Text3D" type="Spatial"]
 script = ExtResource( 1 )
@@ -20,7 +21,7 @@ resolution = 150
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, 0, 0 )
-mesh = SubResource( 1 )
+mesh = SubResource( 4 )
 material/0 = SubResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="."]

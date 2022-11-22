@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://materials/black_material.tres" type="Material" id=1]
+[ext_resource path="res://materials/white_materiall.tres" type="Material" id=2]
+[ext_resource path="res://materials/tentacle_material.tres" type="Material" id=3]
+[ext_resource path="res://src/KrackenEye.gd" type="Script" id=4]
+
+[sub_resource type="SphereShape" id=1]
+radius = 3.25968
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Origin:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 16.438, 2.78143e-08, -0.858998 ), Vector3( -2.0865, 2.70061e-08, -0.858998 ), Vector3( -20.611, 2.61978e-08, -0.858998 ), Vector3( -2.0865, 2.70061e-08, -0.858998 ), Vector3( 16.438, 2.78143e-08, -0.858998 ), Vector3( -2.0865, 2.70061e-08, -0.858998 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Origin/1:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -17.7309, -0.274674, -14.2582 ), Vector3( 1.51304, -0.042745, -7.48093 ), Vector3( 20.7476, 0.32543, -14.2414 ), Vector3( 1.51304, -0.042745, -7.48093 ), Vector3( -17.7309, -0.274674, -14.2582 ), Vector3( 1.51304, -0.042745, -7.48093 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Origin/1/2:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -10.4469, -2.8635, 21.6428 ), Vector3( 6.91144, 0.622532, 9.641 ), Vector3( 23.7613, 6.85068, 22.8239 ), Vector3( 6.91144, 0.622532, 9.641 ), Vector3( -10.4469, -2.8635, 21.6428 ), Vector3( 6.91144, 0.622532, 9.641 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Origin/1/2/3:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 12.8973, -1.43026, 25.2013 ), Vector3( -4.15885, 0.241404, 18.5104 ), Vector3( -21.1626, 2.41851, 24.9111 ), Vector3( -4.15885, 0.241404, 18.5104 ), Vector3( 12.8973, -1.43026, 25.2013 ), Vector3( -4.15885, 0.241404, 18.5104 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape:translation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.10871, 15.1894, 0.495962 ), Vector3( -0.745002, 15.8506, 0.264513 ), Vector3( -1.09769, 14.8697, 0.01102 ), Vector3( -0.739493, 15.8892, 0.286553 ), Vector3( -1.10871, 15.1894, 0.495962 ), Vector3( -0.745002, 15.8506, 0.264513 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "rise"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Origin:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.344916, -23.6332, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.43909, -8.12002, 0 ), Vector3( -1.17484, 15.5861, 0 ) ]
+}
+
+[node name="KrakenEye" type="KinematicBody"]
+script = ExtResource( 4 )
+
+[node name="Origin" type="Spatial" parent="."]
+transform = Transform( 0.999888, 0.0149918, 4.65609e-10, -0.014379, 0.959019, -0.282977, -0.00424234, 0.282946, 0.959126, -0.344916, -23.6332, 0 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Origin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37167, 0 )
+height = 4.31696
+smooth_faces = false
+material = ExtResource( 3 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Origin"]
+transform = Transform( 1, -3.49246e-10, 0, -1.16415e-10, 1, -5.96046e-08, 0, 0, 1, -0.220374, 2.36145, -0.0342193 )
+radius = 0.902677
+height = 4.18303
+smooth_faces = false
+material = ExtResource( 2 )
+
+[node name="1" type="Spatial" parent="Origin"]
+transform = Transform( 0.968826, 0.247704, -0.00456622, -0.234593, 0.923157, 0.304547, 0.0796529, -0.293981, 0.952486, -1.14516e-07, 4.49781, 3.8743e-07 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Origin/1"]
+transform = Transform( 0.888267, 0, 0, 0, 0.888267, 0, 0, 0, 0.888267, 0, 2.3096, 0 )
+height = 5.09178
+smooth_faces = false
+material = ExtResource( 3 )
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Origin/1"]
+transform = Transform( 0.888267, 0, 0, 0, 0.888267, 0, 0, 0, 0.888267, -0.276679, 2.3096, 0 )
+radius = 0.791476
+height = 4.9221
+smooth_faces = false
+material = ExtResource( 2 )
+
+[node name="2" type="Spatial" parent="Origin/1"]
+transform = Transform( 0.931681, -0.359938, -0.0491285, 0.362705, 0.914092, 0.181324, -0.0203575, -0.186755, 0.982194, -1.19209e-07, 4.4887, 3.8743e-07 )
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Origin/1/2"]
+transform = Transform( 0.805229, 0, 0, 0, 0.805229, 0, 0, 0, 0.805229, 0, 1.69106, 0 )
+height = 4.31787
+smooth_faces = false
+material = ExtResource( 3 )
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="Origin/1/2"]
+transform = Transform( 0.805229, 0, 0, 0, 0.805229, 0, 0, 0, 0.805229, -0.227538, 1.69106, 0 )
+radius = 0.802409
+height = 4.09704
+smooth_faces = false
+material = ExtResource( 2 )
+
+[node name="3" type="Spatial" parent="Origin/1/2"]
+transform = Transform( 0.902163, -0.430708, -0.0243304, 0.415058, 0.88199, -0.223204, 0.117595, 0.191268, 0.974468, 6.55651e-07, 3.35845, -4.76837e-07 )
+
+[node name="CSGCylinder4" type="CSGCylinder" parent="Origin/1/2/3"]
+transform = Transform( 0.753894, 0, 0, 0, 0.753894, 0, 0, 0, 0.753894, 0, 2.16344, 0 )
+height = 5.6799
+cone = true
+smooth_faces = false
+material = ExtResource( 3 )
+
+[node name="CSGCylinder5" type="CSGCylinder" parent="Origin/1/2/3"]
+transform = Transform( 0.753894, 0, 0, 0, 0.753894, 0, 0, 0, 0.753894, -0.197282, 1.59974, 0 )
+radius = 0.828423
+height = 3.77427
+cone = true
+smooth_faces = false
+material = ExtResource( 2 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Origin/1/2/3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 3.83606, 0 )
+radius = 2.8653
+
+[node name="CSGSphere2" type="CSGSphere" parent="Origin/1/2/3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09214, 3.83606, 0 )
+radius = 2.17294
+material = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.922478, -0.386051, 0, 0.386051, 0.922478, 0, 0, 0, 1, -1.43909, -8.12002, 0 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 2 )
+anims/rise = SubResource( 3 )

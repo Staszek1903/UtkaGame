@@ -1,16 +1,25 @@
 tool
 extends Node
+class_name WaterManager
 
 onready var mdt :MeshDataTool = MeshDataTool.new()
 #onready var material = get_surface_material(0)
 onready var shader_material = $"../WaterTile/WaterMesh".get_surface_material(0)
+onready var tween:Tween = $Tween
 
-export(float) var amplitude = 0.1 setget set_amplitude
-export(float) var frequency = 1.0 setget set_frequency
+export(float) var amplitude = 0.2 setget set_amplitude
+export(float) var frequency = 0.3 setget set_frequency
 export(float) var timefactor = 1.0
 
+var default_amplitude = 0.2
+var default_frequency = 0.3
+var default_timefactor = 1.0
+
 func _ready():
-	pass
+	assert(shader_material)
+	default_amplitude = amplitude
+	default_frequency = frequency
+	default_timefactor = timefactor
 #	print(mesh.get_surface_count())
 #	mdt.create_from_surface(mesh,0)
 #	print(mdt.get_vertex_count())
@@ -29,9 +38,9 @@ func set_frequency(var val: float):
 	if shader_material: 
 		shader_material.set_shader_param("frequency", frequency)
 
-func wave_height(pos : Vector2,time : float) -> float:	
-	return amplitude * sin(pos.x * frequency + time * timefactor) \
-	+ amplitude * sin(pos.y * frequency + time * timefactor)
+func wave_height(pos : Vector2, loc_time : float) -> float:	
+	return amplitude * sin(pos.x * frequency + loc_time * timefactor) \
+	+ amplitude * sin(pos.y * frequency + loc_time * timefactor)
 
 var time : float = 0.0
 func wave(global_pos : Vector2) -> float:
@@ -68,4 +77,22 @@ func _process(delta):
 #	for i in get_child_count():
 #		get_child(i).queue_free()
 #	create_debug_tangents()
-	pass
+
+func set_next_amplitude(new_amplitude:float):
+	#warning_ignore
+	tween.interpolate_property(self,"amplitude", amplitude, new_amplitude, 
+								abs(amplitude - new_amplitude) * 10,Tween.TRANS_CUBIC,
+								Tween.EASE_IN_OUT)
+	#warning_ignore
+	tween.start()
+	
+func set_next_frequency(new_frequency:float):
+	tween.interpolate_property(self,"frequency",frequency, new_frequency, 
+								abs(frequency - new_frequency) * 10,Tween.TRANS_CUBIC,
+								Tween.EASE_IN_OUT)
+	tween.start()
+	
+func set_default_water_params():
+	self.amplitude = default_amplitude
+	self.frequency = default_frequency
+	self.timefactor = default_timefactor

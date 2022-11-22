@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/ItemSpawn.gd" type="Script" id=1]
+[ext_resource path="res://scenes/objects/Barel.tscn" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+
+[node name="ItemSpawn" type="ImmediateGeometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -301.37, -0.286543, -290.501 )
+material_override = SubResource( 1 )
+script = ExtResource( 1 )
+item_scene = ExtResource( 2 )
+radius_max = 70.0
+radius_min = 15.0

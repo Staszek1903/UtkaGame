@@ -4,7 +4,7 @@ var body: RigidBody = null
 onready var needle = $Needle
 onready var label = $PanelContainer/Label
 	
-func _process(delta):
+func _process(_delta):
 	if body:
 		var vel = body.linear_velocity
 		vel = body.global_transform.basis.xform_inv(vel)

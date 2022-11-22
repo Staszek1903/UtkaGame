@@ -10,7 +10,7 @@ extends Position3D
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 #	var basis = global_transform.basis
 #	var rot = basis.get_euler()
 #

@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/ItemList.gd" type="Script" id=1]
 [ext_resource path="res://src/Record.gd" type="Script" id=2]
 [ext_resource path="res://src/ShopList.gd" type="Script" id=3]
 [ext_resource path="res://assets/InventoryTheme.tres" type="Theme" id=4]
+[ext_resource path="res://src/BuildingListButton.gd" type="Script" id=5]
+[ext_resource path="res://src/UpgradesContainer.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -60,9 +62,72 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ManpowerLabel" type="Label" parent="VBoxContainer"]
+margin_right = 288.0
+margin_bottom = 21.0
+text = "Manpower: "
+
+[node name="StageLabel" type="Label" parent="VBoxContainer"]
+margin_top = 25.0
+margin_right = 288.0
+margin_bottom = 46.0
+text = "Prod stage: "
+
+[node name="Resource in" type="Label" parent="VBoxContainer"]
+margin_top = 50.0
+margin_right = 288.0
+margin_bottom = 71.0
+text = "Resource in"
+
+[node name="Resource out" type="Label" parent="VBoxContainer"]
+margin_top = 75.0
+margin_right = 288.0
+margin_bottom = 96.0
+text = "Resource out"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+margin_top = 100.0
+margin_right = 288.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="VBoxContainer"]
+margin_top = 108.0
+margin_right = 288.0
+margin_bottom = 129.0
+text = "Upgrades:"
+
+[node name="UpgradesContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 133.0
+margin_bottom = 133.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuildingListButton" type="Button" parent="VBoxContainer/UpgradesContainer"]
+visible = false
+margin_right = 288.0
+margin_bottom = 27.0
+text = "SAMPLE TEXT"
+script = ExtResource( 5 )
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
+margin_top = 137.0
+margin_right = 288.0
+margin_bottom = 141.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ShopInventory" type="ScrollContainer" parent="VBoxContainer"]
-margin_right = 153.0
-margin_bottom = 516.0
+margin_top = 145.0
+margin_right = 288.0
+margin_bottom = 996.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -70,7 +135,8 @@ __meta__ = {
 }
 
 [node name="ItemList" type="VBoxContainer" parent="VBoxContainer/ShopInventory"]
-margin_right = 153.0
+margin_right = 288.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
 __meta__ = {
@@ -78,13 +144,12 @@ __meta__ = {
 }
 
 [node name="Record" type="HBoxContainer" parent="VBoxContainer/ShopInventory/ItemList"]
-visible = false
-margin_right = 153.0
+margin_right = 288.0
 margin_bottom = 27.0
 script = ExtResource( 2 )
 
 [node name="Button" type="Button" parent="VBoxContainer/ShopInventory/ItemList/Record"]
-margin_right = 74.0
+margin_right = 142.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 toggle_mode = true
@@ -93,9 +158,9 @@ flat = true
 align = 0
 
 [node name="Label" type="Label" parent="VBoxContainer/ShopInventory/ItemList/Record"]
-margin_left = 78.0
+margin_left = 146.0
 margin_top = 3.0
-margin_right = 153.0
+margin_right = 288.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "0"
@@ -104,10 +169,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
-margin_top = 520.0
-margin_right = 153.0
-margin_bottom = 524.0
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+margin_top = 1000.0
+margin_right = 288.0
+margin_bottom = 1004.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -123,28 +188,29 @@ __meta__ = {
 }
 
 [node name="AmountLabel" type="Label" parent="VBoxContainer"]
-margin_top = 528.0
-margin_right = 153.0
-margin_bottom = 549.0
+margin_top = 1008.0
+margin_right = 288.0
+margin_bottom = 1029.0
 text = "to sell/buy"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AmountSlider" type="HSlider" parent="VBoxContainer"]
-margin_top = 553.0
-margin_right = 153.0
-margin_bottom = 569.0
+margin_top = 1033.0
+margin_right = 288.0
+margin_bottom = 1049.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 573.0
-margin_right = 153.0
-margin_bottom = 600.0
+margin_top = 1053.0
+margin_right = 288.0
+margin_bottom = 1080.0
 text = "BUY"
 
+[connection signal="pressed" from="VBoxContainer/UpgradesContainer/BuildingListButton" to="VBoxContainer/UpgradesContainer/BuildingListButton" method="_on_BuildingListButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/ShopInventory/ItemList" to="." method="_on_ItemList_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/AmountSlider" to="." method="_on_AmountSlider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
