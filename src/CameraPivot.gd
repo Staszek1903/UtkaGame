@@ -48,3 +48,6 @@ func get_boat()->RigidBody:
 		return parent
 	print("CAMERA: not boat children, returning null")
 	return null
+	
+func set_current():
+	$Camera.current = true

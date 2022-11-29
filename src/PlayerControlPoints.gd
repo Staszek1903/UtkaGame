@@ -17,12 +17,17 @@ func _ready():
 func set_current(val:bool):
 	if val: get_tree().call_group("steering", "clear_current")
 	call_deferred("set_this_current")
+	
+	steering_points.disable = not val
 
 func clear_current():
 	current = false
+	steering_points.disable = true
 
 func set_this_current():
 	current = true
+	steering_points.disable = false
+	
 
 
 func _process(delta):
@@ -48,13 +53,3 @@ func _process(delta):
 		boat.rudder.change_angle(delta)
 	if Input.is_action_pressed("rudder_left"):
 		boat.rudder.change_angle(-delta)
-
-
-func ease_sheets(delta):
-	boat.set_sail_trim(boat.sail_trim + 10 * delta)
-
-func heave_sheets(delta):
-	boat.set_sail_trim(boat.sail_trim - 10 * delta)
-
-func get_mainsheet_val() -> String:
-	return str(boat.sail_trim) + "\nW: Ease sheet\n S: Heave sheet"

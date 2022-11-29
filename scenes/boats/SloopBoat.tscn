@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://src/ForceDebug.gd" type="Script" id=1]
 [ext_resource path="res://models/lug_boat_helm.gltf" type="PackedScene" id=2]
@@ -7,14 +7,14 @@
 [ext_resource path="res://src/SloopBoat.gd" type="Script" id=5]
 [ext_resource path="res://src/CameraPivot.gd" type="Script" id=6]
 [ext_resource path="res://scenes/objects/Compass.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/PlayerControlSimple.gd" type="Script" id=8]
+[ext_resource path="res://src/PlayerControlPoints.gd" type="Script" id=8]
+[ext_resource path="res://scenes/SteeringPoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/characters/BaseCharacter.tscn" type="PackedScene" id=10]
 [ext_resource path="res://models/fok_flat.obj" type="ArrayMesh" id=11]
 [ext_resource path="res://scenes/ForceDebug.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/MooringBundle.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/objects/Floater.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/SteeringPointsCollection.gd" type="Script" id=15]
-[ext_resource path="res://scenes/Indicators.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/CargoHold.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Sail.gd" type="Script" id=19]
 [ext_resource path="res://models/Wood.material" type="Material" id=20]
@@ -22,11 +22,9 @@
 [ext_resource path="res://addons/Trail/trail_3d.gd" type="Script" id=22]
 [ext_resource path="res://models/LugSail.tres" type="ArrayMesh" id=23]
 [ext_resource path="res://scenes/WaserKeelF.tscn" type="PackedScene" id=24]
-[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=25]
-[ext_resource path="res://src/MouseArea.gd" type="Script" id=26]
 
 [sub_resource type="PhysicsMaterial" id=1]
-friction = 0.5
+friction = 0.05
 
 [sub_resource type="ConvexPolygonShape" id=2]
 points = PoolVector3Array( -0.708663, 0.380123, -1, -0.723407, -0.031307, 0, -0.615576, -0.031307, -1, -0.442848, 0.455773, -1.91937, 0.708663, 0.380123, -1, -0.708663, 0.380123, -1, 0.654763, -0.031307, 1, 0.825848, 0.362192, 0, 0.723407, -0.031307, 0, 0.736319, 0.439315, 1.71716, -0.852618, 0.393547, 1, 0.852618, 0.393547, 1, -0.138692, -0.357711, 1.71716, -0.260158, -0.031307, 2.55526, -0.07056, -0.330377, 2.55526, 0.852618, 0.393547, 1, -0.825848, 0.362192, 0, 0.825848, 0.362192, 0, 0.825848, 0.362192, 0, -0.708663, 0.380123, -1, 0.708663, 0.380123, -1, -0.260158, -0.031307, 2.55526, -0.038275, -0.031307, 3.18631, -0.010381, -0.240543, 3.02987, 0.723407, -0.031307, 0, 0.708663, 0.380123, -1, 0.615576, -0.031307, -1, -0.825848, 0.362192, 0, -0.654763, -0.031307, 1, -0.723407, -0.031307, 0, 0.138692, -0.357711, 1.71716, 0.260158, -0.031307, 2.55526, 0.511365, -0.031307, 1.71716, 0.736319, 0.439315, 1.71716, 0.654763, -0.031307, 1, 0.511365, -0.031307, 1.71716, -0.736319, 0.439315, 1.71716, -0.654763, -0.031307, 1, -0.852618, 0.393547, 1, 0.010381, -0.240543, 3.02987, -0.038275, -0.031307, 3.18631, 0.038275, -0.031307, 3.18631, -0.08364, 0.687358, 3.18631, -0.260158, -0.031307, 2.55526, -0.510029, 0.555827, 2.55526, -0.510029, 0.555827, 2.55526, -0.511365, -0.031307, 1.71716, -0.736319, 0.439315, 1.71716, 0.510029, 0.555827, 2.55526, -0.736319, 0.439315, 1.71716, 0.736319, 0.439315, 1.71716, 0.510029, 0.555827, 2.55526, 0.511365, -0.031307, 1.71716, 0.260158, -0.031307, 2.55526, -0.038275, -0.031307, 3.18631, 0.08364, 0.687358, 3.18631, 0.038275, -0.031307, 3.18631, -0.08364, 0.687358, 3.18631, 0.510029, 0.555827, 2.55526, 0.08364, 0.687358, 3.18631, 0.08364, 0.687358, 3.18631, 0.260158, -0.031307, 2.55526, 0.038275, -0.031307, 3.18631, -0.009992, -0.377272, -1.7114, 0.279247, -0.031307, -1.77854, -0.279247, -0.031307, -1.77854, 0.279247, -0.031307, -1.77854, -0.442848, 0.455773, -1.91937, -0.279247, -0.031307, -1.77854, -0.279247, -0.031307, -1.77854, -0.708663, 0.380123, -1, -0.615576, -0.031307, -1, 0.279247, -0.031307, -1.77854, 0.708663, 0.380123, -1, 0.442848, 0.455773, -1.91937, -0.291994, -0.357711, 0, -0.654763, -0.031307, 1, -0.25098, -0.357711, 1, -0.25098, -0.357711, 1, 0.291994, -0.357711, 0, -0.291994, -0.357711, 0, -0.291994, -0.357711, 0, 0.172345, -0.369998, -1, -0.172345, -0.369998, -1, -0.07056, -0.330377, 2.55526, 0.138692, -0.357711, 1.71716, -0.138692, -0.357711, 1.71716, -0.138692, -0.357711, 1.71716, 0.25098, -0.357711, 1, -0.010381, -0.240543, 3.02987, 0.07056, -0.330377, 2.55526, -0.07056, -0.330377, 2.55526, 0.009992, -0.377272, -1.7114, -0.172345, -0.369998, -1, 0.172345, -0.369998, -1, 0.25098, -0.357711, 1, 0.511365, -0.031307, 1.71716, 0.654763, -0.031307, 1, -0.291994, -0.357711, 0, -0.615576, -0.031307, -1, -0.723407, -0.031307, 0, -0.25098, -0.357711, 1, -0.511365, -0.031307, 1.71716, -0.138692, -0.357711, 1.71716, -0.172345, -0.369998, -1, -0.279247, -0.031307, -1.77854, -0.615576, -0.031307, -1, 0.010381, -0.240543, 3.02987, 0.260158, -0.031307, 2.55526, 0.07056, -0.330377, 2.55526, 0.172345, -0.369998, -1, 0.279247, -0.031307, -1.77854, 0.009992, -0.377272, -1.7114, 0.291994, -0.357711, 0, 0.654763, -0.031307, 1, 0.723407, -0.031307, 0, 0.291994, -0.357711, 0, 0.615576, -0.031307, -1, 0.172345, -0.369998, -1, -0.260158, -0.031307, 2.55526, -0.010381, -0.240543, 3.02987, -0.07056, -0.330377, 2.55526, 0.260158, -0.031307, 2.55526, 0.010381, -0.240543, 3.02987, 0.038275, -0.031307, 3.18631, -0.825848, 0.362192, 0, -0.723407, -0.031307, 0, -0.708663, 0.380123, -1, 0.442848, 0.455773, -1.91937, 0.852618, 0.393547, 1, 0.825848, 0.362192, 0, 0.654763, -0.031307, 1, -0.736319, 0.439315, 1.71716, -0.511365, -0.031307, 1.71716, -0.260158, -0.031307, 2.55526, -0.138692, -0.357711, 1.71716, -0.852618, 0.393547, 1, -0.825848, 0.362192, 0, 0.825848, 0.362192, 0, 0.708663, 0.380123, -1, 0.723407, -0.031307, 0, -0.852618, 0.393547, 1, -0.654763, -0.031307, 1, -0.825848, 0.362192, 0, 0.07056, -0.330377, 2.55526, 0.260158, -0.031307, 2.55526, 0.138692, -0.357711, 1.71716, 0.852618, 0.393547, 1, 0.654763, -0.031307, 1, 0.736319, 0.439315, 1.71716, -0.511365, -0.031307, 1.71716, -0.654763, -0.031307, 1, -0.736319, 0.439315, 1.71716, -0.010381, -0.240543, 3.02987, -0.038275, -0.031307, 3.18631, -0.260158, -0.031307, 2.55526, -0.08364, 0.687358, 3.18631, -0.260158, -0.031307, 2.55526, -0.511365, -0.031307, 1.71716, -0.510029, 0.555827, 2.55526, -0.510029, 0.555827, 2.55526, 0.736319, 0.439315, 1.71716, 0.511365, -0.031307, 1.71716, 0.510029, 0.555827, 2.55526, -0.08364, 0.687358, 3.18631, -0.510029, 0.555827, 2.55526, 0.510029, 0.555827, 2.55526, 0.260158, -0.031307, 2.55526, 0.08364, 0.687358, 3.18631, 0.009992, -0.377272, -1.7114, 0.442848, 0.455773, -1.91937, -0.442848, 0.455773, -1.91937, -0.708663, 0.380123, -1, -0.279247, -0.031307, -1.77854, 0.615576, -0.031307, -1, 0.708663, 0.380123, -1, 0.279247, -0.031307, -1.77854, -0.723407, -0.031307, 0, -0.654763, -0.031307, 1, -0.291994, -0.357711, 0, 0.291994, -0.357711, 0, 0.07056, -0.330377, 2.55526, 0.138692, -0.357711, 1.71716, 0.010381, -0.240543, 3.02987, -0.009992, -0.377272, -1.7114, 0.138692, -0.357711, 1.71716, 0.511365, -0.031307, 1.71716, 0.25098, -0.357711, 1, -0.172345, -0.369998, -1, -0.615576, -0.031307, -1, -0.291994, -0.357711, 0, -0.654763, -0.031307, 1, -0.511365, -0.031307, 1.71716, -0.25098, -0.357711, 1, -0.009992, -0.377272, -1.7114, -0.279247, -0.031307, -1.77854, -0.172345, -0.369998, -1, 0.615576, -0.031307, -1, 0.279247, -0.031307, -1.77854, 0.172345, -0.369998, -1, 0.25098, -0.357711, 1, 0.654763, -0.031307, 1, 0.291994, -0.357711, 0, 0.723407, -0.031307, 0, 0.615576, -0.031307, -1, 0.291994, -0.357711, 0 )
@@ -52,10 +50,6 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.496324, 0.981818 ), 0.0, 0
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="SphereShape" id=8]
-
-[sub_resource type="CylinderShape" id=9]
-radius = 0.146394
-height = 1.0311
 
 [sub_resource type="BoxShape" id=10]
 
@@ -101,8 +95,7 @@ radius = 0.248789
 flags_use_point_size = true
 vertex_color_use_as_albedo = true
 
-[sub_resource type="Animation" id=19]
-length = 3.0
+[sub_resource type="Animation" id=17]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Bom/Pik:translation")
 tracks/0/interp = 1
@@ -110,7 +103,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( -0.0362239, -0.597129, 0.976756 ), Vector3( -0.0362242, -3.24864, 3.6895 ) ]
@@ -122,34 +115,34 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 3 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( -2.28496, -1.95446e-12, 0 ), Vector3( -34.596, 1.06897e-06, -3.24597e-06 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Bom:is_sail_up")
+tracks/2/path = NodePath("Bom:sail_amount")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1, 2.9 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"update": 0,
+"values": [ 1.0, 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("fok_sheet:is_sail_up")
+tracks/3/path = NodePath("fok_sheet:sail_amount")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 2.9 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"update": 0,
+"values": [ 1.0, 0.0 ]
 }
 
 [node name="SloopBoat" type="Spatial"]
@@ -282,19 +275,6 @@ collision_mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="Boat/CameraPivot/CameraCollision"]
 shape = SubResource( 8 )
 
-[node name="SailToggleTrigger" type="Area" parent="Boat"]
-transform = Transform( 1, 0, 0, 0, 0.998759, -0.0498085, 0, 0.0498085, 0.998759, 0, 1.16568, -1.60804 )
-script = ExtResource( 26 )
-
-[node name="Collision" type="CollisionShape" parent="Boat/SailToggleTrigger"]
-shape = SubResource( 9 )
-
-[node name="Indicator" type="CSGCylinder" parent="Boat/SailToggleTrigger"]
-visible = false
-invert_faces = true
-radius = 0.139164
-material = ExtResource( 25 )
-
 [node name="ItemTween" type="Tween" parent="Boat"]
 
 [node name="ItemCatchArea" type="Area" parent="Boat"]
@@ -323,6 +303,30 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11072, 0.156279 )
 
 [node name="SteeringPointsCollection" type="Spatial" parent="Boat"]
 script = ExtResource( 15 )
+
+[node name="MainSheet" parent="Boat/SteeringPointsCollection" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05635, 1.93486 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_mainsheet"
+ease_func_name = "ease_mainsheet"
+
+[node name="MainHaul" parent="Boat/SteeringPointsCollection" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 2.10842, -0.0581739, 0, 0.122863, 0.998306, 0, 1.18699, -1.60795 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_mainhaul"
+ease_func_name = "ease_mainhaul"
+
+[node name="RJibSheet" parent="Boat/SteeringPointsCollection" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732857, 1.01582, -1.56358 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_rjibsheet"
+ease_func_name = "ease_rjibsheet"
+
+[node name="LJibSheet" parent="Boat/SteeringPointsCollection" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.729682, 0.995548, -1.56358 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_ljibsheet"
+ease_func_name = "ease_ljibsheet"
 
 [node name="MooringBundle" parent="Boat/SteeringPointsCollection" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.254834, 1.25452, -2.82996 )
@@ -389,11 +393,6 @@ material_override = SubResource( 16 )
 
 [node name="ForceOffset" type="Position3D" parent="fok_sheet"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468008, 0.838769 )
-
-[node name="Indicators" parent="." instance=ExtResource( 16 )]
-visible = false
-mouse_filter = 2
-body_path = NodePath("../Boat")
 
 [node name="LowerSailHinge" type="HingeJoint" parent="."]
 transform = Transform( -1, 3.25841e-07, 5.30863e-14, 0, -1.62921e-07, 1, 3.25841e-07, 1, 1.62921e-07, -2.51965e-07, 1.34015, -1.31491 )
@@ -480,12 +479,11 @@ attachments/7/offset = Vector3( -0.000184373, 2.88477, -3.65231 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fold"
-anims/fold = SubResource( 19 )
+anims/fold = SubResource( 17 )
 
 [node name="PlayerControl" type="Node" parent="."]
 script = ExtResource( 8 )
 
-[connection signal="pressed" from="Boat/SailToggleTrigger" to="Boat" method="_on_sail_togle_trigger"]
 [connection signal="body_entered" from="Boat/ItemCatchArea" to="Boat" method="_on_ItemCatchArea_body_entered"]
 [connection signal="body_exited" from="Boat/ItemCatchArea" to="Boat" method="_on_ItemCatchArea_body_exited"]
 

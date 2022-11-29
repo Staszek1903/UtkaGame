@@ -28,24 +28,59 @@ func _ready():
 		mooring.offsetA = transform.origin
 
 
-func request_docking_to_point(point:Node):
+func request_docking_to_point(point:Spatial):
 	if mooring_casted: return
+	if distance_to(point) > mooring.max_length: return
+	
 	var parent = get_parent()
 	if parent.has_method("set_steering_point") \
 	and parent.current_steering_point == self:
+		point.docked_boat = get_parent().get_parent()
 		point.set_docked_rope_end(mooring_end)
 		#set_active(false)
 		mooring_casted = true
+		mooring.update_ends_pos()
+		mooring.set_length(-1.0)
 
-func request_undocking_to_end(end:Node):
-	if end != mooring_end: return
-	end.global_transform = mooring_end_const.global_transform
-	mooring_casted = false
+func request_undocking_to_end(point:Spatial):
+	var parent = get_parent()
+	if parent.has_method("set_steering_point") \
+	and parent.current_steering_point == self:
+		var end = point.docked_rope_end
+		if end != mooring_end: return
+		point.set_docked_rope_end(null)
+		end.global_transform = mooring_end_const.global_transform
+		mooring_casted = false
+		mooring.update_ends_pos()
+		mooring.set_length(-1.0)
+	
+func is_in_distance(response:Dictionary):
+	#print("IS IN DISTACJE FUNC")
+	response["resps"] += 1
+	var point = response["point"]
+	var parent = get_parent()
+	if parent.has_method("set_steering_point") \
+	and parent.current_steering_point == self:
+		if mooring_casted:
+			response["result"] = false
+			return
+		if distance_to(point) > mooring.max_length:
+			response["result"] = false
+			return
+		response["result"] = true
+	
+	
 
 func heave_mooring(delta):
-	mooring.apply_force(delta*heave_force)
-	#print("HEAVE")
+	mooring.length -= 0.5 * delta
+	#mooring.apply_force(delta*heave_force)
+	print("HEAVE ", mooring.length)
 	
 func ease_mooring(delta):
-	#print("EASE")
-	pass
+	mooring.length += 0.5 * delta
+	print("EASE ", mooring.length)
+	
+func distance_to(point: Spatial) -> float:
+	var a = global_transform.origin
+	var b = point.global_transform.origin
+	return (a-b).length()

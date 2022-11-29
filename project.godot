@@ -190,7 +190,7 @@ window/size/always_on_top=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/ply/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [gdnative]
 

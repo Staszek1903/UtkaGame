@@ -25,7 +25,18 @@ func _ready():
 	assert(hunger_bar)
 	assert(player_control)
 	add_to_group("boat")
+	call_deferred("subscribe_to_indicators")
 
+func set_current():
+	call_deferred("subscribe_to_indicators")
+	$CameraPivot.set_current()
+	$"../PlayerControl".current = true
+	
+func unset_current():
+	$"../PlayerControl".current = false
+
+func subscribe_to_indicators():
+	$"/root/Ui/Indicators".set_boat(self)
 
 func _physics_process(delta):
 	#print(">>>>>>>>> Physics Proces")
@@ -87,3 +98,8 @@ func release_vip() -> Spatial:
 	remove_child(vip)
 	vip_slot = null
 	return vip
+	
+func get_camera() -> Spatial:
+	var camera = $CameraPivot/Camera
+	assert(camera is Camera)
+	return camera

@@ -14,3 +14,5 @@ visible = false
 radius = 0.125044
 height = 0.139716
 material = ExtResource( 4 )
+
+[connection signal="pressed" from="MouseArea" to="." method="_on_MouseArea_pressed"]

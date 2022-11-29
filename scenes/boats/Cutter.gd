@@ -31,6 +31,7 @@ var hit_level:float = 0.0 setget set_hit_level
 func _ready():
 	assert(bom)
 	assert(hinge_bom)
+	update_jib_trim()
 	#assert(mooring_bow_l)
 	#assert(mooring_bow_r)
 
@@ -140,8 +141,61 @@ func set_sail_trim(val: float):
 	sail_trim = val
 	hinge_bom.set("angular_limit/upper", val)
 	hinge_bom.set("angular_limit/lower", -val)
-	hinge_jib.set("angular_limit/upper", val)
-	hinge_jib.set("angular_limit/lower", -val)
+	
+func ease_sheets(delta):
+	set_sail_trim(sail_trim + 10 * delta)
+
+func heave_sheets(delta):
+	set_sail_trim(sail_trim - 10 * delta)
+	
+func ease_mainsheet(delta):
+	set_sail_trim(sail_trim + 10 * delta)
+
+func heave_mainsheet(delta):
+	set_sail_trim(sail_trim - 10 * delta)
+	
+
+var rjibsheet_trim:float = 90.0
+var ljibsheet_trim:float = 90.0
+
+func ease_rjibsheet(delta):
+	print("ease_rjibsheet")
+	rjibsheet_trim += 10 * delta
+	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
+	update_jib_trim()
+	
+func heave_rjibsheet(delta):
+	print("heave_rjibsheet")
+	rjibsheet_trim -= 10 * delta
+	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
+	update_jib_trim()
+	
+func ease_ljibsheet(delta):
+	print("ease_ljibsheet")
+	ljibsheet_trim += 10 * delta
+	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
+	update_jib_trim()
+	
+func heave_ljibsheet(delta):
+	print("heave_ljibsheet")
+	ljibsheet_trim -= 10 * delta
+	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
+	update_jib_trim()
+	
+func update_jib_trim():
+	var zero_angle = 15.0
+	var left_side_limit = min(-zero_angle + rjibsheet_trim,
+		zero_angle + ljibsheet_trim)
+	var right_side_limit = max(zero_angle - ljibsheet_trim,
+		-zero_angle - rjibsheet_trim)
+		
+	if right_side_limit > left_side_limit:
+		var avg = (right_side_limit + left_side_limit) * 0.5
+		right_side_limit = avg - 0.01
+		left_side_limit = avg + 0.01
+
+	hinge_jib.set("angular_limit/upper", left_side_limit)
+	hinge_jib.set("angular_limit/lower", right_side_limit)
 	
 
 func _on_sail_togle_trigger():

@@ -28,24 +28,35 @@
 [ext_resource path="res://src/SteeringPointsCollection.gd" type="Script" id=26]
 [ext_resource path="res://scenes/CargoHold.tscn" type="PackedScene" id=27]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.0444001, 0.89288, 0.704835 )
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
 
 [sub_resource type="SpatialMaterial" id=2]
-flags_use_point_size = true
 vertex_color_use_as_albedo = true
 
-[sub_resource type="PhysicsMaterial" id=3]
-friction = 0.5
+[sub_resource type="ArrayMesh" id=3]
+resource_name = "Plane002"
+surfaces/0 = {
+"aabb": AABB( -0.0262665, -0.231528, 1.63378, 1.60141, 7.9887, 4.518 ),
+"array_data": PoolByteArray( 18, 158, 201, 63, 192, 21, 109, 190, 253, 176, 174, 64, 115, 26, 211, 0, 0, 148, 191, 127, 0, 60, 0, 60, 32, 61, 185, 60, 185, 58, 248, 64, 114, 219, 196, 64, 115, 26, 211, 0, 0, 148, 191, 127, 0, 0, 0, 0, 232, 44, 215, 188, 161, 21, 130, 62, 212, 31, 209, 63, 115, 26, 211, 0, 0, 148, 191, 127, 0, 60, 0, 0 ),
+"array_index_data": PoolByteArray( 1, 0, 2, 0, 0, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 3,
+"material": SubResource( 2 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 3
+}
 
 [sub_resource type="SpatialMaterial" id=4]
 vertex_color_use_as_albedo = true
 
 [sub_resource type="ArrayMesh" id=5]
-resource_name = "Plane002"
+resource_name = "Plane003"
 surfaces/0 = {
-"aabb": AABB( -0.0262665, -0.231528, 1.63378, 1.60141, 7.9887, 4.518 ),
-"array_data": PoolByteArray( 18, 158, 201, 63, 192, 21, 109, 190, 253, 176, 174, 64, 115, 26, 211, 0, 0, 148, 191, 127, 0, 60, 0, 60, 32, 61, 185, 60, 185, 58, 248, 64, 114, 219, 196, 64, 115, 26, 211, 0, 0, 148, 191, 127, 0, 0, 0, 0, 232, 44, 215, 188, 161, 21, 130, 62, 212, 31, 209, 63, 115, 26, 211, 0, 0, 148, 191, 127, 0, 60, 0, 0 ),
+"aabb": AABB( 1.36638, 1.25572, 1.94969, 1.29643, 9.18029, 10.8142 ),
+"array_data": PoolByteArray( 64, 107, 42, 64, 176, 120, 37, 64, 227, 152, 15, 65, 119, 31, 228, 0, 255, 174, 160, 127, 0, 60, 0, 60, 184, 99, 190, 63, 231, 249, 38, 65, 249, 56, 76, 65, 119, 31, 228, 0, 255, 174, 160, 127, 0, 0, 0, 0, 100, 229, 174, 63, 100, 187, 160, 63, 134, 143, 249, 63, 119, 31, 228, 0, 255, 174, 160, 127, 0, 60, 0, 0 ),
 "array_index_data": PoolByteArray( 1, 0, 2, 0, 0, 0 ),
 "blend_shape_data": [  ],
 "format": 97559,
@@ -60,24 +71,6 @@ surfaces/0 = {
 vertex_color_use_as_albedo = true
 
 [sub_resource type="ArrayMesh" id=7]
-resource_name = "Plane003"
-surfaces/0 = {
-"aabb": AABB( 1.36638, 1.25572, 1.94969, 1.29643, 9.18029, 10.8142 ),
-"array_data": PoolByteArray( 64, 107, 42, 64, 176, 120, 37, 64, 227, 152, 15, 65, 119, 31, 228, 0, 255, 174, 160, 127, 0, 60, 0, 60, 184, 99, 190, 63, 231, 249, 38, 65, 249, 56, 76, 65, 119, 31, 228, 0, 255, 174, 160, 127, 0, 0, 0, 0, 100, 229, 174, 63, 100, 187, 160, 63, 134, 143, 249, 63, 119, 31, 228, 0, 255, 174, 160, 127, 0, 60, 0, 0 ),
-"array_index_data": PoolByteArray( 1, 0, 2, 0, 0, 0 ),
-"blend_shape_data": [  ],
-"format": 97559,
-"index_count": 3,
-"material": SubResource( 6 ),
-"primitive": 4,
-"skeleton_aabb": [  ],
-"vertex_count": 3
-}
-
-[sub_resource type="SpatialMaterial" id=8]
-vertex_color_use_as_albedo = true
-
-[sub_resource type="ArrayMesh" id=9]
 resource_name = "Plane005"
 surfaces/0 = {
 "aabb": AABB( 2.01256, 1.69961, 2.86163, 0.196221, 8.51545, 7.19858 ),
@@ -86,13 +79,13 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 288,
-"material": SubResource( 8 ),
+"material": SubResource( 6 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 192
 }
 
-[sub_resource type="ArrayMesh" id=10]
+[sub_resource type="ArrayMesh" id=8]
 resource_name = "Boat"
 surfaces/0 = {
 "aabb": AABB( -2.5311, 1.32972, -7.12694, 5.0622, 14.3023, 13.1734 ),
@@ -155,37 +148,44 @@ surfaces/4 = {
 "vertex_count": 1612
 }
 
-[sub_resource type="ConvexPolygonShape" id=11]
+[sub_resource type="ConvexPolygonShape" id=9]
 points = PoolVector3Array( -2.03218, -0.0233499, 1, -2.03218, -0.0233499, 1, -2.03218, -0.0233499, 1, -2.03218, -0.0233499, 1, -2.25484, 0.933002, 1, -2.25484, 0.933002, 1, -2.25484, 0.933002, 1, -2.25484, 0.933002, 1, -2.1554, -0.0903477, -1, -2.1554, -0.0903477, -1, -2.1554, -0.0903477, -1, -2.1554, -0.0903477, -1, -2.41676, 1, -1, -2.41676, 1, -1, -2.41676, 1, -1, -2.41676, 1, -1, 2.03218, -0.0233499, 1, 2.03218, -0.0233499, 1, 2.03218, -0.0233499, 1, 2.03218, -0.0233499, 1, 2.25484, 0.933002, 1, 2.25484, 0.933002, 1, 2.25484, 0.933002, 1, 2.25484, 0.933002, 1, 2.1554, -0.0903477, -1, 2.1554, -0.0903477, -1, 2.1554, -0.0903477, -1, 2.1554, -0.0903477, -1, 2.41676, 1, -1, 2.41676, 1, -1, 2.41676, 1, -1, 2.41676, 1, -1, -1.51788, 0.294612, 4.26955, -1.51788, 0.294612, 4.26955, -1.51788, 0.294612, 4.26955, -1.51788, 0.294612, 4.26955, -1.89625, 0.954212, 4.26955, -1.89625, 0.954212, 4.26955, -1.89625, 0.954212, 4.26955, -1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.51788, 0.294612, 4.26955, 1.51788, 0.294612, 4.26955, 1.51788, 0.294612, 4.26955, 1.51788, 0.294612, 4.26955, -0.351848, 0.408146, 4.95381, -0.351848, 0.408146, 4.95381, -0.351848, 0.408146, 4.95381, -0.351848, 0.408146, 4.95381, -1.72215, 1.38219, 5.84383, -1.72215, 1.38219, 5.84383, -1.72215, 1.38219, 5.84383, -1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 0.351848, 0.408146, 4.95381, 0.351848, 0.408146, 4.95381, 0.351848, 0.408146, 4.95381, 0.351848, 0.408146, 4.95381, -2.2401, 1.14406, -3.95342, -2.2401, 1.14406, -3.95342, -2.2401, 1.14406, -3.95342, -2.2401, 1.14406, -3.95342, -1.82128, -0.0903477, -3.95342, -1.82128, -0.0903477, -3.95342, -1.82128, -0.0903477, -3.95342, -1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 2.2401, 1.14406, -3.95342, 2.2401, 1.14406, -3.95342, 2.2401, 1.14406, -3.95342, 2.2401, 1.14406, -3.95342, -1.85359, 1.29219, -5.4805, -1.85359, 1.29219, -5.4805, -1.85359, 1.29219, -5.4805, -1.85359, 1.29219, -5.4805, -1.1019, -0.0903477, -5.4805, -1.1019, -0.0903477, -5.4805, -1.1019, -0.0903477, -5.4805, -1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.85359, 1.29219, -5.4805, 1.85359, 1.29219, -5.4805, 1.85359, 1.29219, -5.4805, 1.85359, 1.29219, -5.4805, -0.942581, 1.47012, -6.67151, -0.942581, 1.47012, -6.67151, -0.942581, 1.47012, -6.67151, -0.942581, 1.47012, -6.67151, -0.311245, -0.0903477, -6.67151, -0.311245, -0.0903477, -6.67151, -0.311245, -0.0903477, -6.67151, -0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.942581, 1.47012, -6.67151, 0.942581, 1.47012, -6.67151, 0.942581, 1.47012, -6.67151, 0.942581, 1.47012, -6.67151, -0.117588, 1.51527, -7.2852, -0.117588, 1.51527, -7.2852, -0.117588, 1.51527, -7.2852, -0.117588, 1.51527, -7.2852, -0.0454393, -0.0903478, -7.16186, -0.0454393, -0.0903478, -7.16186, -0.0454393, -0.0903478, -7.16186, -0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.117588, 1.51527, -7.2852, 0.117588, 1.51527, -7.2852, 0.117588, 1.51527, -7.2852, 0.117588, 1.51527, -7.2852, -1.31147, -0.798939, -0.978204, -1.31147, -0.798939, -0.978204, -1.31147, -0.798939, -0.978204, -1.31147, -0.798939, -0.978204, -1.12603, -0.731941, 1.0218, -1.12603, -0.731941, 1.0218, -1.12603, -0.731941, 1.0218, -1.12603, -0.731941, 1.0218, 1.31147, -0.798939, -0.978204, 1.31147, -0.798939, -0.978204, 1.31147, -0.798939, -0.978204, 1.31147, -0.798939, -0.978204, 1.12603, -0.731941, 1.0218, 1.12603, -0.731941, 1.0218, 1.12603, -0.731941, 1.0218, 1.12603, -0.731941, 1.0218, -0.279917, -0.413979, 4.29135, -0.279917, -0.413979, 4.29135, -0.279917, -0.413979, 4.29135, -0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.744234, -0.798939, -3.93163, 0.744234, -0.798939, -3.93163, 0.744234, -0.798939, -3.93163, 0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, 0.263601, -0.798939, -5.4587, 0.263601, -0.798939, -5.4587, 0.263601, -0.798939, -5.4587, 0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, 0.311245, -0.798939, -6.17307, 0.311245, -0.798939, -6.17307, 0.311245, -0.798939, -6.17307, -0.311245, -0.798939, -6.17307, -0.311245, -0.798939, -6.17307, -0.311245, -0.798939, -6.17307, 0.0454393, -0.798939, -6.78156, 0.0454393, -0.798939, -6.78156, 0.0454393, -0.798939, -6.78156, -0.0454393, -0.798939, -6.78156, -0.0454393, -0.798939, -6.78156, -0.0454393, -0.798939, -6.78156, -0.30591, -1.28671, -0.967693, -0.30591, -1.28671, -0.967693, -0.30591, -1.28671, -0.967693, -0.30591, -1.28671, -0.967693, -0.132296, -1.39464, 1.03231, -0.132296, -1.39464, 1.03231, -0.132296, -1.39464, 1.03231, -0.132296, -1.39464, 1.03231, 0.30591, -1.28671, -0.967693, 0.30591, -1.28671, -0.967693, 0.30591, -1.28671, -0.967693, 0.30591, -1.28671, -0.967693, 0.132296, -1.39464, 1.03231, 0.132296, -1.39464, 1.03231, 0.132296, -1.39464, 1.03231, 0.132296, -1.39464, 1.03231, -0.137683, -1.50937, 2.76488, -0.137683, -1.50937, 2.76488, -0.137683, -1.50937, 2.76488, -0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, -0.128262, -1.00831, 4.18663, -0.128262, -1.00831, 4.18663, -0.128262, -1.00831, 4.18663, 0.128262, -1.00831, 4.18663, 0.128262, -1.00831, 4.18663, 0.128262, -1.00831, 4.18663, 0.0788333, -1.10066, -3.92112, 0.0788333, -1.10066, -3.92112, 0.0788333, -1.10066, -3.92112, 0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -2.41676, 1.64491, -0.955797, -2.41676, 1.64491, -0.955797, -2.41676, 1.64491, -0.955797, -2.41676, 1.64491, -0.955797, -2.25484, 1.57791, 1.0442, -2.25484, 1.57791, 1.0442, -2.25484, 1.57791, 1.0442, -2.25484, 1.57791, 1.0442, 2.41676, 1.64491, -0.955797, 2.41676, 1.64491, -0.955797, 2.41676, 1.64491, -0.955797, 2.41676, 1.64491, -0.955797, 2.25484, 1.57791, 1.0442, 2.25484, 1.57791, 1.0442, 2.25484, 1.57791, 1.0442, 2.25484, 1.57791, 1.0442, 1.89625, 1.59912, 4.31375, 1.89625, 1.59912, 4.31375, 1.89625, 1.59912, 4.31375, 1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, 1.72215, 2.00402, 6.02044, 1.72215, 2.00402, 6.02044, 1.72215, 2.00402, 6.02044, -1.72215, 2.00402, 6.02044, -1.72215, 2.00402, 6.02044, -1.72215, 2.00402, 6.02044, -2.2401, 1.78897, -3.90922, -2.2401, 1.78897, -3.90922, -2.2401, 1.78897, -3.90922, -2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, -1.85359, 1.9371, -5.4363, -1.85359, 1.9371, -5.4363, -1.85359, 1.9371, -5.4363, -1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, -0.942581, 2.11503, -6.62731, -0.942581, 2.11503, -6.62731, -0.942581, 2.11503, -6.62731, -0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, -0.117588, 2.16018, -7.24099, -0.117588, 2.16018, -7.24099, -0.117588, 2.16018, -7.24099, 0.117588, 2.16018, -7.24099, 0.117588, 2.16018, -7.24099, 0.117588, 2.16018, -7.24099, -0.128262, -1.79975, 4.37466, -0.128262, -1.79975, 4.37466, -0.128262, -1.79975, 4.37466, -0.128262, -1.79975, 4.37466, -0.128262, -0.17016, 4.79001, -0.128262, -0.17016, 4.79001, -0.128262, -0.17016, 4.79001, 0.128262, -0.17016, 4.79001, 0.128262, -0.17016, 4.79001, 0.128262, -0.17016, 4.79001, 0.128262, -1.79975, 4.37466, 0.128262, -1.79975, 4.37466, 0.128262, -1.79975, 4.37466, 0.128262, -1.79975, 4.37466, -0.0681689, -1.5016, -0.967693, -0.0681689, -1.5016, -0.967693, -0.0681689, -1.5016, -0.967693, -0.0681689, -1.5016, -0.967693, -0.132296, -1.62446, 1.03231, -0.132296, -1.62446, 1.03231, -0.132296, -1.62446, 1.03231, -0.132296, -1.62446, 1.03231, 0.0681689, -1.5016, -0.967693, 0.0681689, -1.5016, -0.967693, 0.0681689, -1.5016, -0.967693, 0.0681689, -1.5016, -0.967693, 0.132296, -1.62446, 1.03231, 0.132296, -1.62446, 1.03231, 0.132296, -1.62446, 1.03231, 0.132296, -1.62446, 1.03231, -0.137683, -1.72145, 2.76488, -0.137683, -1.72145, 2.76488, -0.137683, -1.72145, 2.76488, -0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.0788333, -1.31556, -3.92112, 0.0788333, -1.31556, -3.92112, 0.0788333, -1.31556, -3.92112, 0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819 )
 
+[sub_resource type="SpatialMaterial" id=10]
+flags_use_point_size = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_use_point_size = true
+vertex_color_use_as_albedo = true
+
 [sub_resource type="SpatialMaterial" id=12]
-flags_use_point_size = true
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SpatialMaterial" id=13]
-flags_use_point_size = true
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SpatialMaterial" id=14]
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
 
-[sub_resource type="Curve" id=15]
+[sub_resource type="Curve" id=13]
 max_value = 2.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.496324, 0.981818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.105222, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=14]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="SphereShape" id=17]
+[sub_resource type="SphereShape" id=15]
 
-[sub_resource type="CylinderShape" id=18]
+[sub_resource type="CylinderShape" id=16]
 radius = 0.683692
 height = 1.0311
 
-[sub_resource type="BoxShape" id=19]
+[sub_resource type="BoxShape" id=17]
 extents = Vector3( 3.57462, 2.57188, 7.77082 )
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 0.0444001, 0.89288, 0.704835 )
+
+[sub_resource type="SpatialMaterial" id=19]
+flags_use_point_size = true
+vertex_color_use_as_albedo = true
 
 [sub_resource type="BoxShape" id=20]
 extents = Vector3( 0.438827, 0.395129, 3.45305 )
@@ -249,44 +249,13 @@ angular_limit/enable = true
 angular_limit/upper = 10.0
 angular_limit/lower = -10.0
 
-[node name="Bom" type="RigidBody" parent="."]
-transform = Transform( -0.998, 0, -8.74228e-08, 0, 1, 0, 8.72479e-08, 0, -1, 0, 6.52576, 1.39559 )
-mass = 2.0
-gravity_scale = 0.0
-script = ExtResource( 19 )
-lift_force = 3200.0
-direct_force = 3200.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Bom"]
-transform = Transform( 0.999996, 0, 0, 0, 1.00001, 0, 1.42109e-14, 0, 1, 0, 1.88153, 0 )
-shape = SubResource( 1 )
-
-[node name="ForceDebug" type="ImmediateGeometry" parent="Bom"]
-transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0161155, 1.20623, -0.917594 )
-visible = false
-material_override = SubResource( 2 )
-script = ExtResource( 1 )
-
-[node name="ForceOffset" type="Position3D" parent="Bom"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 5.68434e-14, 0, 1, -0.0161154, 2.21948, -1.96414 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Bom"]
-transform = Transform( 0.627143, -2.00182e-09, -7.96057e-11, 1.99525e-09, 0.626904, 0.0172701, 2.44071e-11, -0.0172701, 0.626904, 0.227844, -7.85418, 1.31017 )
-mesh = ExtResource( 12 )
-material/0 = null
-
-[node name="MeshInstance2" type="MeshInstance" parent="Bom"]
-transform = Transform( 0.409281, -2.268e-08, 5.01642e-09, 2.25894e-08, 0.371103, -0.172607, 4.99643e-09, 0.172607, 0.371103, 0.147882, 3.33269, -0.519026 )
-mesh = ExtResource( 12 )
-material/0 = null
-
 [node name="Boat" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103551, 0.238437 )
 input_ray_pickable = false
 collision_layer = 17
 collision_mask = 17
 mass = 100.0
-physics_material_override = SubResource( 3 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
@@ -298,13 +267,13 @@ keel_force = 2000.0
 [node name="Plane002" type="MeshInstance" parent="Boat"]
 transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 0, 0, 1, 0.0523125, 3.88263, -8.20124 )
 visible = false
-mesh = SubResource( 5 )
+mesh = SubResource( 3 )
 material/0 = ExtResource( 21 )
 
 [node name="Plane003" type="MeshInstance" parent="Boat"]
 transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 0, 0, 1, -1.45803, 2.43798, -16.2941 )
 visible = false
-mesh = SubResource( 7 )
+mesh = SubResource( 5 )
 material/0 = ExtResource( 21 )
 
 [node name="Plane004" type="MeshInstance" parent="Boat"]
@@ -316,12 +285,12 @@ material/0 = ExtResource( 21 )
 [node name="Plane005" type="MeshInstance" parent="Boat"]
 transform = Transform( 1, 0, -7.10543e-15, 0, 0.982139, 0.188158, 0, -0.188158, 0.982139, -2.09486, 10.2117, -3.32183 )
 visible = false
-mesh = SubResource( 9 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 21 )
 
 [node name="Boat2" type="MeshInstance" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 0.997816, -0.0660554, 0, 0.0660554, 0.997816, 0, 0, -0.32412 )
-mesh = SubResource( 10 )
+mesh = SubResource( 8 )
 material/0 = null
 material/1 = null
 material/2 = null
@@ -330,7 +299,7 @@ material/4 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649384, -0.238437 )
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="FloaterMast" parent="Boat" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.89317, -0.776187 )
@@ -358,7 +327,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.915, -1.09519 )
 [node name="ForceDebug" type="ImmediateGeometry" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18867, 0 )
 visible = false
-material_override = SubResource( 12 )
+material_override = SubResource( 10 )
 script = ExtResource( 1 )
 
 [node name="Rudder" type="Spatial" parent="Boat"]
@@ -375,20 +344,20 @@ transform = Transform( -2.37306, -1.0295e-07, -3.43213e-07, -3.55271e-14, 2.2730
 [node name="ForceDebug" type="ImmediateGeometry" parent="Boat/Rudder"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36396, 0.185031 )
 visible = false
-material_override = SubResource( 13 )
+material_override = SubResource( 11 )
 script = ExtResource( 1 )
 
 [node name="WaserKeelR" type="Position3D" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56674, 0.2, 5.56298 )
 
 [node name="Trail3D" type="ImmediateGeometry" parent="Boat/WaserKeelR"]
-material_override = SubResource( 14 )
+material_override = SubResource( 12 )
 script = ExtResource( 22 )
 distance = 0.5
 lifetime = 10.0
 base_width = 0.2
-width_profile = SubResource( 15 )
-color_gradient = SubResource( 16 )
+width_profile = SubResource( 13 )
+color_gradient = SubResource( 14 )
 axe = "X"
 show_wireframe = true
 
@@ -396,13 +365,13 @@ show_wireframe = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64126, 0.2, 5.74927 )
 
 [node name="Trail3D" type="ImmediateGeometry" parent="Boat/WaserKeelL"]
-material_override = SubResource( 14 )
+material_override = SubResource( 12 )
 script = ExtResource( 22 )
 distance = 0.5
 lifetime = 10.0
 base_width = 0.2
-width_profile = SubResource( 15 )
-color_gradient = SubResource( 16 )
+width_profile = SubResource( 13 )
+color_gradient = SubResource( 14 )
 axe = "X"
 show_wireframe = true
 
@@ -430,7 +399,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat/CameraPivot/CameraCollision"]
-shape = SubResource( 17 )
+shape = SubResource( 15 )
 
 [node name="MooringBowEndConst" type="Position3D" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0439984, 2.88625, -4.9878 )
@@ -443,7 +412,7 @@ transform = Transform( 1, 0, 0, 0, 0.998759, -0.0498085, 0, 0.0498085, 0.998759,
 script = ExtResource( 18 )
 
 [node name="Collision" type="CollisionShape" parent="Boat/SailToggleTrigger"]
-shape = SubResource( 18 )
+shape = SubResource( 16 )
 
 [node name="Indicator" type="CSGCylinder" parent="Boat/SailToggleTrigger"]
 visible = false
@@ -456,9 +425,21 @@ script = ExtResource( 26 )
 
 [node name="MainSheet" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.07099, 5.7718 )
-steered_obj = NodePath("../../../PlayerControl")
-heave_func_name = "heave_sheets"
-ease_func_name = "ease_sheets"
+steered_obj = NodePath("../..")
+heave_func_name = "heave_mainsheet"
+ease_func_name = "ease_mainsheet"
+
+[node name="RibSheet" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.102, 2.486, -2.799 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_rjibsheet"
+ease_func_name = "ease_rjibsheet"
+
+[node name="LJibSheet" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10221, 2.48576, -2.7989 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_ljibsheet"
+ease_func_name = "ease_ljibsheet"
 
 [node name="MooringBundle" parent="Boat/SteeringPointsCollection" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61943, 2.52382, 4.45277 )
@@ -491,7 +472,39 @@ collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat/ItemCatchArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.26572 )
-shape = SubResource( 19 )
+shape = SubResource( 17 )
+
+[node name="Bom" type="RigidBody" parent="."]
+transform = Transform( -0.998, 0, -8.74228e-08, 0, 1, 0, 8.72479e-08, 0, -1, 0, 6.52576, 1.39559 )
+mass = 2.0
+gravity_scale = 0.0
+script = ExtResource( 19 )
+lift_force = 3200.0
+direct_force = 3200.0
+is_sail_up = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Bom"]
+transform = Transform( 0.999996, 0, 0, 0, 1.00001, 0, 1.42109e-14, 0, 1, 0, 1.88153, 0 )
+shape = SubResource( 18 )
+
+[node name="ForceDebug" type="ImmediateGeometry" parent="Bom"]
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0161155, 1.20623, -0.917594 )
+visible = false
+material_override = SubResource( 19 )
+script = ExtResource( 1 )
+
+[node name="ForceOffset" type="Position3D" parent="Bom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 5.68434e-14, 0, 1, -0.0161154, 2.21948, -1.96414 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Bom"]
+transform = Transform( 0.627143, -2.00182e-09, -7.96057e-11, 1.99525e-09, 0.626904, 0.0172701, 2.44071e-11, -0.0172701, 0.626904, 0.227844, -7.85418, 1.31017 )
+mesh = ExtResource( 12 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="Bom"]
+transform = Transform( 0.409281, -2.268e-08, 5.01642e-09, 2.25894e-08, 0.371103, -0.172607, 4.99643e-09, 0.172607, 0.371103, 0.147882, 3.33269, -0.519026 )
+mesh = ExtResource( 12 )
+material/0 = null
 
 [node name="fok_sheet" type="RigidBody" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.27563, -6.58492 )
@@ -501,6 +514,7 @@ gravity_scale = 0.0
 script = ExtResource( 19 )
 lift_force = 1600.0
 direct_force = 1600.0
+is_sail_up = false
 
 [node name="CollisionShape" type="CollisionShape" parent="fok_sheet"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38011e-07, 0, 2.72253 )

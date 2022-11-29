@@ -1,10 +1,6 @@
 extends Control
 
-export(NodePath) var body_path
-var body: RigidBody = null
-
-func _ready():
-	body = get_node(body_path)
+func set_boat(body:RigidBody):
 	$TiltInd.body = body
 	$SpeedInd.body = body
 	$WindInd.body = body

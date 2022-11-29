@@ -132,58 +132,48 @@ func set_hit_level(val):
 func receive_damage(_dmg:int = 1):
 	hit_level += 1
 	
+onready var sheet = $"Ropes/MainSheet"
 func set_sail_trim(val: float):
 	val = clamp(val, 0.0, 90.0)
 	sail_trim = val
 	hinge_bom.set("angular_limit/upper", val)
 	hinge_bom.set("angular_limit/lower", -val)
 	
+	#CALCULATE ROPE LENGTH
+	sheet.length = 0.8 * sheet.atachmentNodeA.global_transform.origin.distance_to(
+		sheet.atachmentNodeB.global_transform.origin
+	)
+	
+func ease_sheets(delta):
+	set_sail_trim(sail_trim + 10 * delta)
 
-func _on_sail_togle_trigger():
-	if bom.is_sail_up:
-		$"../AnimationPlayer".play("fold")
-	else:
-		$"../AnimationPlayer".play_backwards("fold")
+func heave_sheets(delta):
+	set_sail_trim(sail_trim - 10 * delta)
+	
+var main_haulyard:float = 1.0
+	
+func heave_mainhaul(delta):
+#	if bom.sail_amount < 0.5:
+#		$"../AnimationPlayer".play_backwards("fold")
+	main_haulyard -= 0.5*delta
+	main_haulyard = clamp(main_haulyard, 0.0, 1.0)
+	print("HAUL: ", main_haulyard)
+	$"../AnimationPlayer".seek(main_haulyard, true)
+	
+func ease_mainhaul(delta):
+#	if bom.sail_amount > 0.5:
+#		$"../AnimationPlayer".play("fold")
+	main_haulyard += 0.5*delta
+	main_haulyard = clamp(main_haulyard, 0.0, 1.0)
+	$"../AnimationPlayer".seek(main_haulyard, true)
+
+
+#func _on_sail_togle_trigger():
+#	if bom.is_sail_up:
+#		$"../AnimationPlayer".play("fold")
+#	else:
+#		$"../AnimationPlayer".play_backwards("fold")
 		
-#####################
-# MOORING			#
-#####################
-
-#var mooring_l_heave:bool = false
-#var mooring_r_heave:bool = false
-#var active_mooring_end = null
-#
-#func _on_MooringTriggerL_pressed():
-#	if mooring_bow_l_end.visible:
-#		active_mooring_end = mooring_bow_l_end
-#	else:
-#		mooring_l_heave = true
-#
-#func _on_MooringTriggerR_pressed():
-#	if mooring_bow_r_end.visible:
-#		active_mooring_end = mooring_bow_r_end
-#	else:
-#		mooring_r_heave = true
-#
-#func _on_MooringTriggerL_released():
-#	mooring_l_heave = false
-#
-#func _on_MooringTriggerR_released():
-#	mooring_r_heave = false
-#
-#func request_docking_to_point(point:Node):
-#	if active_mooring_end:
-#		point.set_docked_rope_end(active_mooring_end)
-#		active_mooring_end.visible = false
-#		active_mooring_end = null
-#
-#func request_undocking_to_end(end:Node):
-#	end.visible = true
-#	end.global_transform = $MooringBowEndConst.global_transform
-#
-#func update_moorings(delta):
-#	if mooring_l_heave: mooring_bow_l.apply_force(delta*100)
-#	if mooring_r_heave: mooring_bow_r.apply_force(delta*100)
 
 func consume_food_portion() -> bool:
 	var food = $CargoHold.get_item_count("Food")

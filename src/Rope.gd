@@ -4,11 +4,13 @@ extends Spatial
 export(float) var segment_length = 1.0
 export(float) var segment_thicc = 0.1
 export(float) var length = 1.0 setget set_length
+export(float) var max_length = 10.0
 export(Color) var color = Color.brown
 export(NodePath) var atachmentNodePathA:NodePath
 export(NodePath) var atachmentNodePathB:NodePath
 export(Vector3) var offsetA:Vector3
 export(Vector3) var offsetB:Vector3
+export(bool) var fsx_enabled:bool = true
 
 onready var endA = $EndA
 onready var endB = $EndB
@@ -43,7 +45,7 @@ func _process(delta):
 	var posB = $EndB.transform.origin
 	
 	#cloth algorithm
-	for j in 3:
+	for j in 10:
 		var target = posA
 		for i in points.size():
 			points[i] = adjust_point(points[i],target,segment_length)
@@ -58,7 +60,8 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	pass
+	if fsx_enabled: apply_force()
+
 #	var posA = $EndA.transform.origin
 #	var posB = $EndB.transform.origin
 #	print(length, " ", (posA - posB).length())
@@ -154,7 +157,8 @@ func update_ends_pos():
 	endA.global_transform.origin = atachmentNodeA.global_transform.origin + offA
 	endB.global_transform.origin = atachmentNodeB.global_transform.origin + offB
 	
-func apply_force(magnitude:float):
+	
+func apply_force(magnitude:float = 0.0):
 	if not atachmentNodeA or not atachmentNodeB : return
 	var aNA = atachmentNodeA
 	var aNB = atachmentNodeB
@@ -162,6 +166,7 @@ func apply_force(magnitude:float):
 		aNA = aNA.get_parent()
 	if not aNB is RigidBody: 
 		aNB = aNB.get_parent()
+	if not aNA is RigidBody and not aNB is RigidBody: return
 	
 	var pointA = aNA.global_transform.basis.xform(offsetA)
 	var pointB = aNB.global_transform.basis.xform(offsetA)
@@ -169,17 +174,29 @@ func apply_force(magnitude:float):
 	var global_posB = pointB + aNB.global_transform.origin
 	var difference_vect:Vector3 = endA.global_transform.origin - endB.global_transform.origin
 	
-	if difference_vect.length() < length : return
+	var stretch = difference_vect.length() - length
+	if stretch < 0.0: return
+	stretch = clamp(stretch, 0.0, 1.0)
+	magnitude = pow(stretch,10)*50.0
 	
-	var force = difference_vect.normalized() * magnitude
+#	var massA = 0.0
+#	var massB = 0.0
+#
+#	if aNA is RigidBody:
+#		massA = aNA.mass
+#	if aNB is RigidBody:
+#		massB = aNB.mass
+	#print(stretch)
 	
+	var force = difference_vect.normalized() * magnitude #* (massA + massB)
+	
+	$EndB/ForceDebug.clear()
+	$EndA/ForceDebug.clear()
 	if aNB is RigidBody:
 		aNB.add_force(force, pointB)  
-		$EndB/ForceDebug.clear()
 		$EndB/ForceDebug.draw(force*10)
 	if aNA is RigidBody:
 		aNA.add_force(-force, pointA)
-		$EndA/ForceDebug.clear()
 		$EndA/ForceDebug.draw(-force*10)
 	
 func set_length(val):
@@ -194,6 +211,15 @@ func set_length(val):
 		var global_posB = pointB + atachmentNodeB.global_transform.origin
 		var difference_vect:Vector3 = endA.global_transform.origin - endB.global_transform.origin
 		length = difference_vect.length()
+		print("rope ustawioned na ", length)
+		
+	length = clamp(length, 0.0, max_length)
 		
 func change_length(d):
 	set_length(length + d)
+	
+func heave_rope(delta):
+	set_length(length - delta)
+
+func ease_rope(delta):
+	set_length(length + delta)

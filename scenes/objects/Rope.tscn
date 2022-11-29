@@ -18,12 +18,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05067, 0, 0 )
 
 [node name="ForceDebug" parent="EndA" instance=ExtResource( 2 )]
 transform = Transform( 1.002, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+visible = true
 
 [node name="EndB" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54172, 0, 0 )
 
 [node name="ForceDebug" parent="EndB" instance=ExtResource( 2 )]
 transform = Transform( 1.002, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+visible = true
 
 [node name="LineDraw" type="ImmediateGeometry" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0154092, -0.00526214, 0.0101829 )

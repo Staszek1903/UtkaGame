@@ -5,9 +5,10 @@ signal mooring_off
 signal mooring_on
 
 onready var quai_camera = $Camera
-var boat_camera = null
+#var boat_camera = null
 
-var mooring_counter:int = 0
+var mooring_counter:Dictionary = {}
+var last_boat = null
 
 var upgrade_buildings = []
 
@@ -16,59 +17,70 @@ func _ready():
 		if child.has_method("update_requirements"):
 			upgrade_buildings.append(child)
 
-func _on_DockPoint_action():
+func _on_DockPoint_action(boat):
 	emit_signal("action")
-	print("QUAI ACTION")
+	print("QUAI ACTION ", boat)
 	
 	switch_to_village_look()
 	update_requirement_buildings()
 	update_unlockables()
 	
 	
-func _on_DockPoint_mooring_off():
+func _on_DockPoint_mooring_off(boat):
 	emit_signal("mooring_off")
-	print("MOORING OFF")
-	mooring_counter -= 1
+	print("MOORING OFF ", boat)
+	checkout_boat(boat)
 	
-	if boat_camera and mooring_counter == 0:
-		switch_to_boat_look()
-		
+	if mooring_counter[boat] == 0:
+		switch_to_boat_look(boat)
 	
-
-
-func _on_DockPoint_mooring_on():
+	
+func _on_DockPoint_mooring_on(boat):
 	emit_signal("mooring_on")
-	print("MOORING ON")
-	mooring_counter += 1
+	print("MOORING ON ", boat)
+	log_boat(boat)
+	
+func log_boat(boat):
+	if boat in mooring_counter:
+		mooring_counter[boat] += 1
+	else:
+		mooring_counter[boat] = 1
+		
+	last_boat = boat
+		
+func checkout_boat(boat):
+	if not boat in mooring_counter: return
+	mooring_counter[boat] -= 1
+	
 	
 func switch_to_village_look():
 	if not quai_camera: return
 	if quai_camera.current: return
-	boat_camera = get_viewport().get_camera()	
+#	boat_camera = get_viewport().get_camera()	
 	quai_camera.current = true
 	
 	for child in get_children():
 		if child.has_method("set_lock_ui"):
 			child.set_lock_ui(false)
 	
-func switch_to_boat_look():
-	boat_camera.current = true
-	boat_camera = null
+func switch_to_boat_look(boat):
+	boat.set_current()
+#	boat_camera.current = true
+#	boat_camera = null
 	
 	for child in get_children():
 		if child.has_method("set_lock_ui"):
 			child.set_lock_ui(true)
 			
 func get_boat():
-	var pivot = boat_camera.get_parent()
-	assert(pivot.has_method("get_boat"))
-	var boat = pivot.get_boat()
-	return boat
+#	var pivot = boat_camera.get_parent()
+#	assert(pivot.has_method("get_boat"))
+#	var boat = pivot.get_boat()
+#	return boat
+	return last_boat
 			
 func get_boat_hold():
-	var pivot = boat_camera.get_parent()
-	assert(pivot.has_method("get_boat"))
-	var boat = pivot.get_boat()
+	var boat = get_boat()
 	var hold = boat.get_node("CargoHold")
 	assert(hold)
 	return hold

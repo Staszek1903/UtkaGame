@@ -13,6 +13,7 @@ export(float) var dead_angle_degree = 15 setget set_dead_angle_degree
 export(float) var dead_angle_rad = deg2rad(15) setget set_dead_angle_rad
 
 export(bool) var is_sail_up = true
+export(float, 0.0, 1.0) var sail_amount = 1.0 setget set_sail_amount
 
 var wind_angle:float = 0.0
 var wind_side:float = 0.0
@@ -21,6 +22,9 @@ var global_force:Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assert(wind_manager)
+	
+func set_sail_amount(val:float):
+	sail_amount = clamp(val, 0.0, 1.0)
 
 func set_dead_angle_degree(val: float):
 	dead_angle_degree = val
@@ -61,7 +65,7 @@ func _physics_process(delta):
 	#print("angle: ", rad2deg(wind_angle))
 	#print("dead: ", dead_zone)
 
-	if is_sail_up: add_force(global_force * delta, global_offset) 
+	if is_sail_up: add_force(global_force * sail_amount * delta, global_offset) 
 
 	#var sail_fill = (lift + direct) / (lift_force + direct_force)
 	#mainsail.scale.x = -side* sail_fill * 2

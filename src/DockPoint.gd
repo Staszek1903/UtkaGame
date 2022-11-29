@@ -1,11 +1,12 @@
 extends Position3D
 
-signal mooring_on
-signal mooring_off
-signal action
+signal mooring_on(boat)
+signal mooring_off(boat)
+signal action(boat)
 
 onready var indicator = $Indicator
 var indicator_visible:bool = false setget set_indicator_visible
+var docked_boat = null
 
 func set_indicator_visible(val):
 	indicator_visible = val
@@ -14,13 +15,16 @@ func set_indicator_visible(val):
 var docked_rope_end:Node = null setget set_docked_rope_end
 
 func set_docked_rope_end(val:Node):
+	assert(docked_boat)
 	var prev = docked_rope_end
 	docked_rope_end = val
 	if val and not prev:
-		emit_signal("mooring_on")
+		docked_rope_end.global_transform = global_transform
+		emit_signal("mooring_on", docked_boat)
 		$IconBaner.visible = true
 	elif not val and prev:
-		emit_signal("mooring_off")
+		emit_signal("mooring_off", docked_boat)
+		docked_boat = null
 		$IconBaner.visible = false
 	
 
@@ -40,11 +44,21 @@ func _physics_process(delta):
 
 	if $IconBaner.value == 100 and not lock:
 		lock = true
-		emit_signal("action")
+		emit_signal("action", docked_boat)
 
 
 func _on_DockPointArea_mouse_entered():
-	self.indicator_visible = true
+	if not docked_rope_end:
+		var response = {"point": self, "resps":0, "result":false}
+		#print("beforre resp ", response)
+		get_tree().call_group("mooring", "is_in_distance", response)
+		call_deferred("wait_for_response", response)
+	else:
+		self.indicator_visible = true
+	
+func wait_for_response(response:Dictionary):
+	#print("after resp ",response)
+	self.indicator_visible = response["result"]
 
 
 func _on_DockPointArea_mouse_exited():
@@ -54,8 +68,8 @@ func _on_DockPointArea_mouse_exited():
 func _on_DockPointArea_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if not docked_rope_end:
-			get_tree().call_group("mooring", "request_docking_to_point", self)
+			if self.indicator_visible:
+				get_tree().call_group("mooring", "request_docking_to_point", self)
 		else:
-			var end = docked_rope_end
-			set_docked_rope_end(null)
-			get_tree().call_group("mooring", "request_undocking_to_end", end)
+			if self.indicator_visible:
+				get_tree().call_group("mooring", "request_undocking_to_end", self)

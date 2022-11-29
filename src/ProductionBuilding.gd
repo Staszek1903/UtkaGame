@@ -6,7 +6,7 @@ extends Spatial
 export( Vip.Id ) var unlock_id = 0
 export(String) var item_name = "Food"
 export(float) var production_speed_ups:float = 2.0
-enum{UNDISCOVERED, UNBUILT, BUILT}
+enum{UNDISCOVERED=0, UNBUILT=1, BUILT=2}
 
 var state = UNDISCOVERED
 var lock_ui:bool = true setget set_lock_ui
@@ -15,6 +15,7 @@ var items_in_stock:int = 0 setget set_items_in_stock
 
 func _ready():
 	set_lock_ui(true)
+	add_to_group("production_building")
 	
 func update_state():
 	match(state):
@@ -22,12 +23,12 @@ func update_state():
 			$Button3D.visible = false
 		UNBUILT:
 			$Button3D.visible = true
-			$Button3D.text = "BUILD SHIT"
+			$Button3D.text = "BUILD"
 		BUILT:
 			$Button3D.visible = true
 			$IconBaner.visible = true
 			#$Text3D.visible = true
-			$Button3D.text = "GET RESOURCES"
+			$Button3D.text = "GET " + item_name.to_upper()
 
 func set_state(new_state):
 	state = new_state
