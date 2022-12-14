@@ -1,8 +1,9 @@
-extends Node
+extends Resource
+class_name PidController
 
-export(float) var K_proportional = 50.0
-export(float) var K_integral = 0.1
-export(float) var K_derivative = 1000
+export(float) var K_proportional = 10.0
+export(float) var K_integral = 0.0
+export(float) var K_derivative = 500
 
 var last_error = 0.0
 var integral = 0.0

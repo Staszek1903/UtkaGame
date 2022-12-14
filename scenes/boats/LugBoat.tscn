@@ -288,27 +288,33 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18699, 1.96062 )
 steered_obj = NodePath("../..")
 heave_func_name = "heave_sheets"
 ease_func_name = "ease_sheets"
+is_man_required = false
 
 [node name="MainHaul" parent="Boat/SteeringPointsCollection" instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 2.10842, -0.0581739, 0, 0.122863, 0.998306, 0, 1.18699, -1.60795 )
 steered_obj = NodePath("../..")
 heave_func_name = "heave_mainhaul"
 ease_func_name = "ease_mainhaul"
+is_man_required = false
 
 [node name="MooringBundle" parent="Boat/SteeringPointsCollection" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.254834, 1.25452, -2.82996 )
+is_man_required = false
 mooring_end_const = NodePath("../../MooringBowEndConst")
 
 [node name="MooringBundle2" parent="Boat/SteeringPointsCollection" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240375, 1.25452, -2.82996 )
+is_man_required = false
 mooring_end_const = NodePath("../../MooringBowEndConst")
 
 [node name="MooringBundle3" parent="Boat/SteeringPointsCollection" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.461657, 1.01927, 1.55938 )
+is_man_required = false
 mooring_end_const = NodePath("../../MooringSternEndConst")
 
 [node name="MooringBundle4" parent="Boat/SteeringPointsCollection" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.479779, 1.06016, 1.55088 )
+is_man_required = false
 mooring_end_const = NodePath("../../MooringSternEndConst")
 
 [node name="Ropes" type="Spatial" parent="Boat"]
@@ -398,7 +404,7 @@ attachments/3/offset = Vector3( -0.249274, 9.25732, -16.512 )
 autoplay = "fold"
 anims/fold = SubResource( 13 )
 
-[node name="PlayerControl" type="Node" parent="."]
+[node name="Control" type="Node" parent="."]
 script = ExtResource( 8 )
 
 [connection signal="body_entered" from="Boat/ItemCatchArea" to="Boat" method="_on_ItemCatchArea_body_entered"]

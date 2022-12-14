@@ -291,7 +291,7 @@ vertex_color_use_as_albedo = true
 
 [node name="Utka" type="Spatial"]
 
-[node name="PlayerControl" type="Node" parent="."]
+[node name="Control" type="Node" parent="."]
 script = ExtResource( 3 )
 
 [node name="FokHinge" type="HingeJoint" parent="."]
@@ -830,7 +830,6 @@ attachments/8/spatial_attachment_path = NodePath("../Boat")
 attachments/8/offset = Vector3( -5.4202e-09, 6.63917, -0.789229 )
 
 [node name="Indicators" parent="." instance=ExtResource( 14 )]
-body_path = NodePath("../Boat")
 
 [node name="WaterLevel" type="Control" parent="."]
 anchor_top = 1.0
@@ -992,8 +991,6 @@ layers = 5
 polygon = PoolVector2Array( 0, 60, 10, 50, 15, 40, 15, 20, 10, 0, -10, 0, -15, 20, -15, 40, -10, 50 )
 material = ExtResource( 8 )
 
-[connection signal="hit_level_changed" from="Boat" to="WaterLevel" method="_on_Boat_hit_level_changed"]
-[connection signal="water_level_changed" from="Boat" to="WaterLevel" method="_on_Boat_water_level_changed"]
 [connection signal="rotated" from="Boat/CameraPivot" to="Boat" method="_on_CameraPivot_rotated"]
 [connection signal="area_entered" from="Boat/Cannon/Crosshair/CrosshairArea" to="Boat" method="_on_CrosshairArea_area_entered"]
 [connection signal="area_exited" from="Boat/Cannon/Crosshair/CrosshairArea" to="Boat" method="_on_CrosshairArea_area_exited"]

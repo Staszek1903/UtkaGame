@@ -10,6 +10,9 @@ var ease_func: FuncRef
 
 onready var indicator = $Indicator
 
+export(bool) var is_man_required:bool = true
+var is_manned:bool = false
+
 func _ready():
 	call_deferred("make_funcrefs")
 	
@@ -23,9 +26,11 @@ func make_funcrefs():
 	assert(ease_func.is_valid())
 
 func steer_heave(delta):
+	if is_man_required and not is_manned: return
 	heave_func.call_func(delta)
 	
 func steer_ease(delta):
+	if is_man_required and not is_manned: return
 	ease_func.call_func(delta)
 
 func _on_MouseArea_pressed():

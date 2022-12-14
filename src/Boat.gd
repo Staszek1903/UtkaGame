@@ -24,15 +24,6 @@ onready var engine = $Engine
 
 onready var initial_transform:Transform = global_transform
 
-signal sink
-signal water_level_changed(val)
-const empying_max_rate:float = 0.01
-var water_level:float = 0.0 setget set_water_level
-signal hit_level_changed(val)
-const repair_rate:float = 0.05
-const max_hit_level:float = 3.0
-var hit_level:float = 0.0 setget set_hit_level
-
 
 func _ready():
 	assert(bow_mooring)

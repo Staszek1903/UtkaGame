@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://game_env.tres" type="Environment" id=1]
 [ext_resource path="res://models/decimated_plane.obj" type="ArrayMesh" id=2]
@@ -27,6 +27,8 @@
 [ext_resource path="res://models/characters/Face.material" type="Material" id=25]
 [ext_resource path="res://src/Vip.gd" type="Script" id=26]
 [ext_resource path="res://src/SpawnPlatformCutter.gd" type="Script" id=27]
+[ext_resource path="res://scenes/boats/NPCSloop.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scenes/boats/LugBoat.tscn" type="PackedScene" id=29]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 47.803, 13.6902, 47.4266 )
@@ -8067,22 +8069,28 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 1.25, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="SpatialMaterial" id=56]
-albedo_color = Color( 0.176471, 0.176471, 0.176471, 1 )
+[sub_resource type="Curve3D" id=56]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -131.488, 0, -50.458, 0, 0, 0, 0, 0, 0, -84.0104, 0, -50.7105, 0, 0, 0, 0, 0, 0, -45.8771, 0, -50.2054, 0, 0, 0, 0, 0, 0, -6.22852, 0, -47.9326, 0, 0, 0, 0, 0, 0, 15.2373, 0, -56.7714, 0, 0, 0, 0, 0, 0, 23.0659, 0, -78.2372 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0 )
+}
 
 [sub_resource type="SpatialMaterial" id=57]
-albedo_color = Color( 0.709804, 0, 0, 1 )
+albedo_color = Color( 0.176471, 0.176471, 0.176471, 1 )
 
 [sub_resource type="SpatialMaterial" id=58]
-albedo_color = Color( 0.792157, 0, 0, 1 )
+albedo_color = Color( 0.709804, 0, 0, 1 )
 
 [sub_resource type="SpatialMaterial" id=59]
+albedo_color = Color( 0.792157, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=60]
 albedo_color = Color( 0.458824, 0.396078, 0.235294, 1 )
 
-[sub_resource type="PlaneMesh" id=60]
+[sub_resource type="PlaneMesh" id=61]
 size = Vector2( 0.15, 0.15 )
 
-[sub_resource type="SpatialMaterial" id=61]
+[sub_resource type="SpatialMaterial" id=62]
 flags_transparent = true
 flags_unshaded = true
 flags_no_depth_test = true
@@ -8091,7 +8099,7 @@ params_cull_mode = 2
 params_billboard_mode = 2
 albedo_texture = ExtResource( 21 )
 
-[sub_resource type="Animation" id=62]
+[sub_resource type="Animation" id=63]
 length = 2.29167
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -8255,7 +8263,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 2.29167, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=63]
+[sub_resource type="Animation" id=64]
 length = 2.5
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -8419,7 +8427,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 2.5, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=64]
+[sub_resource type="Animation" id=65]
 length = 4.16667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -8583,7 +8591,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 4.16667, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=65]
+[sub_resource type="Animation" id=66]
 length = 1.04167
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -8747,7 +8755,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 1.04167, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=66]
+[sub_resource type="Animation" id=67]
 length = 1.25
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -8911,7 +8919,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 1.25, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=67]
+[sub_resource type="Animation" id=68]
 length = 0.75
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -9075,7 +9083,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 0.75, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=68]
+[sub_resource type="Animation" id=69]
 length = 0.625
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -9239,7 +9247,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 0.625, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=69]
+[sub_resource type="Animation" id=70]
 length = 0.916667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -9403,7 +9411,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 0.916667, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=70]
+[sub_resource type="Animation" id=71]
 length = 0.875
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -9567,7 +9575,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 0.875, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=71]
+[sub_resource type="Animation" id=72]
 length = 0.875
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -9731,7 +9739,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 0.875, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=72]
+[sub_resource type="Animation" id=73]
 length = 0.541667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -9895,7 +9903,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 0.541667, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=73]
+[sub_resource type="Animation" id=74]
 length = 0.958333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -10059,7 +10067,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 0.958333, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=74]
+[sub_resource type="Animation" id=75]
 length = 1.29167
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -10223,7 +10231,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 1.29167, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=75]
+[sub_resource type="Animation" id=76]
 length = 1.04167
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -10387,7 +10395,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 1.04167, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=76]
+[sub_resource type="Animation" id=77]
 length = 1.25
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -10551,7 +10559,7 @@ tracks/22/imported = true
 tracks/22/enabled = true
 tracks/22/keys = PoolRealArray( 0, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1, 1.25, 1, 0, 0, 0, -3.55271e-15, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=77]
+[sub_resource type="Animation" id=78]
 length = 1.25
 tracks/0/type = "transform"
 tracks/0/path = NodePath("CharacterArmature/Skeleton:Foot.L")
@@ -10732,7 +10740,7 @@ amplitude = 0.202
 frequency = 0.295
 
 [node name="WaterTile" type="Spatial" parent="."]
-transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 79.9876, 0, -69.6572 )
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 100, 0, -84.114 )
 script = ExtResource( 3 )
 
 [node name="Area" type="Area" parent="WaterTile"]
@@ -11944,14 +11952,20 @@ text = "FOOD MAKER"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602, -0.115, -0.317 )
 item_name = "Food"
 
-[node name="Vip" type="Spatial" parent="Island3/Quai"]
-transform = Transform( 6.98119e-05, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.98119e-05, -0.214043, 0.59975, 1.00271 )
+[node name="NPCSloop" parent="Island3/Quai" instance=ExtResource( 28 )]
+transform = Transform( 0.5556, 0, -0.831451, 0, 1, 0, 0.831451, 0, 0.5556, -3.66783, -0.85372, 15.4225 )
+
+[node name="Boat" parent="Island3/Quai/NPCSloop" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103551, 0.238434 )
+
+[node name="Vip" type="Spatial" parent="Island3/Quai/NPCSloop/Boat" index="16"]
+transform = Transform( -0.0843477, 0, 0.492834, 0, 0.5, 0, -0.492834, 0, -0.0843477, -0.41922, 0.238208, 1.17255 )
 script = ExtResource( 26 )
 unlock_id = 3
 
-[node name="CharacterArmature" type="Spatial" parent="Island3/Quai/Vip"]
+[node name="CharacterArmature" type="Spatial" parent="Island3/Quai/NPCSloop/Boat/Vip"]
 
-[node name="Skeleton" type="Skeleton" parent="Island3/Quai/Vip/CharacterArmature"]
+[node name="Skeleton" type="Skeleton" parent="Island3/Quai/NPCSloop/Boat/Vip/CharacterArmature"]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, -1.42109e-14, 4.76837e-07, -1.42109e-14, 1, 5.96046e-08, -4.76837e-07, -5.96046e-08, 1, -0.00131147, -0.00241537, -0.000114684 )
@@ -12068,13 +12082,13 @@ bones/22/rest = Transform( 1, -2.54108e-21, -1.19209e-06, 1.10115e-20, 1, 7.1054
 bones/22/enabled = true
 bones/22/bound_children = [  ]
 
-[node name="Body" type="MeshInstance" parent="Island3/Quai/Vip/CharacterArmature/Skeleton"]
+[node name="Body" type="MeshInstance" parent="Island3/Quai/NPCSloop/Boat/Vip/CharacterArmature/Skeleton"]
 mesh = SubResource( 6 )
 skin = SubResource( 7 )
 material/0 = null
 material/1 = null
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Island3/Quai/Vip"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Island3/Quai/NPCSloop/Boat/Vip"]
 autoplay = "SitDown"
 anims/Death = SubResource( 40 )
 anims/Defeat = SubResource( 41 )
@@ -12092,6 +12106,9 @@ anims/StandUp = SubResource( 52 )
 anims/SwordSlash = SubResource( 53 )
 anims/Walk = SubResource( 54 )
 anims/Walk_Carry = SubResource( 55 )
+
+[node name="ControlPathFolow" parent="Island3/Quai/NPCSloop/Control" index="0"]
+curve = SubResource( 56 )
 
 [node name="Barel" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2412, 5.69656, -58.8737 )
@@ -12172,6 +12189,11 @@ transform = Transform( 1, 5.96046e-08, 3.55271e-15, 5.96046e-08, 1, -1.77636e-15
 unlock_id = 3
 item_name = "Steel"
 
+[node name="CrewProductionBuilding" parent="BaseQuai" instance=ExtResource( 16 )]
+transform = Transform( 1, 5.96046e-08, 3.55271e-15, 5.96046e-08, 1, -1.77636e-15, -3.55271e-15, -9.47311e-16, 1, 2.52362, 1.63956, 4.18451 )
+unlock_id = 3
+item_name = "Crew"
+
 [node name="SpawnPlatformSloop" type="Spatial" parent="BaseQuai"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.57225, 1.87044, -12.2107 )
 script = ExtResource( 20 )
@@ -12231,21 +12253,21 @@ radius = 2.48198
 height = 6.31711
 cone = true
 smooth_faces = false
-material = SubResource( 56 )
+material = SubResource( 57 )
 
 [node name="CSGCylinder2" type="CSGCylinder" parent="Lighthouse/Lighthouse"]
 transform = Transform( 1, -0.000135458, -0.00052547, 0.000135959, 1, 0.000936169, 0.000525341, -0.000936242, 0.999999, 0, 7.3374, 0 )
 radius = 1.1687
 height = 0.789901
 smooth_faces = false
-material = SubResource( 57 )
+material = SubResource( 58 )
 
 [node name="CSGCylinder3" type="CSGCylinder" parent="Lighthouse/Lighthouse"]
 transform = Transform( 1, -0.000135458, -0.00052547, 0.000135959, 1, 0.000936169, 0.000525341, -0.000936242, 0.999999, 0, 9.17689, 0 )
 radius = 1.00184
 height = 0.448554
 smooth_faces = false
-material = SubResource( 58 )
+material = SubResource( 59 )
 
 [node name="CSGCylinder4" type="CSGCylinder" parent="Lighthouse/Lighthouse"]
 transform = Transform( 1, -0.000135458, -0.00052547, 0.000135959, 1, 0.000936169, 0.000525341, -0.000936242, 0.999999, 0, 10.0458, 0 )
@@ -12253,7 +12275,7 @@ radius = 1.00184
 height = 1.27221
 cone = true
 smooth_faces = false
-material = SubResource( 59 )
+material = SubResource( 60 )
 
 [node name="CSGBox" type="CSGBox" parent="Lighthouse/Lighthouse"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0290795, 8.3929, 0.863263 )
@@ -12288,8 +12310,8 @@ material = ExtResource( 6 )
 [node name="CSGMesh" type="CSGMesh" parent="Lighthouse/Lighthouse"]
 transform = Transform( -2.41361e-08, -0.552169, 0, 0.552169, -2.41361e-08, 0, 0, 0, 0.552169, 0, 8.38142, 0 )
 visible = false
-mesh = SubResource( 60 )
-material = SubResource( 61 )
+mesh = SubResource( 61 )
+material = SubResource( 62 )
 
 [node name="Camera" type="Camera" parent="Lighthouse"]
 transform = Transform( 0.00434584, 0.441705, -0.89715, 0, 0.897158, 0.441709, 0.999991, -0.0019196, 0.0038989, -12.514, 12.781, 0.282 )
@@ -12307,292 +12329,289 @@ text = "LIGHT UP"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602, -0.761, -0.317 )
 quantity = 3
 
-[node name="SloopBoat" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.172445, 0, 0.985019, 0, 1, 0, -0.985019, 0, -0.172445, 22.4343, 0.85372, -72.529 )
-
-[node name="Quai" parent="." instance=ExtResource( 11 )]
+[node name="FoodGuy" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.172445, 0, 0.985019, 0, 1, 0, -0.985019, 0, -0.172445, 2.05669, 0.85372, -72.529 )
 
-[node name="Cabin" type="Spatial" parent="Quai"]
+[node name="Cabin" type="Spatial" parent="FoodGuy"]
 transform = Transform( -8.9407e-08, 0, 1, 0, 1, 0, -1, 0, -8.9407e-08, 5.14411, 0, -1.08202 )
 
-[node name="House" type="Spatial" parent="Quai/Cabin"]
+[node name="House" type="Spatial" parent="FoodGuy/Cabin"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08588, 2.0137, 2.58221 )
 
-[node name="Chimney" type="CSGPolygon" parent="Quai/Cabin/House"]
+[node name="Chimney" type="CSGPolygon" parent="FoodGuy/Cabin/House"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.28682, -2.0011, -0.614008 )
 polygon = PoolVector2Array( -0.703984, 0.0367036, -0.723134, 1.51882, -0.0752349, 3.8078, 0.01965, 5.62216, -0.15141, 8.21141, 0.759504, 8.13804, 0.855826, 5.67213, 0.725418, 3.90326, 1.26987, 1.73545, 1.22283, 0.0594802 )
 material = SubResource( 4 )
 
-[node name="Roof" type="Spatial" parent="Quai/Cabin/House"]
+[node name="Roof" type="Spatial" parent="FoodGuy/Cabin/House"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0140724, -2.0137, -2.58221 )
 
-[node name="CSGBox" type="CSGBox" parent="Quai/Cabin/House/Roof"]
+[node name="CSGBox" type="CSGBox" parent="FoodGuy/Cabin/House/Roof"]
 transform = Transform( 1, 0, 0, 0, 0.971384, 0.237516, 0, -0.237516, 0.971384, 0.899424, 3.53304, -1.9739 )
 width = 12.0
 height = 0.235991
 depth = 3.29879
 material = ExtResource( 23 )
 
-[node name="CSGBox2" type="CSGBox" parent="Quai/Cabin/House/Roof"]
+[node name="CSGBox2" type="CSGBox" parent="FoodGuy/Cabin/House/Roof"]
 transform = Transform( 1, 0, 0, 0, 0.712381, 0.701793, 0, -0.701793, 0.712381, 0.841028, 5.37895, 0.79575 )
 width = 12.0
 height = 0.235991
 depth = 4.46802
 material = ExtResource( 23 )
 
-[node name="CSGBox3" type="CSGBox" parent="Quai/Cabin/House/Roof"]
+[node name="CSGBox3" type="CSGBox" parent="FoodGuy/Cabin/House/Roof"]
 transform = Transform( 1, 0, 0, 0, 0.701792, -0.712381, 0, 0.712381, 0.701792, 0.879036, 5.1885, 4.29968 )
 width = 12.0
 height = 0.235991
 depth = 5.49178
 material = ExtResource( 23 )
 
-[node name="CSGBox17" type="CSGBox" parent="Quai/Cabin/House/Roof"]
+[node name="CSGBox17" type="CSGBox" parent="FoodGuy/Cabin/House/Roof"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.40223, 1.37372, -3.4289 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 material = ExtResource( 19 )
 
-[node name="CSGBox18" type="CSGBox" parent="Quai/Cabin/House/Roof"]
+[node name="CSGBox18" type="CSGBox" parent="FoodGuy/Cabin/House/Roof"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2.57168, 1.37372, -3.4289 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 material = ExtResource( 19 )
 
-[node name="CSGBox20" type="CSGBox" parent="Quai/Cabin/House/Roof"]
+[node name="CSGBox20" type="CSGBox" parent="FoodGuy/Cabin/House/Roof"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.31258, 2.814, 0.664215 )
 width = 0.238306
 height = 5.31124
 depth = 0.235515
 material = ExtResource( 19 )
 
-[node name="CSGBox19" type="CSGBox" parent="Quai/Cabin/House/Roof"]
+[node name="CSGBox19" type="CSGBox" parent="FoodGuy/Cabin/House/Roof"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.31258, 2.814, 3.85928 )
 width = 0.238306
 height = 5.31124
 depth = 0.235515
 material = ExtResource( 19 )
 
-[node name="Foundation" type="CSGCombiner" parent="Quai/Cabin/House"]
+[node name="Foundation" type="CSGCombiner" parent="FoodGuy/Cabin/House"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08588, -2.0137, -2.58221 )
 
-[node name="CSGPolygon" type="CSGPolygon" parent="Quai/Cabin/House/Foundation"]
+[node name="CSGPolygon" type="CSGPolygon" parent="FoodGuy/Cabin/House/Foundation"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.752986, 0.433367, -3.58347 )
 polygon = PoolVector2Array( 2.99635, -2.83282, 3.01226, -9.3322, -5.80833, -9.32331, -5.78146, -6.82164, -6.64157, -6.81174, -6.6514, -4.81518, -5.79766, -4.78123, -5.74186, -0.204561, -2.64378, -0.204104, -2.62989, -2.80499 )
 depth = 0.358
 
-[node name="CSGBox" type="CSGBox" parent="Quai/Cabin/House/Foundation"]
+[node name="CSGBox" type="CSGBox" parent="FoodGuy/Cabin/House/Foundation"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16338, 0, 2.56668 )
 operation = 2
 width = 8.01223
 depth = 5.77845
 
-[node name="CSGBox2" type="CSGBox" parent="Quai/Cabin/House/Foundation"]
+[node name="CSGBox2" type="CSGBox" parent="FoodGuy/Cabin/House/Foundation"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.90684, -9.53674e-07, -1.16049 )
 operation = 2
 width = 3.87134
 depth = 2.44884
 
-[node name="CSGBox3" type="CSGBox" parent="Quai/Cabin/House/Foundation"]
+[node name="CSGBox3" type="CSGBox" parent="FoodGuy/Cabin/House/Foundation"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.20459, -9.53674e-07, 2.23242 )
 operation = 2
 width = 3.62561
 depth = 1.20346
 
-[node name="1Part" type="Spatial" parent="Quai/Cabin/House"]
+[node name="1Part" type="Spatial" parent="FoodGuy/Cabin/House"]
 
-[node name="CSGBox22" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox22" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 4.12408, -0.114589, 2.97284 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="CSGBox23" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox23" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 1.06581e-14, -4.37114e-08, 1, -4.65882e-22, -1, -4.37114e-08, 4.08013, 1.6228, -0.0211291 )
 width = 0.238306
 height = 5.80848
 depth = 0.235515
 
-[node name="CSGBox38" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox38" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, 0.707107, 0.707107, 7.53644e-15, -0.707107, 0.707107, 4.08013, 3.18616, 1.38794 )
 width = 0.238306
 height = 4.18802
 depth = 0.235515
 
-[node name="CSGBox39" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox39" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, -0.707107, 0.707107, -7.53644e-15, -0.707107, -0.707107, 4.08013, 3.11459, -1.4807 )
 width = 0.238306
 height = 4.14814
 depth = 0.235515
 
-[node name="CSGBox40" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox40" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, 0.707107, 0.707107, 7.53644e-15, -0.707107, 0.707107, -4.25824, 3.18616, 1.38794 )
 width = 0.238306
 height = 4.18802
 depth = 0.235515
 
-[node name="CSGBox41" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox41" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 7.53644e-15, -0.707107, 0.707107, -7.53644e-15, -0.707107, -0.707107, -4.25824, 3.11459, -1.4807 )
 width = 0.238306
 height = 4.14814
 depth = 0.235515
 
-[node name="CSGBox33" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox33" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 1.06581e-14, -4.37114e-08, 1, -4.65882e-22, -1, -4.37114e-08, -4.2358, 1.6228, 0.00365353 )
 width = 0.238306
 height = 5.9412
 depth = 0.235515
 
-[node name="CSGBox35" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox35" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 1.05108e-14, -0.165685, 0.986179, -1.76589e-15, -0.986179, -0.165685, -4.2358, 1.39878, -4.44859 )
 width = 0.238306
 height = 2.85668
 depth = 0.235515
 
-[node name="CSGBox36" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox36" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 1.05108e-14, -0.165685, 0.986179, -1.76589e-15, -0.986179, -0.165685, -1.46215, 1.39878, -4.44859 )
 width = 0.238306
 height = 2.85668
 depth = 0.235515
 
-[node name="CSGBox31" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox31" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -0.137975, 1.6228, -2.97014 )
 width = 0.238306
 height = 8.21007
 depth = 0.235515
 
-[node name="CSGBox32" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox32" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -0.0547562, 1.6228, 2.97925 )
 width = 0.238306
 height = 8.24975
 depth = 0.235515
 
-[node name="CSGBox42" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox42" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -0.0547562, 4.59172, 0.00133157 )
 width = 0.238306
 height = 8.24975
 depth = 0.235515
 
-[node name="CSGBox37" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox37" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( -4.37114e-08, 1, 4.37114e-08, 1.06581e-14, -4.37114e-08, 1, 1, 4.37114e-08, -8.74746e-15, -2.87195, 1.14053, -5.67935 )
 width = 0.238306
 height = 2.88
 depth = 0.235515
 
-[node name="CSGBox21" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox21" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 4.08013, -0.114589, -2.97315 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="CSGBox24" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox24" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.48597, -0.114589, -2.97315 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="CSGBox34" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox34" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.26097, -0.114589, -2.97315 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="CSGBox25" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox25" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.48597, -0.114589, -5.8208 )
 width = 0.238306
 height = 2.72971
 depth = 0.235515
 
-[node name="CSGBox26" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox26" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.240984, -5.8208 )
 width = 0.238306
 height = 2.99525
 depth = 0.235515
 
-[node name="CSGBox27" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox27" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.114589, 2.98553 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="CSGBox29" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox29" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.114589, -1.50583 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="CSGBox30" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox30" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.1863, -0.114589, 1.14894 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="CSGBox28" type="CSGBox" parent="Quai/Cabin/House/1Part"]
+[node name="CSGBox28" type="CSGBox" parent="FoodGuy/Cabin/House/1Part"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.0484457, -0.114589, 2.98553 )
 width = 0.238306
 height = 3.64734
 depth = 0.235515
 
-[node name="2Part" type="Spatial" parent="Quai/Cabin/House"]
+[node name="2Part" type="Spatial" parent="FoodGuy/Cabin/House"]
 
-[node name="CSGBox" type="CSGBox" parent="Quai/Cabin/House/2Part"]
+[node name="CSGBox" type="CSGBox" parent="FoodGuy/Cabin/House/2Part"]
 transform = Transform( 0.999982, 0.00602135, 0, -0.00602135, 0.999982, 0, 0, 0, 1, -0.0460348, -0.175712, -0.0551395 )
 width = 8.36749
 height = 3.79574
 depth = 5.86746
 
-[node name="CSGPolygon" type="CSGPolygon" parent="Quai/Cabin/House/2Part"]
+[node name="CSGPolygon" type="CSGPolygon" parent="FoodGuy/Cabin/House/2Part"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.14023, 1.6061, 1.60761 )
 polygon = PoolVector2Array( 4.3979, 0.11439, 1.66386, 2.80003, -1.17206, 0.0666759 )
 depth = 0.182
 
-[node name="CSGPolygon2" type="CSGPolygon" parent="Quai/Cabin/House/2Part"]
+[node name="CSGPolygon2" type="CSGPolygon" parent="FoodGuy/Cabin/House/2Part"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.22342, 1.6061, 1.60761 )
 polygon = PoolVector2Array( 4.3979, 0.11439, 1.66386, 2.80003, -1.17206, 0.0666759 )
 depth = 0.182
 
-[node name="CSGPolygon3" type="CSGPolygon" parent="Quai/Cabin/House/2Part"]
+[node name="CSGPolygon3" type="CSGPolygon" parent="FoodGuy/Cabin/House/2Part"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.4055, -1.75876, -1.50356 )
 polygon = PoolVector2Array( 4.39692, 0.0378082, 4.29986, 2.85538, 1.51044, 3.39439, 1.60567, -0.05497 )
 depth = 2.922
 
-[node name="Podest" type="Spatial" parent="Quai/Cabin"]
+[node name="Podest" type="Spatial" parent="FoodGuy/Cabin"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.01956, 0, -8.94013 )
 
-[node name="CSGBox" type="CSGBox" parent="Quai/Cabin/Podest"]
+[node name="CSGBox" type="CSGBox" parent="FoodGuy/Cabin/Podest"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0754, 0, 0 )
 width = 12.7172
 height = 0.177596
 depth = 15.907
 material = ExtResource( 19 )
 
-[node name="StaticBody" type="StaticBody" parent="Quai/Cabin"]
+[node name="StaticBody" type="StaticBody" parent="FoodGuy/Cabin"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Quai/Cabin/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="FoodGuy/Cabin/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.986252, -0.834305, 3.40314 )
 shape = SubResource( 5 )
 
-[node name="Camera" type="Camera" parent="Quai"]
+[node name="Camera" type="Camera" parent="FoodGuy"]
 transform = Transform( -0.392979, 0.180874, -0.901583, 0, 0.980464, 0.196699, 0.919547, 0.0772987, -0.385302, -8.653, 4.076, -5.083 )
 
-[node name="UpgradeBuilding" type="Spatial" parent="Quai"]
+[node name="UpgradeBuilding" type="Spatial" parent="FoodGuy"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0.637, -5.782 )
 script = ExtResource( 17 )
 
-[node name="Button3D" parent="Quai/UpgradeBuilding" instance=ExtResource( 15 )]
+[node name="Button3D" parent="FoodGuy/UpgradeBuilding" instance=ExtResource( 15 )]
 transform = Transform( -1.04836e-07, -0.707107, 2.29165, -5.35004e-08, 0.707107, 2.29165, -3.62232, 1.00211e-08, -1.00171e-07, 0, 0, 0 )
 text = "FOOD MAKER"
 
-[node name="Vip" type="Spatial" parent="Quai"]
+[node name="Vip" type="Spatial" parent="FoodGuy"]
 transform = Transform( 6.98119e-05, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.98119e-05, -0.214043, 0.59975, 1.00271 )
 script = ExtResource( 26 )
 
-[node name="CharacterArmature" type="Spatial" parent="Quai/Vip"]
+[node name="CharacterArmature" type="Spatial" parent="FoodGuy/Vip"]
 
-[node name="Skeleton" type="Skeleton" parent="Quai/Vip/CharacterArmature"]
+[node name="Skeleton" type="Skeleton" parent="FoodGuy/Vip/CharacterArmature"]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, -1.42109e-14, 4.76837e-07, -1.42109e-14, 1, 5.96046e-08, -4.76837e-07, -5.96046e-08, 1, -0.00131147, -0.00241537, -0.000114684 )
@@ -12709,43 +12728,50 @@ bones/22/rest = Transform( 1, -2.54108e-21, -1.19209e-06, 1.10115e-20, 1, 7.1054
 bones/22/enabled = true
 bones/22/bound_children = [  ]
 
-[node name="Body" type="MeshInstance" parent="Quai/Vip/CharacterArmature/Skeleton"]
+[node name="Body" type="MeshInstance" parent="FoodGuy/Vip/CharacterArmature/Skeleton"]
 mesh = SubResource( 6 )
 skin = SubResource( 7 )
 material/0 = null
 material/1 = null
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Quai/Vip"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FoodGuy/Vip"]
 autoplay = "SitDown"
-anims/Death = SubResource( 62 )
-anims/Defeat = SubResource( 63 )
-anims/Idle = SubResource( 64 )
-anims/Jump = SubResource( 65 )
-anims/PickUp = SubResource( 66 )
-anims/Punch = SubResource( 67 )
-anims/RecieveHit = SubResource( 68 )
-anims/Roll = SubResource( 69 )
-anims/Run = SubResource( 70 )
-anims/Run_Carry = SubResource( 71 )
-anims/Shoot_OneHanded = SubResource( 72 )
-anims/SitDown = SubResource( 73 )
-anims/StandUp = SubResource( 74 )
-anims/SwordSlash = SubResource( 75 )
-anims/Walk = SubResource( 76 )
-anims/Walk_Carry = SubResource( 77 )
+anims/Death = SubResource( 63 )
+anims/Defeat = SubResource( 64 )
+anims/Idle = SubResource( 65 )
+anims/Jump = SubResource( 66 )
+anims/PickUp = SubResource( 67 )
+anims/Punch = SubResource( 68 )
+anims/RecieveHit = SubResource( 69 )
+anims/Roll = SubResource( 70 )
+anims/Run = SubResource( 71 )
+anims/Run_Carry = SubResource( 72 )
+anims/Shoot_OneHanded = SubResource( 73 )
+anims/SitDown = SubResource( 74 )
+anims/StandUp = SubResource( 75 )
+anims/SwordSlash = SubResource( 76 )
+anims/Walk = SubResource( 77 )
+anims/Walk_Carry = SubResource( 78 )
+
+[node name="LugBoat" parent="." instance=ExtResource( 29 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 113.806, 0, -111.664 )
 
 [connection signal="area_entered" from="WaterTile/Area" to="WaterTile" method="_on_Area_area_entered"]
 [connection signal="upgraded" from="Island1/Quai/UpgradeBuilding" to="Island1/Quai/Vip" method="_on_UpgradeBuilding_upgraded"]
 [connection signal="pressed" from="Island1/Quai/UpgradeBuilding/Button3D" to="Island1/Quai/UpgradeBuilding" method="_on_Button3D_pressed"]
 [connection signal="upgraded" from="Island2/Quai/UpgradeBuilding" to="Island2/Quai/Vip" method="_on_UpgradeBuilding_upgraded"]
 [connection signal="pressed" from="Island2/Quai/UpgradeBuilding/Button3D" to="Island2/Quai/UpgradeBuilding" method="_on_Button3D_pressed"]
-[connection signal="upgraded" from="Island3/Quai/UpgradeBuilding" to="Island3/Quai/Vip" method="_on_UpgradeBuilding_upgraded"]
+[connection signal="upgraded" from="Island3/Quai/UpgradeBuilding" to="Island3/Quai/NPCSloop/Control" method="set_activated" binds= [ true ]]
 [connection signal="pressed" from="Island3/Quai/UpgradeBuilding/Button3D" to="Island3/Quai/UpgradeBuilding" method="_on_Button3D_pressed"]
+[connection signal="race_won" from="Island3/Quai/NPCSloop/Control" to="BaseQuai/SteelProductionBuilding" method="force_unlock"]
+[connection signal="mooring_on" from="BaseQuai" to="Island3/Quai/NPCSloop/Control" method="_on_BaseQuai_mooring_on"]
 [connection signal="upgraded" from="BaseQuai/UpgradeBuilding" to="BaseQuai/SpawnPlatformSloop" method="_on_UpgradeBuilding_upgraded"]
 [connection signal="pressed" from="BaseQuai/UpgradeBuilding/Button3D" to="BaseQuai/UpgradeBuilding" method="_on_Button3D_pressed"]
 [connection signal="upgraded" from="BaseQuai/UpgradeBuilding2" to="BaseQuai/SpawnPlatformCutter" method="_on_UpgradeBuilding2_upgraded"]
 [connection signal="pressed" from="BaseQuai/UpgradeBuilding2/Button3D" to="BaseQuai/UpgradeBuilding2" method="_on_Button3D_pressed"]
 [connection signal="upgraded" from="Lighthouse/UpgradeBuilding" to="Lighthouse/Lighthouse" method="light_the_candle"]
 [connection signal="pressed" from="Lighthouse/UpgradeBuilding/Button3D" to="Lighthouse/UpgradeBuilding" method="_on_Button3D_pressed"]
-[connection signal="upgraded" from="Quai/UpgradeBuilding" to="Quai/Vip" method="_on_UpgradeBuilding_upgraded"]
-[connection signal="pressed" from="Quai/UpgradeBuilding/Button3D" to="Quai/UpgradeBuilding" method="_on_Button3D_pressed"]
+[connection signal="upgraded" from="FoodGuy/UpgradeBuilding" to="FoodGuy/Vip" method="_on_UpgradeBuilding_upgraded"]
+[connection signal="pressed" from="FoodGuy/UpgradeBuilding/Button3D" to="FoodGuy/UpgradeBuilding" method="_on_Button3D_pressed"]
+
+[editable path="Island3/Quai/NPCSloop"]

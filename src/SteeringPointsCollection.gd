@@ -1,5 +1,7 @@
 extends Spatial
 
+signal current_changed(point)
+
 onready var current_steering_point = get_child(0)
 
 export(bool) var disable:bool = false setget set_disabled
@@ -13,14 +15,18 @@ func set_disabled(val:bool):
 		current_steering_point = null
 		for c in get_children():
 			c.indicator.visible = false
+			c.is_manned = false
+		emit_signal("current_changed", null)
 	
 func set_steering_point(point):
 	if disable: return
 	for c in get_children():
 		c.indicator.visible = false
+		c.is_manned = false
 	current_steering_point = point
 	point.indicator.visible = true
-	
+	emit_signal("current_changed", point)
+
 func scroll_point(offset):
 	if not current_steering_point: return
 	var next_index = wrapi(

@@ -69,6 +69,9 @@ func check_unlock_id(id:int):
 	if state == UNDISCOVERED and id == unlock_id:
 		set_state(UNBUILT)
 
+func force_unlock():
+	if state == UNDISCOVERED:
+		set_state(UNBUILT)
 	
 func _process(delta:float):
 	if state != BUILT: return

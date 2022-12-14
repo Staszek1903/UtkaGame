@@ -99,16 +99,34 @@ func give_(args = []):
 	var hold = get_boat_hold()
 	hold.add_items({item:count})
 	
-#func unlockprod_(args = []):
-#	pass
-	
+
 func unlockall_(args = []):
 	get_tree().call_group("production_building", "set_state", 1)
 
-#func godmode_(args = []):
-#	cout("godmode on")
-#	cout("args: "+ str(args))
-#
+func crew_(args = []):
+	var quantity:int = 1
+	if args.size() == 1 and args[0].is_valid_integer():
+		quantity = int(args[0])
+	var crew = get_boat().get_node("Crew")
+	assert(crew)
+	for i in quantity:
+		crew.spawn()
+
+func hit_(args = []):
+	var quantity:int = 1
+	if args.size() == 1 and args[0].is_valid_integer():
+		quantity = int(args[0])
+	var boat = get_boat()
+	boat.receive_damage(quantity)
+
+#func unlockprod_(args = []):
+#	pass
+
+func godmode_(args = []):
+	var boat = get_boat()
+	boat.godmode = not boat.godmode
+	cout("godmode "+ str(boat.godmode))
+
 #func tp_(args = []):
 #	pass
 	

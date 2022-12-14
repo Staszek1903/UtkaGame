@@ -87,6 +87,10 @@ func get_boat_hold():
 
 
 func give_items(item_name:String, quantity:int, building:Spatial):
+	if item_name == "Crew":
+		give_crew()
+		return
+
 	var hold = get_boat_hold()
 	var cap = hold.get_capacity(item_name)
 	var count = hold.get_item_count(item_name)
@@ -96,6 +100,11 @@ func give_items(item_name:String, quantity:int, building:Spatial):
 		quantity = avail
 	hold.add_items({item_name:quantity})
 	update_requirement_buildings()
+	
+func give_crew():
+	var crew = get_boat().get_node("Crew")
+	assert(crew)
+	crew.spawn()
 	
 func withdraw_items(item_name, quantity):
 	var hold = get_boat_hold()

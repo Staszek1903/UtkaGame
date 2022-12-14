@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/ForceDebug.gd" type="Script" id=1]
 [ext_resource path="res://models/lug_boat_helm.gltf" type="PackedScene" id=2]
@@ -17,12 +17,12 @@
 [ext_resource path="res://scenes/ForceDebug.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/PlayerControlPoints.gd" type="Script" id=16]
 [ext_resource path="res://scenes/MooringBundle.tscn" type="PackedScene" id=17]
-[ext_resource path="res://src/MouseArea.gd" type="Script" id=18]
+[ext_resource path="res://scenes/Anchor.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Sail.gd" type="Script" id=19]
 [ext_resource path="res://models/Wood.material" type="Material" id=20]
 [ext_resource path="res://materials/sail_material.tres" type="Material" id=21]
 [ext_resource path="res://addons/Trail/trail_3d.gd" type="Script" id=22]
-[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=23]
+[ext_resource path="res://src/Crew.gd" type="Script" id=23]
 [ext_resource path="res://scenes/WaserKeelF.tscn" type="PackedScene" id=24]
 [ext_resource path="res://scenes/SteeringPoint.tscn" type="PackedScene" id=25]
 [ext_resource path="res://src/SteeringPointsCollection.gd" type="Script" id=26]
@@ -173,12 +173,14 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="SphereShape" id=15]
 
-[sub_resource type="CylinderShape" id=16]
-radius = 0.683692
-height = 1.0311
-
-[sub_resource type="BoxShape" id=17]
+[sub_resource type="BoxShape" id=16]
 extents = Vector3( 3.57462, 2.57188, 7.77082 )
+
+[sub_resource type="Curve3D" id=17]
+_data = {
+"points": PoolVector3Array( 0.454152, 0, 0.156114, -0.454152, 0, -0.156114, -0.916986, -0.103546, 2.97808, 0, 0, 0, 0, 0, 0, -1.12987, -0.103546, -1.10929, -0.0993456, 0, 0.326422, 0.0993456, 0, -0.326422, -0.987947, -0.103546, -3.35167, -0.709613, 0, 0, 0.709613, 0, 0, 0.0055116, -0.103546, -4.06128, -0.0851546, 0, -0.31223, 0.0851546, 0, 0.31223, 1.06993, -0.103546, -3.35167, 0, 0, 0, 0, 0, 0, 1.1267, -0.103546, -1.03833, 0.283845, 0, -0.354807, -0.283845, 0, 0.354807, 0.899625, -0.103546, 3.00647, 0.298038, 0, 0.510922, -0.298038, 0, -0.510922, -0.916986, -0.103546, 2.97808 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 )
+}
 
 [sub_resource type="BoxShape" id=18]
 extents = Vector3( 0.0444001, 0.89288, 0.704835 )
@@ -194,40 +196,109 @@ extents = Vector3( 0.438827, 0.395129, 3.45305 )
 flags_use_point_size = true
 vertex_color_use_as_albedo = true
 
+[sub_resource type="Animation" id=22]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bom/Pik:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.147882, 3.33269, -0.519026 ), Vector3( 0.147883, -5.45993, 1.65921 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bom/Pik:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 24.944, 7.71398e-07, 3.48765e-06 ), Vector3( -1.09597, 2.34097e-07, 9.54015e-07 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bom:sail_amount")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=23]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boat/JibFolder:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 13.2181, -3.17941 ), Vector3( 0, 4.46047, -13.4705 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fok_sheet:sail_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
 [node name="Cutter" type="Spatial"]
 
 [node name="MainSail" type="SoftBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.91371, -1.86055 )
 mesh = ExtResource( 5 )
 material/0 = ExtResource( 21 )
+collision_layer = 0
+collision_mask = 0
+parent_collision_ignore = NodePath("../Bom")
 pinned_points = [ 0, 1, 2, 3 ]
 attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("../Bom")
-attachments/0/offset = Vector3( -0.0129312, 9.22442, -4.84664 )
+attachments/0/spatial_attachment_path = NodePath("../Bom/Pik")
+attachments/0/offset = Vector3( -0.392916, 8.59326, -15.6584 )
 attachments/1/point_index = 1
-attachments/1/spatial_attachment_path = NodePath("../Bom")
-attachments/1/offset = Vector3( 7.63455e-07, -2.43675, -8.37455 )
+attachments/1/spatial_attachment_path = NodePath("../Bom/Bom")
+attachments/1/offset = Vector3( -0.363303, 9.06027, -15.1989 )
 attachments/2/point_index = 2
-attachments/2/spatial_attachment_path = NodePath("../Bom")
-attachments/2/offset = Vector3( -1.72665e-07, 5.51627, 2.31201 )
+attachments/2/spatial_attachment_path = NodePath("../Bom/Pik")
+attachments/2/offset = Vector3( -0.361322, 7.75468, 4.02185 )
 attachments/3/point_index = 3
-attachments/3/spatial_attachment_path = NodePath("../Bom")
-attachments/3/offset = Vector3( -2.66672e-07, -2.57849, 3.38517 )
+attachments/3/spatial_attachment_path = NodePath("../Bom/Bom")
+attachments/3/offset = Vector3( -0.363305, 8.31798, 3.53906 )
 
 [node name="Jib" type="SoftBody" parent="."]
 transform = Transform( 0.949131, 0.238538, -0.20555, -0.238187, 0.970849, 0.0268252, 0.205957, 0.0234987, 0.978279, -1.38502, 3.11891, -16.0009 )
 mesh = ExtResource( 13 )
 material/0 = ExtResource( 21 )
-pinned_points = [ 2, 1, 0 ]
-attachments/0/point_index = 2
-attachments/0/spatial_attachment_path = NodePath("../Boat")
-attachments/0/offset = Vector3( -0.189373, 3.96132, -14.0211 )
+collision_layer = 0
+collision_mask = 0
+pinned_points = [ 0, 1, 2 ]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("../fok_sheet")
+attachments/0/offset = Vector3( 0.0857153, -0.0400903, 0.0269194 )
 attachments/1/point_index = 1
-attachments/1/spatial_attachment_path = NodePath("../Boat")
-attachments/1/offset = Vector3( -0.107502, 13.1353, -3.2011 )
-attachments/2/point_index = 0
-attachments/2/spatial_attachment_path = NodePath("../fok_sheet")
-attachments/2/offset = Vector3( 0.0857153, -0.0400903, 0.0269194 )
+attachments/1/spatial_attachment_path = NodePath("../Boat/JibFolder")
+attachments/1/offset = Vector3( 0.107502, -0.0828381, 0.0216846 )
+attachments/2/point_index = 2
+attachments/2/spatial_attachment_path = NodePath("../Boat")
+attachments/2/offset = Vector3( -0.189373, 3.96132, -14.0211 )
 
 [node name="LowerSailHinge" type="HingeJoint" parent="."]
 transform = Transform( -1, 3.54013e-07, -4.45272e-09, -4.85975e-08, -0.124796, 0.992182, 3.5069e-07, 0.992182, 0.124796, -2.51965e-07, 3.95541, -1.96872 )
@@ -407,19 +478,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0439984, 2.88625, -4.9878 )
 [node name="MoorignSternEndConst" type="Position3D" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0696909, 2.88625, 5.78703 )
 
-[node name="SailToggleTrigger" type="Area" parent="Boat"]
-transform = Transform( 1, 0, 0, 0, 0.998759, -0.0498085, 0, 0.0498085, 0.998759, 0, 2.63319, -2.63603 )
-script = ExtResource( 18 )
-
-[node name="Collision" type="CollisionShape" parent="Boat/SailToggleTrigger"]
-shape = SubResource( 16 )
-
-[node name="Indicator" type="CSGCylinder" parent="Boat/SailToggleTrigger"]
-visible = false
-invert_faces = true
-radius = 0.671666
-material = ExtResource( 23 )
-
 [node name="SteeringPointsCollection" type="Spatial" parent="Boat"]
 script = ExtResource( 26 )
 
@@ -428,6 +486,30 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.07099, 5.7718 )
 steered_obj = NodePath("../..")
 heave_func_name = "heave_mainsheet"
 ease_func_name = "ease_mainsheet"
+
+[node name="MainHaul" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+transform = Transform( 1.54146, 0, 0, 0, 1.54146, 0, 0, 0, 1.54146, 0, 2.75384, -3.0321 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_mainhaul"
+ease_func_name = "ease_mainhaul"
+
+[node name="JibHaul" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+transform = Transform( 1.54146, 0, 0, 0, 1.54146, 0, 0, 0, 1.54146, 0, 2.75384, -3.96333 )
+steered_obj = NodePath("../..")
+heave_func_name = "heave_jibhaul"
+ease_func_name = "ease_jibhaul"
+
+[node name="BilgePump" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+transform = Transform( 1.54146, 0, 0, 0, 1.54146, 0, 0, 0, 1.54146, 0, 2.501, 0.780871 )
+steered_obj = NodePath("../..")
+heave_func_name = "pump_bilge"
+ease_func_name = "pump_bilge"
+
+[node name="RepairStand" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+transform = Transform( 1.54146, 0, 0, 0, 1.54146, 0, 0, 0, 1.54146, 0, 2.501, -0.150359 )
+steered_obj = NodePath("../..")
+heave_func_name = "repair_hit_level"
+ease_func_name = "repair_hit_level"
 
 [node name="RibSheet" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.102, 2.486, -2.799 )
@@ -472,7 +554,23 @@ collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat/ItemCatchArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.26572 )
-shape = SubResource( 17 )
+shape = SubResource( 16 )
+
+[node name="JibFolder" type="Position3D" parent="Boat"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 13.2181, -3.17941 )
+
+[node name="Anchor" parent="Boat" instance=ExtResource( 18 )]
+transform = Transform( 0.556441, 0, -0.830887, 0, 1, 0, 0.830887, 0, 0.556441, 1.84937, 2.25486, -5.88615 )
+
+[node name="Crew" type="Spatial" parent="Boat"]
+script = ExtResource( 23 )
+
+[node name="Path" type="Path" parent="Boat/Crew"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98667, 0 )
+curve = SubResource( 17 )
+
+[node name="CrewSpawn" type="Position3D" parent="Boat/Crew"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.696, 0 )
 
 [node name="Bom" type="RigidBody" parent="."]
 transform = Transform( -0.998, 0, -8.74228e-08, 0, 1, 0, 8.72479e-08, 0, -1, 0, 6.52576, 1.39559 )
@@ -481,7 +579,6 @@ gravity_scale = 0.0
 script = ExtResource( 19 )
 lift_force = 3200.0
 direct_force = 3200.0
-is_sail_up = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Bom"]
 transform = Transform( 0.999996, 0, 0, 0, 1.00001, 0, 1.42109e-14, 0, 1, 0, 1.88153, 0 )
@@ -496,13 +593,13 @@ script = ExtResource( 1 )
 [node name="ForceOffset" type="Position3D" parent="Bom"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 5.68434e-14, 0, 1, -0.0161154, 2.21948, -1.96414 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Bom"]
+[node name="Bom" type="MeshInstance" parent="Bom"]
 transform = Transform( 0.627143, -2.00182e-09, -7.96057e-11, 1.99525e-09, 0.626904, 0.0172701, 2.44071e-11, -0.0172701, 0.626904, 0.227844, -7.85418, 1.31017 )
 mesh = ExtResource( 12 )
 material/0 = null
 
-[node name="MeshInstance2" type="MeshInstance" parent="Bom"]
-transform = Transform( 0.409281, -2.268e-08, 5.01642e-09, 2.25894e-08, 0.371103, -0.172607, 4.99643e-09, 0.172607, 0.371103, 0.147882, 3.33269, -0.519026 )
+[node name="Pik" type="MeshInstance" parent="Bom"]
+transform = Transform( 0.409281, -2.25894e-08, 4.99632e-09, 2.25894e-08, 0.371103, -0.172607, 4.99643e-09, 0.172607, 0.371103, 0.147882, 3.33269, -0.519026 )
 mesh = ExtResource( 12 )
 material/0 = null
 
@@ -514,7 +611,6 @@ gravity_scale = 0.0
 script = ExtResource( 19 )
 lift_force = 1600.0
 direct_force = 1600.0
-is_sail_up = false
 
 [node name="CollisionShape" type="CollisionShape" parent="fok_sheet"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38011e-07, 0, 2.72253 )
@@ -533,9 +629,14 @@ width = 0.98189
 height = 0.315117
 depth = 5.31987
 
-[node name="PlayerControl" type="Node" parent="."]
+[node name="Control" type="Node" parent="."]
 script = ExtResource( 16 )
 
-[connection signal="pressed" from="Boat/SailToggleTrigger" to="Boat" method="_on_sail_togle_trigger"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fold"
+anims/fold = SubResource( 22 )
+anims/jib_fold = SubResource( 23 )
+
+[connection signal="current_changed" from="Boat/SteeringPointsCollection" to="Boat/Crew" method="_on_SteeringPointsCollection_current_changed"]
 [connection signal="body_entered" from="Boat/ItemCatchArea" to="Boat" method="_on_ItemCatchArea_body_entered"]
 [connection signal="body_exited" from="Boat/ItemCatchArea" to="Boat" method="_on_ItemCatchArea_body_exited"]
