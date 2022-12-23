@@ -25,7 +25,7 @@ func set_pitch(pitch:float):
 func is_ready_to_fire() -> bool:
 	return (timer <= 0.0)
 
-func shoot():
+func fire():
 	if timer > 0.0: return
 	if not ball_proto: ball_proto = $CannonBall
 	var new_ball = ball_proto.duplicate()

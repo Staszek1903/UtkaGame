@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=107 format=2]
 
 [ext_resource path="res://game_env.tres" type="Environment" id=1]
 [ext_resource path="res://models/decimated_plane.obj" type="ArrayMesh" id=2]
@@ -28,7 +28,6 @@
 [ext_resource path="res://src/Vip.gd" type="Script" id=26]
 [ext_resource path="res://src/SpawnPlatformCutter.gd" type="Script" id=27]
 [ext_resource path="res://scenes/boats/NPCSloop.tscn" type="PackedScene" id=28]
-[ext_resource path="res://scenes/boats/LugBoat.tscn" type="PackedScene" id=29]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 47.803, 13.6902, 47.4266 )
@@ -12141,34 +12140,34 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28.4102
 transform = Transform( -4.37114e-08, 0.537697, -0.843138, 0, 0.843138, 0.537697, 1, 2.35035e-08, -3.68547e-08, -13.723, 12.781, 0.28241 )
 fov = 38.481
 
-[node name="UpgradeBuilding" type="Spatial" parent="BaseQuai"]
+[node name="UpgradeBuildingSloop" type="Spatial" parent="BaseQuai"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0.637195, -5.69397 )
 script = ExtResource( 17 )
 
-[node name="Button3D" parent="BaseQuai/UpgradeBuilding" instance=ExtResource( 15 )]
+[node name="Button3D" parent="BaseQuai/UpgradeBuildingSloop" instance=ExtResource( 15 )]
 transform = Transform( -1.04836e-07, -0.707107, 2.29165, -5.35004e-08, 0.707107, 2.29165, -3.62232, 1.00211e-08, -1.00171e-07, 0, 0, 0 )
 text = "BUILD SLOOP"
 
-[node name="ItemRequirement" parent="BaseQuai/UpgradeBuilding" instance=ExtResource( 18 )]
+[node name="ItemRequirement" parent="BaseQuai/UpgradeBuildingSloop" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602, -0.761, -0.317 )
 
-[node name="ItemRequirement2" parent="BaseQuai/UpgradeBuilding" instance=ExtResource( 18 )]
+[node name="ItemRequirement2" parent="BaseQuai/UpgradeBuildingSloop" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.516, -0.679, 1.257 )
 item_name = "Fabric"
 quantity = 5
 
-[node name="UpgradeBuilding2" type="Spatial" parent="BaseQuai"]
+[node name="UpgradeBuildingCutter" type="Spatial" parent="BaseQuai"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0.637, 5.46475 )
 script = ExtResource( 17 )
 
-[node name="Button3D" parent="BaseQuai/UpgradeBuilding2" instance=ExtResource( 15 )]
+[node name="Button3D" parent="BaseQuai/UpgradeBuildingCutter" instance=ExtResource( 15 )]
 transform = Transform( -1.04836e-07, -0.707107, 2.29165, -5.35004e-08, 0.707107, 2.29165, -3.62232, 1.00211e-08, -1.00171e-07, 0, 0, 0 )
 text = "BUILD CUTTER"
 
-[node name="ItemRequirement" parent="BaseQuai/UpgradeBuilding2" instance=ExtResource( 18 )]
+[node name="ItemRequirement" parent="BaseQuai/UpgradeBuildingCutter" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.602, -0.761, -0.317 )
 
-[node name="ItemRequirement2" parent="BaseQuai/UpgradeBuilding2" instance=ExtResource( 18 )]
+[node name="ItemRequirement2" parent="BaseQuai/UpgradeBuildingCutter" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.516, -0.679, 1.257 )
 item_name = "Steel"
 
@@ -12193,6 +12192,11 @@ item_name = "Steel"
 transform = Transform( 1, 5.96046e-08, 3.55271e-15, 5.96046e-08, 1, -1.77636e-15, -3.55271e-15, -9.47311e-16, 1, 2.52362, 1.63956, 4.18451 )
 unlock_id = 3
 item_name = "Crew"
+
+[node name="CannonProductionBuilding" parent="BaseQuai" instance=ExtResource( 16 )]
+transform = Transform( 1, 5.96046e-08, 3.55271e-15, 5.96046e-08, 1, -1.77636e-15, -3.55271e-15, -9.47311e-16, 1, 2.52362, 1.63956, -2.13367 )
+unlock_id = 3
+item_name = "Cannon"
 
 [node name="SpawnPlatformSloop" type="Spatial" parent="BaseQuai"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.57225, 1.87044, -12.2107 )
@@ -12233,6 +12237,9 @@ depth = 11.8339
 transform = Transform( 0.707106, -0.707106, -1.4894e-09, 0.707107, 0.707106, -1.04308e-07, -4.35972e-08, -6.07109e-08, 0.999999, 3.04377, -2.36268, 0 )
 use_collision = true
 depth = 11.622
+
+[node name="Cutter" parent="BaseQuai" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.88152, 0, 0 )
 
 [node name="Lighthouse" parent="." instance=ExtResource( 11 )]
 transform = Transform( 0.516952, 0, 0.856014, 0, 1, 0, -0.856014, 0, 0.516952, -15.7906, 0.663678, -24.0496 )
@@ -12753,9 +12760,6 @@ anims/SwordSlash = SubResource( 76 )
 anims/Walk = SubResource( 77 )
 anims/Walk_Carry = SubResource( 78 )
 
-[node name="LugBoat" parent="." instance=ExtResource( 29 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 113.806, 0, -111.664 )
-
 [connection signal="area_entered" from="WaterTile/Area" to="WaterTile" method="_on_Area_area_entered"]
 [connection signal="upgraded" from="Island1/Quai/UpgradeBuilding" to="Island1/Quai/Vip" method="_on_UpgradeBuilding_upgraded"]
 [connection signal="pressed" from="Island1/Quai/UpgradeBuilding/Button3D" to="Island1/Quai/UpgradeBuilding" method="_on_Button3D_pressed"]
@@ -12765,10 +12769,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 113.806, 0, -111.664 )
 [connection signal="pressed" from="Island3/Quai/UpgradeBuilding/Button3D" to="Island3/Quai/UpgradeBuilding" method="_on_Button3D_pressed"]
 [connection signal="race_won" from="Island3/Quai/NPCSloop/Control" to="BaseQuai/SteelProductionBuilding" method="force_unlock"]
 [connection signal="mooring_on" from="BaseQuai" to="Island3/Quai/NPCSloop/Control" method="_on_BaseQuai_mooring_on"]
-[connection signal="upgraded" from="BaseQuai/UpgradeBuilding" to="BaseQuai/SpawnPlatformSloop" method="_on_UpgradeBuilding_upgraded"]
-[connection signal="pressed" from="BaseQuai/UpgradeBuilding/Button3D" to="BaseQuai/UpgradeBuilding" method="_on_Button3D_pressed"]
-[connection signal="upgraded" from="BaseQuai/UpgradeBuilding2" to="BaseQuai/SpawnPlatformCutter" method="_on_UpgradeBuilding2_upgraded"]
-[connection signal="pressed" from="BaseQuai/UpgradeBuilding2/Button3D" to="BaseQuai/UpgradeBuilding2" method="_on_Button3D_pressed"]
+[connection signal="upgraded" from="BaseQuai/UpgradeBuildingSloop" to="BaseQuai/SpawnPlatformSloop" method="_on_UpgradeBuilding_upgraded"]
+[connection signal="pressed" from="BaseQuai/UpgradeBuildingSloop/Button3D" to="BaseQuai/UpgradeBuildingSloop" method="_on_Button3D_pressed"]
+[connection signal="upgraded" from="BaseQuai/UpgradeBuildingCutter" to="BaseQuai/SpawnPlatformCutter" method="_on_UpgradeBuilding2_upgraded"]
+[connection signal="pressed" from="BaseQuai/UpgradeBuildingCutter/Button3D" to="BaseQuai/UpgradeBuildingCutter" method="_on_Button3D_pressed"]
 [connection signal="upgraded" from="Lighthouse/UpgradeBuilding" to="Lighthouse/Lighthouse" method="light_the_candle"]
 [connection signal="pressed" from="Lighthouse/UpgradeBuilding/Button3D" to="Lighthouse/UpgradeBuilding" method="_on_Button3D_pressed"]
 [connection signal="upgraded" from="FoodGuy/UpgradeBuilding" to="FoodGuy/Vip" method="_on_UpgradeBuilding_upgraded"]

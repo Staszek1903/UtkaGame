@@ -63,5 +63,5 @@ shader = SubResource( 1 )
 shader_param/offset = Vector2( 0, 0 )
 shader_param/amplitude = 0.202
 shader_param/frequency = 0.295
-shader_param/time = 5163.0
+shader_param/time = 594.151
 shader_param/water_color = Color( 0.298039, 0.647059, 0.72549, 1 )

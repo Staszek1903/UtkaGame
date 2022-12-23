@@ -2,6 +2,7 @@ extends Node
 
 onready var boat = $"../Boat"
 onready var steering_points = $"../Boat/SteeringPointsCollection"
+onready var cannons = $"../Boat/Cannons"
 
 var current:bool = false setget set_current
 
@@ -42,8 +43,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("togle_alt"):
 		steering_points.scroll_point(-1)
 
-#	if Input.is_action_just_pressed("shoot"):
-#		boat.shoot()
+	if Input.is_action_just_pressed("shoot"):
+		if cannons: cannons.fire()
 	if Input.is_action_just_pressed("action"):
 		boat.catch_items()
 	if Input.is_action_just_released("action"):

@@ -90,6 +90,10 @@ func give_items(item_name:String, quantity:int, building:Spatial):
 	if item_name == "Crew":
 		give_crew()
 		return
+	
+	if item_name == "Cannon":
+		give_cannon()
+		return
 
 	var hold = get_boat_hold()
 	var cap = hold.get_capacity(item_name)
@@ -105,6 +109,11 @@ func give_crew():
 	var crew = get_boat().get_node("Crew")
 	assert(crew)
 	crew.spawn()
+	
+func give_cannon():
+	var cannons = get_boat().get_node("Cannons")
+	if not cannons: return
+	cannons.add_cannon()
 	
 func withdraw_items(item_name, quantity):
 	var hold = get_boat_hold()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://src/ForceDebug.gd" type="Script" id=1]
 [ext_resource path="res://models/lug_boat_helm.gltf" type="PackedScene" id=2]
@@ -27,6 +27,8 @@
 [ext_resource path="res://scenes/SteeringPoint.tscn" type="PackedScene" id=25]
 [ext_resource path="res://src/SteeringPointsCollection.gd" type="Script" id=26]
 [ext_resource path="res://scenes/CargoHold.tscn" type="PackedScene" id=27]
+[ext_resource path="res://scenes/objects/Cannon.tscn" type="PackedScene" id=28]
+[ext_resource path="res://src/Cannons.gd" type="Script" id=29]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -571,6 +573,33 @@ curve = SubResource( 17 )
 
 [node name="CrewSpawn" type="Position3D" parent="Boat/Crew"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.696, 0 )
+
+[node name="Cannons" type="Spatial" parent="Boat"]
+script = ExtResource( 29 )
+
+[node name="Cannon1" parent="Boat/Cannons" instance=ExtResource( 28 )]
+transform = Transform( -1.45384e-08, 0, 0.332599, 0, 0.332599, 0, -0.332599, 0, -1.45384e-08, -1.29264, 2.6182, 1.40297 )
+visible = false
+
+[node name="Cannon2" parent="Boat/Cannons" instance=ExtResource( 28 )]
+transform = Transform( -1.45384e-08, 0, 0.332599, 0, 0.332599, 0, -0.332599, 0, -1.45384e-08, -1.29264, 2.6182, -0.7292 )
+visible = false
+
+[node name="Cannon3" parent="Boat/Cannons" instance=ExtResource( 28 )]
+transform = Transform( -1.45384e-08, 0, 0.332599, 0, 0.332599, 0, -0.332599, 0, -1.45384e-08, -1.29264, 2.6182, -3.19427 )
+visible = false
+
+[node name="Cannon4" parent="Boat/Cannons" instance=ExtResource( 28 )]
+transform = Transform( 4.36151e-08, 0, -0.332599, 0, 0.332599, 0, 0.332599, 0, 4.36151e-08, 0.985175, 2.6182, -3.19427 )
+visible = false
+
+[node name="Cannon5" parent="Boat/Cannons" instance=ExtResource( 28 )]
+transform = Transform( 4.36151e-08, 0, -0.332599, 0, 0.332599, 0, 0.332599, 0, 4.36151e-08, 0.985175, 2.6182, -1.06209 )
+visible = false
+
+[node name="Cannon6" parent="Boat/Cannons" instance=ExtResource( 28 )]
+transform = Transform( 4.36151e-08, 0, -0.332599, 0, 0.332599, 0, 0.332599, 0, 4.36151e-08, 0.985175, 2.6182, 1.40297 )
+visible = false
 
 [node name="Bom" type="RigidBody" parent="."]
 transform = Transform( -0.998, 0, -8.74228e-08, 0, 1, 0, 8.72479e-08, 0, -1, 0, 6.52576, 1.39559 )
