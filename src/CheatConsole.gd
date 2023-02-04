@@ -2,14 +2,20 @@ extends LineEdit
 
 onready var console_out = $ConsoleOut
 
+func _ready():
+	var file = File.new()
+	if file.file_exists("user://savegame.save"):
+		call_deferred("load_", [])
+
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		match(event.scancode):
-			KEY_TAB:
+			KEY_F9:
 				visible = true
 				grab_focus()
 				get_tree().paused = true
 			KEY_ESCAPE:
+				if not visible: return
 				console_out.visible = false
 				visible = false
 				get_tree().paused = false
@@ -62,6 +68,16 @@ func get_boat_hold():
 	assert(hold)
 	return hold
 	
+var lug_scene = preload("res://scenes/boats/LugBoat.tscn")
+var sloop_scene = preload("res://scenes/boats/SloopBoat.tscn")
+var cutter_scene = preload("res://scenes/boats/Cutter.tscn")
+
+func spawn_new_boat(boat_scene:PackedScene, old_boat:Spatial, origin:Vector3):
+	old_boat.get_parent().queue_free()
+	var new_boat = boat_scene.instance()
+	get_tree().get_root().add_child(new_boat)
+	new_boat.global_transform.origin = origin
+	
 #################################################
 #					COMMANDS					#
 #################################################
@@ -75,7 +91,7 @@ func get_boat_hold():
 #	return:{class_name:, hint:0, hint_string:, name:, type:0, usage:7}
 #}
 
-func help_(args = []):
+func help_(_args = []):
 	for m in get_method_list():
 		var name = m["name"]
 		if name[name.length()-1] == "_":
@@ -100,7 +116,7 @@ func give_(args = []):
 	hold.add_items({item:count})
 	
 
-func unlockall_(args = []):
+func unlockall_(_args = []):
 	get_tree().call_group("production_building", "set_state", 1)
 
 func crew_(args = []):
@@ -111,6 +127,17 @@ func crew_(args = []):
 	assert(crew)
 	for i in quantity:
 		crew.spawn()
+		
+func cannon_(args = []):
+	var quantity:int = 6
+	if args.size() == 1 and args[0].is_valid_integer():
+		quantity = int(args[0])
+	
+	var cannons = get_boat().get_node("Cannons")
+	if not cannons: return
+	
+	for i in quantity:
+		cannons.add_cannon()
 
 func hit_(args = []):
 	var quantity:int = 1
@@ -122,11 +149,74 @@ func hit_(args = []):
 #func unlockprod_(args = []):
 #	pass
 
-func godmode_(args = []):
+func godmode_(_args = []):
 	var boat = get_boat()
 	boat.godmode = not boat.godmode
 	cout("godmode "+ str(boat.godmode))
 
-#func tp_(args = []):
-#	pass
+func tp_(args = []):
+	if args.size() != 2:
+		cout("usage: tp <x> <y>")
+		return
+
+	if not args[0].is_valid_float() \
+	or not args[1].is_valid_float():
+		cout("args expected to be valid floats")
+		return
+
+	var x = float(args[0])
+	var y = float(args[1])
 	
+	var old_boat:RigidBody = get_boat()
+	var origin = Vector3(x, 1.0, y)
+	var path:String = old_boat.get_parent().get_path()
+	var scene = null
+	if path.find("Cutter") != -1:
+		scene = cutter_scene
+	elif path.find("Sloop") != -1:
+		scene = sloop_scene
+	elif path.find("Lug") != -1:
+		scene = lug_scene
+	if scene:
+		spawn_new_boat(scene, old_boat, origin)
+
+
+func cutter_(_args = []):
+	var old_boat = get_boat()
+	var origin = old_boat.global_transform.origin
+	spawn_new_boat(cutter_scene,old_boat,origin)
+	
+func sloop_(_args = []):
+	var old_boat = get_boat()
+	var origin = old_boat.global_transform.origin
+	spawn_new_boat(sloop_scene,old_boat,origin)
+	
+func lug_(_args = []):
+	var old_boat = get_boat()
+	var origin = old_boat.global_transform.origin
+	spawn_new_boat(lug_scene,old_boat,origin)
+	
+	
+func save_(_args = []):
+	var save_manager = $"/root/Root/SaveManager"
+	if not save_manager: return
+	var boat = get_boat()
+	save_manager.update_data(boat)
+	save_manager.save_data()
+	
+func load_(_args = []):
+	var save_manager = $"/root/Root/SaveManager"
+	if not save_manager: return
+	var boat = get_boat()
+	boat.delete_current()
+	save_manager.load_data()
+	save_manager.load_game()
+
+func unsave_(_args = []):
+	var dir = Directory.new()
+	dir.remove("user://savegame.save")
+
+	
+func sepuku_(_args = []):
+	var boat = get_boat()
+	boat.set_floaters_enabled(false)

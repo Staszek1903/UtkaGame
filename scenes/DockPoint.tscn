@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/DockPoint.gd" type="Script" id=1]
-[ext_resource path="res://scenes/IconBaner.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -30,12 +29,6 @@ radius = 0.200848
 transform = Transform( 0.490844, 0, 0, 0, -2.14555e-08, -0.490844, 0, 0.490844, -2.14555e-08, 0, 0.170606, 0 )
 radius = 0.133807
 height = 0.806727
-
-[node name="IconBaner" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886206, 0 )
-visible = false
-dimentions = Vector2( 0.05, 0.05 )
-resolution = 1200
 
 [node name="Indicator" type="CSGSphere" parent="."]
 visible = false

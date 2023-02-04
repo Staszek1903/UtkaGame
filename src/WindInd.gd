@@ -12,7 +12,7 @@ func _ready():
 	assert(wind_manager)
 
 func _process(_delta):
-	if body:
+	if body and is_instance_valid(body):
 		var basis = body.global_transform.basis
 		var global_real_wind : Vector3 = wind_manager.global_wind_vector \
 			* wind_manager.wind_speed

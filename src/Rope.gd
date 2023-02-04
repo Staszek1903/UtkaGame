@@ -59,7 +59,7 @@ func _process(delta):
 	draw_rope()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if fsx_enabled: apply_force()
 
 #	var posA = $EndA.transform.origin
@@ -170,8 +170,8 @@ func apply_force(magnitude:float = 0.0):
 	
 	var pointA = aNA.global_transform.basis.xform(offsetA)
 	var pointB = aNB.global_transform.basis.xform(offsetA)
-	var global_posA = pointA + aNA.global_transform.origin
-	var global_posB = pointB + aNB.global_transform.origin
+	#var global_posA = pointA + aNA.global_transform.origin
+	#var global_posB = pointB + aNB.global_transform.origin
 	var difference_vect:Vector3 = endA.global_transform.origin - endB.global_transform.origin
 	
 	var stretch = difference_vect.length() - length
@@ -205,10 +205,10 @@ func set_length(val):
 		if not atachmentNodeA or not atachmentNodeB : 
 			length = 0.0
 			return  
-		var pointA = atachmentNodeA.global_transform.basis.xform(offsetA)
-		var pointB = atachmentNodeB.global_transform.basis.xform(offsetA)
-		var global_posA = pointA + atachmentNodeA.global_transform.origin
-		var global_posB = pointB + atachmentNodeB.global_transform.origin
+		#var pointA = atachmentNodeA.global_transform.basis.xform(offsetA)
+		#var pointB = atachmentNodeB.global_transform.basis.xform(offsetA)
+		#var global_posA = pointA + atachmentNodeA.global_transform.origin
+		#var global_posB = pointB + atachmentNodeB.global_transform.origin
 		var difference_vect:Vector3 = endA.global_transform.origin - endB.global_transform.origin
 		length = difference_vect.length()
 		print("rope ustawioned na ", length)

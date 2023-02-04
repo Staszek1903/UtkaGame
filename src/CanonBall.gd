@@ -1,9 +1,11 @@
 extends RigidBody
 
-func _physics_process(delta):
+var self_boat:Spatial = null
+
+func _physics_process(_delta):
 	add_central_force(Vector3.DOWN * mass * 9.8)
 
-func decay(seconds):
+func decay(_seconds):
 	#print("TO BE FREED")
 	yield(get_tree().create_timer(10), "timeout")
 	queue_free()
@@ -11,7 +13,11 @@ func decay(seconds):
 
 
 func _on_DamageTrigger_body_entered(body):
-	print("DAMAGE TRIGGE: ", body.name)
+	print("DAMAGE TRIGGE: ", body, " ", body.name, " self: ", self_boat)
+	if body == self_boat:
+		print("SELF DAMAGE")
+		return
+	
 	if body.has_method("receive_damage"):
 		print("damage dealt")
 		body.receive_damage(1)

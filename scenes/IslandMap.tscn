@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/IslandPos.gd" type="Script" id=1]
+[ext_resource path="res://scenes/HomeIsland.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/VillageIsland.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ShipyardIsland.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/CannonIsland.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/PiratesIsland.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/LootIsland.tscn" type="PackedScene" id=7]
+
+[node name="IslandMap" type="Node2D"]
+
+[node name="HomeIsland" type="Position2D" parent="."]
+script = ExtResource( 1 )
+scene = ExtResource( 2 )
+
+[node name="VillageIsland" type="Position2D" parent="."]
+position = Vector2( 30, -6 )
+script = ExtResource( 1 )
+scene = ExtResource( 3 )
+
+[node name="ShipyardIsland" type="Position2D" parent="."]
+position = Vector2( 64, 4 )
+script = ExtResource( 1 )
+scene = ExtResource( 4 )
+
+[node name="CannonIsland" type="Position2D" parent="."]
+position = Vector2( 96, -6 )
+script = ExtResource( 1 )
+scene = ExtResource( 5 )
+
+[node name="PirateIsland" type="Position2D" parent="."]
+position = Vector2( 127, 5 )
+script = ExtResource( 1 )
+scene = ExtResource( 6 )
+
+[node name="LootIsland" type="Position2D" parent="."]
+position = Vector2( 10, 20 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland2" type="Position2D" parent="."]
+position = Vector2( 8, -24 )
+script = ExtResource( 1 )
+scene = ExtResource( 6 )
+
+[node name="LootIsland3" type="Position2D" parent="."]
+position = Vector2( 54, -20 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland4" type="Position2D" parent="."]
+position = Vector2( 105, 29 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland7" type="Position2D" parent="."]
+position = Vector2( 79, -53 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland8" type="Position2D" parent="."]
+position = Vector2( 33, -57 )
+script = ExtResource( 1 )
+scene = ExtResource( 6 )
+
+[node name="LootIsland9" type="Position2D" parent="."]
+position = Vector2( -33, -1 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland10" type="Position2D" parent="."]
+position = Vector2( 161, -13 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland5" type="Position2D" parent="."]
+position = Vector2( 52, 32 )
+script = ExtResource( 1 )
+scene = ExtResource( 6 )
+
+[node name="LootIsland6" type="Position2D" parent="."]
+position = Vector2( 121, -33 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://materials/simple_water_shader.tres" type="Material" id=1]
+[ext_resource path="res://models/circular_pretessellated_water2.obj" type="ArrayMesh" id=2]
+
+[node name="WaterMesh" type="MeshInstance"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0.103551, -51.702 )
+layers = 2
+cast_shadow = 0
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 1 )

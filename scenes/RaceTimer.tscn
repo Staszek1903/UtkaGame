@@ -3,15 +3,16 @@
 [ext_resource path="res://fonts/montreal/Montreal.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/RaceTimer.gd" type="Script" id=2]
 
-[sub_resource type="Theme" id=8]
+[sub_resource type="Theme" id=1]
 
 [node name="RaceTimer" type="Label"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -231.0
 margin_right = 234.0
 margin_bottom = 69.0
-theme = SubResource( 8 )
+theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "SAMPLE TEXT"
 align = 1

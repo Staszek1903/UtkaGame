@@ -5,7 +5,7 @@ onready var needle = $Needle
 onready var label = $PanelContainer/Label
 	
 func _process(_delta):
-	if body:
+	if body and is_instance_valid(body):
 		var vel = body.linear_velocity
 		vel = body.global_transform.basis.xform_inv(vel)
 		var s:float = -vel.z

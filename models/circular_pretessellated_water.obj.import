@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/circular_pretessellated_water.obj-0e12b5d9d8dfd3629578270bd9ce853a.mesh"
+
+[deps]
+
+files=[ "res://.import/circular_pretessellated_water.obj-0e12b5d9d8dfd3629578270bd9ce853a.mesh" ]
+
+source_file="res://models/circular_pretessellated_water.obj"
+dest_files=[ "res://.import/circular_pretessellated_water.obj-0e12b5d9d8dfd3629578270bd9ce853a.mesh", "res://.import/circular_pretessellated_water.obj-0e12b5d9d8dfd3629578270bd9ce853a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

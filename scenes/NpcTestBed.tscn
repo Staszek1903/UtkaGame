@@ -1,17 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/SpawnPlatform.tscn" type="PackedScene" id=1]
-[ext_resource path="res://models/decimated_plane.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://src/WaterTile.gd" type="Script" id=3]
+[ext_resource path="res://scenes/WaterMesh.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/IslandsManager.gd" type="Script" id=3]
 [ext_resource path="res://src/WaterManager.gd" type="Script" id=4]
-[ext_resource path="res://materials/simple_water_shader.tres" type="Material" id=5]
 [ext_resource path="res://scenes/boats/NPCSloop.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/free_camera.gd" type="Script" id=11]
 [ext_resource path="res://scenes/objects/WaterGate.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/boats/SloopBoat.tscn" type="PackedScene" id=14]
-
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 47.803, 13.6902, 47.4266 )
 
 [node name="Root" type="Spatial"]
 
@@ -23,24 +19,8 @@ script = ExtResource( 11 )
 
 [node name="WaterManager" type="Node" parent="."]
 script = ExtResource( 4 )
-amplitude = 0.202
 frequency = 0.295
-
-[node name="WaterTile" type="Spatial" parent="."]
-transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -93.1954 )
-script = ExtResource( 3 )
-
-[node name="Area" type="Area" parent="WaterTile"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape" type="CollisionShape" parent="WaterTile/Area"]
-shape = SubResource( 1 )
-
-[node name="WaterMesh" type="MeshInstance" parent="WaterTile"]
-layers = 2
-mesh = ExtResource( 2 )
-material/0 = ExtResource( 5 )
+dynamic_amplitude = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 
@@ -75,6 +55,10 @@ next_gate = NodePath("../WaterGate")
 [node name="SloopBoat" parent="." instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8484, 0, -121.763 )
 
-[connection signal="area_entered" from="WaterTile/Area" to="WaterTile" method="_on_Area_area_entered"]
+[node name="WaterMesh" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="IslandsManager" type="Spatial" parent="."]
+script = ExtResource( 3 )
 
 [editable path="NPCSloop"]

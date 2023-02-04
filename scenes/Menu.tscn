@@ -1,0 +1,142 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/Compass.gd" type="Script" id=1]
+[ext_resource path="res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/Button3D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=4]
+[ext_resource path="res://src/Menu.gd" type="Script" id=5]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.5
+bounce = 0.5
+
+[sub_resource type="CylinderShape" id=2]
+radius = 1.29585
+height = 0.180308
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 7.01828, 3.768, 0.244368 )
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.5
+bounce = 0.1
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 1.30008, 0.116101, 0.369921 )
+
+[sub_resource type="PhysicsMaterial" id=6]
+friction = 0.5
+bounce = 0.1
+
+[sub_resource type="Environment" id=7]
+
+[sub_resource type="DynamicFont" id=8]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="Menu" type="Spatial"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+script = ExtResource( 5 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.16891 )
+
+[node name="CompasBody" type="RigidBody" parent="."]
+transform = Transform( -0.90584, 0.349706, -0.239081, -0.252261, 0.00809915, 0.967625, 0.340321, 0.936824, 0.0808808, 1.312, -0.618, 4.31421 )
+physics_material_override = SubResource( 1 )
+angular_velocity = Vector3( 0, 0, 6 )
+angular_damp = 0.15
+
+[node name="Compass" type="Spatial" parent="CompasBody"]
+transform = Transform( 0.7, 6.84522e-09, 1.27502e-17, -6.84522e-09, 0.7, 0, -1.27502e-17, -1.24683e-25, 0.7, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="CompasBody/Compass"]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CompasBody/Compass/CSGCombiner"]
+radius = 1.81784
+height = 0.350239
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CompasBody/Compass/CSGCombiner"]
+operation = 2
+radius = 1.63846
+height = 1.34735
+
+[node name="Arrow" type="CSGPolygon" parent="CompasBody/Compass"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+polygon = PoolVector2Array( -0.336674, 0.00579411, 0, 1.476, 0.310623, 0.00150226, 0, -1.476 )
+depth = 0.2
+
+[node name="Tween" type="Tween" parent="CompasBody/Compass"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CompasBody"]
+shape = SubResource( 2 )
+
+[node name="Table" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Table"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.824857 )
+shape = SubResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="Table"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4028e-07, 0, -1.60461 )
+width = 8.65787
+height = 5.39683
+material = ExtResource( 4 )
+
+[node name="StartBody" type="RigidBody" parent="."]
+transform = Transform( -0.844515, -0.535532, -2.34089e-08, 0, -4.37114e-08, 1, -0.535532, 0.844515, 3.69149e-08, -0.0656643, 1.28394, 9.30399 )
+physics_material_override = SubResource( 4 )
+angular_velocity = Vector3( 0, 0, 0.1 )
+angular_damp = 0.15
+
+[node name="StartButton" parent="StartBody" instance=ExtResource( 3 )]
+transform = Transform( 3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0 )
+text = "SAIL"
+
+[node name="CollisionShape" type="CollisionShape" parent="StartBody"]
+shape = SubResource( 5 )
+
+[node name="QuitBody" type="RigidBody" parent="."]
+transform = Transform( -0.930948, 0.365153, 1.59613e-08, 0, -4.37114e-08, 1, 0.365153, 0.930948, 4.0693e-08, -1.86733, -0.389523, 16.99 )
+physics_material_override = SubResource( 6 )
+angular_damp = 0.15
+
+[node name="QuitButton" parent="QuitBody" instance=ExtResource( 3 )]
+transform = Transform( 3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0 )
+text = "QUIT"
+
+[node name="CollisionShape" type="CollisionShape" parent="QuitBody"]
+shape = SubResource( 5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )
+
+[node name="OmniLight" type="OmniLight" parent="WorldEnvironment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64021, 0.988054, -2.60611 )
+omni_range = 6.14613
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.5
+margin_top = -30.0
+margin_right = 115.5
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 8 )
+text = "LOADING..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="input_event" from="CompasBody" to="CompasBody/Compass" method="_on_Area_input_event"]
+[connection signal="input_event" from="Table" to="CompasBody/Compass" method="_on_Area_input_event"]
+[connection signal="input_event" from="StartBody/StartButton" to="CompasBody/Compass" method="_on_Area_input_event"]
+[connection signal="pressed" from="StartBody/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="input_event" from="QuitBody/QuitButton" to="CompasBody/Compass" method="_on_Area_input_event"]
+[connection signal="pressed" from="QuitBody/QuitButton" to="." method="_on_QuitButton_pressed"]

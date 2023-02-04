@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ships-bell-ringtone2.mp3-68074d2ca960b87edfcd994201d770a5.mp3str"
+
+[deps]
+
+source_file="res://souds/ships-bell-ringtone2.mp3"
+dest_files=[ "res://.import/ships-bell-ringtone2.mp3-68074d2ca960b87edfcd994201d770a5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

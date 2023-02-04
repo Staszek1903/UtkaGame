@@ -1,6 +1,7 @@
 extends Position3D
 
 onready var waterManager = $"/root/Root/WaterManager"
+onready var islandManager = $"/root/Root/IslandsManager"
 onready var body: RigidBody =$"../"
 # POZOR: system gravity used as wind force for sails simulation
 #onready var gravity_magnitude : float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -16,7 +17,9 @@ onready var gravity_vector = Vector3(0,-1,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
 	assert(waterManager)
+	assert(islandManager)
 	#print(gravity_magnitude)
 	#body.linear_damp = 0.9
 	#body.angular_damp = 1
@@ -36,9 +39,12 @@ func _physics_process(delta):
 	var h = global_pos.y
 	var wave_h = 0.0
 	#if is_instance_valid(waterManager):
-	wave_h = waterManager.wave(Vector2(global_pos.x, global_pos.z))
-	
-	h = h - wave_h
+	if waterManager:
+		wave_h = waterManager.wave(Vector2(global_pos.x, global_pos.z))
+	else:
+		wave_h = 0.0
+
+	h = h - wave_h + islandManager.get_height_rel_to_camera(global_pos)
 	
 	if h < 0.0 :
 		var submerged = clamp( -h /depthBeforeSubmerged, 0,1)

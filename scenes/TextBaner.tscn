@@ -3,11 +3,15 @@
 [ext_resource path="res://src/TextBaner.gd" type="Script" id=1]
 [ext_resource path="res://fonts/montreal/Montreal-Bold.ttf" type="DynamicFontData" id=3]
 
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 3 )
+
 [sub_resource type="QuadMesh" id=1]
 resource_local_to_scene = true
 size = Vector2( 0.5, 0.1 )
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=5]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="SpatialMaterial" id=3]
@@ -22,21 +26,12 @@ params_alpha_scissor_threshold = 0.5
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_texture = SubResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-font_data = ExtResource( 3 )
+albedo_texture = SubResource( 5 )
 
 [node name="TextBanner" type="Spatial"]
 script = ExtResource( 1 )
 dimentions = Vector2( 0.5, 0.1 )
 resolution = 600
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 300, 60 )
@@ -50,3 +45,8 @@ text = "F"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )

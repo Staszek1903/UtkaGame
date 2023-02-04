@@ -4,10 +4,14 @@ export(float) var recoil_time:float = 2.0
 export(float) var ball_velocity = 200.0
 var timer: float = 0
 onready var ball_proto:Spatial = $CanonBall
+onready var aim_cone:Spatial = $CanonBarrel/AimCone
+onready var boat = get_parent().get_parent()
 
 
 func _ready():
-	$CanonBall.get_parent().remove_child($CanonBall)
+	if not ball_proto: ball_proto = $CannonBall
+	ball_proto.get_parent().remove_child(ball_proto)
+	#print("cannon boat ", ball_proto.self_boat, " ", boat.name)
 
 func _process(delta):
 	if timer > 0.0:
@@ -20,7 +24,7 @@ func _process(delta):
 #		shoot()
 		
 func set_pitch(pitch:float):
-	$CanonBarrel.rotation.x = pitch
+	$CanonBarrel.rotation.x = clamp(pitch, 0.0 , 1.0)
 	
 func is_ready_to_fire() -> bool:
 	return (timer <= 0.0)
@@ -32,6 +36,7 @@ func fire():
 	get_tree().get_root().add_child(new_ball)
 	new_ball.global_transform = $CanonBarrel/ShootPos.global_transform
 	new_ball.decay(10)
+	new_ball.self_boat = boat
 	timer = recoil_time
 	var shooting_normal = -$CanonBarrel.global_transform.basis.z.normalized()
 	new_ball.linear_velocity =  shooting_normal * ball_velocity

@@ -4,8 +4,8 @@ var items:Dictionary = {}
 var capacity:Dictionary = {}
 const default_capacity = 16
 
-func _ready():
-	pass
+#func _ready():
+#	update_text()
 	
 func add_items(items_to_add:Dictionary):
 	for i in items_to_add.keys():
@@ -25,7 +25,7 @@ func withdraw_items(items_to_withdraw:Dictionary):
 	for i in items_to_withdraw.keys():
 		if i in items:
 			items[i] -= items_to_withdraw[i]
-			if items[i] < 0: items.erase(i)
+			if items[i] < 0: var _b = items.erase(i)
 	
 	update_text()
 	
@@ -44,8 +44,11 @@ func update_text():
 	for key in items.keys():
 		item_text += "%s : %s/%s\n" % [key, items[key], capacity[key]]
 		print(">>", item_text, "<<")
+	if items.size() == 0:
+		item_text = "Cargo empty"
+
 	$TextBanner.text = item_text
-	$TextBanner.dimentions = Vector2(0.5, items.size()* 0.1)
+	$TextBanner.dimentions = Vector2(0.5, max(1,items.size()) * 0.1)
 
 func _on_CargoHold_mouse_entered():
 	update_text()

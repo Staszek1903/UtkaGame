@@ -4,9 +4,14 @@ signal action
 signal mooring_off
 signal mooring_on
 
-onready var quai_camera = $Camera
+export(String) var diary_message = null
+#onready var quai_camera = $Camera
+onready var diary = $"/root/Ui/Diary"
+onready var save_manager = $"/root/Root/SaveManager"
 #var boat_camera = null
 
+
+var previously_visited:bool = false
 var mooring_counter:Dictionary = {}
 var last_boat = null
 
@@ -21,9 +26,9 @@ func _on_DockPoint_action(boat):
 	emit_signal("action")
 	print("QUAI ACTION ", boat)
 	
-	switch_to_village_look()
-	update_requirement_buildings()
-	update_unlockables()
+#	switch_to_village_look()
+#	update_requirement_buildings()
+#	update_unlockables()
 	
 	
 func _on_DockPoint_mooring_off(boat):
@@ -40,6 +45,13 @@ func _on_DockPoint_mooring_on(boat):
 	print("MOORING ON ", boat)
 	log_boat(boat)
 	
+	switch_to_village_look()
+	update_requirement_buildings()
+	update_unlockables()
+	update_diary()
+	
+
+	
 func log_boat(boat):
 	if boat in mooring_counter:
 		mooring_counter[boat] += 1
@@ -47,6 +59,9 @@ func log_boat(boat):
 		mooring_counter[boat] = 1
 		
 	last_boat = boat
+	save_manager.update_data(boat)
+	save_manager.save_data()
+	
 		
 func checkout_boat(boat):
 	if not boat in mooring_counter: return
@@ -54,14 +69,16 @@ func checkout_boat(boat):
 	
 	
 func switch_to_village_look():
-	if not quai_camera: return
-	if quai_camera.current: return
-#	boat_camera = get_viewport().get_camera()	
-	quai_camera.current = true
-	
 	for child in get_children():
 		if child.has_method("set_lock_ui"):
 			child.set_lock_ui(false)
+	
+#	if not quai_camera: return
+#	if quai_camera.current: return
+##	boat_camera = get_viewport().get_camera()	
+#	quai_camera.current = true
+	
+	
 	
 func switch_to_boat_look(boat):
 	boat.set_current()
@@ -71,6 +88,16 @@ func switch_to_boat_look(boat):
 	for child in get_children():
 		if child.has_method("set_lock_ui"):
 			child.set_lock_ui(true)
+
+func update_diary():
+	if previously_visited: return
+	previously_visited = true
+	
+	print(diary_message)
+	if diary_message:
+		diary.add_content(diary_message.c_unescape())
+	
+	
 			
 func get_boat():
 #	var pivot = boat_camera.get_parent()

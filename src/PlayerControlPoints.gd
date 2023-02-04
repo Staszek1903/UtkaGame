@@ -32,7 +32,7 @@ func set_this_current():
 
 
 func _process(delta):
-	if not current: return
+	if not current or not steering_points or not is_instance_valid(steering_points): return
 
 	if Input.is_action_pressed("ease"):
 		steering_points.steer_ease(delta)
@@ -54,6 +54,10 @@ func _process(delta):
 		boat.rudder.change_angle(delta)
 	if Input.is_action_pressed("rudder_left"):
 		boat.rudder.change_angle(-delta)
+		
+	if Input.is_action_just_pressed("special") and boat.has_method("special"):
+		boat.special()
+		
 		
 	if prev_key_pressed != key_pressed:
 		press_time = 0.0

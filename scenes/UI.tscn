@@ -1,11 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/WaterLevel.gd" type="Script" id=1]
 [ext_resource path="res://src/HungerLevel.gd" type="Script" id=2]
 [ext_resource path="res://src/CheatConsole.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Indicators.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/dialogic/Example Assets/Fonts/NameFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/SteeringName.gd" type="Script" id=6]
+[ext_resource path="res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://src/Diary.gd" type="Script" id=8]
+[ext_resource path="res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Black.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://src/PauseMenu.gd" type="Script" id=10]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=12]
 resource_local_to_scene = true
 bg_color = Color( 0, 0.803922, 1, 1 )
 border_color = Color( 0, 0, 0, 1 )
@@ -30,14 +36,14 @@ expand_margin_right = 3.0
 expand_margin_top = 3.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 0, 0, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 1, 1, 1, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -49,7 +55,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=13]
 resource_local_to_scene = true
 bg_color = Color( 1, 0, 0, 1 )
 border_color = Color( 0, 0, 0, 1 )
@@ -58,7 +64,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.282353, 0.317647, 0.352941, 0.709804 )
 border_width_left = 2
 border_width_top = 2
@@ -74,7 +80,7 @@ expand_margin_right = 3.0
 expand_margin_top = 3.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=14]
 resource_local_to_scene = true
 bg_color = Color( 1, 0.701961, 0, 1 )
 border_color = Color( 0, 0, 0, 1 )
@@ -83,7 +89,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=15]
 resource_local_to_scene = true
 bg_color = Color( 0.282353, 0.317647, 0.352941, 0 )
 border_width_left = 2
@@ -100,6 +106,34 @@ expand_margin_right = 3.0
 expand_margin_top = 3.0
 expand_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0, 0, 0, 0 )
+border_color = Color( 0, 0, 0, 0.6 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 90
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 0 )
+border_color = Color( 0, 0, 0, 0.6 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 416
+
+[sub_resource type="DynamicFont" id=11]
+size = 48
+font_data = ExtResource( 9 )
+
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -107,6 +141,9 @@ margin_left = 1.0
 margin_right = 1.0
 rect_pivot_offset = Vector2( -718, -283 )
 mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Indicators" parent="." instance=ExtResource( 4 )]
 
@@ -127,7 +164,7 @@ margin_top = -124.709
 margin_right = 256.11
 margin_bottom = -87.7093
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 1 )
+custom_styles/fg = SubResource( 12 )
 custom_styles/bg = SubResource( 2 )
 max_value = 1.0
 value = 0.5
@@ -145,8 +182,8 @@ margin_left = 135.0
 margin_top = -352.246
 margin_right = 174.0
 margin_bottom = -315.246
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
 max_value = 1.0
 percent_visible = false
 __meta__ = {
@@ -162,8 +199,8 @@ margin_left = 135.0
 margin_top = -315.246
 margin_right = 174.0
 margin_bottom = -278.246
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
 min_value = 1.0
 max_value = 2.0
 value = 1.0
@@ -178,8 +215,8 @@ margin_left = 135.0
 margin_top = -278.246
 margin_right = 174.0
 margin_bottom = -241.246
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
 min_value = 2.0
 max_value = 3.0
 value = 2.0
@@ -204,8 +241,8 @@ margin_top = -125.0
 margin_right = 228.0
 margin_bottom = -85.0
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 5 )
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 6 )
 max_value = 1.0
 value = 0.64
 percent_visible = false
@@ -222,8 +259,8 @@ margin_top = -124.709
 margin_right = 227.698
 margin_bottom = -84.709
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 6 )
-custom_styles/bg = SubResource( 7 )
+custom_styles/fg = SubResource( 14 )
+custom_styles/bg = SubResource( 15 )
 max_value = 1.0
 value = 0.5
 percent_visible = false
@@ -256,6 +293,124 @@ margin_top = -100.0
 custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
 readonly = true
 wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SteeringName" type="Label" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 5 )
+text = "SAMPLE TEXT"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Diary" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_top = -200.0
+margin_right = 400.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Diary"]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -50.0
+custom_styles/panel = SubResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Indicator" type="Polygon2D" parent="Diary/Panel"]
+position = Vector2( 771.262, 127.315 )
+z_index = 3
+polygon = PoolVector2Array( 0, 10, 10, -10, -10, -10 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Diary/Panel"]
+margin_right = 800.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 800, 150 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Diary/Panel/ScrollContainer"]
+margin_right = 800.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 800, 150 )
+custom_fonts/font = SubResource( 10 )
+
+[node name="Notification" type="Label" parent="Diary"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -106.0
+margin_top = -18.5
+margin_right = 106.0
+margin_bottom = 18.5
+custom_fonts/font = ExtResource( 5 )
+text = "JOURNAL UPDATED (TAB)"
+
+[node name="PauseMenu" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 100 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -50.0
+margin_right = 400.0
+margin_bottom = 50.0
+custom_styles/panel = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -315.5
+margin_top = -61.5
+margin_right = 315.5
+margin_bottom = 61.5
+custom_fonts/font = SubResource( 11 )
+text = "PAUSE
+ENTER to exit ESC to continue"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

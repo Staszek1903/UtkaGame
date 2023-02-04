@@ -14,9 +14,6 @@ collision_mask = 33
 gravity_scale = 0.0
 linear_damp = 1.0
 script = ExtResource( 4 )
-items = {
-"Food": 3
-}
 
 [node name="Mesh" type="CSGCombiner" parent="."]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.001, 0.001, 0.001 )

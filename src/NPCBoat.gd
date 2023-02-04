@@ -20,15 +20,26 @@ func get_velocity_heading():
 	return vel_basis.get_euler().y
 	
 func set_sail_trim(val: float):
-	val = clamp(val, 0.0, 90.0)
-	sail_trim = val
-	hinge_bom.set("angular_limit/upper", val)
-	hinge_bom.set("angular_limit/lower", -val)
-	hinge_jib.set("angular_limit/upper", val)
-	hinge_jib.set("angular_limit/lower", -val)
-
-func set_floaters_height(val:float):
 	pass
+#	val = clamp(val, 0.0, 90.0)
+#	sail_trim = val
+#	hinge_bom.set("angular_limit/upper", val)
+#	hinge_bom.set("angular_limit/lower", -val)
+#	hinge_jib.set("angular_limit/upper", val)
+#	hinge_jib.set("angular_limit/lower", -val)
 
+onready var floaters:Array = [ $FloaterBow, $FloaterStern,
+	$FloaterPort, $FloaterStar ]
+
+func set_floaters_height(h:float):
+	for f in floaters:
+		f.depthBeforeSubmerged = h
+		
 func set_floaters_enabled(en:bool):
-	pass
+	for f in floaters:
+		f.enabled = en
+		
+func _on_sink():
+	var spawn = $ItemSpawn
+	spawn.spawn_all()
+	spawn.free_items()

@@ -22,8 +22,17 @@ var _q = false
 var _e = false
 var _shift = false
 
+var prev_camera:Camera = null
 func _input(event):
-	if not current: return
+	if not current: 
+		if event is InputEventKey\
+		and event.pressed\
+		and event.scancode == KEY_F10:
+			prev_camera = get_viewport().get_camera()
+			current = true
+	
+		return
+
 	# Receives mouse motion
 	if event is InputEventMouseMotion:
 		_mouse_position = event.relative
@@ -55,6 +64,11 @@ func _input(event):
 				_e = event.pressed
 			KEY_SHIFT:
 				_shift = event.pressed
+			KEY_F10:
+				if event.pressed and prev_camera:
+					prev_camera.current = true
+					prev_camera = null
+				
 
 # Updates mouselook and movement every frame
 func _process(delta):

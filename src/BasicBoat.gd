@@ -1,6 +1,8 @@
 extends RigidBody
 class_name BasicBoat
 
+onready var waterManager = $"/root/Root/WaterManager"
+onready var islandManager = $"/root/Root/IslandsManager"
 onready var water_bar = $"/root/Ui/WaterLevel"
 onready var hunger_bar = $"/root/Ui/HungerLevel"
 onready var player_control = $"../Control"
@@ -16,6 +18,7 @@ onready var hinge_jib: HingeJoint = $"../FokHinge"
 onready var sail_trim = hinge_bom.get("angular_limit/upper") setget set_sail_trim
 
 export(float) var keel_force: float = 60.0
+export(bool) var connect_ui:bool = false
 
 var godmode:bool = false
 const hunger_time:float = 240.0
@@ -24,11 +27,14 @@ var hunger:float = 0
 var vip_slot:Spatial = null
 
 func _ready():
-	assert(bom)
+	#assert(bom)
 	assert(hunger_bar)
 	assert(player_control)
 	add_to_group("boat")
-	call_deferred("subscribe_to_indicators")
+	if connect_ui:
+		call_deferred("subscribe_to_indicators")
+		water_bar.value = 0
+		water_bar.set_hit_level(0)
 
 func set_current():
 	call_deferred("subscribe_to_indicators")
@@ -37,11 +43,28 @@ func set_current():
 	
 func unset_current():
 	$"../Control".current = false
+	
+func is_current() -> bool:
+	return $"../Control".current
+	
+func delete_current():
+	var points = $SteeringPointsCollection
+	if points:
+		for p in points.get_children():
+			if p.has_method("request_undocking_to_end"):
+				p.request_undocking_to_end(p.current_point)
+				print("undocked before delete")
+	get_parent().queue_free()
+	
+	
+func get_boats(array:Array):
+	array.append(self)
 
 func subscribe_to_indicators():
 	$"/root/Ui/Indicators".set_boat(self)
 
 func _physics_process(delta):
+	check_sinking()
 	#print("B, ", self)
 	#print(">>>>>>>>> Physics Proces")
 	var global_pos = to_global(Vector3())
@@ -65,9 +88,27 @@ func _physics_process(delta):
 	#HUNGER
 	if player_control.current and not godmode:
 		update_hunger(delta)
+	
+	#WATER LEVEL
+	if not godmode:
 		update_water_level(delta)
+		
+func _on_sink():
+	pass
+		
+func check_sinking():
+	var global_pos = global_transform.origin
+#	print(global_transform.origin.y \
+#	- waterManager.wave(Vector2(global_pos.x, global_pos.z)))
+	if global_transform.origin.y \
+	- waterManager.wave(Vector2(global_pos.x, global_pos.z)) \
+	+ islandManager.get_height_rel_to_camera(global_pos) \
+	< -20.0:
+		delete_current()
+		_on_sink()
+		print(get_parent().name,"  SUUUNK")
 
-func set_sail_trim(val: float):
+func set_sail_trim(_val: float):
 	assert(false, "pure virtual function")
 	
 func consume_food_portion() -> bool:
@@ -156,17 +197,19 @@ func set_water_level(val):
 #	if end_game: return
 	val = clamp(val, 0.0, 1.1)
 	water_level = val
-	water_bar.value = water_level
+	if player_control.current:
+		 water_bar.value = water_level
 	set_floaters_height(0.5 + val * 4.0)
 
-func set_floaters_height(val:float):
+func set_floaters_height(_val:float):
 	assert(false, "call to virtual method")
 
-func set_floaters_enabled(en:bool):
+func set_floaters_enabled(_en:bool):
 	assert(false, "call to virtual method")
 
 var repair_amount:float = 0.0
 func repair_hit_level(delta):
+	print("repair")
 	if not cargo_hold: return
 	if repair_amount <= 0.0 \
 	and cargo_hold.get_item_count("Wood") > 0:
@@ -180,8 +223,12 @@ func repair_hit_level(delta):
 func set_hit_level(val):
 	val = clamp(val, 0, max_hit_level)
 	hit_level = val
-	water_bar.set_hit_level(val)
+	if player_control.current:
+		water_bar.set_hit_level(val)
 	
 
 func receive_damage(dmg:int = 1):
 	set_hit_level(hit_level + dmg)
+	
+func get_cargo() -> Node:
+	return $CargoHold

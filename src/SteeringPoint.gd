@@ -9,6 +9,7 @@ var heave_func: FuncRef
 var ease_func: FuncRef
 
 onready var indicator = $Indicator
+onready var label = $"/root/Ui/SteeringName"
 
 export(bool) var is_man_required:bool = true
 var is_manned:bool = false
@@ -36,3 +37,7 @@ func steer_ease(delta):
 func _on_MouseArea_pressed():
 	get_parent().set_steering_point(self)
 
+func _on_MouseArea_mouse_hoover(is_hoovering):
+	label.visible = is_hoovering
+	label.text = name
+	

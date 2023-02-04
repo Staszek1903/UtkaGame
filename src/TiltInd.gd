@@ -6,7 +6,7 @@ onready var needle = $Needle
 onready var label = $PanelContainer/Label
 	
 func _process(_delta):
-	if body:
+	if body and is_instance_valid(body):
 		var basis:Basis = body.global_transform.basis
 		var for_vect = basis.z
 		var horizontal_angle = atan2(for_vect.x, for_vect.z)

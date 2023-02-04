@@ -4,12 +4,15 @@ onready var debug = $ForceDebug
 onready var rudder = $Rudder
 
 onready var anim = $"../AnimationPlayer"
+onready var save_manager = $"/root/Root/SaveManager"
 
 onready var initial_transform:Transform = global_transform
 
 func _ready():
+	assert(save_manager)
 	assert(bom)
 	assert(hinge_bom)
+	save_manager.call_deferred("update_data",self)
 	update_jib_trim()
 	#assert(mooring_bow_l)
 	#assert(mooring_bow_r)
@@ -26,27 +29,25 @@ func _ready():
 var catchable_bodies = []
 var items_to_be_caught = []
 func _on_ItemCatchArea_body_entered(body):
-	if body.is_in_group("catchable"): # body.get("items") != null:
-		catchable_bodies.append(body)
-		print("added catch item", body)
+ # body.get("items") != null:
+#		catchable_bodies.append(body)
+#		print("added catch item", body)
+	if body.is_in_group("catchable"):
+		print("caught items: ", body.items)
+	#	for i in catchable_bodies:
+		$CargoHold.add_items(body.items)
+		body.remove_catchable()
 
 func _on_ItemCatchArea_body_exited(body):
 	catchable_bodies.erase(body)
 	
 func catch_items():
-	#if not $ItemTween: return
-	#items_to_be_caught = catchable_bodies.duplicate()
-	#for body in catchable_bodies:
-	#	$ItemTween.interpolate_property(body, "global_transform:origin:y",
-	#	global_transform.origin.y, global_transform.origin.y+4, 4)
-	#$ItemTween.start()
-	#print("catching")
-	#yield($ItemTween, "tween_all_completed")
-	print("caught items: ", catchable_bodies.size())
-	for i in catchable_bodies:
-		print("\t", i.items)
-		$CargoHold.add_items(i.items)
-		i.remove_catchable()
+	pass
+#	print("caught items: ", catchable_bodies.size())
+#	for i in catchable_bodies:
+#		print("\t", i.items)
+#		$CargoHold.add_items(i.items)
+#		i.remove_catchable()
 		#$CargoSlots.add_item(i)
 	
 func let_items_go():
@@ -64,14 +65,21 @@ func let_items_go():
 #	node.linear_velocity = Vector3.ZERO
 	#node.apply_central_impulse(Vector3.UP * 100)
 
-func _on_CameraPivot_rotated(angle:float, pitch:float):
-	pass
+#func _on_CameraPivot_rotated(_angle:float, _pitch:float):
+#	pass
 	
+onready var sheet = $"Ropes/MainSheet"
+export(float) var sheet_max_l = 2.0
+export(float) var sheet_min_l = 0.1
 func set_sail_trim(val: float):
 	val = clamp(val, 0.0, 90.0)
 	sail_trim = val
 	hinge_bom.set("angular_limit/upper", val)
 	hinge_bom.set("angular_limit/lower", -val)
+	
+	#CALCULATE ROPE LENGTH
+	var rope_len = sheet_min_l + ((val/90.0)*(sheet_max_l-sheet_min_l))
+	sheet.length = 0.8 * rope_len # MAGIC NUMBER 0.8
 	
 func ease_sheets(delta):
 	set_sail_trim(sail_trim + 10 * delta)
@@ -88,6 +96,10 @@ func heave_mainsheet(delta):
 
 var rjibsheet_trim:float = 90.0
 var ljibsheet_trim:float = 90.0
+onready var rjibsheet = $"Ropes/RJibSheet"
+onready var ljibsheet = $"Ropes/LJibSheet"
+export(float) var jibsheet_max_l = 3.6
+export(float) var jibsheet_min_l = 1.05
 
 func ease_rjibsheet(delta):
 	#print("ease_rjibsheet")
@@ -95,11 +107,19 @@ func ease_rjibsheet(delta):
 	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
 	update_jib_trim()
 	
+	var rope_len = jibsheet_min_l \
+	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	rjibsheet.length = 0.8 * rope_len
+	
 func heave_rjibsheet(delta):
 	#print("heave_rjibsheet")
 	rjibsheet_trim -= 10 * delta
 	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
 	update_jib_trim()
+	
+	var rope_len = jibsheet_min_l \
+	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	rjibsheet.length = 0.8 * rope_len
 	
 func ease_ljibsheet(delta):
 	#print("ease_ljibsheet")
@@ -107,12 +127,20 @@ func ease_ljibsheet(delta):
 	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
 	update_jib_trim()
 	
+	var rope_len = jibsheet_min_l \
+	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	ljibsheet.length = 0.8 * rope_len
+	
 func heave_ljibsheet(delta):
 	#print("heave_ljibsheet")
 	ljibsheet_trim -= 10 * delta
 	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
 	update_jib_trim()
 	
+	var rope_len = jibsheet_min_l \
+	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	ljibsheet.length = 0.8 * rope_len
+
 func update_jib_trim():
 	var zero_angle = 15.0
 	var left_side_limit = min(-zero_angle + rjibsheet_trim,
@@ -181,3 +209,7 @@ func set_floaters_height(h:float):
 func set_floaters_enabled(en:bool):
 	for f in floaters:
 		f.enabled = en
+		
+func _on_sink():
+	print("ON SINK RESPAWN")
+	save_manager.load_game()

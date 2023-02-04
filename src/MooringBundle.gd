@@ -27,6 +27,7 @@ func _ready():
 		mooring.atachmentNodeA = parent
 		mooring.offsetA = transform.origin
 
+var current_point:Spatial = null
 
 func request_docking_to_point(point:Spatial):
 	if mooring_casted: return
@@ -41,8 +42,10 @@ func request_docking_to_point(point:Spatial):
 		mooring_casted = true
 		mooring.update_ends_pos()
 		mooring.set_length(-1.0)
+		current_point = point
 
 func request_undocking_to_end(point:Spatial):
+	if not point: return
 	var parent = get_parent()
 	if parent.has_method("set_steering_point") \
 	and parent.current_steering_point == self:
@@ -53,6 +56,7 @@ func request_undocking_to_end(point:Spatial):
 		mooring_casted = false
 		mooring.update_ends_pos()
 		mooring.set_length(-1.0)
+		current_point = null
 	
 func is_in_distance(response:Dictionary):
 	#print("IS IN DISTACJE FUNC")
@@ -84,3 +88,8 @@ func distance_to(point: Spatial) -> float:
 	var a = global_transform.origin
 	var b = point.global_transform.origin
 	return (a-b).length()
+
+#onready var label = $"/root/Ui/SteeringName"
+func _on_MooringTrigger_mouse_hoover(is_hoovering):
+	label.visible = is_hoovering
+	label.text = "Mooring"

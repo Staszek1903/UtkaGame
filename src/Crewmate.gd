@@ -98,7 +98,7 @@ func update_hunger(delta:float):
 	$StarvationInd.visible = hunger > hunger_time
 	
 	var starvation = hunger - hunger_time
-	var hunger_val = 1.0 - (hunger / hunger_time)
+	#var hunger_val = 1.0 - (hunger / hunger_time)
 	var starvation_val = 1.0 - (starvation / hunger_time)
 	if starvation_val <= 0.0:
 		print("CREWMATE STARVED")

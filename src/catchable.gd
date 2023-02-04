@@ -1,12 +1,9 @@
 extends RigidBody
 class_name Catchable
 
-# Item = {name, quantity}
+signal freed(item)
 
 export(Dictionary) var items = {}
-
-#export(ItemsEnum.Items) var item
-#export(int) var price = 100
 
 func _ready():
 	for key in items.keys():
@@ -16,6 +13,12 @@ func _ready():
 		
 	add_to_group("catchable")
 	
+func add_item(name:String, count:int):
+	if not name in items.keys():
+		items[name] = 0
+	items[name] += count
+	
 func remove_catchable():
 	print("REMOVE CATCHABLE")
+	emit_signal("freed",self)
 	queue_free()

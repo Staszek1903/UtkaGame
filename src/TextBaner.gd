@@ -1,9 +1,10 @@
-tool
+#tool
 extends Spatial
 
+onready var viewport = $Viewport
 onready var label = $Viewport/Label
 onready var mesh = $MeshInstance
-onready var viewport = $Viewport
+
 
 export(Vector2) var dimentions = Vector2(1,1) setget set_dimentions
 export(int) var resolution = 100 setget set_resolution

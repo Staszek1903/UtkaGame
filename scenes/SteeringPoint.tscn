@@ -15,4 +15,5 @@ radius = 0.125044
 height = 0.139716
 material = ExtResource( 4 )
 
+[connection signal="mouse_hoover" from="MouseArea" to="." method="_on_MouseArea_mouse_hoover"]
 [connection signal="pressed" from="MouseArea" to="." method="_on_MouseArea_pressed"]

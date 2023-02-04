@@ -70,6 +70,7 @@ radius = 0.125044
 height = 0.139716
 material = ExtResource( 5 )
 
+[connection signal="mouse_hoover" from="MooringTrigger" to="." method="_on_MooringTrigger_mouse_hoover"]
 [connection signal="pressed" from="MooringTrigger" to="." method="_on_MouseArea_pressed"]
 
 [editable path="Mooring"]

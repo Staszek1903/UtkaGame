@@ -1,9 +1,9 @@
 extends BasicBoat
 
-onready var floater = $FloaterBow
-onready var floater2 = $FloaterStern
-onready var floater3 = $FloaterPort
-onready var floater4 = $FloaterStar
+#onready var floater = $FloaterBow
+#onready var floater2 = $FloaterStern
+#onready var floater3 = $FloaterPort
+#onready var floater4 = $FloaterStar
 #onready var keelForceOffset = $KeelForceOffset
 onready var debug = $ForceDebug
 onready var rudder = $Rudder
@@ -11,7 +11,8 @@ onready var rudder = $Rudder
 #onready var mooring_bow_r = $"../MooringBowR"
 onready var mooring_bow_l_end = $"MooringBowLEnd"
 onready var mooring_bow_r_end = $"MooringBowREnd"
-
+onready var anim = $"../AnimationPlayer"
+onready var save_manager = $"/root/Root/SaveManager"
 #export(float) var keel_force: float = 60.0
 
 #onready var sail_trim = hinge_bom.get("angular_limit/upper") setget set_sail_trim
@@ -21,6 +22,8 @@ onready var initial_transform:Transform = global_transform
 func _ready():
 	assert(bom)
 	assert(hinge_bom)
+	assert(save_manager)
+	save_manager.call_deferred("update_data",self)
 #	assert(mooring_bow_l)
 #	assert(mooring_bow_r)
 
@@ -36,14 +39,20 @@ func _ready():
 var catchable_bodies = []
 var items_to_be_caught = []
 func _on_ItemCatchArea_body_entered(body):
-	if body.is_in_group("catchable"): # body.get("items") != null:
-		catchable_bodies.append(body)
-		print("added catch item", body)
+#	if body.is_in_group("catchable"): # body.get("items") != null:
+#		catchable_bodies.append(body)
+#		print("added catch item", body)
+	if body.is_in_group("catchable"):
+		print("caught items: ", body.items)
+	#	for i in catchable_bodies:
+		$CargoHold.add_items(body.items)
+		body.remove_catchable()
 
 func _on_ItemCatchArea_body_exited(body):
 	catchable_bodies.erase(body)
 	
 func catch_items():
+	pass
 	#if not $ItemTween: return
 	#items_to_be_caught = catchable_bodies.duplicate()
 	#for body in catchable_bodies:
@@ -52,12 +61,12 @@ func catch_items():
 	#$ItemTween.start()
 	#print("catching")
 	#yield($ItemTween, "tween_all_completed")
-	print("caught items: ", catchable_bodies.size())
-	for i in catchable_bodies:
-		print("\t", i.items)
-		$CargoHold.add_items(i.items)
-		i.remove_catchable()
-		#$CargoSlots.add_item(i)
+#	print("caught items: ", catchable_bodies.size())
+#	for i in catchable_bodies:
+#		print("\t", i.items)
+#		$CargoHold.add_items(i.items)
+#		i.remove_catchable()
+#		#$CargoSlots.add_item(i)
 	
 func let_items_go():
 	pass
@@ -71,10 +80,12 @@ func throw_cargo():
 	node.linear_velocity = Vector3.ZERO
 	#node.apply_central_impulse(Vector3.UP * 100)
 
-func _on_CameraPivot_rotated(angle:float, pitch:float):
+func _on_CameraPivot_rotated(_angle:float, _pitch:float):
 	pass
 	
 onready var sheet = $"Ropes/MainSheet"
+export(float) var sheet_max_l = 2.0
+export(float) var sheet_min_l = 0.1
 func set_sail_trim(val: float):
 	val = clamp(val, 0.0, 90.0)
 	sail_trim = val
@@ -82,9 +93,11 @@ func set_sail_trim(val: float):
 	hinge_bom.set("angular_limit/lower", -val)
 	
 	#CALCULATE ROPE LENGTH
-	sheet.length = 0.8 * sheet.atachmentNodeA.global_transform.origin.distance_to(
-		sheet.atachmentNodeB.global_transform.origin
-	)
+	var rope_len = sheet_min_l + ((val/90.0)*(sheet_max_l-sheet_min_l))
+	sheet.length = 0.8 * rope_len # MAGIC NUMBER 0.8
+#	sheet.length = 0.8 * sheet.atachmentNodeA.global_transform.origin.distance_to(
+#		sheet.atachmentNodeB.global_transform.origin
+#	)
 	
 func ease_sheets(delta):
 	set_sail_trim(sail_trim + 10 * delta)
@@ -99,15 +112,19 @@ func heave_mainhaul(delta):
 #		$"../AnimationPlayer".play_backwards("fold")
 	main_haulyard -= 0.5*delta
 	main_haulyard = clamp(main_haulyard, 0.0, 1.0)
-	print("HAUL: ", main_haulyard)
-	$"../AnimationPlayer".seek(main_haulyard, true)
+	#print("HAUL: ", main_haulyard)
+	anim.current_animation = "fold"
+	anim.stop(false)
+	anim.seek(main_haulyard, true)
 	
 func ease_mainhaul(delta):
 #	if bom.sail_amount > 0.5:
 #		$"../AnimationPlayer".play("fold")
 	main_haulyard += 0.5*delta
 	main_haulyard = clamp(main_haulyard, 0.0, 1.0)
-	$"../AnimationPlayer".seek(main_haulyard, true)
+	anim.current_animation = "fold"
+	anim.stop(false)
+	anim.seek(main_haulyard, true)
 
 
 #func _on_sail_togle_trigger():
@@ -122,6 +139,22 @@ func consume_food_portion() -> bool:
 	if food == 0 : return false
 	$CargoHold.withdraw_items({"Food": 1})
 	return true
-	
-func set_floaters_height(val:float):
+
+onready var floaters:Array = [ $FloaterBow, $FloaterStern,
+	$FloaterPort, $FloaterStar ]
+
+func set_floaters_height(_val:float):
 	pass
+
+func set_floaters_enabled(en:bool):
+	for f in floaters:
+		f.enabled = en
+	
+func special():
+	$"../AnimationPlayer".play("paddle")
+	#apply_torque_impulse(Vector3.DOWN * 10.0)
+	
+func _on_sink():
+	print("ON SINK RESPAWN")
+	save_manager.load_game()
+	

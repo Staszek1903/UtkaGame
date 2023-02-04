@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/boats/LugBoat.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/WaterManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/WaterMesh.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/IslandsManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Tutorial.gd" type="Script" id=5]
+[ext_resource path="res://game_env.tres" type="Environment" id=6]
+[ext_resource path="res://src/SaveManager.gd" type="Script" id=7]
+[ext_resource path="res://src/free_camera.gd" type="Script" id=8]
+[ext_resource path="res://scenes/FPScounter.tscn" type="PackedScene" id=9]
+
+[node name="Root" type="Spatial"]
+
+[node name="WaterMesh" parent="." instance=ExtResource( 3 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.285095, -0.0537938, -0.956989, 0.868763, 0.436304, 0.234286, 0.404935, -0.89819, 0.171122, 7.47769, 13.3428, -64.6411 )
+light_color = Color( 1, 0.964706, 0.847059, 1 )
+light_energy = 0.2
+shadow_enabled = true
+
+[node name="IslandsManager" parent="." instance=ExtResource( 4 )]
+spawn_distance = 500.0
+horizon_distance = 300.0
+
+[node name="WaterManager" parent="." instance=ExtResource( 2 )]
+direction = -1.57
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.3042, 0 )
+far = 1000.0
+script = ExtResource( 8 )
+
+[node name="LugBoat" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.0458, 0, 0 )
+
+[node name="Tutorial" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="SaveManager" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="FPScounter" parent="." instance=ExtResource( 9 )]

@@ -21,30 +21,30 @@ func set_docked_rope_end(val:Node):
 	if val and not prev:
 		docked_rope_end.global_transform = global_transform
 		emit_signal("mooring_on", docked_boat)
-		$IconBaner.visible = true
+		#$IconBaner.visible = true
 	elif not val and prev:
 		emit_signal("mooring_off", docked_boat)
 		docked_boat = null
-		$IconBaner.visible = false
+		#$IconBaner.visible = false
 	
 
-func _process(delta):
-	if docked_rope_end:
+func _process(_delta):
+	if docked_rope_end and is_instance_valid(docked_rope_end):
 		docked_rope_end.global_transform = global_transform
 #	if docked_rope:
 #		docked_rope.apply_force(delta*200)
 
-var lock = false
-func _physics_process(delta):
-	if $IconBaner.visible and Input.is_action_pressed("action"):
-		$IconBaner.value+=1
-	else:
-		$IconBaner.value=0
-		lock = false
-
-	if $IconBaner.value == 100 and not lock:
-		lock = true
-		emit_signal("action", docked_boat)
+#var lock = false
+#func _physics_process(_delta):
+#	if $IconBaner.visible and Input.is_action_pressed("action"):
+#		$IconBaner.value+=1
+#	else:
+#		$IconBaner.value=0
+#		lock = false
+#
+#	if $IconBaner.value == 100 and not lock:
+#		lock = true
+#		emit_signal("action", docked_boat)
 
 
 func _on_DockPointArea_mouse_entered():
@@ -65,7 +65,7 @@ func _on_DockPointArea_mouse_exited():
 	self.indicator_visible = false
 
 
-func _on_DockPointArea_input_event(camera, event, click_position, click_normal, shape_idx):
+func _on_DockPointArea_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if not docked_rope_end:
 			if self.indicator_visible:

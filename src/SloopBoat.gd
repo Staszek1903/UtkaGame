@@ -1,13 +1,14 @@
 extends BasicBoat
 
-onready var floater = $FloaterBow
-onready var floater2 = $FloaterStern
-onready var floater3 = $FloaterPort
-onready var floater4 = $FloaterStar
+#onready var floater = $FloaterBow
+#onready var floater2 = $FloaterStern
+#onready var floater3 = $FloaterPort
+#onready var floater4 = $FloaterStar
 #onready var keelForceOffset = $KeelForceOffset
 onready var debug = $ForceDebug
 onready var rudder = $Rudder
 onready var anim = $"../AnimationPlayer"
+onready var save_manager = $"/root/Root/SaveManager"
 
 #export(float) var keel_force: float = 60.0
 
@@ -18,7 +19,10 @@ onready var initial_transform:Transform = global_transform
 func _ready():
 	assert(bom)
 	assert(hinge_bom)
+	assert(save_manager)
 	update_jib_trim()
+	save_manager.call_deferred("update_data",self)
+#	$Crew.spawn()
 
 #func _physics_process(delta):
 #	update_water_level(delta)
@@ -32,50 +36,65 @@ func _ready():
 var catchable_bodies = []
 var items_to_be_caught = []
 func _on_ItemCatchArea_body_entered(body):
-	if body.get("item") != null:
-		catchable_bodies.append(body)
-		print("added catch item", body)
+ # body.get("items") != null:
+#		catchable_bodies.append(body)
+#		print("added catch item", body)
+	if body.is_in_group("catchable"):
+		print("caught items: ", body.items)
+	#	for i in catchable_bodies:
+		$CargoHold.add_items(body.items)
+		body.remove_catchable()
 
 func _on_ItemCatchArea_body_exited(body):
 	catchable_bodies.erase(body)
 	
 func catch_items():
-	items_to_be_caught = catchable_bodies.duplicate()
-	for body in catchable_bodies:
-		$ItemTween.interpolate_property(body, "global_transform:origin:y",
-		global_transform.origin.y, global_transform.origin.y+4, 4)
-	$ItemTween.start()
-	print("catching")
-	yield($ItemTween, "tween_all_completed")
-	print("caught items: ", items_to_be_caught.size())
-	for i in items_to_be_caught: 
-		print("\t", i.item)
-		$CargoSlots.add_item(i)
-	items_to_be_caught = []
+	pass
+#	items_to_be_caught = catchable_bodies.duplicate()
+#	for body in catchable_bodies:
+#		$ItemTween.interpolate_property(body, "global_transform:origin:y",
+#		global_transform.origin.y, global_transform.origin.y+4, 4)
+#	$ItemTween.start()
+#	print("catching")
+#	yield($ItemTween, "tween_all_completed")
+#	print("caught items: ", items_to_be_caught.size())
+#	for i in items_to_be_caught: 
+#		print("\t", i.item)
+#		$CargoSlots.add_item(i)
+#	items_to_be_caught = []
 	
 func let_items_go():
-	$ItemTween.remove_all()
-	items_to_be_caught = []
+	pass
+#	$ItemTween.remove_all()
+#	items_to_be_caught = []
 	
-func throw_cargo():
-	var node:RigidBody = $CargoSlots.remove_item()
-	print("throwing: ", node)
-	if not node: return
-	get_tree().get_root().add_child(node)
-	node.global_transform = $CargoDrop.global_transform
-	node.linear_velocity = Vector3.ZERO
+#func throw_cargo():
+#	var node:RigidBody = $CargoSlots.remove_item()
+#	print("throwing: ", node)
+#	if not node: return
+#	get_tree().get_root().add_child(node)
+#	node.global_transform = $CargoDrop.global_transform
+#	node.linear_velocity = Vector3.ZERO
 	#node.apply_central_impulse(Vector3.UP * 100)
 
-func _on_CameraPivot_rotated(angle:float, pitch:float):
+func _on_CameraPivot_rotated(_angle:float, _pitch:float):
 	pass
-	
+
+onready var sheet = $"Ropes/MainSheet"
+export(float) var sheet_max_l = 3.6
+export(float) var sheet_min_l = 1.05
 func set_sail_trim(val: float):
 	val = clamp(val, 0.0, 90.0)
 	sail_trim = val
 	hinge_bom.set("angular_limit/upper", val)
 	hinge_bom.set("angular_limit/lower", -val)
-	#hinge_jib.set("angular_limit/upper", val)
-	#hinge_jib.set("angular_limit/lower", -val)
+	
+	#CALCULATE ROPE LENGTH
+	var rope_len = sheet_min_l + ((val/90.0)*(sheet_max_l-sheet_min_l))
+	sheet.length = 0.8 * rope_len # MAGIC NUMBER 0.8
+#	sheet.length = 0.8 * sheet.atachmentNodeA.global_transform.origin.distance_to(
+#		sheet.atachmentNodeB.global_transform.origin
+#	)
 	
 func ease_mainsheet(delta):
 	set_sail_trim(sail_trim + 10 * delta)
@@ -86,6 +105,10 @@ func heave_mainsheet(delta):
 
 var rjibsheet_trim:float = 90.0
 var ljibsheet_trim:float = 90.0
+onready var rjibsheet = $"Ropes/RJibSheet"
+onready var ljibsheet = $"Ropes/LJibSheet"
+export(float) var jibsheet_max_l = 3.6
+export(float) var jibsheet_min_l = 1.05
 
 func ease_rjibsheet(delta):
 	#print("ease_rjibsheet")
@@ -93,11 +116,19 @@ func ease_rjibsheet(delta):
 	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
 	update_jib_trim()
 	
+	var rope_len = jibsheet_min_l \
+	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	rjibsheet.length = 0.8 * rope_len
+	
 func heave_rjibsheet(delta):
 	#print("heave_rjibsheet")
 	rjibsheet_trim -= 10 * delta
 	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
 	update_jib_trim()
+	
+	var rope_len = jibsheet_min_l \
+	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	rjibsheet.length = 0.8 * rope_len
 	
 func ease_ljibsheet(delta):
 	#print("ease_ljibsheet")
@@ -105,12 +136,20 @@ func ease_ljibsheet(delta):
 	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
 	update_jib_trim()
 	
+	var rope_len = jibsheet_min_l \
+	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	ljibsheet.length = 0.8 * rope_len
+	
 func heave_ljibsheet(delta):
 	#print("heave_ljibsheet")
 	ljibsheet_trim -= 10 * delta
 	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
 	update_jib_trim()
 	
+	var rope_len = jibsheet_min_l \
+	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
+	ljibsheet.length = 0.8 * rope_len
+
 func update_jib_trim():
 	var zero_angle = 15.0
 	var left_side_limit = min(-zero_angle + rjibsheet_trim,
@@ -208,9 +247,17 @@ func consume_food_portion() -> bool:
 	if food == 0 : return false
 	$CargoHold.withdraw_items({"Food": 1})
 	return true
+	
+onready var floaters:Array = [ $FloaterBow, $FloaterStern,
+	$FloaterPort, $FloaterStar ]
 
-func set_floaters_height(val:float):
+func set_floaters_height(_val:float):
 	pass
 
 func set_floaters_enabled(en:bool):
-	pass
+	for f in floaters:
+		f.enabled = en
+	
+func _on_sink():
+	print("ON SINK RESPAWN")
+	save_manager.load_game()

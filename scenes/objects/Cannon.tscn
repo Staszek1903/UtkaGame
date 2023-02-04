@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://materials/black_material.tres" type="Material" id=1]
 [ext_resource path="res://materials/wood_materia.tres" type="Material" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/CanonBall.gd" type="Script" id=4]
 [ext_resource path="res://scenes/WaserKeelF.tscn" type="PackedScene" id=5]
 [ext_resource path="res://souds/cannon_fire.wav" type="AudioStream" id=6]
+[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=7]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.285068, 0.850679, 1 )
@@ -50,6 +51,7 @@ radius = 0.574033
 [node name="Cannon" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19902, 0 )
 script = ExtResource( 3 )
+ball_velocity = 50.0
 
 [node name="CanonBarrel" type="CSGCombiner" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.97367, -0.22796, 0, 0.22796, 0.97367, 0, 0, 0 )
@@ -105,6 +107,16 @@ draw_pass_1 = SubResource( 7 )
 
 [node name="ShootPos" type="Position3D" parent="CanonBarrel"]
 transform = Transform( 1, 0, 0, 0, 0.999494, -0.0318118, 0, 0.0318118, 0.999494, 0, 0.0676084, -2.83301 )
+
+[node name="AimCone" type="Spatial" parent="CanonBarrel"]
+visible = false
+
+[node name="AimCone" type="CSGCylinder" parent="CanonBarrel/AimCone"]
+transform = Transform( 1, 0, 0, 0, -4.47035e-08, 1, 0, -1, -4.47035e-08, 0, -2.02656e-06, -35.4853 )
+radius = 0.0863847
+height = 64.4204
+cone = true
+material = ExtResource( 7 )
 
 [node name="Stand" type="CSGCombiner" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.384759 )

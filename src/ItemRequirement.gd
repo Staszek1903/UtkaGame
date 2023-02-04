@@ -21,7 +21,8 @@ func set_available(val:int):
 	update_text()
 	
 func update_text():
-	$TextBanner.text = "%s : %d/%d" % [item_name, 
+	var text_banner = $TextBanner 
+	if text_banner: text_banner.text = "%s : %d/%d" % [item_name, 
 	available,  quantity]
 	
 func satisfied() ->bool :
