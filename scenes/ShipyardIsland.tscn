@@ -41,7 +41,7 @@ albedo_color = Color( 0.423529, 0.423529, 0.423529, 1 )
 [node name="ShipyardIsland" type="Spatial"]
 
 [node name="IslandBase" type="MeshInstance" parent="."]
-transform = Transform( 1.36277, 0, 0, 0, 1, 0, 0, 0, 1.36277, 0, 0, 0 )
+transform = Transform( 1.36277, 0, 0, 0, 1, 0, 0, 0, 1.36277, 0.840826, 0, 11.8464 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 3 )
 
@@ -50,7 +50,7 @@ script = ExtResource( 6 )
 ply_mesh = SubResource( 2 )
 
 [node name="Cabin" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46445, 3.25691, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30528, 3.25691, 11.8464 )
 
 [node name="House" type="Spatial" parent="Cabin"]
 transform = Transform( 0.290986, 0, 0.956727, 0, 1, 0, -0.956727, 0, 0.290986, 8.31243, 2.0137, 2.58221 )
@@ -412,7 +412,7 @@ depth = 0.235515
 material = ExtResource( 2 )
 
 [node name="Cabin2" type="Spatial" parent="."]
-transform = Transform( 0.796118, 0, 0.605141, 0, 1, 0, -0.605141, 0, 0.796118, 4.46445, 3.25691, -23.0145 )
+transform = Transform( 0.796118, 0, 0.605141, 0, 1, 0, -0.605141, 0, 0.796118, 5.30528, 3.25691, -11.1681 )
 
 [node name="House" type="Spatial" parent="Cabin2"]
 transform = Transform( 0.290986, 0, 0.956727, 0, 1, 0, -0.956727, 0, 0.290986, 8.31243, 2.0137, 2.58221 )
@@ -774,7 +774,7 @@ depth = 0.235515
 material = ExtResource( 2 )
 
 [node name="Quai" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.019878, 0, -0.999802, 0, 1, 0, 0.999802, 0, -0.019878, -15.2112, 1.24283, 0.488444 )
+transform = Transform( -0.019878, 0, -0.999802, 0, 1, 0, 0.999802, 0, -0.019878, -14.3704, 1.24283, 12.3349 )
 diary_message = "On this island you can buy a biggest ship\\n This ship can carry cannons, but you need to get them on the next island"
 
 [node name="ResuplyBuilding" parent="Quai" instance=ExtResource( 11 )]

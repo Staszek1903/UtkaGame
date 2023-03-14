@@ -4,12 +4,17 @@ onready var camera_pivot = $"../CameraPivot"
 onready var camera = $"../CameraPivot/Camera"
 onready var cannons = [$Cannon1, $Cannon4, $Cannon2, $Cannon5, $Cannon3, $Cannon6]
 
-var cannons_count = 0
+var cannons_count:int = 0 setget set_cannons_cout
 var aim:bool = false
 
 func _ready():
 	assert(camera_pivot)
 	assert(camera)
+	
+func set_cannons_cout(val:int):
+	cannons_count = clamp(val, 0, cannons.size())
+	for i in cannons_count:
+		cannons[i].visible = true
 
 func add_cannon():
 	print("ADDING_CANNON")

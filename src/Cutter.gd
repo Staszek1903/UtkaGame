@@ -16,6 +16,15 @@ func _ready():
 	update_jib_trim()
 	#assert(mooring_bow_l)
 	#assert(mooring_bow_r)
+	remove_mockups()
+	
+	heave_ljibsheet(0.0)
+	heave_rjibsheet(0.0)
+	
+	
+func remove_mockups():
+	yield(get_tree(), "idle_frame")
+	get_tree().call_group("cutter_spawn", "remove_mockup")
 
 #func _physics_process(delta):
 #	update_water_level(delta)
@@ -89,57 +98,69 @@ func heave_sheets(delta):
 	
 func ease_mainsheet(delta):
 	set_sail_trim(sail_trim + 10 * delta)
+	return(sail_trim != 90.0)
 
 func heave_mainsheet(delta):
 	set_sail_trim(sail_trim - 10 * delta)
-	
+	return(sail_trim != 0.0)
 
-var rjibsheet_trim:float = 90.0
-var ljibsheet_trim:float = 90.0
+var rjibsheet_trim:float = 0.0
+var ljibsheet_trim:float = 0.0
 onready var rjibsheet = $"Ropes/RJibSheet"
 onready var ljibsheet = $"Ropes/LJibSheet"
 export(float) var jibsheet_max_l = 3.6
 export(float) var jibsheet_min_l = 1.05
 
+const max_trim:float = 100.0
+
 func ease_rjibsheet(delta):
 	#print("ease_rjibsheet")
 	rjibsheet_trim += 10 * delta
-	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
+	rjibsheet_trim = clamp(rjibsheet_trim,0.0,max_trim)
 	update_jib_trim()
 	
 	var rope_len = jibsheet_min_l \
 	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	rjibsheet.length = 0.8 * rope_len
+	
+	print(rjibsheet_trim)
+	return(rjibsheet_trim != max_trim)
 	
 func heave_rjibsheet(delta):
 	#print("heave_rjibsheet")
 	rjibsheet_trim -= 10 * delta
-	rjibsheet_trim = clamp(rjibsheet_trim,0.0,180.0)
+	rjibsheet_trim = clamp(rjibsheet_trim,0.0,max_trim)
 	update_jib_trim()
 	
 	var rope_len = jibsheet_min_l \
 	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	rjibsheet.length = 0.8 * rope_len
+	print(rjibsheet_trim)
+	return(rjibsheet_trim != 0.0)
 	
 func ease_ljibsheet(delta):
 	#print("ease_ljibsheet")
 	ljibsheet_trim += 10 * delta
-	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
+	ljibsheet_trim = clamp(ljibsheet_trim,0.0,max_trim)
 	update_jib_trim()
 	
 	var rope_len = jibsheet_min_l \
 	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	ljibsheet.length = 0.8 * rope_len
+	print(ljibsheet_trim)
+	return(ljibsheet_trim != max_trim)
 	
 func heave_ljibsheet(delta):
 	#print("heave_ljibsheet")
 	ljibsheet_trim -= 10 * delta
-	ljibsheet_trim = clamp(ljibsheet_trim,0.0,180.0)
+	ljibsheet_trim = clamp(ljibsheet_trim,0.0,max_trim)
 	update_jib_trim()
 	
 	var rope_len = jibsheet_min_l \
 	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	ljibsheet.length = 0.8 * rope_len
+	print(ljibsheet_trim)
+	return(ljibsheet_trim != 0.0)
 
 func update_jib_trim():
 	var zero_angle = 15.0

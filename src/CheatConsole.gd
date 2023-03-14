@@ -2,10 +2,17 @@ extends LineEdit
 
 onready var console_out = $ConsoleOut
 
-func _ready():
-	var file = File.new()
-	if file.file_exists("user://savegame.save"):
+var load_on_new_scene:bool = false
+var mouse_y_inverted:bool = true
+
+func check_load():
+	if load_on_new_scene:
 		call_deferred("load_", [])
+
+#func _ready():
+#	var file = File.new()
+#	if file.file_exists("user://savegame.save"):
+#		call_deferred("load_", [])
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -58,7 +65,8 @@ func cout(s):
 
 func get_boat():
 	var pivot = get_viewport().get_camera().get_parent()
-	assert(pivot.has_method("get_boat"))
+	if not pivot or not pivot.has_method("get_boat"):
+		return null
 	var boat = pivot.get_boat()
 	return boat
 
@@ -208,7 +216,7 @@ func load_(_args = []):
 	var save_manager = $"/root/Root/SaveManager"
 	if not save_manager: return
 	var boat = get_boat()
-	boat.delete_current()
+	if boat: boat.delete_current()
 	save_manager.load_data()
 	save_manager.load_game()
 

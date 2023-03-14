@@ -16,8 +16,9 @@ func _ready():
 	set_current(true)
 
 func set_current(val:bool):
-	if val: get_tree().call_group("steering", "clear_current")
-	call_deferred("set_this_current")
+	get_tree().call_group("steering", "clear_current")
+	if val: 
+		call_deferred("set_this_current")
 	
 	steering_points.disable = not val
 

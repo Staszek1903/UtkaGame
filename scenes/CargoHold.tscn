@@ -4,14 +4,14 @@
 [ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=2]
 [ext_resource path="res://scenes/TextBaner.tscn" type="PackedScene" id=3]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 1, 0.511438, 1 )
+[sub_resource type="BoxShape" id=26]
+extents = Vector3( 0.564222, 0.414999, 0.914495 )
 
 [node name="CargoHold" type="Area"]
 script = ExtResource( 1 )
 
 [node name="Collision" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 26 )
 
 [node name="Indicator" type="CSGBox" parent="."]
 visible = false

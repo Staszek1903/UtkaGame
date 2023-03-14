@@ -1,11 +1,14 @@
 extends "res://src/MouseArea.gd"
 
 var items:Dictionary = {}
-var capacity:Dictionary = {}
-const default_capacity = 16
+export(Dictionary) var capacity:Dictionary = {}
+const default_capacity = 99
 
-#func _ready():
-#	update_text()
+func _ready():
+	for key in ["Food", "Fabric", "Wood", "Steel", "Cannonball"]:
+		var node = get_node(key)
+		if node: for child in node.get_children():
+			child.visible = false
 	
 func add_items(items_to_add:Dictionary):
 	for i in items_to_add.keys():
@@ -42,13 +45,26 @@ func get_capacity(item_name:String) -> int:
 func update_text():
 	var item_text = ""
 	for key in items.keys():
-		item_text += "%s : %s/%s\n" % [key, items[key], capacity[key]]
+		if items[key] > 0:
+			item_text += "%s : %s/%s\n" % [key, items[key], capacity[key]]
 		print(">>", item_text, "<<")
 	if items.size() == 0:
 		item_text = "Cargo empty"
 
 	$TextBanner.text = item_text
 	$TextBanner.dimentions = Vector2(0.5, max(1,items.size()) * 0.1)
+	
+	update_mesh()
+	
+func update_mesh():
+	for key in items.keys():
+		var node = get_node(key)
+		var content:int = items[key]
+		if node:
+			var cur_index:int = 0
+			for child in node.get_children():
+				child.visible = (cur_index < content)
+				cur_index += 1
 
 func _on_CargoHold_mouse_entered():
 	update_text()

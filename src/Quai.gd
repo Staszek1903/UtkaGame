@@ -4,7 +4,7 @@ signal action
 signal mooring_off
 signal mooring_on
 
-export(String) var diary_message = null
+export(String, MULTILINE) var diary_message = null
 #onready var quai_camera = $Camera
 onready var diary = $"/root/Ui/Diary"
 onready var save_manager = $"/root/Root/SaveManager"
@@ -38,6 +38,8 @@ func _on_DockPoint_mooring_off(boat):
 	
 	if mooring_counter[boat] == 0:
 		switch_to_boat_look(boat)
+		save_manager.update_data(boat)
+		save_manager.save_data()
 	
 	
 func _on_DockPoint_mooring_on(boat):

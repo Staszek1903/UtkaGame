@@ -2,11 +2,15 @@ extends Node
 
 var boat_position:Vector3 = Vector3(100.0, 1.0, 0.1)
 var cargo:Dictionary = {}
+var cannons:int = 0
 var boat_scene:PackedScene = null
 
 var lug_scene = preload("res://scenes/boats/LugBoat.tscn")
 var sloop_scene = preload("res://scenes/boats/SloopBoat.tscn")
 var cutter_scene = preload("res://scenes/boats/Cutter.tscn")
+
+func _ready():
+	$"/root/Ui/CheatConsole".check_load()
 
 func spawn_new_boat(boat_scene:PackedScene, origin:Vector3):
 	var new_boat = boat_scene.instance()
@@ -29,6 +33,11 @@ func update_data(boat:RigidBody):
 	var cargo_hold = boat.get_cargo()
 	if cargo_hold:
 		cargo = cargo_hold.items.duplicate()
+		
+	var cannons_node = boat.get_cannons()
+	if cannons_node:
+		cannons = cannons_node.cannons_count
+		
 	
 		
 func load_data():
@@ -42,6 +51,7 @@ func load_data():
 	boat_position = str2var(save_data.boat_position)
 	cargo = save_data.cargo
 	boat_scene = load(save_data.boat_scene)
+	cannons = save_data.cannons
 
 func save_data():
 	#if not boat_scene or not cargo: return
@@ -50,7 +60,8 @@ func save_data():
 	var save_data:Dictionary = {
 		boat_position = var2str(boat_position),
 		cargo = cargo,
-		boat_scene = boat_scene.resource_path
+		boat_scene = boat_scene.resource_path,
+		cannons = cannons
 	}
 	
 	file.store_line(JSON.print(save_data))
@@ -60,4 +71,7 @@ func load_game():
 	
 	var boat = spawn_new_boat(boat_scene,  boat_position).get_node("Boat")
 	boat.get_cargo().add_items(cargo)
+	var cannons_node = boat.get_cannons()
+	if cannons_node:
+		cannons_node.cannons_count = cannons
 	

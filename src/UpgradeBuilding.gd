@@ -4,7 +4,7 @@ signal upgraded
 
 #export(String) var button_text = "" setget set_button_text
 
-var lock_ui:bool = true
+var lock_ui:bool = true setget set_lock_ui
 var requirements = []
 
 func _ready():
@@ -12,15 +12,15 @@ func _ready():
 	for child in get_children():
 		if child.is_in_group("item_requirement"):
 			requirements.append(child)
+			
+	set_lock_ui(lock_ui)
 
 func set_lock_ui(val:bool):
 	lock_ui = val
-	visible = not val
-#	if lock_ui:
-#		$Button3D.visible = false
-#		$IconBaner.visible = false
-#	else:
-#		update_state()
+
+	$Button3D.visible = not val
+	for req in requirements:
+		req.visible = not val
 
 #func set_button_text(val:String):
 #	button_text = val

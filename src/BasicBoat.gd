@@ -21,10 +21,20 @@ export(float) var keel_force: float = 60.0
 export(bool) var connect_ui:bool = false
 
 var godmode:bool = false
-const hunger_time:float = 240.0
-var hunger:float = 0
 
+export(float) var hunger_time:float = 240.0
+var hunger:float = 0
 var vip_slot:Spatial = null
+export(float) var empying_max_rate:float = 0.01
+export(float) var bilge_pump_rate:float = 0.1
+export(float) var repair_rate:float = 0.1
+export(float) var max_hit_level:float = 9.0
+export(float) var spill_per_hit:float = 0.01
+
+signal sink
+
+var water_level:float = 0.0 setget set_water_level
+var hit_level:float = 0.0 setget set_hit_level
 
 func _ready():
 	#assert(bom)
@@ -123,7 +133,9 @@ func update_hunger(delta:float):
 	var starvation = hunger - hunger_time
 	var hunger_val = 1.0 - (hunger / hunger_time)
 	var starvation_val = 1.0 - (starvation / hunger_time)
-	if starvation_val <= 0.0: get_tree().quit()
+	if starvation_val <= 0.0:
+		print("STARVED")
+		$"/root/Ui/StarvedScreen".starve()
 	hunger_bar.set_hunger_level(hunger_val)
 	hunger_bar.set_starvation_level(starvation_val)
 	
@@ -154,17 +166,8 @@ func get_camera() -> Spatial:
 #					WATER & HP						 #
 ######################################################
 
-const empying_max_rate:float = 0.01
-const bilge_pump_rate:float = 0.1
-const repair_rate:float = 0.1
-const max_hit_level:float = 3.0
-
-signal sink
-
-var water_level:float = 0.0 setget set_water_level
-var hit_level:float = 0.0 setget set_hit_level
-
 func update_water_level(delta):
+	#calculate tilt
 	var basis:Basis = global_transform.basis
 	var for_vect = basis.z
 	var horizontal_angle = atan2(for_vect.x, for_vect.z)
@@ -172,11 +175,16 @@ func update_water_level(delta):
 	up_vect = up_vect.rotated(Vector3(0.0,1.0,0.0), -horizontal_angle);
 	var tilt = abs(atan2(up_vect.x,up_vect.y))
 	
+	#calculate tilt spill
 	var spill_min = deg2rad(15)
 	var spill_max = deg2rad(90)
-	var normalized_spill = (tilt - spill_min) / (spill_max - spill_min)
-	normalized_spill += 0.1 * hit_level
-	var water_level_rate = clamp(normalized_spill,-empying_max_rate,1) * delta
+	var tilt_spill = (tilt - spill_min) / (spill_max - spill_min)
+	
+	#calculate hit spill
+	var hit_spill = spill_per_hit * hit_level
+	
+	var normalized_spill = max(tilt_spill, hit_spill)
+	var water_level_rate = (normalized_spill - empying_max_rate) * delta
 	set_water_level(water_level + water_level_rate)
 	if water_level > 1.0:
 		set_floaters_enabled(false)
@@ -185,6 +193,7 @@ func update_water_level(delta):
 
 func pump_bilge(delta):
 	set_water_level(water_level - bilge_pump_rate * delta)
+	return(water_level != 0.0)
 	
 func respawn():
 	get_tree().call_group("spawn_point", "respawn")
@@ -193,13 +202,16 @@ func respawn():
 #func end_game():
 #	end_game = true
 
+const min_floater_height = 0.5
+const max_height = 2.0 - min_floater_height
+
 func set_water_level(val):
 #	if end_game: return
 	val = clamp(val, 0.0, 1.1)
 	water_level = val
 	if player_control.current:
 		 water_bar.value = water_level
-	set_floaters_height(0.5 + val * 4.0)
+	set_floaters_height(0.5 + val * max_height)
 
 func set_floaters_height(_val:float):
 	assert(false, "call to virtual method")
@@ -219,6 +231,8 @@ func repair_hit_level(delta):
 	if hit_level > 0.0 and repair_amount > 0.0:
 		set_hit_level(hit_level-(repair_rate*delta))
 		repair_amount -= repair_rate*delta
+		return true
+	return false
 
 func set_hit_level(val):
 	val = clamp(val, 0, max_hit_level)
@@ -232,3 +246,6 @@ func receive_damage(dmg:int = 1):
 	
 func get_cargo() -> Node:
 	return $CargoHold
+	
+func get_cannons() -> Node:
+	return $Cannons

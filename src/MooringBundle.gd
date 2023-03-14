@@ -11,7 +11,7 @@ export(float) var heave_force:float = 100.0
 
 
 func _ready():
-	steered_obj = get_path()
+	steered_obj = "." #get_path()
 	heave_func_name = "heave_mooring"
 	ease_func_name = "ease_mooring"
 	#print("MOORING READY  ", steered_obj)

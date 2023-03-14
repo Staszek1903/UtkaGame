@@ -26,6 +26,8 @@ var instances:Dictionary = {}
 
 func _process(_delta):
 	call_deferred("update_islands")
+
+
 #	if not camera:
 #		camera = get_viewport()
 #		print("CAMERA FOUND" if camera else "CAMERA NOT FOUND")
@@ -85,12 +87,13 @@ func get_height_rel_to_camera(pos: Vector3) -> float:
 func spawn_island(island:Node2D):
 	print("spawning")
 	if instances.has(island): return
-	var inst = island.scene.instance()
+	var inst:Spatial = island.scene.instance()
 #	assert(false)
 	instances[island] = inst
 	var pos = get_position(island)
 	inst.transform.origin = pos
-	call_deferred("add_child", inst) 
+	inst.rotate_y(-island.rotation)
+	call_deferred("add_child", inst)
 
 func despawn_island(island:Node2D):
 	print("despawning")

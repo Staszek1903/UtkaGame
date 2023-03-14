@@ -3,6 +3,7 @@ export(Array, String) var item_names = ["Food", "Wood", "Fabric",
 	"Steel", "CannonBall"]
 
 var lock_ui:bool = true setget set_lock_ui
+var used:bool = false
 
 func _ready():
 	$Button3D.text = "LOOT"
@@ -23,10 +24,12 @@ func set_lock_ui(val:bool):
 #	$IconBaner.text = "%d" % [items_in_stock]
 
 func _on_button_pressed():
-	if lock_ui: return
+	if lock_ui or used: return
 	
 	print("GIVING items")
+	$Chest/AnimationPlayer.play("open")
 	give_items()
+	$Button3D.active = false
 
 func give_items():
 	var count = (randi() % 3) + 1
@@ -35,7 +38,8 @@ func give_items():
 		var name_i = randi() % item_names.size()
 		get_parent().give_items(item_names[name_i], 1, self)
 		
-	queue_free()
+	#queue_free()
+	used = true
 	
 	
 func add_items(quantity:int):

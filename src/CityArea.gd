@@ -2,7 +2,7 @@ extends Spatial
 
 var dialogic_node = null
 var dialogic_timeline = "MainCity"
-var worker_scene = preload("res://objects/Worker.tscn")
+#var worker_scene = preload("res://objects/Worker.tscn")
 var workers_available:int = 2
 
 var cargo_sold:Dictionary = {}
@@ -13,14 +13,15 @@ func _ready():
 	make_dialogic_node()
 
 func _on_PortCrane_cargo_lifted(body:Node):
-	if body.filename == worker_scene.resource_path:
-		$PortItemOutput.spawn_item(body)
-		return
-	var cash:int = body.price * 2
-	log_cargo(body.filename, cash)
-	log_cash(cash)
-	$"/root/CashWallet".cash_amount += cash
-	body.queue_free()
+#	if body.filename == worker_scene.resource_path:
+#		$PortItemOutput.spawn_item(body)
+#		return
+#	var cash:int = body.price * 2
+#	log_cargo(body.filename, cash)
+#	log_cash(cash)
+#	$"/root/CashWallet".cash_amount += cash
+#	body.queue_free()
+	pass
 
 func log_cargo(name:String, cash:int):
 	if name in cargo_sold:
@@ -56,5 +57,5 @@ func dialogic_signal(val:String):
 		"hire":
 			if workers_available > 0:
 				workers_available -= 1
-				$PortItemOutput.spawn_item(worker_scene.instance())
+				#$PortItemOutput.spawn_item(worker_scene.instance())
 				Dialogic.set_variable("WorkersAvailable", workers_available)

@@ -7,7 +7,9 @@ flags_unshaded = true
 vertex_color_use_as_albedo = true
 
 [node name="ItemSpawn" type="ImmediateGeometry"]
+visible = false
 material_override = SubResource( 1 )
 script = ExtResource( 1 )
 radius_max = 70.0
 radius_min = 15.0
+item_names = [ "Food", "Wood", "Fabric", "Steel", "Cannonball" ]

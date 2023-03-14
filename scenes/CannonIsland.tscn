@@ -37,7 +37,7 @@ albedo_color = Color( 0.423529, 0.423529, 0.423529, 1 )
 [node name="ShipyardIsland" type="Spatial"]
 
 [node name="IslandBase" type="MeshInstance" parent="."]
-transform = Transform( 1.36277, 0, 0, 0, 1, 0, 0, 0, 1.36277, 0, 0, 0 )
+transform = Transform( 1.36277, 0, 0, 0, 1, 0, 0, 0, 1.36277, 2.6438, 0, 11.1726 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 3 )
 
@@ -46,7 +46,7 @@ script = ExtResource( 6 )
 ply_mesh = SubResource( 2 )
 
 [node name="Cabin" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46445, 3.25691, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.10825, 3.25691, 11.1726 )
 
 [node name="House" type="Spatial" parent="Cabin"]
 transform = Transform( 0.290986, 0, 0.956727, 0, 1, 0, -0.956727, 0, 0.290986, 8.31243, 2.0137, 2.58221 )
@@ -408,7 +408,7 @@ depth = 0.235515
 material = ExtResource( 2 )
 
 [node name="Cabin2" type="Spatial" parent="."]
-transform = Transform( 0.796118, 0, 0.605141, 0, 1, 0, -0.605141, 0, 0.796118, 4.46445, 3.25691, -23.0145 )
+transform = Transform( 0.796118, 0, 0.605141, 0, 1, 0, -0.605141, 0, 0.796118, 7.10825, 3.25691, -11.8419 )
 
 [node name="House" type="Spatial" parent="Cabin2"]
 transform = Transform( 0.290986, 0, 0.956727, 0, 1, 0, -0.956727, 0, 0.290986, 8.31243, 2.0137, 2.58221 )
@@ -770,8 +770,8 @@ depth = 0.235515
 material = ExtResource( 2 )
 
 [node name="Quai" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.019878, 0, -0.999802, 0, 1, 0, 0.999802, 0, -0.019878, -15.2112, 1.24283, 0.488444 )
-diary_message = "Congratulations again!!! Get yourself some cannons and go fight with those pirates"
+transform = Transform( -0.019878, 0, -0.999802, 0, 1, 0, 0.999802, 0, -0.019878, -12.5674, 1.24283, 11.661 )
+diary_message = "Congratulations again!!! Get yourself some cannons and go fight with those pirates.\\nSPACE to shoot."
 
 [node name="ResuplyBuildingFood" parent="Quai" instance=ExtResource( 11 )]
 transform = Transform( 1, 3.55271e-15, 0, -3.55271e-15, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0.253253, 0.640882, 1.65774 )

@@ -10,3 +10,7 @@ func _on_UpgradeBuildingSloop_upgraded():
 	sloop.global_transform = $SpawnPos.global_transform
 	var boat = sloop.get_node("Boat")
 	boat.set_current()
+
+func remove_mockup():
+	print("REMOOVE MOCKUP")
+	cutter_mockup.queue_free()

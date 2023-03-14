@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/WaterLevel.gd" type="Script" id=1]
 [ext_resource path="res://src/HungerLevel.gd" type="Script" id=2]
@@ -10,8 +10,13 @@
 [ext_resource path="res://src/Diary.gd" type="Script" id=8]
 [ext_resource path="res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Black.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://src/PauseMenu.gd" type="Script" id=10]
+[ext_resource path="res://src/StarvedStreen.gd" type="Script" id=11]
+[ext_resource path="res://fonts/architect-s-daughter/ArchitectsDaughter.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://fonts/montreal/Montreal-Bold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://RoundedStyleBox.tres" type="StyleBox" id=14]
+[ext_resource path="res://src/KeyHint.gd" type="Script" id=15]
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=1]
 resource_local_to_scene = true
 bg_color = Color( 0, 0.803922, 1, 1 )
 border_color = Color( 0, 0, 0, 1 )
@@ -55,7 +60,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=6]
 resource_local_to_scene = true
 bg_color = Color( 1, 0, 0, 1 )
 border_color = Color( 0, 0, 0, 1 )
@@ -64,7 +72,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.282353, 0.317647, 0.352941, 0.709804 )
 border_width_left = 2
 border_width_top = 2
@@ -80,7 +88,7 @@ expand_margin_right = 3.0
 expand_margin_top = 3.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=8]
 resource_local_to_scene = true
 bg_color = Color( 1, 0.701961, 0, 1 )
 border_color = Color( 0, 0, 0, 1 )
@@ -89,7 +97,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=9]
 resource_local_to_scene = true
 bg_color = Color( 0.282353, 0.317647, 0.352941, 0 )
 border_width_left = 2
@@ -106,7 +114,7 @@ expand_margin_right = 3.0
 expand_margin_top = 3.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id=16]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0, 0, 0, 0 )
 border_color = Color( 0, 0, 0, 0.6 )
 corner_radius_top_left = 1
@@ -116,11 +124,11 @@ corner_radius_bottom_left = 1
 shadow_color = Color( 0, 0, 0, 1 )
 shadow_size = 90
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=11]
 size = 24
 font_data = ExtResource( 7 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0 )
 border_color = Color( 0, 0, 0, 0.6 )
 corner_radius_top_left = 1
@@ -130,15 +138,35 @@ corner_radius_bottom_left = 1
 shadow_color = Color( 0, 0, 0, 1 )
 shadow_size = 416
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=13]
 size = 48
 font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 48
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 20
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0, 0.501961, 1, 1 )
+border_color = Color( 0.0980392, 0.0666667, 0.0666667, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=17]
+size = 20
+font_data = ExtResource( 13 )
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_right = 1.0
+margin_left = -1.0
+margin_right = -1.0
 rect_pivot_offset = Vector2( -718, -283 )
 mouse_filter = 2
 __meta__ = {
@@ -164,7 +192,7 @@ margin_top = -124.709
 margin_right = 256.11
 margin_bottom = -87.7093
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 12 )
+custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 1.0
 value = 0.5
@@ -186,6 +214,20 @@ custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 4 )
 max_value = 1.0
 percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WaterLevel/HitBar1"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -14.5
+margin_right = 40.0
+margin_bottom = 14.5
+custom_fonts/font = SubResource( 5 )
+text = "10"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -241,8 +283,8 @@ margin_top = -125.0
 margin_right = 228.0
 margin_bottom = -85.0
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 13 )
-custom_styles/bg = SubResource( 6 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 max_value = 1.0
 value = 0.64
 percent_visible = false
@@ -259,8 +301,8 @@ margin_top = -124.709
 margin_right = 227.698
 margin_bottom = -84.709
 rect_rotation = -89.9999
-custom_styles/fg = SubResource( 14 )
-custom_styles/bg = SubResource( 15 )
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
 max_value = 1.0
 value = 0.5
 percent_visible = false
@@ -309,6 +351,7 @@ __meta__ = {
 }
 
 [node name="Diary" type="Control" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -327,7 +370,7 @@ modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -50.0
-custom_styles/panel = SubResource( 16 )
+custom_styles/panel = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -350,7 +393,7 @@ __meta__ = {
 margin_right = 800.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 800, 150 )
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 
 [node name="Notification" type="Label" parent="Diary"]
 visible = false
@@ -392,7 +435,7 @@ margin_left = -400.0
 margin_top = -50.0
 margin_right = 400.0
 margin_bottom = 50.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -406,7 +449,7 @@ margin_left = -315.5
 margin_top = -61.5
 margin_right = 315.5
 margin_bottom = 61.5
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 13 )
 text = "PAUSE
 ENTER to exit ESC to continue"
 align = 1
@@ -414,3 +457,638 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StarvedScreen" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 100 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="StarvedScreen"]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -50.0
+margin_right = 400.0
+margin_bottom = 50.0
+custom_styles/panel = SubResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StarvedScreen"]
+modulate = Color( 1, 0, 0.00392157, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -315.5
+margin_top = -61.5
+margin_right = 315.5
+margin_bottom = 61.5
+custom_fonts/font = SubResource( 14 )
+text = "STARVED ON THE SEA
+Enter to respawn"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintZ" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+key = 90
+message = "to paddle"
+
+[node name="Label2" type="Label" parent="KeyHintZ"]
+margin_left = -24.0
+margin_top = 22.0
+margin_right = 105.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 15 )
+text = "to disable hints"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyIcon2" type="ProgressBar" parent="KeyHintZ"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -121.0
+margin_top = 24.0
+margin_right = -66.357
+margin_bottom = 56.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintZ/KeyIcon2"]
+margin_top = 3.0
+margin_right = 55.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "Enter"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="KeyHintZ"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintZ"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintZ/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintCtrl" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+key = 16777238
+message = "to show control points"
+
+[node name="Label" type="Label" parent="KeyHintCtrl"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintCtrl"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintCtrl/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintSelect" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+point = 1
+message = "to select control point"
+
+[node name="Label" type="Label" parent="KeyHintSelect"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintSelect"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintSelect/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintHeave" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+key = 83
+message = "to heave selected point"
+
+[node name="Label" type="Label" parent="KeyHintHeave"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintHeave"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintHeave/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintSelect2" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+point = 2
+message = "to select control point"
+
+[node name="Label" type="Label" parent="KeyHintSelect2"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintSelect2"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintSelect2/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintHeave2" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+key = 83
+message = "to heave selected point"
+
+[node name="Label" type="Label" parent="KeyHintHeave2"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintHeave2"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintHeave2/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintEase" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+key = 87
+message = "to ease selected point"
+
+[node name="Label" type="Label" parent="KeyHintEase"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintEase"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintEase/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintHelmR" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+key = 68
+message = "to steer right"
+
+[node name="Label" type="Label" parent="KeyHintHelmR"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintHelmR"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintHelmR/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintHelmL" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+key = 65
+message = "to stear left"
+
+[node name="Label" type="Label" parent="KeyHintHelmL"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintHelmL"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintHelmL/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintMooring" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+point = 3
+message = "to select mooring"
+
+[node name="Label" type="Label" parent="KeyHintMooring"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintMooring"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintMooring/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyHintMooringPost" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+point = 4
+message = "to select post"
+
+[node name="Label" type="Label" parent="KeyHintMooringPost"]
+margin_left = -25.0
+margin_top = -20.0
+margin_right = 104.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 15 )
+text = "to do smth"
+
+[node name="KeyIcon" type="ProgressBar" parent="KeyHintMooringPost"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = -18.0
+margin_right = -74.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = ExtResource( 14 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="KeyHintMooringPost/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 17 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="satisfied" from="KeyHintZ" to="KeyHintCtrl" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintCtrl" to="KeyHintSelect" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintSelect" to="KeyHintHeave" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintHeave" to="KeyHintSelect2" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintSelect2" to="KeyHintHeave2" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintHeave2" to="KeyHintEase" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintEase" to="KeyHintHelmR" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintHelmR" to="KeyHintHelmL" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintHelmL" to="KeyHintMooring" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintMooring" to="KeyHintMooringPost" method="_on_prev_satisfied"]
+[connection signal="satisfied" from="KeyHintMooringPost" to="KeyHintMooringPost" method="_on_last_satisfied"]

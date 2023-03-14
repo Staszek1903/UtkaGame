@@ -1,7 +1,7 @@
 tool
 extends Spatial
 
-export(float) var segment_length = 1.0
+export(float, 0.01, 10.0) var segment_length = 1.0
 export(float) var segment_thicc = 0.1
 export(float) var length = 1.0 setget set_length
 export(float) var max_length = 10.0

@@ -24,6 +24,7 @@ func _ready():
 	assert(hinge_bom)
 	assert(save_manager)
 	save_manager.call_deferred("update_data",self)
+	set_sail_trim(10.0)
 #	assert(mooring_bow_l)
 #	assert(mooring_bow_r)
 
@@ -101,9 +102,11 @@ func set_sail_trim(val: float):
 	
 func ease_sheets(delta):
 	set_sail_trim(sail_trim + 10 * delta)
+	return(sail_trim != 90.0)
 
 func heave_sheets(delta):
 	set_sail_trim(sail_trim - 10 * delta)
+	return(sail_trim != 0.0)
 	
 var main_haulyard:float = 1.0
 	
@@ -117,6 +120,8 @@ func heave_mainhaul(delta):
 	anim.stop(false)
 	anim.seek(main_haulyard, true)
 	
+	return (main_haulyard != 0.0)
+	
 func ease_mainhaul(delta):
 #	if bom.sail_amount > 0.5:
 #		$"../AnimationPlayer".play("fold")
@@ -125,6 +130,8 @@ func ease_mainhaul(delta):
 	anim.current_animation = "fold"
 	anim.stop(false)
 	anim.seek(main_haulyard, true)
+	
+	return (main_haulyard != 1.0)
 
 
 #func _on_sail_togle_trigger():

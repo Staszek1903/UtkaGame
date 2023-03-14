@@ -204,5 +204,6 @@ shape = SubResource( 9 )
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 unit_db = 14.953
+unit_size = 3.0
 
 [connection signal="body_entered" from="CanonBall/DamageTrigger" to="CanonBall" method="_on_DamageTrigger_body_entered"]

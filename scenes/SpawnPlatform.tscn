@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://materials/wood_materia.tres" type="Material" id=2]
-[ext_resource path="res://src/SpawnPlatform.gd" type="Script" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
 rough = true
@@ -66,7 +65,6 @@ tracks/3/keys = {
 extents = Vector3( 1, 1, 3.08536 )
 
 [node name="SpawnPlatform" type="Spatial"]
-script = ExtResource( 3 )
 
 [node name="boat" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502252, -0.28374 )

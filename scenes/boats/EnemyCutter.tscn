@@ -393,7 +393,6 @@ mesh = ExtResource( 13 )
 material/0 = ExtResource( 21 )
 
 [node name="ItemSpawn" parent="Boat" instance=ExtResource( 15 )]
-visible = false
 radius_max = 6.883
 radius_min = 0.01
 item_count = 4
