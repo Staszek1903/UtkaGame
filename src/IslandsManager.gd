@@ -87,7 +87,13 @@ func get_height_rel_to_camera(pos: Vector3) -> float:
 func spawn_island(island:Node2D):
 	print("spawning")
 	if instances.has(island): return
-	var inst:Spatial = island.scene.instance()
+	print("PROTO: ", island.prototype)
+	
+	var inst:Spatial = null
+	if island.prototype:
+		inst = island.prototype.duplicate()
+	else:
+		inst = island.scene.instance()
 #	assert(false)
 	instances[island] = inst
 	var pos = get_position(island)

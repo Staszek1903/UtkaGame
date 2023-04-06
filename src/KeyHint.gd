@@ -40,7 +40,7 @@ func set_message(val:String):
 func _input(event):
 	if not visible: return
 	if event is InputEventKey and event.pressed:
-		print("KEY_", event.scancode )
+		#print("KEY_", event.scancode )
 		if key == event.scancode:
 			visible = false
 			emit_signal("satisfied")

@@ -2,13 +2,13 @@ extends Node
 
 signal race_won
 
-onready var boat = $"../Boat"
-onready var bom = $"../Bom"
+onready var boat:Spatial = $"../Boat"
+onready var bom:Spatial = $"../Boat/Bom"
 onready var audio = $"../Boat/AudioPlayer"
 
 onready var wind_man = $"/root/WindManager"
 
-export(float) var target_angle = 0 setget set_target_angle
+export(float) var target_angle = 0.0 setget set_target_angle
 export(Resource) onready var pidc = pidc if pidc else PidController.new()
 export(bool) var activated = true setget set_activated
 
@@ -20,7 +20,7 @@ func _ready():
 
 	assert(pidc)
 	assert(boat)
-	#assert(bom)
+	assert(bom)
 	add_to_group("steering")
 	set_activated(activated)
 	
@@ -52,6 +52,7 @@ func _physics_process(_delta):
 	update_speed()
 	update_rudder()
 	update_agr(_delta)
+	update_sail()
 	
 func update_speed():
 	var forward_vel = -boat.linear_velocity.dot(
@@ -181,4 +182,14 @@ func update_agr(delta):
 			
 #		AudioStreamPlayer3D
 	
+func update_sail():
+	var wind_vector:Vector3 = wind_man.global_wind_vector
+	var forward_vect:Vector3 = -boat.global_transform.basis.z
+	var relative_wind_angle:float = forward_vect.angle_to(-wind_vector)
+	var side = sign(forward_vect.cross(wind_vector).y)
 	
+	relative_wind_angle = clamp(relative_wind_angle, 0.0, PI*0.5)
+	#print("to wind ", relative_wind_angle, " ", side)
+	
+	var sail_rotation = -relative_wind_angle * side * 0.9
+	bom.transform.basis = Basis(Vector3.UP, sail_rotation)

@@ -25,6 +25,8 @@ func _ready():
 	assert(save_manager)
 	save_manager.call_deferred("update_data",self)
 	set_sail_trim(10.0)
+	
+	anim.play("fold",-1,10.0,false)
 #	assert(mooring_bow_l)
 #	assert(mooring_bow_r)
 
@@ -44,10 +46,15 @@ func _on_ItemCatchArea_body_entered(body):
 #		catchable_bodies.append(body)
 #		print("added catch item", body)
 	if body.is_in_group("catchable"):
+		var hold = $CargoHold
 		print("caught items: ", body.items)
 	#	for i in catchable_bodies:
-		$CargoHold.add_items(body.items)
+		hold.add_items(body.items)
+		$AudioLoot.play()
 		body.remove_catchable()
+		
+#		for iname in body.items:
+			
 
 func _on_ItemCatchArea_body_exited(body):
 	catchable_bodies.erase(body)

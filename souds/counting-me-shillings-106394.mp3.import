@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/counting-me-shillings-106394.mp3-b9bd3dc288d9f9307938646c4e1b5298.mp3str"
+
+[deps]
+
+source_file="res://souds/counting-me-shillings-106394.mp3"
+dest_files=[ "res://.import/counting-me-shillings-106394.mp3-b9bd3dc288d9f9307938646c4e1b5298.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

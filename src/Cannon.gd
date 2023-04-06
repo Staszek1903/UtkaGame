@@ -1,7 +1,7 @@
 extends Spatial
 
 export(float) var recoil_time:float = 2.0
-export(float) var ball_velocity = 200.0
+export(float) var ball_velocity = 100.0
 var timer: float = 0
 onready var ball_proto:Spatial = $CanonBall
 onready var aim_cone:Spatial = $CanonBarrel/AimCone
@@ -29,8 +29,8 @@ func set_pitch(pitch:float):
 func is_ready_to_fire() -> bool:
 	return (timer <= 0.0)
 
-func fire():
-	if timer > 0.0: return
+func fire() -> bool:
+	if timer > 0.0: return false
 	if not ball_proto: ball_proto = $CannonBall
 	var new_ball = ball_proto.duplicate()
 	get_tree().get_root().add_child(new_ball)
@@ -43,6 +43,7 @@ func fire():
 	#print(new_ball.linear_velocity.length())
 	$CanonBarrel/Particles.emitting = true
 	$AudioStreamPlayer3D.play()
+	return true
 	
 func get_max_range()->float:
 	return get_range(deg2rad(45))

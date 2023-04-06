@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cannon_miss.ogg-70420d2a9f72c95abd6ac7f3e1fa9ccc.oggstr"
+
+[deps]
+
+source_file="res://souds/cannon_miss.ogg"
+dest_files=[ "res://.import/cannon_miss.ogg-70420d2a9f72c95abd6ac7f3e1fa9ccc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,14 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/objects/Rope.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/MouseArea.gd" type="Script" id=2]
 [ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=3]
 [ext_resource path="res://src/MooringBundle.gd" type="Script" id=4]
 [ext_resource path="res://materials/green_light_material.tres" type="Material" id=5]
+[ext_resource path="res://materials/silver_metalic_material.tres" type="Material" id=6]
+[ext_resource path="res://materials/light_material.tres" type="Material" id=7]
 
 [sub_resource type="CylinderShape" id=1]
-radius = 0.146394
 height = 0.16
+radius = 0.146394
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_use_point_size = true
@@ -26,6 +28,7 @@ script = ExtResource( 4 )
 [node name="MooringTrigger" type="Area" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 script = ExtResource( 2 )
+indicator = NodePath("../Mesh/Indicator")
 
 [node name="Collision" type="CollisionShape" parent="MooringTrigger"]
 shape = SubResource( 1 )
@@ -69,6 +72,37 @@ visible = false
 radius = 0.125044
 height = 0.139716
 material = ExtResource( 5 )
+
+[node name="Mesh" type="Spatial" parent="."]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Mesh"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+radius = 0.0615331
+height = 0.176459
+material = ExtResource( 6 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Mesh"]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0.0766598, 0 )
+radius = 0.0615331
+height = 0.38355
+material = ExtResource( 6 )
+
+[node name="Indicator" type="Spatial" parent="Mesh"]
+visible = false
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Mesh/Indicator"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+invert_faces = true
+radius = 0.0856494
+height = 0.228953
+material = ExtResource( 7 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Mesh/Indicator"]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0.0766598, 0 )
+invert_faces = true
+radius = 0.0879949
+height = 0.438074
+material = ExtResource( 7 )
 
 [connection signal="mouse_hoover" from="MooringTrigger" to="." method="_on_MooringTrigger_mouse_hoover"]
 [connection signal="pressed" from="MooringTrigger" to="." method="_on_MouseArea_pressed"]

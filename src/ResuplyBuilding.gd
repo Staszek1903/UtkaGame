@@ -33,7 +33,7 @@ func give_items():
 	get_parent().give_items(item_name, quantity, self)
 	
 	
-func add_items(quantity:int):
+func add_items(_quantity:int):
 	pass
 	
 #func check_unlock_id(id:int):

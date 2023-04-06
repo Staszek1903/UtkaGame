@@ -6,10 +6,12 @@ export(bool) var sails_active = false setget set_sails_active
 	
 func set_sails_active(val:bool):
 	sails_active = val
-	bom.is_sail_up = val
-	bom.sail_amount = 1.0
-	jib.is_sail_up = val
-	jib.sail_amount = 1.0
+	if bom:
+		bom.is_sail_up = val
+		bom.sail_amount = 1.0
+	if jib:
+		jib.is_sail_up = val
+		jib.sail_amount = 1.0
 
 func get_velocity_heading():
 	var vel_direction:Vector3 = linear_velocity
@@ -19,7 +21,7 @@ func get_velocity_heading():
 	vel_basis = vel_basis.orthonormalized()
 	return vel_basis.get_euler().y
 	
-func set_sail_trim(val: float):
+func set_sail_trim(_val: float):
 	pass
 #	val = clamp(val, 0.0, 90.0)
 #	sail_trim = val

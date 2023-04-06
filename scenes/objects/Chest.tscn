@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://materials/dark_grey_material.tres" type="Material" id=1]
 [ext_resource path="res://addons/ply/resources/ply_mesh.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://materials/wood_materia.tres" type="Material" id=4]
 [ext_resource path="res://materials/black_material.tres" type="Material" id=5]
 [ext_resource path="res://materials/gold_material.tres" type="Material" id=6]
+[ext_resource path="res://souds/counting-me-shillings-106394.mp3" type="AudioStream" id=7]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -136,6 +137,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( -0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
@@ -196,3 +209,6 @@ amount = 32
 one_shot = true
 process_material = SubResource( 8 )
 draw_pass_1 = SubResource( 9 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )

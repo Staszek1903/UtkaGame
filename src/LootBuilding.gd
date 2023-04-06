@@ -42,7 +42,7 @@ func give_items():
 	used = true
 	
 	
-func add_items(quantity:int):
+func add_items(_quantity:int):
 	pass
 	
 #func check_unlock_id(id:int):

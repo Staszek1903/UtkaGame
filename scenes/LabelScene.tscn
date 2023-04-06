@@ -16,6 +16,3 @@ custom_fonts/font = ExtResource( 1 )
 text = "SAMPLE TEXT"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}

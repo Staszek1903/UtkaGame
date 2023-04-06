@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://materials/bulbul_material.tres" type="Material" id=1]
+[ext_resource path="res://src/ComonCamera.gd" type="Script" id=2]
+[ext_resource path="res://souds/VistulaShort.mp3" type="AudioStream" id=3]
+
+[sub_resource type="QuadMesh" id=37]
+size = Vector2( 2, 2 )
+
+[node name="ComonCamera" type="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.718395, 2.27891, 6.4095 )
+cull_mask = 3
+current = true
+far = 2000.0
+script = ExtResource( 2 )
+
+[node name="BulBulMesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0775461 )
+mesh = SubResource( 37 )
+material/0 = ExtResource( 1 )
+
+[node name="WaterAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -30.131
+pitch_scale = 0.7
+autoplay = true

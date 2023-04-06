@@ -9,7 +9,7 @@ onready var control = get_parent()
 func _ready():
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	if not active: return
 	if not control.player_boat: return
 	

@@ -1,4 +1,3 @@
-tool
 extends "res://src/MouseArea.gd"
 
 export(String) var text = "SAMPLE TEXT" setget set_text

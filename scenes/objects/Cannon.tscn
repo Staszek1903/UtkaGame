@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://materials/black_material.tres" type="Material" id=1]
 [ext_resource path="res://materials/wood_materia.tres" type="Material" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scenes/WaserKeelF.tscn" type="PackedScene" id=5]
 [ext_resource path="res://souds/cannon_fire.wav" type="AudioStream" id=6]
 [ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=7]
+[ext_resource path="res://souds/explosions/explosion01.wav" type="AudioStream" id=8]
+[ext_resource path="res://souds/cannon_miss.ogg" type="AudioStream" id=9]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.285068, 0.850679, 1 )
@@ -27,8 +29,8 @@ lifetime_randomness = 0.5
 direction = Vector3( 0, 0, -1 )
 spread = 10.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
-initial_velocity_random = 1.0
+initial_velocity = 200.0
+initial_velocity_random = 0.7
 linear_accel = -100.0
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
@@ -48,10 +50,38 @@ radius = 0.287145
 [sub_resource type="SphereShape" id=9]
 radius = 0.574033
 
+[sub_resource type="ParticlesMaterial" id=10]
+lifetime_randomness = 0.5
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 75.0
+initial_velocity_random = 1.0
+linear_accel = -100.0
+scale = 3.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.7897, 0.995708, 1 )
+colors = PoolColorArray( 0.022831, 0.533778, 0.974121, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0.980392, 0.980392, 0.980392, 0 )
+
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+lifetime_randomness = 0.5
+direction = Vector3( 0, 1, 0 )
+spread = 10.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 35.0
+initial_velocity_random = 0.7
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 13 )
+
 [node name="Cannon" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19902, 0 )
 script = ExtResource( 3 )
-ball_velocity = 50.0
 
 [node name="CanonBarrel" type="CSGCombiner" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.97367, -0.22796, 0, 0.22796, 0.97367, 0, 0, 0 )
@@ -101,7 +131,9 @@ transform = Transform( 1, 0, 0, 0, 0.999494, -0.0318118, 0, 0.0318118, 0.999494,
 emitting = false
 amount = 64
 one_shot = true
+explosiveness = 0.9
 visibility_aabb = AABB( -3.22553, -3.19567, -13.7374, 6.45107, 6.39135, 27.4748 )
+local_coords = false
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
 
@@ -200,6 +232,38 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="CanonBall/DamageTrigger"]
 shape = SubResource( 9 )
+
+[node name="Particles" type="Particles" parent="CanonBall"]
+transform = Transform( 1, 0, 0, 0, 0.999494, -0.0318118, 0, 0.0318118, 0.999494, 0, 0, 0 )
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.9
+visibility_aabb = AABB( -10.2347, -7.03642, -7.94894, 20.4695, 14.0729, 15.8979 )
+local_coords = false
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="ParticlesSplash" type="Particles" parent="CanonBall"]
+transform = Transform( 1, 0, 0, 0, 0.956202, 0.292706, 0, -0.292706, 0.956202, 0, 0.0418379, -2.18483 )
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.9
+visibility_aabb = AABB( -3.22553, -3.19567, -4.00882, 6.45107, 6.39135, 8.01763 )
+local_coords = false
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="AudioBoom" type="AudioStreamPlayer3D" parent="CanonBall"]
+stream = ExtResource( 8 )
+unit_db = 14.953
+unit_size = 3.0
+
+[node name="AudioSplash" type="AudioStreamPlayer3D" parent="CanonBall"]
+stream = ExtResource( 9 )
+unit_db = 14.953
+unit_size = 3.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )

@@ -3,10 +3,10 @@
 [sub_resource type="ProceduralSky" id=1]
 ground_bottom_color = Color( 1, 1, 1, 1 )
 ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
-sun_latitude = 45.0
-sun_longitude = -90.0
-sun_angle_min = 5.0
-sun_angle_max = 135.08
+sun_latitude = 20.0
+sun_longitude = 131.0
+sun_angle_min = 2.0
+sun_angle_max = 50.0
 sun_curve = 0.0901251
 
 [resource]

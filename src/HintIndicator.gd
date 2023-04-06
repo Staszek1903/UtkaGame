@@ -25,6 +25,6 @@ func _on_SteeringPointsCollection_current_changed(_point):
 		get_tree().call_group("key_hint", "_on_point_satisfied", point)
 
 
-func _on_DockPoint_mooring_on(boat):
+func _on_DockPoint_mooring_on(_boat):
 	visible = false
 	get_tree().call_group("key_hint", "_on_point_satisfied", point)

@@ -36,6 +36,12 @@ func scroll_point(offset):
 			)
 	set_steering_point(get_child(next_index))
 	
+#func get_steering_point(index:int) -> Node:
+#	return get_child(index)
+#
+#func get_point_index(point: Node) -> int:
+#	return point.get_index()
+	
 func steer_heave(delta):
 	if not current_steering_point: return
 	current_steering_point.steer_heave(delta)

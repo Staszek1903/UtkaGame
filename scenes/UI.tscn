@@ -1,20 +1,24 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/WaterLevel.gd" type="Script" id=1]
 [ext_resource path="res://src/HungerLevel.gd" type="Script" id=2]
 [ext_resource path="res://src/CheatConsole.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Indicators.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/dialogic/Example Assets/Fonts/NameFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://fonts/NameFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/SteeringName.gd" type="Script" id=6]
-[ext_resource path="res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://fonts/Overlock-Regular.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://src/Diary.gd" type="Script" id=8]
-[ext_resource path="res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Black.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://fonts/Overlock-Black.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://src/PauseMenu.gd" type="Script" id=10]
 [ext_resource path="res://src/StarvedStreen.gd" type="Script" id=11]
 [ext_resource path="res://fonts/architect-s-daughter/ArchitectsDaughter.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://fonts/montreal/Montreal-Bold.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://RoundedStyleBox.tres" type="StyleBox" id=14]
 [ext_resource path="res://src/KeyHint.gd" type="Script" id=15]
+[ext_resource path="res://fonts/architect-s-daughter/ArchitectsDaughter32.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/UIMessages.gd" type="Script" id=17]
+[ext_resource path="res://scenes/F1Help.tscn" type="PackedScene" id=18]
+[ext_resource path="res://souds/error.ogg" type="AudioStream" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 resource_local_to_scene = true
@@ -169,9 +173,6 @@ margin_left = -1.0
 margin_right = -1.0
 rect_pivot_offset = Vector2( -718, -283 )
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Indicators" parent="." instance=ExtResource( 4 )]
 
@@ -200,6 +201,22 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="WaterLevel/ProgressBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -30.2089
+margin_top = -19.6101
+margin_right = 31.7911
+margin_bottom = 17.3899
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "BILGE WATER"
 
 [node name="HitBar1" type="ProgressBar" parent="WaterLevel"]
 visible = false
@@ -309,6 +326,22 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="HungerLevel/HungerBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -28.209
+margin_top = -20.4811
+margin_right = 37.791
+margin_bottom = 19.5189
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "HUNGER"
 
 [node name="CheatConsole" type="LineEdit" parent="."]
 pause_mode = 2
@@ -451,12 +484,9 @@ margin_right = 315.5
 margin_bottom = 61.5
 custom_fonts/font = SubResource( 13 )
 text = "PAUSE
-ENTER to exit ESC to continue"
+ENTER to Menu ESC to continue"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StarvedScreen" type="Control" parent="."]
 pause_mode = 2
@@ -505,6 +535,34 @@ text = "STARVED ON THE SEA
 Enter to respawn"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UIMessages" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -348.0
+margin_top = -11.0
+margin_right = -308.0
+margin_bottom = 29.0
+grow_vertical = 0
+alignment = 2
+script = ExtResource( 17 )
+
+[node name="AudioBad" type="AudioStreamPlayer" parent="UIMessages"]
+stream = ExtResource( 19 )
+volume_db = -10.0
+
+[node name="Msg" type="Label" parent="UIMessages"]
+visible = false
+margin_top = 360.0
+margin_right = 275.0
+margin_bottom = 416.0
+custom_fonts/font = ExtResource( 16 )
+text = "SAMPLE TEXT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1080,6 +1138,8 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="F1Help" parent="." instance=ExtResource( 18 )]
 
 [connection signal="satisfied" from="KeyHintZ" to="KeyHintCtrl" method="_on_prev_satisfied"]
 [connection signal="satisfied" from="KeyHintCtrl" to="KeyHintSelect" method="_on_prev_satisfied"]

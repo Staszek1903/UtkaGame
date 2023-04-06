@@ -8,12 +8,13 @@ onready var viewport = $Viewport
 
 export(Vector2) var dimentions = Vector2(1,1) setget set_dimentions
 export(int) var resolution = 100 setget set_resolution
-export(String) var text = "F" setget set_text
+export(String) var text = "0" setget set_text
 export(int,0,100) var value = 0 setget set_value
 
 func _ready():
 	set_dimentions(dimentions)
 	set_resolution(resolution)
+	set_text(text)
 	
 func set_dimentions(val:Vector2):
 	dimentions = val

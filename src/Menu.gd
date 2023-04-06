@@ -29,7 +29,7 @@ func _on_ContinueButton_pressed():
 	yield(get_tree(), "idle_frame")
 	$"/root/Ui".visible = true
 	$"/root/Ui/CheatConsole".load_on_new_scene = true
-	get_tree().change_scene("res://scenes/OceanLevel.tscn")
+	var _ignore = get_tree().change_scene("res://scenes/OceanLevel.tscn")
 	
 
 func _on_QuitButton_pressed():
@@ -41,3 +41,13 @@ func _on_Fullscreen_toggled(button_pressed):
 
 func _on_MouseInverted_toggled(button_pressed):
 	$"/root/Ui/CheatConsole".mouse_y_inverted = button_pressed
+
+var is_credit:bool = false
+func _on_CreditButton_pressed():
+	if not is_credit:
+		$Camera/AnimationPlayer.play("credit")
+		$CreditBody/CreditButton.text = "BACK"
+	else:
+		$Camera/AnimationPlayer.play_backwards("credit")
+		$CreditBody/CreditButton.text = "CREDIT"
+	is_credit = not is_credit

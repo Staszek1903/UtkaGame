@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cannon_hit_wall.ogg-7913075f30d074d78cee0edcebf4ac3f.oggstr"
+
+[deps]
+
+source_file="res://souds/cannon_hit_wall.ogg"
+dest_files=[ "res://.import/cannon_hit_wall.ogg-7913075f30d074d78cee0edcebf4ac3f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

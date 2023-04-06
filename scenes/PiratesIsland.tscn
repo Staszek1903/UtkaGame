@@ -93,6 +93,6 @@ script = ExtResource( 4 )
 ply_mesh = SubResource( 5 )
 
 [node name="EnemyCutter" parent="." instance=ExtResource( 7 )]
-transform = Transform( -0.0360157, 0, -0.999351, 0, 1, 0, 0.999351, 0, -0.0360157, 66.3249, 0, 0 )
+transform = Transform( 0.538109, 0, -0.842875, 0, 1, 0, 0.842875, 0, 0.538109, 50.6136, 0, 0 )
 
 [editable path="EnemyCutter"]

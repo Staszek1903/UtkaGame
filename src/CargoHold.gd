@@ -1,5 +1,7 @@
 extends "res://src/MouseArea.gd"
 
+onready var uimessages = $"/root/Ui/UIMessages"
+
 var items:Dictionary = {}
 export(Dictionary) var capacity:Dictionary = {}
 const default_capacity = 99
@@ -15,20 +17,38 @@ func add_items(items_to_add:Dictionary):
 		if not i in capacity:
 			capacity[i] = default_capacity
 		
+		var before:int = 0
+		
 		if i in items:
+			before = items[i]
 			items[i] += items_to_add[i]
 		else:
 			items[i] = items_to_add[i]
 			
 		if items[i] > capacity[i]:
 			items[i] = capacity[i]
+			
+		var after = items[i]
+		
+		uimessages.display(
+				i+ " +" \
+				+ str(after-before) \
+#				+ " ("+ str(hold.get_item_count(iname)) +")"
+				)
+
 	update_text()
+	
+	
 	
 func withdraw_items(items_to_withdraw:Dictionary):
 	for i in items_to_withdraw.keys():
 		if i in items:
 			items[i] -= items_to_withdraw[i]
 			if items[i] < 0: var _b = items.erase(i)
+	
+			uimessages.display(
+						i+ " -" \
+						+ str(items_to_withdraw[i]), Color.gray)
 	
 	update_text()
 	

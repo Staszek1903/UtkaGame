@@ -21,6 +21,11 @@ func _ready():
 	heave_ljibsheet(0.0)
 	heave_rjibsheet(0.0)
 	
+	anim.play("jib_fold",-1,10.0,false)
+	yield(anim, "animation_finished")
+	anim.play("fold",-1,10.0,false)
+	
+	
 	
 func remove_mockups():
 	yield(get_tree(), "idle_frame")
@@ -45,6 +50,7 @@ func _on_ItemCatchArea_body_entered(body):
 		print("caught items: ", body.items)
 	#	for i in catchable_bodies:
 		$CargoHold.add_items(body.items)
+		$AudioLoot.play()
 		body.remove_catchable()
 
 func _on_ItemCatchArea_body_exited(body):
@@ -123,7 +129,7 @@ func ease_rjibsheet(delta):
 	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	rjibsheet.length = 0.8 * rope_len
 	
-	print(rjibsheet_trim)
+	#print(rjibsheet_trim)
 	return(rjibsheet_trim != max_trim)
 	
 func heave_rjibsheet(delta):
@@ -135,7 +141,7 @@ func heave_rjibsheet(delta):
 	var rope_len = jibsheet_min_l \
 	+ ((rjibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	rjibsheet.length = 0.8 * rope_len
-	print(rjibsheet_trim)
+	#print(rjibsheet_trim)
 	return(rjibsheet_trim != 0.0)
 	
 func ease_ljibsheet(delta):
@@ -147,7 +153,7 @@ func ease_ljibsheet(delta):
 	var rope_len = jibsheet_min_l \
 	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	ljibsheet.length = 0.8 * rope_len
-	print(ljibsheet_trim)
+	#print(ljibsheet_trim)
 	return(ljibsheet_trim != max_trim)
 	
 func heave_ljibsheet(delta):
@@ -159,7 +165,7 @@ func heave_ljibsheet(delta):
 	var rope_len = jibsheet_min_l \
 	+ ((ljibsheet_trim/180.0)*(jibsheet_max_l-jibsheet_min_l))
 	ljibsheet.length = 0.8 * rope_len
-	print(ljibsheet_trim)
+	#print(ljibsheet_trim)
 	return(ljibsheet_trim != 0.0)
 
 func update_jib_trim():
@@ -184,10 +190,11 @@ func heave_mainhaul(delta):
 #		$"../AnimationPlayer".play_backwards("fold")
 	main_haulyard -= 0.5*delta
 	main_haulyard = clamp(main_haulyard, 0.0, 1.0)
-	print("HAUL: ", main_haulyard)
+#	print("HAUL: ", main_haulyard)
 	anim.current_animation = "fold"
 	anim.stop(false)
 	anim.seek(main_haulyard, true)
+	return(main_haulyard != 0.0)
 	
 func ease_mainhaul(delta):
 #	if bom.sail_amount > 0.5:
@@ -197,6 +204,7 @@ func ease_mainhaul(delta):
 	anim.current_animation = "fold"
 	anim.stop(false)
 	anim.seek(main_haulyard, true)
+	return(main_haulyard != 1.0)
 
 var jib_haulyard:float = 1.0
 
@@ -206,6 +214,7 @@ func heave_jibhaul(delta):
 	anim.current_animation = "jib_fold"
 	anim.stop(false)
 	anim.seek(jib_haulyard, true)
+	return(jib_haulyard != 0.0)
 	
 func ease_jibhaul(delta):
 	jib_haulyard += 0.5*delta
@@ -213,6 +222,7 @@ func ease_jibhaul(delta):
 	anim.current_animation = "jib_fold"
 	anim.stop(false)
 	anim.seek(jib_haulyard, true)
+	return(jib_haulyard != 1.0)
 
 func consume_food_portion() -> bool:
 	var food = $CargoHold.get_item_count("Food")

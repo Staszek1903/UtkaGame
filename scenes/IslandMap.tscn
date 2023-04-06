@@ -29,6 +29,6 @@ script = ExtResource( 1 )
 scene = ExtResource( 7 )
 
 [node name="PirateIsland" type="Position2D" parent="."]
-position = Vector2( -42, 7 )
+position = Vector2( -41, 0 )
 script = ExtResource( 1 )
 scene = ExtResource( 3 )

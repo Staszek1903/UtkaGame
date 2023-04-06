@@ -5,6 +5,7 @@ onready var waterManager = $"/root/Root/WaterManager"
 onready var islandManager = $"/root/Root/IslandsManager"
 onready var water_bar = $"/root/Ui/WaterLevel"
 onready var hunger_bar = $"/root/Ui/HungerLevel"
+onready var uimessages = $"/root/Ui/UIMessages"
 onready var player_control = $"../Control"
 onready var cargo_hold = $CargoHold
 
@@ -15,7 +16,7 @@ onready var keelForceOffset = $KeelForceOffset
 onready var hinge_bom: HingeJoint = $"../LowerSailHinge"
 onready var hinge_jib: HingeJoint = $"../FokHinge"
 
-onready var sail_trim = hinge_bom.get("angular_limit/upper") setget set_sail_trim
+onready var sail_trim setget set_sail_trim
 
 export(float) var keel_force: float = 60.0
 export(bool) var connect_ui:bool = false
@@ -40,6 +41,10 @@ func _ready():
 	#assert(bom)
 	assert(hunger_bar)
 	assert(player_control)
+	
+	if hinge_bom:
+		sail_trim = hinge_bom.get("angular_limit/upper")
+	
 	add_to_group("boat")
 	if connect_ui:
 		call_deferred("subscribe_to_indicators")
@@ -103,6 +108,13 @@ func _physics_process(delta):
 	if not godmode:
 		update_water_level(delta)
 		
+	#WATERKEEL
+	if has_node("WaterKeel"):
+		var waterkeel = get_node("WaterKeel")
+		waterkeel.emitting \
+		 = (linear_velocity.length_squared() > 0.50)
+			
+		
 func _on_sink():
 	pass
 		
@@ -124,11 +136,17 @@ func set_sail_trim(_val: float):
 func consume_food_portion() -> bool:
 	#assert(false, "pure virtual function")
 	return false
-	
+
+var food_msg_supress:bool = false
 func update_hunger(delta:float):
 	hunger += delta
 	if hunger > hunger_time:
 		if consume_food_portion(): hunger = 0.0
+		elif not food_msg_supress:
+			uimessages.display("OUT OF FOOD", Color.red)
+			food_msg_supress = true
+			var _ignore = get_tree().create_timer(5.0) \
+				.connect("timeout", self, "food_msg_unsupress")
 	
 	var starvation = hunger - hunger_time
 	var hunger_val = 1.0 - (hunger / hunger_time)
@@ -138,6 +156,9 @@ func update_hunger(delta:float):
 		$"/root/Ui/StarvedScreen".starve()
 	hunger_bar.set_hunger_level(hunger_val)
 	hunger_bar.set_starvation_level(starvation_val)
+	
+func food_msg_unsupress():
+	food_msg_supress = false
 	
 func board_the_vip(vip:Spatial):
 	if vip_slot: return
@@ -220,6 +241,7 @@ func set_floaters_enabled(_en:bool):
 	assert(false, "call to virtual method")
 
 var repair_amount:float = 0.0
+var wood_msg_suppress:bool = false
 func repair_hit_level(delta):
 	print("repair")
 	if not cargo_hold: return
@@ -227,12 +249,22 @@ func repair_hit_level(delta):
 	and cargo_hold.get_item_count("Wood") > 0:
 		cargo_hold.withdraw_items({"Wood":1})
 		repair_amount += 1
+		
 
 	if hit_level > 0.0 and repair_amount > 0.0:
 		set_hit_level(hit_level-(repair_rate*delta))
 		repair_amount -= repair_rate*delta
 		return true
+	
+	if not wood_msg_suppress:	
+		uimessages.display("OUT OF WOOD", Color.red)
+		wood_msg_suppress = true
+		var _ignore = get_tree().create_timer(1.0) \
+			.connect("timeout",self,"wood_msg_unsupress")
 	return false
+	
+func wood_msg_unsupress():
+	wood_msg_suppress = false
 
 func set_hit_level(val):
 	val = clamp(val, 0, max_hit_level)

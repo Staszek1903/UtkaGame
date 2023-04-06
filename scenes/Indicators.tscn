@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/droid-sans/DroidSans.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/SpeedInd.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Indicators.gd" type="Script" id=4]
 [ext_resource path="res://src/WindInd.gd" type="Script" id=5]
 [ext_resource path="res://src/HeadingInd.gd" type="Script" id=6]
+[ext_resource path="res://fonts/name_font_indicatorst.tres" type="DynamicFont" id=7]
 
 [node name="Indicators" type="Control"]
 anchor_top = 1.0
@@ -47,27 +48,37 @@ color = Color( 0, 0, 0, 1 )
 antialiased = true
 polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
 
+[node name="Label" type="Label" parent="TiltInd"]
+margin_left = -54.535
+margin_top = 85.4746
+margin_right = 65.465
+margin_bottom = 164.475
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "LIST"
+
 [node name="PanelContainer" type="PanelContainer" parent="TiltInd"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = 80.0
-margin_right = 100.0
-margin_bottom = 180.0
-rect_min_size = Vector2( 100, 50 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = -200.0
+margin_top = -50.0
+margin_right = -50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 99.646, 50 )
 
 [node name="Label" type="Label" parent="TiltInd/PanelContainer"]
 margin_left = 7.0
 margin_top = 9.0
-margin_right = 193.0
+margin_right = 143.0
 margin_bottom = 91.0
 custom_fonts/font = ExtResource( 1 )
-text = "-180"
+text = "-11"
 align = 1
 
 [node name="Needle" type="Polygon2D" parent="TiltInd"]
@@ -146,6 +157,19 @@ margin_bottom = 96.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 1
+
+[node name="Label" type="Label" parent="SpeedInd"]
+margin_left = -84.535
+margin_top = 48.2344
+margin_right = 95.465
+margin_bottom = 127.234
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "SPEED"
 
 [node name="Needle" type="Polygon2D" parent="SpeedInd"]
 color = Color( 1, 0, 0, 1 )
@@ -242,15 +266,28 @@ scale = Vector2( 0.927859, 0.927859 )
 antialiased = true
 polygon = PoolVector2Array( 0, -160, -50, -80, -70, 0, -70, 70, -50, 120, 50, 120, 70, 70, 70, 0, 50, -80 )
 
+[node name="Label" type="Label" parent="WindInd"]
+margin_left = -77.035
+margin_top = 84.5298
+margin_right = 87.965
+margin_bottom = 163.53
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "WIND"
+
 [node name="PanelAngle" type="PanelContainer" parent="WindInd"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -200.0
-margin_top = -55.5
+margin_top = -50.0
 margin_right = -50.0
-margin_bottom = 55.5
+margin_bottom = 61.0
 rect_min_size = Vector2( 80, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -270,10 +307,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 48.1571
-margin_top = -55.5
+margin_left = 48.157
+margin_top = -50.0
 margin_right = 198.157
-margin_bottom = 55.5
+margin_bottom = 61.0
 rect_min_size = Vector2( 80, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -379,6 +416,19 @@ scale = Vector2( 0.0200116, 0.109 )
 color = Color( 0, 0, 0, 1 )
 antialiased = true
 polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Label" type="Label" parent="HeadingInd"]
+margin_left = -54.5349
+margin_top = -131.691
+margin_right = 65.4651
+margin_bottom = -52.6909
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "HDG"
 
 [node name="PanelContainer" type="PanelContainer" parent="HeadingInd"]
 anchor_left = 0.5

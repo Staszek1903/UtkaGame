@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hamp-rope-creaks-49202.mp3-3e21afcc74d4d17db277c9d6a1d2a78f.mp3str"
+
+[deps]
+
+source_file="res://souds/hamp-rope-creaks-49202.mp3"
+dest_files=[ "res://.import/hamp-rope-creaks-49202.mp3-3e21afcc74d4d17db277c9d6a1d2a78f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

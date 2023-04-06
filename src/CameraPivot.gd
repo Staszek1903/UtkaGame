@@ -2,13 +2,13 @@ extends Position3D
 
 signal rotated
 
-export(float) var zoom_min = 4
-export(float) var zoom_max = 12
+export(float) var zoom_min = 4.0
+export(float) var zoom_max = 12.0
 export(float) var height_max
 
 export(float) var zoom_speed = 0.5
 
-onready var camera = $Camera
+onready var camera = $ComonCamera
 onready var inverted = $"/root/Ui/CheatConsole".mouse_y_inverted
 
 var angle = 0
@@ -49,12 +49,12 @@ func _input(event):
 				camera.translate(Vector3.FORWARD * zoom_speed)
 				camera.translation.z = clamp(camera.translation.z,
 					zoom_min,zoom_max) 
-				print($Camera.translation)
+				#print($Camera.translation)
 			BUTTON_WHEEL_DOWN:
 				camera.translate(Vector3.BACK * zoom_speed)
 				camera.translation.z = clamp(camera.translation.z,
 					zoom_min,zoom_max) 
-				print($Camera.translation) 
+				#print($Camera.translation) 
 
 func get_boat()->RigidBody:
 	var parent = get_parent()
@@ -65,4 +65,4 @@ func get_boat()->RigidBody:
 	return null
 	
 func set_current():
-	$Camera.current = true
+	$ComonCamera.current = true

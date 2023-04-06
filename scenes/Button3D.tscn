@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://materials/light_material.tres" type="Material" id=1]
 [ext_resource path="res://scenes/Text3D.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://materials/wood_materia.tres" type="Material" id=6]
 [ext_resource path="res://materials/black_material.tres" type="Material" id=7]
 [ext_resource path="res://materials/silver_metalic_material.tres" type="Material" id=8]
+[ext_resource path="res://souds/tools_01.ogg" type="AudioStream" id=9]
+[ext_resource path="res://souds/tools_04.ogg" type="AudioStream" id=10]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.370513, 0.0472987, 0.0932724 )
@@ -97,6 +99,14 @@ material/2 = ExtResource( 7 )
 [node name="PlyEditor" type="Node" parent="CSGMesh"]
 script = ExtResource( 5 )
 ply_mesh = SubResource( 4 )
+
+[node name="AudioHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -15.0
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -15.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pirate1uf.ogg-cc37e392f7424311a8bd76febeb85f2c.oggstr"
+
+[deps]
+
+source_file="res://souds/pirate1uf.ogg"
+dest_files=[ "res://.import/pirate1uf.ogg-cc37e392f7424311a8bd76febeb85f2c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

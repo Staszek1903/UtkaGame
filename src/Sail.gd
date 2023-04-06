@@ -9,7 +9,7 @@ onready var wind_manager = $"/root/WindManager"
 
 export(float) var lift_force = 20.0	
 export(float) var direct_force = 40.0
-export(float) var dead_angle_degree = 15 setget set_dead_angle_degree
+export(float) var dead_angle_degree = 15.0 setget set_dead_angle_degree
 export(float) var dead_angle_rad = deg2rad(15) setget set_dead_angle_rad
 
 export(bool) var is_sail_up = true

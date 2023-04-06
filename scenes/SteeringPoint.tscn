@@ -1,13 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://scenes/MouseArea.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/MouseArea.gd" type="Script" id=1]
+[ext_resource path="res://scenes/IconBaner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/SteeringPoint.gd" type="Script" id=3]
 [ext_resource path="res://materials/green_light_material.tres" type="Material" id=4]
+[ext_resource path="res://materials/black_material.tres" type="Material" id=5]
+[ext_resource path="res://materials/silver_metalic_material.tres" type="Material" id=6]
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=7]
+[ext_resource path="res://src/Kapstan.gd" type="Script" id=8]
+[ext_resource path="res://materials/light_material.tres" type="Material" id=9]
+[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=10]
+[ext_resource path="res://souds/hamp-rope-creaks-49202.mp3" type="AudioStream" id=11]
+
+[sub_resource type="CylinderShape" id=1]
+height = 0.16
+radius = 0.146394
 
 [node name="SteeringPoint" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="MouseArea" parent="." instance=ExtResource( 1 )]
+[node name="MouseArea" type="Area" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 1 )
+indicator = NodePath("../KapstanMesh/Ind")
+
+[node name="Collision" type="CollisionShape" parent="MouseArea"]
+shape = SubResource( 1 )
+
+[node name="Indicator" type="CSGCylinder" parent="MouseArea"]
+visible = false
+invert_faces = true
+radius = 0.139164
+height = 0.164
+material = ExtResource( 10 )
 
 [node name="Indicator" type="CSGCylinder" parent="."]
 visible = false
@@ -15,5 +40,61 @@ radius = 0.125044
 height = 0.139716
 material = ExtResource( 4 )
 
+[node name="IconBaner" parent="." instance=ExtResource( 2 )]
+visible = false
+dimentions = Vector2( 0.05, 0.05 )
+resolution = 1050
+
+[node name="KapstanMesh" type="Spatial" parent="."]
+transform = Transform( 0.943102, 0, 0, 0, 0.943102, 0, 0, 0, 0.943102, 0, 0, 0 )
+script = ExtResource( 8 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="KapstanMesh"]
+radius = 0.0970205
+height = 0.0974135
+material = ExtResource( 5 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="KapstanMesh"]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 0.0613737, 0 )
+radius = 0.0522155
+height = 0.0974135
+material = ExtResource( 6 )
+
+[node name="CSGBox" type="CSGBox" parent="KapstanMesh"]
+width = 0.0638954
+height = 0.0532023
+depth = 0.647393
+material = ExtResource( 7 )
+
+[node name="Ind" type="Spatial" parent="KapstanMesh"]
+visible = false
+script = ExtResource( 8 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="KapstanMesh/Ind"]
+invert_faces = true
+radius = 0.118666
+height = 0.144463
+material = ExtResource( 9 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="KapstanMesh/Ind"]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 0.0613737, 0 )
+invert_faces = true
+radius = 0.0757048
+height = 0.1319
+material = ExtResource( 9 )
+
+[node name="CSGBox" type="CSGBox" parent="KapstanMesh/Ind"]
+invert_faces = true
+width = 0.101387
+height = 0.0889439
+depth = 0.675183
+material = ExtResource( 9 )
+
+[node name="RopeSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[connection signal="eased" from="." to="KapstanMesh" method="_on_eased"]
+[connection signal="heaved" from="." to="KapstanMesh" method="_on_heaved"]
+[connection signal="change_visible" from="MouseArea" to="IconBaner" method="set_visible"]
 [connection signal="mouse_hoover" from="MouseArea" to="." method="_on_MouseArea_mouse_hoover"]
 [connection signal="pressed" from="MouseArea" to="." method="_on_MouseArea_pressed"]

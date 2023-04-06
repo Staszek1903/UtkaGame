@@ -1,8 +1,10 @@
 extends Spatial
 
 onready var camera_pivot = $"../CameraPivot"
-onready var camera = $"../CameraPivot/Camera"
+onready var camera = $"../CameraPivot/ComonCamera"
 onready var cannons = [$Cannon1, $Cannon4, $Cannon2, $Cannon5, $Cannon3, $Cannon6]
+onready var main_sail_mat = $"../../MainSail".get_surface_material(0)
+onready var uimessages = $"/root/Ui/UIMessages"
 
 var cannons_count:int = 0 setget set_cannons_cout
 var aim:bool = false
@@ -10,36 +12,55 @@ var aim:bool = false
 func _ready():
 	assert(camera_pivot)
 	assert(camera)
+	assert(main_sail_mat)
 	
 func set_cannons_cout(val:int):
-	cannons_count = clamp(val, 0, cannons.size())
+	cannons_count = clamp(val, 0, cannons.size()) as int
 	for i in cannons_count:
 		cannons[i].visible = true
 
 func add_cannon():
 	print("ADDING_CANNON")
-	cannons_count = clamp(cannons_count+1, 0, cannons.size())
+	cannons_count = clamp(cannons_count+1, 0, cannons.size()) as int
 	for i in cannons_count:
 		cannons[i].visible = true
 		
 func fire():
 	var side:int = get_camera_side()
-	print("SIDE: ", side)
+	#print("SIDE: ", side)
+	var cargo = get_parent().get_cargo()
 	
 	var delay = 0.2
 
 	for i in cannons_count:
 		if i % 2 == side :
-			cannons[i].fire()
+			if cargo.get_item_count("Cannonball") < 1:
+				uimessages.display("OUT OF CBALLS", Color.red)
+				return
+			if cannons[i].fire():
+				cargo.withdraw_items({"Cannonball": 1})
 			yield(get_tree().create_timer(delay), "timeout")
-		
+
+var prev_sail_alpha:float = 0.0
+var prev_tranparent:bool = false
 func _input(event):
 	if not camera.current: return
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_RIGHT:
 		aim = event.pressed
+		if aim: 
+			prev_sail_alpha = main_sail_mat.albedo_color.a
+			prev_tranparent = main_sail_mat.flags_transparent
+		main_sail_mat.albedo_color.a = min(0.9,prev_sail_alpha) if aim else prev_sail_alpha
+		main_sail_mat.flags_transparent = aim if aim else prev_tranparent
 		update_aim()
-	elif event is InputEventMouseMotion and aim:
+		
+#	elif event is InputEventMouseMotion and aim:
+#		update_trim()
+#		update_aim()
+
+func _process(_delta):
+	if aim:
 		update_trim()
 		update_aim()
 		

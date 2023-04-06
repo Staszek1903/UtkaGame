@@ -16,4 +16,5 @@ dest_files=[ "res://.import/mainsail.obj-cabfa5575c46013dee62638081fc82bd.mesh",
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

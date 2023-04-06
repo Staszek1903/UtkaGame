@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wood_squeak_02.ogg-fc1f2968ec5768692dff2619b05de20c.oggstr"
+
+[deps]
+
+source_file="res://souds/wood_squeak_02.ogg"
+dest_files=[ "res://.import/wood_squeak_02.ogg-fc1f2968ec5768692dff2619b05de20c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=18]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform float amplitude = 0.02;
+uniform float notperiod = 15.0;
+uniform vec4 color : hint_color = vec4(0.1, 0.1, 0.5, 0.5);
+uniform float tranparency : hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform float depth_q: hint_range(0.00001, 0.1, 0.00001) = 0.01;
+
+void fragment(){
+	vec2 offset = sin(SCREEN_UV * notperiod + TIME) * amplitude;
+	vec4 ripple = texture(SCREEN_TEXTURE, SCREEN_UV + offset);
+	
+	float alpha = color.a;
+	float notalpha = 1.0 - alpha;
+	
+	float depth = texture(DEPTH_TEXTURE, SCREEN_UV + offset).x;
+	depth = clamp( (depth - (1.0 - depth_q)) * (1.0/depth_q) , 0.0, 1.0);
+
+	vec4 result = (ripple * notalpha + color * alpha);
+	result = result *(1.0-depth) + color * depth;
+	
+	ALBEDO = result.rgb;
+	ALPHA = 1.0 - tranparency;
+}"
+
+[resource]
+shader = SubResource( 18 )
+shader_param/amplitude = 0.02
+shader_param/notperiod = 20.0
+shader_param/color = Color( 0, 0.690196, 0.647059, 0.576471 )
+shader_param/tranparency = 0.0
+shader_param/depth_q = 0.0054

@@ -1,0 +1,472 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/montreal/Montreal-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://RoundedStyleBox.tres" type="StyleBox" id=2]
+[ext_resource path="res://fonts/architect-s-daughter/ArchitectsDaughter.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/F1Help.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0.501961, 1, 1 )
+border_color = Color( 0.0980392, 0.0666667, 0.0666667, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0 )
+border_color = Color( 0, 0, 0, 0.6 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 416
+
+[node name="F1Help" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 4 )
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.6 )
+margin_left = 45.0
+margin_top = 4.0
+margin_right = 174.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+text = "help"
+
+[node name="KeyIcon" type="ProgressBar" parent="Label3"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -167.0
+margin_top = 2.0
+margin_right = -135.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="Label3/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "F1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -50.0
+margin_right = 400.0
+margin_bottom = 50.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -314.0
+margin_top = -292.0
+margin_right = 402.0
+margin_bottom = 292.0
+grow_vertical = 2
+custom_constants/separation = 10
+alignment = 1
+
+[node name="RMB" type="Label" parent="VBoxContainer"]
+margin_right = 716.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "- pan camera"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/RMB"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -781.5
+margin_top = 2.0
+margin_right = -734.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/RMB/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 52.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "RMB"
+align = 1
+
+[node name="SCROLL" type="Label" parent="VBoxContainer"]
+margin_top = 46.0
+margin_right = 716.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 1 )
+text = "- zoom"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/SCROLL"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -817.5
+margin_top = 2.0
+margin_right = -734.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/SCROLL/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 87.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "SCROLL"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 92.0
+margin_right = 716.0
+margin_bottom = 96.0
+
+[node name="CTRL" type="Label" parent="VBoxContainer"]
+margin_top = 106.0
+margin_right = 716.0
+margin_bottom = 142.0
+custom_fonts/font = SubResource( 1 )
+text = "- show interactive objects"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/CTRL"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -791.5
+margin_top = 2.0
+margin_right = -733.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/CTRL/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 62.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "CTRL"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LMB" type="Label" parent="VBoxContainer"]
+margin_top = 152.0
+margin_right = 716.0
+margin_bottom = 188.0
+custom_fonts/font = SubResource( 1 )
+text = "- select control point"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/LMB"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -777.5
+margin_top = 2.0
+margin_right = -734.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/LMB/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 49.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "LMB"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WS" type="Label" parent="VBoxContainer"]
+margin_top = 198.0
+margin_right = 716.0
+margin_bottom = 234.0
+custom_fonts/font = SubResource( 1 )
+text = "- interact with selecte control point (eg. heave/ease rope)"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/WS"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -777.5
+margin_top = 2.0
+margin_right = -734.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/WS/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 48.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "W/S"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AD" type="Label" parent="VBoxContainer"]
+margin_top = 244.0
+margin_right = 716.0
+margin_bottom = 280.0
+custom_fonts/font = SubResource( 1 )
+text = "- move the rudder"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/AD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -777.5
+margin_top = 2.0
+margin_right = -734.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/AD/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 48.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "A/D"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QE" type="Label" parent="VBoxContainer"]
+margin_top = 290.0
+margin_right = 716.0
+margin_bottom = 326.0
+custom_fonts/font = SubResource( 1 )
+text = "- prev/next control point"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/QE"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -777.5
+margin_top = 2.0
+margin_right = -734.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/QE/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 47.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "Q/E"
+align = 1
+
+[node name="Z" type="Label" parent="VBoxContainer"]
+margin_top = 336.0
+margin_right = 716.0
+margin_bottom = 372.0
+custom_fonts/font = SubResource( 1 )
+text = "- special action"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/Z"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -767.5
+margin_top = 2.0
+margin_right = -735.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/Z/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "Z"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="19" type="Label" parent="VBoxContainer"]
+margin_top = 382.0
+margin_right = 716.0
+margin_bottom = 418.0
+custom_fonts/font = SubResource( 1 )
+text = "- hold to asign control point shortcut, press to use shortcut"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/19"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -775.5
+margin_top = 2.0
+margin_right = -733.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/19/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 47.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "1...9"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+margin_top = 428.0
+margin_right = 716.0
+margin_bottom = 432.0
+
+[node name="SPACE" type="Label" parent="VBoxContainer"]
+margin_top = 442.0
+margin_right = 716.0
+margin_bottom = 478.0
+custom_fonts/font = SubResource( 1 )
+text = "- fire cannons"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/SPACE"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -805.5
+margin_top = 2.0
+margin_right = -733.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/SPACE/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 77.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "SPACE"
+align = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+margin_top = 488.0
+margin_right = 716.0
+margin_bottom = 492.0
+
+[node name="F9" type="Label" parent="VBoxContainer"]
+margin_top = 502.0
+margin_right = 716.0
+margin_bottom = 538.0
+custom_fonts/font = SubResource( 1 )
+text = "- cheat console"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/F9"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -767.5
+margin_top = 2.0
+margin_right = -735.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/F9/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "F9"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="F10" type="Label" parent="VBoxContainer"]
+margin_top = 548.0
+margin_right = 716.0
+margin_bottom = 584.0
+custom_fonts/font = SubResource( 1 )
+text = "- cheat camera"
+
+[node name="KeyIcon" type="ProgressBar" parent="VBoxContainer/F10"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -767.5
+margin_top = 2.0
+margin_right = -735.5
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 32 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = ExtResource( 2 )
+percent_visible = false
+
+[node name="Label" type="Label" parent="VBoxContainer/F10/KeyIcon"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+text = "F10"
+align = 1

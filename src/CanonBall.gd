@@ -1,9 +1,28 @@
 extends RigidBody
 
 var self_boat:Spatial = null
+onready var waterManager = $"/root/Root/WaterManager"
+onready var particle_splash = $ParticlesSplash
+
+var mark_for_free:bool = false
 
 func _physics_process(_delta):
+	var global_pos = global_transform.origin
 	add_central_force(Vector3.DOWN * mass * 9.8)
+	var wave = waterManager.wave(Vector2(global_pos.x, global_pos.z))
+	
+	if mark_for_free:
+		if not particle_splash.emitting:
+			print("CANNON BALL SPLASH FREE")
+			queue_free()
+	elif wave > global_pos.y:
+		particle_splash.global_transform.basis = Basis()
+		particle_splash.emitting = true
+		$AudioSplash.play()
+		#print("SLASH")
+		mark_for_free = true
+	
+	
 
 func decay(_seconds):
 	#print("TO BE FREED")
@@ -13,14 +32,16 @@ func decay(_seconds):
 
 
 func _on_DamageTrigger_body_entered(body):
-	print("DAMAGE TRIGGE: ", body, " ", body.name, " self: ", self_boat)
+	#print("DAMAGE TRIGGE: ", body, " ", body.name, " self: ", self_boat)
 	if body == self_boat:
 		print("SELF DAMAGE")
 		return
 	
 	if body.has_method("receive_damage"):
-		print("damage dealt")
+		#print("damage dealt")
 		body.receive_damage(1)
+		$Particles.emitting = true
+		$AudioBoom.play()
 	
 	#var velocity:Vector3 = Vector3.ZERO
 #	var has_vel = ("linear_velocity" in body)

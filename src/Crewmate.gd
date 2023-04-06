@@ -1,6 +1,6 @@
 extends Spatial
 
-export(NodePath) var path_path = "../Path"
+export(NodePath) var path_path = NodePath("../Path")
 
 var curve:Curve3D
 var steering_points:Node

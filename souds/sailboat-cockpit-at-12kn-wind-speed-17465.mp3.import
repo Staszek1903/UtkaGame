@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sailboat-cockpit-at-12kn-wind-speed-17465.mp3-71593e7c5caf44952d2583af00067e46.mp3str"
+
+[deps]
+
+source_file="res://souds/sailboat-cockpit-at-12kn-wind-speed-17465.mp3"
+dest_files=[ "res://.import/sailboat-cockpit-at-12kn-wind-speed-17465.mp3-71593e7c5caf44952d2583af00067e46.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

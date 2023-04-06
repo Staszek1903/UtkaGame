@@ -1,23 +1,55 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/Compass.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/Overlock-Black.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/Button3D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://materials/wood_materia.tres" type="Material" id=4]
 [ext_resource path="res://src/Menu.gd" type="Script" id=5]
 [ext_resource path="res://fonts/architect-s-daughter/ArchitectsDaughter32.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scenes/Candle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Text3D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://souds/pirate1uf.ogg" type="AudioStream" id=9]
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 3.16891 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "credit"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 3.16891 ), Vector3( 5.653, 0, 3.169 ) ]
+}
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5
 bounce = 0.5
 
 [sub_resource type="CylinderShape" id=2]
-radius = 1.29585
 height = 0.180308
+radius = 1.29585
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 7.01828, 3.768, 0.244368 )
+extents = Vector3( 15.8385, 7.90435, 0.244368 )
 
 [sub_resource type="PhysicsMaterial" id=4]
 friction = 0.5
@@ -43,6 +75,10 @@ script = ExtResource( 5 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.16891 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
+anims/RESET = SubResource( 9 )
+anims/credit = SubResource( 10 )
+
 [node name="CompasBody" type="RigidBody" parent="."]
 transform = Transform( -0.90584, 0.349706, -0.239081, -0.252261, 0.00809915, 0.967625, 0.340321, 0.936824, 0.0808808, 1.312, -0.618, 4.31421 )
 physics_material_override = SubResource( 1 )
@@ -62,8 +98,8 @@ shape = SubResource( 3 )
 
 [node name="CSGBox" type="CSGBox" parent="Table"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4028e-07, 0, -1.60461 )
-width = 13.9772
-height = 7.45628
+width = 31.6604
+height = 15.8409
 material = ExtResource( 4 )
 
 [node name="StartBody" type="RigidBody" parent="."]
@@ -113,6 +149,28 @@ transform = Transform( 1, 0, -1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0166
 transform = Transform( 1, 0, -1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0166421, 0, -0.0117574 )
 
 [node name="CollisionShape" type="CollisionShape" parent="QuitBody"]
+shape = SubResource( 5 )
+
+[node name="CreditBody" type="RigidBody" parent="."]
+transform = Transform( -0.928723, 0.112799, 0.353202, 0.370349, 0.236479, 0.898287, 0.0178006, 0.965067, -0.261398, 2.168, 0.27, 20.2345 )
+physics_material_override = SubResource( 6 )
+angular_damp = 0.15
+
+[node name="CreditButton" parent="CreditBody" instance=ExtResource( 3 )]
+transform = Transform( 3.5, 0, 0, 0, 3.5, 0, 1.42109e-14, -5.68434e-14, 3.5, 0, 0, 0 )
+text = "CREDITS"
+
+[node name="Text3D" parent="CreditBody/CreditButton" index="0"]
+transform = Transform( 4.44089e-16, -1.49012e-08, -0.364835, -0.364835, -1.59475e-08, 0, -1.59475e-08, 0.364835, -1.49012e-08, -0.109, 0.013, 0.002 )
+text = "CREDITS"
+
+[node name="Indicator" parent="CreditBody/CreditButton" index="2"]
+transform = Transform( 1, 0, -1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0166421, 0, -0.0117574 )
+
+[node name="CSGMesh" parent="CreditBody/CreditButton" index="3"]
+transform = Transform( 1, 0, -1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.0166421, 0, -0.0117574 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CreditBody"]
 shape = SubResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -165,6 +223,25 @@ __meta__ = {
 [node name="Candle2" parent="." instance=ExtResource( 7 )]
 transform = Transform( -0.310494, -0.950575, 0, 0.950575, -0.310494, 0, 0, 0, 1, -2.98366, -0.285806, -0.160045 )
 
+[node name="Candle3" parent="." instance=ExtResource( 7 )]
+transform = Transform( -0.310494, -0.950575, 0, 0.950575, -0.310494, 0, 0, 0, 1, 8.62, -0.889, -0.16 )
+
+[node name="Credits" parent="." instance=ExtResource( 8 )]
+transform = Transform( -1.59474e-08, 0, 0.364835, 0, 0.364835, 0, -0.364835, 0, -1.59474e-08, 5.701, 0, 0 )
+dimentions = Vector2( 20, 5 )
+resolution = 100
+text = "PROGRAMING - 
+GAME ENGINE -
+ADDON USED - 
+MODELS - 
+MUSIC AND SOUND -
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -10.0
+autoplay = true
+
 [connection signal="input_event" from="CompasBody" to="CompasBody/Compass" method="_on_Area_input_event"]
 [connection signal="input_event" from="Table" to="CompasBody/Compass" method="_on_Area_input_event"]
 [connection signal="input_event" from="StartBody/StartButton" to="CompasBody/Compass" method="_on_Area_input_event"]
@@ -174,7 +251,10 @@ transform = Transform( -0.310494, -0.950575, 0, 0.950575, -0.310494, 0, 0, 0, 1,
 [connection signal="pressed" from="ContinueBody/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="input_event" from="QuitBody/QuitButton" to="CompasBody/Compass" method="_on_Area_input_event"]
 [connection signal="pressed" from="QuitBody/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="input_event" from="CreditBody/CreditButton" to="CompasBody/Compass" method="_on_Area_input_event"]
+[connection signal="pressed" from="CreditBody/CreditButton" to="." method="_on_CreditButton_pressed"]
 [connection signal="toggled" from="Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="toggled" from="MouseInverted" to="." method="_on_MouseInverted_toggled"]
 
 [editable path="QuitBody/QuitButton"]
+[editable path="CreditBody/CreditButton"]

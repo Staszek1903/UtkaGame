@@ -1,8 +1,8 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
-render_mode world_vertex_coords;
+render_mode world_vertex_coords, cull_disabled;
 
 varying float z_dist;
 varying vec3 frag_normal;
@@ -10,6 +10,7 @@ varying vec3 frag_normal;
 uniform float max_dist = 50.0f;
 
 uniform sampler2D noise_texture;
+uniform sampler2D trail_texture;
 uniform float amplitude = 0.1;
 uniform float frequency = 5.0;
 uniform float time = 0.0;
@@ -105,7 +106,9 @@ void fragment(){
 	vec4 n1 = texture(noise_texture, uv + vec2(time*ripple_speed));
 	vec4 n2 = texture(noise_texture, -uv + vec2(time*ripple_speed));
 	vec4 noise_normal = mix(n1,n2,0.5);
-	ALBEDO = color;
+	
+	vec4 trail = texture(trail_texture, UV);
+	ALBEDO = (color + trail.xyz)*0.5;
 	
 	EMISSION = vec3(height * 0.2);
 	
@@ -137,12 +140,15 @@ as_normalmap = true
 bump_strength = 32.0
 noise = SubResource( 2 )
 
+[sub_resource type="ImageTexture" id=4]
+size = Vector2( 512, 512 )
+
 [resource]
 shader = SubResource( 1 )
 shader_param/max_dist = 400.0
 shader_param/amplitude = 0.2
 shader_param/frequency = 0.3
-shader_param/time = 31.324
+shader_param/time = 1928.2
 shader_param/first_wave_dir = -1.9627
 shader_param/second_wave_dir = -1.1773
 shader_param/gerstner_coef = 2.0
@@ -150,3 +156,4 @@ shader_param/ripple_depth = 0.375
 shader_param/ripple_speed = 0.01
 shader_param/water_color = Color( 0, 1, 0.976471, 1 )
 shader_param/noise_texture = SubResource( 3 )
+shader_param/trail_texture = SubResource( 4 )

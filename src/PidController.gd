@@ -3,7 +3,7 @@ class_name PidController
 
 export(float) var K_proportional = 10.0
 export(float) var K_integral = 0.0
-export(float) var K_derivative = 500
+export(float) var K_derivative = 500.0
 
 var last_error = 0.0
 var integral = 0.0
