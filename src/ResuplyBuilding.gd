@@ -1,3 +1,4 @@
+tool
 extends Spatial
 export(String) var item_name = "Food"
 
@@ -14,6 +15,7 @@ func set_lock_ui(val:bool):
 	print("SET LOCK UI: ", val)
 	
 	$Button3D.visible = not val
+	
 	#$IconBaner.visible = not val
 	#$Text3D.visible = false
 		

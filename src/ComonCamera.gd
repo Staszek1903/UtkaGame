@@ -5,6 +5,9 @@ onready var bulbul = $BulBulMesh
 onready var water_audio = $WaterAudio
 
 func _process(_delta):
+	if not waterManager or not is_instance_valid(waterManager):
+		return
+
 	var global_pos = global_transform.origin
 	var h = global_pos.y
 	var wave_h = 0.0

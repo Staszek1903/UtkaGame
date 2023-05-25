@@ -64,7 +64,7 @@ func spawn():
 	fill_item(new_item)
 	#print("created:", (offset), " ",new_item.get_name(), " ", new_item.items)
 	#get_tree().get_root().add_child(new_item)
-	get_tree().get_root().add_child(new_item)
+	get_tree().get_root().get_node("Root").add_child(new_item)
 	new_item.global_transform.origin = pos+offset
 	items_spawned.append(new_item)
 	new_item.connect("freed", self, "_on_item_freed")

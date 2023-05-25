@@ -27,11 +27,11 @@ func _on_UpgradeBuildingCutter_upgraded():
 	var old_trans = old_boat.global_transform
 	old_boat.delete_current()
 	var lug_mockup = lug_boat_mockup_scene.instance()
-	get_tree().get_root().add_child(lug_mockup)
+	get_tree().get_root().get_node("Root").add_child(lug_mockup)
 	lug_mockup.global_transform = old_trans
 	
 	var sloop = sloop_boat_scene.instance()
-	get_tree().get_root().add_child(sloop)
+	get_tree().get_root().get_node("Root").add_child(sloop)
 	sloop.global_transform = trans
 	var boat = sloop.get_node("Boat")
 	boat.set_current()

@@ -14,6 +14,7 @@ func _input(event):
 			get_tree().paused = false
 			is_paused = false
 			visible = false
+			
 			#WHY DO I NEED TO REMOVE RESOURCES???
 			var root = get_tree().get_root().get_node("Root") 
 			for ch in root.get_children():

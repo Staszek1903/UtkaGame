@@ -1,6 +1,6 @@
 extends Node
 
-signal race_won
+#signal race_won
 
 onready var boat:Spatial = $"../Boat"
 onready var bom:Spatial = $"../Boat/Bom"

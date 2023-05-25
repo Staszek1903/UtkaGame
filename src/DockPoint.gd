@@ -2,7 +2,7 @@ extends Position3D
 
 signal mooring_on(boat)
 signal mooring_off(boat)
-signal action(boat)
+#signal action(boat)
 
 onready var indicator = $Indicator
 var indicator_visible:bool = false setget set_indicator_visible

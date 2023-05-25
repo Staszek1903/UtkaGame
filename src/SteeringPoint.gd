@@ -34,8 +34,9 @@ func _process(_delta):
 	
 	
 func make_funcrefs():
-	var ib = $IconBaner
-	if ib: ib.global_translate(Vector3(0,0.5,0))
+	if has_node("IconBaner"):
+		var ib = $IconBaner
+		ib.global_translate(Vector3(0,0.5,0))
 	steered_node = get_node(steered_obj)
 	#print("FUNCREFS")
 #	var heave_func = funcref(steered_node, heave_func_name)

@@ -119,6 +119,8 @@ func _on_sink():
 	pass
 		
 func check_sinking():
+	if not waterManager or not is_instance_valid(waterManager):
+		return
 	var global_pos = global_transform.origin
 #	print(global_transform.origin.y \
 #	- waterManager.wave(Vector2(global_pos.x, global_pos.z)))
@@ -256,7 +258,7 @@ func repair_hit_level(delta):
 		repair_amount -= repair_rate*delta
 		return true
 	
-	if not wood_msg_suppress:	
+	if not wood_msg_suppress and hit_level > 0.0:	
 		uimessages.display("OUT OF WOOD", Color.red)
 		wood_msg_suppress = true
 		var _ignore = get_tree().create_timer(1.0) \
@@ -280,4 +282,7 @@ func get_cargo() -> Node:
 	return $CargoHold
 	
 func get_cannons() -> Node:
-	return $Cannons
+	if has_node("Cannons"):
+		return $Cannons
+	else:
+		return null

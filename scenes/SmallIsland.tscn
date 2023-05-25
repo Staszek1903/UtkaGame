@@ -60,9 +60,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.916585, 0.396705, -7.99804 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.825564, -0.000560641 )
 shape = SubResource( 3 )
 
-[connection signal="action" from="Quai/DockPoint2" to="Quai" method="_on_DockPoint_action"]
 [connection signal="mooring_off" from="Quai/DockPoint2" to="Quai" method="_on_DockPoint_mooring_off"]
 [connection signal="mooring_on" from="Quai/DockPoint2" to="Quai" method="_on_DockPoint_mooring_on"]
-[connection signal="action" from="Quai/DockPoint3" to="Quai" method="_on_DockPoint_action"]
 [connection signal="mooring_off" from="Quai/DockPoint3" to="Quai" method="_on_DockPoint_mooring_off"]
 [connection signal="mooring_on" from="Quai/DockPoint3" to="Quai" method="_on_DockPoint_mooring_on"]

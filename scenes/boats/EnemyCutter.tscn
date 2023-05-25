@@ -237,6 +237,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0696909, 2.88625, 5.78703 )
 
 [node name="CargoHold" parent="Boat" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5996, -1.32021 )
+default_capacity = 99
 
 [node name="ItemCatchArea" type="Area" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.786684, 1.43068 )
@@ -323,6 +324,7 @@ active = true
 is_looped = true
 
 [node name="ImmediateGeometry" type="ImmediateGeometry" parent="Control/ControlPathFolow"]
+visible = false
 script = ExtResource( 19 )
 
 [node name="ControlAgrTargeting" type="Node" parent="Control"]

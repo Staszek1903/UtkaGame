@@ -78,11 +78,11 @@ func is_in_distance(response:Dictionary):
 func heave_mooring(delta):
 	mooring.length -= 0.5 * delta
 	#mooring.apply_force(delta*heave_force)
-	print("HEAVE ", mooring.length)
+	#print("HEAVE ", mooring.length)
 	
 func ease_mooring(delta):
 	mooring.length += 0.5 * delta
-	print("EASE ", mooring.length)
+	#print("EASE ", mooring.length)
 	
 func distance_to(point: Spatial) -> float:
 	var a = global_transform.origin

@@ -530,237 +530,240 @@ transform = Transform( 2.25, 0, 7.45058e-09, 0, 2.25, 0, -7.45058e-09, 0, 2.25, 
 
 [node name="CityHouse" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 0.604782, 1.80754, 6.52069 )
-height = 5
+height = 1
 chimney_ind = 2
 has_roof_window = true
-wall_color = Color( 0.534675, 0.0239452, 0.675772, 1 )
+wall_color = Color( 0.490222, 0.598091, 0.526763, 1 )
 
 [node name="CityHouse2" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 6.98962, 1.80754, 6.18372 )
 height = 4
-chimney_ind = 1
+roof_ind = 1
+chimney_ind = 2
 has_roof_window = true
-wall_color = Color( 0.681908, 0.748195, 0.872207, 1 )
+wall_color = Color( 0.865113, 0.146996, 0.976633, 1 )
 
 [node name="CityHouse3" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 13.4959, 1.80754, 5.84296 )
-height = 4
-wall_color = Color( 0.696906, 0.64989, 0.547283, 1 )
+height = 2
+roof_ind = 2
+has_roof_window = true
+wall_color = Color( 0.371602, 0.507543, 0.944394, 1 )
 
 [node name="CityHouse4" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 20.2071, 1.80754, 5.62659 )
-height = 5
+height = 2
+roof_ind = 2
 chimney_ind = 2
 has_roof_window = true
-wall_color = Color( 0.604161, 0.161115, 0.0563573, 1 )
+wall_color = Color( 0.637154, 0.786184, 0.461156, 1 )
 
 [node name="CityHouse5" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 26.8452, 1.80754, 5.34558 )
-height = 4
-roof_ind = 1
+height = 2
+chimney_ind = 2
 has_roof_window = true
-wall_color = Color( 0.935184, 0.0942283, 0.0862447, 1 )
+wall_color = Color( 0.0423012, 0.742349, 0.531335, 1 )
 
 [node name="CityHouse6" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 33.3572, 1.80754, 5.07135 )
-height = 4
+height = 3
 roof_ind = 1
-wall_color = Color( 0.655162, 0.0618877, 0.740509, 1 )
+wall_color = Color( 0.0423363, 0.815119, 0.769676, 1 )
 
 [node name="CityHouse7" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 40.2529, 1.80754, 4.77991 )
 height = 2
 roof_ind = 1
-wall_color = Color( 0.184003, 0.897944, 0.667484, 1 )
+chimney_ind = 2
+has_roof_window = true
+wall_color = Color( 0.293723, 0.827709, 0.487582, 1 )
 
 [node name="CityHouse8" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 47.1005, 1.80754, 4.49329 )
 height = 2
-roof_ind = 1
-wall_color = Color( 0.252061, 0.471553, 0.817154, 1 )
+chimney_ind = 1
+has_roof_window = true
+wall_color = Color( 0.163903, 0.605601, 0.114345, 1 )
 
 [node name="CityHouse9" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 53.976, 1.80754, 4.20526 )
-height = 4
-roof_ind = 2
 chimney_ind = 1
-has_roof_window = true
-wall_color = Color( 0.884925, 0.663486, 0.975177, 1 )
+wall_color = Color( 0.83761, 0.240214, 0.210942, 1 )
 
 [node name="CityHouse10" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 60.7484, 1.80754, 3.91425 )
-height = 1
+roof_ind = 2
 has_roof_window = true
-wall_color = Color( 0.948374, 0.474844, 0.737905, 1 )
+wall_color = Color( 0.411959, 0.302465, 0.262164, 1 )
 
 [node name="CityHouse11" parent="CityArea/Houses" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 67.2853, 1.80754, 3.63916 )
-height = 2
-chimney_ind = 2
-has_roof_window = true
-wall_color = Color( 0.749552, 0.226078, 0.478734, 1 )
+roof_ind = 1
+chimney_ind = 1
+wall_color = Color( 0.283722, 0.666377, 0.145098, 1 )
 
 [node name="Houses2" type="Spatial" parent="CityArea"]
 transform = Transform( -0.103157, 0, -0.994665, 0, 1, 0, 0.994665, 0, -0.103157, -37.3538, 0, -76.8421 )
 
 [node name="CityHouse" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 0.604782, 1.80754, 6.52069 )
-height = 4
+height = 3
 roof_ind = 2
 chimney_ind = 1
-wall_color = Color( 0.14458, 0.030908, 0.314614, 1 )
+has_roof_window = true
+wall_color = Color( 0.252177, 0.511576, 0.719421, 1 )
 
 [node name="CityHouse2" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 6.98962, 1.80754, 6.18372 )
-height = 1
+height = 4
 roof_ind = 2
 has_roof_window = true
-wall_color = Color( 0.343448, 0.894957, 0.74825, 1 )
+wall_color = Color( 0.490035, 0.290538, 0.213041, 1 )
 
 [node name="CityHouse3" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 13.4959, 1.80754, 5.84296 )
-height = 5
+height = 3
 roof_ind = 1
-has_roof_window = true
-wall_color = Color( 0.926965, 0.341671, 0.0819991, 1 )
+chimney_ind = 1
+wall_color = Color( 0.352171, 0.752061, 0.977334, 1 )
 
 [node name="CityHouse4" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 20.2071, 1.80754, 5.62659 )
-height = 3
-roof_ind = 2
+height = 5
+roof_ind = 1
+chimney_ind = 2
 has_roof_window = true
-wall_color = Color( 0.413233, 0.42719, 0.352996, 1 )
+wall_color = Color( 0.53614, 0.175131, 0.186809, 1 )
 
 [node name="CityHouse5" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 26.8452, 1.80754, 5.34558 )
-height = 3
-chimney_ind = 2
+height = 2
+roof_ind = 1
+chimney_ind = 1
 has_roof_window = true
-wall_color = Color( 0.115342, 0.0755465, 0.726959, 1 )
+wall_color = Color( 0.156936, 0.595197, 0.194127, 1 )
 
 [node name="CityHouse6" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 33.3572, 1.80754, 5.07135 )
-height = 5
+height = 4
+roof_ind = 1
 chimney_ind = 1
-has_roof_window = true
-wall_color = Color( 0.369899, 0.360195, 0.461134, 1 )
+wall_color = Color( 0.18762, 0.169295, 0.533329, 1 )
 
 [node name="CityHouse7" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 40.2529, 1.80754, 4.77991 )
 height = 4
-roof_ind = 1
-chimney_ind = 1
-wall_color = Color( 0.614491, 0.238785, 0.386698, 1 )
+roof_ind = 2
+has_roof_window = true
+wall_color = Color( 0.509196, 0.183058, 0.359869, 1 )
 
 [node name="CityHouse8" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 47.1005, 1.80754, 4.49329 )
-height = 2
-roof_ind = 2
+height = 5
 chimney_ind = 1
-wall_color = Color( 0.680986, 0.986821, 0.611884, 1 )
+wall_color = Color( 0.800332, 0.543128, 0.926338, 1 )
 
 [node name="CityHouse9" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 53.976, 1.80754, 4.20526 )
-height = 1
+height = 4
 roof_ind = 1
 chimney_ind = 1
 has_roof_window = true
-wall_color = Color( 0.684711, 0.179668, 0.465046, 1 )
+wall_color = Color( 0.500503, 0.960835, 0.286999, 1 )
 
 [node name="CityHouse10" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 60.7484, 1.80754, 3.91425 )
-chimney_ind = 2
+height = 5
+roof_ind = 1
 has_roof_window = true
-wall_color = Color( 0.327077, 0.848955, 0.120756, 1 )
+wall_color = Color( 0.464875, 0.457554, 0.573307, 1 )
 
 [node name="CityHouse11" parent="CityArea/Houses2" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 67.2853, 1.80754, 3.63916 )
-height = 5
+height = 4
 roof_ind = 2
-chimney_ind = 2
 has_roof_window = true
-wall_color = Color( 0.073639, 0.70273, 0.330485, 1 )
+wall_color = Color( 0.637017, 0.143599, 0.751308, 1 )
 
 [node name="Houses3" type="Spatial" parent="CityArea"]
 transform = Transform( -0.893723, 0, -0.448617, 0, 1, 0, 0.448617, 0, -0.893723, 40.5472, -3.8147e-06, -126.144 )
 
 [node name="CityHouse" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 0.604782, 1.80754, 6.52069 )
-height = 2
-roof_ind = 1
-wall_color = Color( 0.503677, 0.0494469, 0.173455, 1 )
+height = 5
+roof_ind = 2
+wall_color = Color( 0.189317, 0.27238, 0.503268, 1 )
 
 [node name="CityHouse2" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 6.98962, 1.80754, 6.18372 )
 height = 3
 roof_ind = 1
-chimney_ind = 1
 has_roof_window = true
-wall_color = Color( 0.850546, 0.703617, 0.741567, 1 )
+wall_color = Color( 0.648192, 0.358507, 0.0844662, 1 )
 
 [node name="CityHouse3" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999372, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 13.4959, 1.80754, 5.84296 )
-height = 4
+height = 3
 roof_ind = 2
-chimney_ind = 1
 has_roof_window = true
-wall_color = Color( 0.819115, 0.0816507, 0.236529, 1 )
+wall_color = Color( 0.561661, 0.646604, 0.830902, 1 )
 
 [node name="CityHouse4" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421733, 0, -2.64472, 20.2071, 1.80754, 5.62659 )
-roof_ind = 2
+height = 5
+roof_ind = 1
 chimney_ind = 2
-wall_color = Color( 0.890769, 0.731895, 0.0322198, 1 )
+has_roof_window = true
+wall_color = Color( 0.744395, 0.504857, 0.969848, 1 )
 
 [node name="CityHouse5" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 26.8452, 1.80754, 5.34558 )
 height = 1
 roof_ind = 1
-chimney_ind = 2
+chimney_ind = 1
 has_roof_window = true
-wall_color = Color( 0.419866, 0.575804, 0.904633, 1 )
+wall_color = Color( 0.0202671, 0.636732, 0.135215, 1 )
 
 [node name="CityHouse6" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 33.3572, 1.80754, 5.07135 )
-height = 4
-roof_ind = 2
-chimney_ind = 1
-wall_color = Color( 0.758129, 0.685863, 0.223485, 1 )
+height = 1
+roof_ind = 1
+has_roof_window = true
+wall_color = Color( 0.756955, 0.321154, 0.897419, 1 )
 
 [node name="CityHouse7" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 40.2529, 1.80754, 4.77991 )
-height = 5
-roof_ind = 2
+chimney_ind = 1
 has_roof_window = true
-wall_color = Color( 0.461878, 0.643439, 0.99418, 1 )
+wall_color = Color( 0.097235, 0.510293, 0.0850106, 1 )
 
 [node name="CityHouse8" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421732, 0, -2.64472, 47.1005, 1.80754, 4.49329 )
-height = 2
-chimney_ind = 2
+height = 4
 has_roof_window = true
-wall_color = Color( 0.16792, 0.247098, 0.822734, 1 )
+wall_color = Color( 0.971953, 0.363996, 0.045144, 1 )
 
 [node name="CityHouse9" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 53.976, 1.80754, 4.20526 )
-height = 2
-roof_ind = 1
-wall_color = Color( 0.0478025, 0.665121, 0.475039, 1 )
+height = 4
+chimney_ind = 1
+has_roof_window = true
+wall_color = Color( 0.41234, 0.922783, 0.719088, 1 )
 
 [node name="CityHouse10" parent="CityArea/Houses3" instance=ExtResource( 41 )]
 transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 60.7484, 1.80754, 3.91425 )
-height = 1
-roof_ind = 2
-chimney_ind = 1
-wall_color = Color( 0.185346, 0.00788017, 0.317137, 1 )
-
-[node name="CityHouse11" parent="CityArea/Houses3" instance=ExtResource( 41 )]
-transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 67.2853, 1.80754, 3.63916 )
-height = 1
 roof_ind = 1
 chimney_ind = 1
 has_roof_window = true
-wall_color = Color( 0.919916, 0.109325, 0.411591, 1 )
+wall_color = Color( 0.916896, 0.10495, 0.239323, 1 )
+
+[node name="CityHouse11" parent="CityArea/Houses3" instance=ExtResource( 41 )]
+transform = Transform( -0.999371, 0, -0.16788, 0, 1, 0, 0.0421731, 0, -2.64472, 67.2853, 1.80754, 3.63916 )
+roof_ind = 1
+chimney_ind = 2
+has_roof_window = true
+wall_color = Color( 0.904465, 0.123032, 0.63208, 1 )
 
 [node name="Polers" type="Spatial" parent="CityArea"]
 
@@ -896,11 +899,8 @@ radius_min = 5.058
 [node name="LugBoat" parent="." instance=ExtResource( 57 )]
 transform = Transform( 0.996195, 0, -0.0871558, 0, 1, 0, 0.0871558, 0, 0.996195, -260.747, 1.90814, -368.99 )
 
-[connection signal="repair_bridge" from="StartingRegion/BridgeControlPort" to="StartingRegion/Bridge" method="_on_BridgeControlPort_repair_bridge"]
 [connection signal="body_entered" from="FogArea/WeatherArea" to="FogArea/WeatherArea" method="_on_WeatherArea_body_entered"]
-[connection signal="start_race" from="Race1Area/Brewery" to="Race1Area/NPCUtka/Boat" method="activate"]
 [connection signal="race_end" from="Race1Area/Water Gate8" to="Race1Area/NPCUtka/Boat" method="deactivate"]
-[connection signal="action" from="CityArea/Polers/DockPoint3" to="CityArea" method="_on_DockPoint3_action"]
 [connection signal="cargo_lifted" from="CityArea/PortCrane" to="CityArea" method="_on_PortCrane_cargo_lifted"]
 
 [editable path="Race1Area/NPCUtka"]

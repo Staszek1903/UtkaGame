@@ -18,8 +18,9 @@ onready var gravity_vector = Vector3(0,-1,0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	assert(waterManager)
-	assert(islandManager)
+	#assert(waterManager)
+	#assert(islandManager)
+	
 	#print(gravity_magnitude)
 	#body.linear_damp = 0.9
 	#body.angular_damp = 1
@@ -27,6 +28,12 @@ func _ready():
 
 func _physics_process(delta):
 	if not enabled: return
+	if not waterManager or not is_instance_valid(waterManager):
+		printerr("WATER MANAGER NOT FOUND")
+		return
+	if not islandManager or not is_instance_valid(islandManager):
+		printerr("ISLAND MANAGER NOT FOUND")
+		return
 	
 	var global_offset = to_global(Vector3()) - body.to_global(Vector3())
 	

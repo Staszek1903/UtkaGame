@@ -14,12 +14,55 @@ script = ExtResource( 1 )
 scene = ExtResource( 2 )
 
 [node name="LootIsland2" type="Position2D" parent="."]
-position = Vector2( -16, 14 )
+position = Vector2( -18, 15 )
+rotation = 3.07332
 script = ExtResource( 1 )
 scene = ExtResource( 7 )
 
 [node name="LootIsland3" type="Position2D" parent="."]
-position = Vector2( 15, 0 )
+position = Vector2( 16, 0 )
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland8" type="Position2D" parent="."]
+position = Vector2( 13, -25 )
+rotation = -0.870986
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland9" type="Position2D" parent="."]
+position = Vector2( -22, -22 )
+rotation = -2.15245
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland10" type="Position2D" parent="."]
+position = Vector2( -36, 0 )
+rotation = -3.14865
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland11" type="Position2D" parent="."]
+position = Vector2( -60.9374, 15.0626 )
+rotation = -3.55784
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland12" type="Position2D" parent="."]
+position = Vector2( -61.9374, -16.9374 )
+rotation = -2.2501
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland13" type="Position2D" parent="."]
+position = Vector2( 43.6384, 18.6384 )
+rotation = 0.50636
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland14" type="Position2D" parent="."]
+position = Vector2( 42.6384, -13.3616 )
+rotation = -0.516552
 script = ExtResource( 1 )
 scene = ExtResource( 7 )
 
@@ -28,7 +71,50 @@ position = Vector2( 1, 13 )
 script = ExtResource( 1 )
 scene = ExtResource( 7 )
 
+[node name="LootIsland5" type="Position2D" parent="."]
+position = Vector2( -24, 65 )
+rotation = -4.25236
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland7" type="Position2D" parent="."]
+position = Vector2( -0.999998, 131 )
+rotation = -4.84913
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
+[node name="LootIsland6" type="Position2D" parent="."]
+position = Vector2( 8, 65 )
+rotation = 1.08627
+script = ExtResource( 1 )
+scene = ExtResource( 7 )
+
 [node name="PirateIsland" type="Position2D" parent="."]
-position = Vector2( -41, 0 )
+position = Vector2( -7, 42 )
+script = ExtResource( 1 )
+scene = ExtResource( 3 )
+
+[node name="PirateIsland4" type="Position2D" parent="."]
+position = Vector2( 14, 98 )
+script = ExtResource( 1 )
+scene = ExtResource( 3 )
+
+[node name="PirateIsland6" type="Position2D" parent="."]
+position = Vector2( 28, 152 )
+script = ExtResource( 1 )
+scene = ExtResource( 3 )
+
+[node name="PirateIsland7" type="Position2D" parent="."]
+position = Vector2( -6, 179 )
+script = ExtResource( 1 )
+scene = ExtResource( 3 )
+
+[node name="PirateIsland8" type="Position2D" parent="."]
+position = Vector2( -47, 147 )
+script = ExtResource( 1 )
+scene = ExtResource( 3 )
+
+[node name="PirateIsland5" type="Position2D" parent="."]
+position = Vector2( -30, 97 )
 script = ExtResource( 1 )
 scene = ExtResource( 3 )

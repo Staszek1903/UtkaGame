@@ -15,9 +15,9 @@ func _process(delta):
 	is_heaved = false
 
 func _on_eased():
-	print("eased")
+	#print("eased")
 	is_eased = true
 
 func _on_heaved():
-	print("heaved")
+	#print("heaved")
 	is_heaved = true

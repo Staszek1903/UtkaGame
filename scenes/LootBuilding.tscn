@@ -44,7 +44,7 @@ transform = Transform( 3.62232, 0, 5.03289e-22, -2.28601e-29, -4.37114e-08, 3.24
 script = ExtResource( 3 )
 
 [node name="Text3D" parent="Button3D" instance=ExtResource( 1 )]
-transform = Transform( 1.89966e-09, -6.87779e-09, -0.212828, -0.178796, -0.37415, 4.02074e-08, -0.0356221, 0.178796, -5.03543e-09, -0.00649779, -0.158011, 0.140326 )
+transform = Transform( 1.89966e-09, -6.87779e-09, -0.212828, -0.178796, -0.37415, 4.02074e-08, -0.0356221, 0.178796, -5.03543e-09, -0.00649779, -0.121924, 0.140326 )
 resolution = 139
 
 [node name="Collision" type="CollisionShape" parent="Button3D"]

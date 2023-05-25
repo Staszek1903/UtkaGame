@@ -442,11 +442,13 @@ sheet_min_l = 1.005
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.726513, 0 )
 script = ExtResource( 31 )
 capacity = {
+"Cannonball": 0,
 "Fabric": 10,
 "Food": 10,
 "Steel": 0,
 "Wood": 10
 }
+default_capacity = 0
 
 [node name="Collision" type="CollisionShape" parent="Boat/CargoHold"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.786846 )

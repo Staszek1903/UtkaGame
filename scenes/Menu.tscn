@@ -228,14 +228,20 @@ transform = Transform( -0.310494, -0.950575, 0, 0.950575, -0.310494, 0, 0, 0, 1,
 
 [node name="Credits" parent="." instance=ExtResource( 8 )]
 transform = Transform( -1.59474e-08, 0, 0.364835, 0, 0.364835, 0, -0.364835, 0, -1.59474e-08, 5.701, 0, 0 )
-dimentions = Vector2( 20, 5 )
-resolution = 100
-text = "PROGRAMING - 
+dimentions = Vector2( 9.31, 11.354 )
+text = "PROGRAMING -
+Staszek1903
 GAME ENGINE -
-ADDON USED - 
-MODELS - 
+Godot 3.5.2
+ADDONS USED - 
+Godot-Trail-System,
+PLY-Editor,
+Zylann HTerrain
+MODELS -
+Staszek1903
 MUSIC AND SOUND -
-"
+Downloaded from opengameart.com 
+	and pixabay.com"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )

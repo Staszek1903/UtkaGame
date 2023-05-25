@@ -9,4 +9,5 @@ item_name = "Wood"
 quantity = 10
 
 [node name="Text3D" parent="." instance=ExtResource( 1 )]
+dimentions = Vector2( 2.5, 0.5 )
 text = "Wood : 0/10"

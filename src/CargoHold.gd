@@ -4,12 +4,13 @@ onready var uimessages = $"/root/Ui/UIMessages"
 
 var items:Dictionary = {}
 export(Dictionary) var capacity:Dictionary = {}
-const default_capacity = 99
+export(int) var default_capacity = 64
 
 func _ready():
 	for key in ["Food", "Fabric", "Wood", "Steel", "Cannonball"]:
+		if not has_node(key): continue
 		var node = get_node(key)
-		if node: for child in node.get_children():
+		for child in node.get_children():
 			child.visible = false
 	
 func add_items(items_to_add:Dictionary):
@@ -67,7 +68,7 @@ func update_text():
 	for key in items.keys():
 		if items[key] > 0:
 			item_text += "%s : %s/%s\n" % [key, items[key], capacity[key]]
-		print(">>", item_text, "<<")
+		#print(">>", item_text, "<<")
 	if items.size() == 0:
 		item_text = "Cargo empty"
 
@@ -78,13 +79,14 @@ func update_text():
 	
 func update_mesh():
 	for key in items.keys():
+		if not has_node(key): continue
 		var node = get_node(key)
 		var content:int = items[key]
-		if node:
-			var cur_index:int = 0
-			for child in node.get_children():
-				child.visible = (cur_index < content)
-				cur_index += 1
+	
+		var cur_index:int = 0
+		for child in node.get_children():
+			child.visible = (cur_index < content)
+			cur_index += 1
 
 func _on_CargoHold_mouse_entered():
 	update_text()

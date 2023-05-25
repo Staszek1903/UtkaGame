@@ -90,10 +90,10 @@ func spawn_island(island:Node2D):
 	print("PROTO: ", island.prototype)
 	
 	var inst:Spatial = null
-	if island.prototype:
-		inst = island.prototype.duplicate()
-	else:
-		inst = island.scene.instance()
+#	if island.prototype:
+#		inst = island.prototype.duplicate()
+#	else:
+	inst = island.scene.instance()
 #	assert(false)
 	instances[island] = inst
 	var pos = get_position(island)

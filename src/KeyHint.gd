@@ -3,7 +3,10 @@ extends Control
 signal satisfied
 
 onready var key_label = $KeyIcon/Label
-onready var message_label = $Label 
+onready var message_label = $Label
+
+#export(float, 0, 1) var hold_time = 0.0
+#var hold_timer = 0.0
 
 enum KeyList{
 	Z = KEY_Z,
@@ -59,6 +62,7 @@ func _on_point_satisfied(_point:int):
 	
 	
 func _on_last_satisfied():
-	print("deleting tutorial")
-	get_tree().call_group("key_hint", "queue_free")
-	get_tree().call_group("hint_indicator", "queue_free")
+	print("deleting tutorial (ACTUALY NOT XD)")
+	visible = false
+	#get_tree().call_group("key_hint", "queue_free")
+	#get_tree().call_group("hint_indicator", "queue_free")

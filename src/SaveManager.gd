@@ -20,7 +20,7 @@ func spawn_new_boat(_boat_scene:PackedScene,
 			origin:Vector3,
 			basis:Basis = Basis()):
 	var new_boat = _boat_scene.instance()
-	get_tree().get_root().add_child(new_boat)
+	get_tree().get_root().get_node("Root").add_child(new_boat)
 	new_boat.global_transform.origin = origin
 	new_boat.global_transform.basis = basis
 	return new_boat

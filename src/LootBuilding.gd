@@ -36,7 +36,7 @@ func give_items():
 	#print("count: ", count)
 	for i in count:
 		var name_i = randi() % item_names.size()
-		get_parent().give_items(item_names[name_i], 1, self)
+		get_parent().give_items(item_names[name_i], 4, self)
 		
 	#queue_free()
 	used = true

@@ -577,11 +577,8 @@ margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 key = 90
-message = "to paddle"
+message = "press to paddle"
 
 [node name="Label2" type="Label" parent="KeyHintZ"]
 margin_left = -24.0
@@ -664,7 +661,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 key = 16777238
-message = "to show control points"
+message = "hold to show control points"
 
 [node name="Label" type="Label" parent="KeyHintCtrl"]
 margin_left = -25.0
@@ -713,7 +710,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 point = 1
-message = "to select control point"
+message = "click to select control point"
 
 [node name="Label" type="Label" parent="KeyHintSelect"]
 margin_left = -25.0
@@ -762,7 +759,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 key = 83
-message = "to heave selected point"
+message = "hold to heave selected point"
 
 [node name="Label" type="Label" parent="KeyHintHeave"]
 margin_left = -25.0
@@ -811,7 +808,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 point = 2
-message = "to select control point"
+message = "click to select control point"
 
 [node name="Label" type="Label" parent="KeyHintSelect2"]
 margin_left = -25.0
@@ -860,7 +857,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 key = 83
-message = "to heave selected point"
+message = "hold to heave selected point"
 
 [node name="Label" type="Label" parent="KeyHintHeave2"]
 margin_left = -25.0
@@ -909,7 +906,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 key = 87
-message = "to ease selected point"
+message = "hold to ease selected point"
 
 [node name="Label" type="Label" parent="KeyHintEase"]
 margin_left = -25.0
@@ -1007,7 +1004,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 key = 65
-message = "to stear left"
+message = "to steer left"
 
 [node name="Label" type="Label" parent="KeyHintHelmL"]
 margin_left = -25.0

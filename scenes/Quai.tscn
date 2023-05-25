@@ -25,12 +25,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.916585, 0.396705, -8.07057 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.825564, -0.000560641 )
 shape = SubResource( 1 )
 
-[connection signal="action" from="DockPoint" to="." method="_on_DockPoint_action"]
 [connection signal="mooring_off" from="DockPoint" to="." method="_on_DockPoint_mooring_off"]
 [connection signal="mooring_on" from="DockPoint" to="." method="_on_DockPoint_mooring_on"]
-[connection signal="action" from="DockPoint2" to="." method="_on_DockPoint_action"]
 [connection signal="mooring_off" from="DockPoint2" to="." method="_on_DockPoint_mooring_off"]
 [connection signal="mooring_on" from="DockPoint2" to="." method="_on_DockPoint_mooring_on"]
-[connection signal="action" from="DockPoint3" to="." method="_on_DockPoint_action"]
 [connection signal="mooring_off" from="DockPoint3" to="." method="_on_DockPoint_mooring_off"]
 [connection signal="mooring_on" from="DockPoint3" to="." method="_on_DockPoint_mooring_on"]
