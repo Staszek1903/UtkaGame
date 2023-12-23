@@ -17,6 +17,8 @@ export(float, 0.0, 1.0) var sail_amount = 1.0 setget set_sail_amount
 
 var wind_angle:float = 0.0
 var wind_side:float = 0.0
+var current_sail_efficiency:float = 0.0
+const MAX_EFFICIENCY = 1.414
 var global_force:Vector3
 
 # Called when the node enters the scene tree for the first time.
@@ -58,6 +60,8 @@ func _physics_process(delta):
 	var s = sin(wind_angle)
 	var dead_zone = dead_angle_quotient(wind_angle)
 	wind_side = sign(global_heading_normal.cross(global_wind).y)
+	
+	current_sail_efficiency = (dead_zone * -clamp(c,-1,0) + s) / MAX_EFFICIENCY
 	
 	var direct: float = s * direct_force
 	var lift: float  = dead_zone* -clamp(c,-1,0) * lift_force

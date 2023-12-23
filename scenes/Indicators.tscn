@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fonts/droid-sans/DroidSans.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/SpeedInd.gd" type="Script" id=2]
@@ -8,184 +8,33 @@
 [ext_resource path="res://src/HeadingInd.gd" type="Script" id=6]
 [ext_resource path="res://fonts/name_font_indicatorst.tres" type="DynamicFont" id=7]
 
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.344633, 0.60452, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.701961, 0, 1, 1, 0.701961, 0, 1, 0, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color( 0.411765, 0.239216, 0.0156863, 1 )
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
 [node name="Indicators" type="Control"]
-anchor_top = 1.0
-anchor_bottom = 1.0
+anchor_left = 1.0
+anchor_right = 1.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TiltInd" type="Node2D" parent="."]
-position = Vector2( 164.907, -110.095 )
-scale = Vector2( 0.2, 0.2 )
-script = ExtResource( 3 )
-
-[node name="Circle" type="Polygon2D" parent="TiltInd"]
-antialiased = true
-polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
-
-[node name="Polygon2D" type="Polygon2D" parent="TiltInd/Circle"]
-position = Vector2( 0, -180 )
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="TiltInd/Circle"]
-position = Vector2( 127, -127 )
-rotation = 0.785398
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="Polygon2D3" type="Polygon2D" parent="TiltInd/Circle"]
-position = Vector2( -127, -127 )
-rotation = -0.785398
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="Label" type="Label" parent="TiltInd"]
-margin_left = -54.535
-margin_top = 85.4746
-margin_right = 65.465
-margin_bottom = 164.475
-grow_horizontal = 2
-grow_vertical = 2
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 7 )
-text = "LIST"
-
-[node name="PanelContainer" type="PanelContainer" parent="TiltInd"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -50.0
-margin_right = -50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 99.646, 50 )
-
-[node name="Label" type="Label" parent="TiltInd/PanelContainer"]
-margin_left = 7.0
-margin_top = 9.0
-margin_right = 143.0
-margin_bottom = 91.0
-custom_fonts/font = ExtResource( 1 )
-text = "-11"
-align = 1
-
-[node name="Needle" type="Polygon2D" parent="TiltInd"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-invert_border = 0.1
-polygon = PoolVector2Array( -5, -150, -5, 0, -60, 0, -45, 30, -20, 40, 20, 40, 45, 30, 60, 0, 5, 0, 5, -150, 0, -200 )
-
-[node name="SpeedInd" type="Node2D" parent="."]
-position = Vector2( 64.8616, -65.6469 )
-scale = Vector2( 0.2, 0.2 )
-script = ExtResource( 2 )
-
-[node name="Circle" type="Polygon2D" parent="SpeedInd"]
-antialiased = true
-polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
-
-[node name="Polygon2D" type="Polygon2D" parent="SpeedInd/Circle"]
-position = Vector2( 0, -180 )
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="SpeedInd/Circle"]
-position = Vector2( 127, -127 )
-rotation = 0.785398
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="Polygon2D3" type="Polygon2D" parent="SpeedInd/Circle"]
-position = Vector2( 180, 0 )
-rotation = 1.5708
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="Polygon2D4" type="Polygon2D" parent="SpeedInd/Circle"]
-position = Vector2( 127, 127 )
-rotation = 2.35619
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="Polygon2D5" type="Polygon2D" parent="SpeedInd/Circle"]
-position = Vector2( 0, 180 )
-rotation = 3.14159
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
-
-[node name="PanelContainer" type="PanelContainer" parent="SpeedInd"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -50.0
-margin_right = -49.9999
-margin_bottom = 61.0
-rect_min_size = Vector2( 80, 50 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="SpeedInd/PanelContainer"]
-margin_left = 7.0
-margin_top = 14.0
-margin_right = 143.0
-margin_bottom = 96.0
-custom_fonts/font = ExtResource( 1 )
-text = "0"
-align = 1
-
-[node name="Label" type="Label" parent="SpeedInd"]
-margin_left = -84.535
-margin_top = 48.2344
-margin_right = 95.465
-margin_bottom = 127.234
-grow_horizontal = 2
-grow_vertical = 2
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 7 )
-text = "SPEED"
-
-[node name="Needle" type="Polygon2D" parent="SpeedInd"]
-color = Color( 1, 0, 0, 1 )
-antialiased = true
-invert_border = 0.1
-polygon = PoolVector2Array( -5, -150, -5, 0, 5, 0, 5, -150, 0, -200 )
-
-[node name="Polygon2D" type="Polygon2D" parent="SpeedInd/Needle"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -20, -20, 20, -20, 40, 0, 20, 20, -20, 20, -40, 0 )
 
 [node name="WindInd" type="Node2D" parent="."]
-position = Vector2( 269.557, -108.906 )
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( -83.9995, 84 )
+scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 5 )
+mainsail_gradient = SubResource( 2 )
 
 [node name="Circle" type="Polygon2D" parent="WindInd"]
 antialiased = true
@@ -258,13 +107,13 @@ polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
 position = Vector2( 0, 13.3484 )
 color = Color( 0, 0, 0, 1 )
 antialiased = true
-polygon = PoolVector2Array( 0, -160, -50, -80, -70, 0, -70, 70, -50, 120, 50, 120, 70, 70, 70, 0, 50, -80 )
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
 
 [node name="ship2" type="Polygon2D" parent="WindInd/Circle"]
 position = Vector2( 0, 13.3484 )
 scale = Vector2( 0.927859, 0.927859 )
 antialiased = true
-polygon = PoolVector2Array( 0, -160, -50, -80, -70, 0, -70, 70, -50, 120, 50, 120, 70, 70, 70, 0, 50, -80 )
+polygon = PoolVector2Array( 0, -160, -32.3345, -118.569, -57.4819, -61.0887, -61.0742, 10.7613, -43.1118, 118.536, 39.5156, 118.536, 61.0708, 7.16876, 57.478, -61.0887, 32.3306, -118.569 )
 
 [node name="Label" type="Label" parent="WindInd"]
 margin_left = -77.035
@@ -280,6 +129,7 @@ custom_fonts/font = ExtResource( 7 )
 text = "WIND"
 
 [node name="PanelAngle" type="PanelContainer" parent="WindInd"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -303,6 +153,7 @@ text = "0"
 align = 1
 
 [node name="PanelSpeed" type="PanelContainer" parent="WindInd"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -325,103 +176,199 @@ custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 1
 
+[node name="Border" type="Panel" parent="WindInd"]
+margin_left = -225.0
+margin_top = -230.385
+margin_right = 230.0
+margin_bottom = 224.615
+custom_styles/panel = SubResource( 1 )
+
 [node name="NeedleAux" type="Polygon2D" parent="WindInd"]
 scale = Vector2( 2, -1 )
-color = Color( 0.396078, 0.431373, 1, 1 )
+color = Color( 1, 0.537255, 0, 1 )
 antialiased = true
 invert_border = 0.1
-polygon = PoolVector2Array( 0, 100, -15, 0, 0, -100, 15, 0 )
+polygon = PoolVector2Array( 0, 230, -15, 220, 0, 170, 15, 220 )
 
 [node name="Needle" type="Polygon2D" parent="WindInd"]
 scale = Vector2( 2, -1 )
-color = Color( 1, 0, 0, 1 )
+color = Color( 0, 0.180392, 1, 1 )
 antialiased = true
 invert_border = 0.1
-polygon = PoolVector2Array( 5, 140, 5, -150, 0, -200, -5, -150, -5, 140, -25, 170, 25, 170 )
+polygon = PoolVector2Array( -25, 210, 0, 225, 25, 210, 0, 0 )
 
 [node name="Polygon2D" type="Polygon2D" parent="WindInd/Needle"]
+visible = false
 scale = Vector2( 0.5, 1 )
 color = Color( 0, 0, 0, 1 )
 antialiased = true
 polygon = PoolVector2Array( -20, -20, 20, -20, 40, 0, 20, 20, -20, 20, -40, 0 )
 
+[node name="MainSail" type="Polygon2D" parent="WindInd"]
+scale = Vector2( 2, -1 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 120, -3, 65, -4, -4, 0, -8, 4, -4, 3, 65 )
+
 [node name="HeadingInd" type="Node2D" parent="."]
-position = Vector2( 371.829, -69.6618 )
+position = Vector2( -65.3848, 211.538 )
 scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 6 )
 
-[node name="Circle" type="Polygon2D" parent="HeadingInd"]
+[node name="Needle" type="Position2D" parent="HeadingInd"]
+
+[node name="Circle" type="Polygon2D" parent="HeadingInd/Needle"]
 antialiased = true
 polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
 
-[node name="Polygon2D" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( 0, -180 )
-scale = Vector2( 0.0200116, 0.33628 )
-color = Color( 1, 0, 0, 1 )
+[node name="Polygon2D9" type="Polygon2D" parent="HeadingInd/Needle"]
+color = Color( 0.615686, 0.615686, 0.615686, 1 )
 antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+polygon = PoolVector2Array( 0, -160, -10, -20, -90, -90, -20, -10, -160, 0, -20, 10, -90, 90, -10, 20, 0, 160, 10, 20, 90, 90, 20, 10, 160, 0, 20, -10, 90, -90, 10, -20 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( 127, -127 )
-rotation = 0.785398
-scale = Vector2( 0.0200116, 0.109 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+[node name="Label3" type="Label" parent="HeadingInd/Needle"]
+margin_left = -25.0
+margin_top = -230.385
+margin_right = 111.0
+margin_bottom = -151.385
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 1.2, 1.2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "N"
 
-[node name="Polygon2D3" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( 180, 0 )
-rotation = 1.5708
-scale = Vector2( 0.0200116, 0.109 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+[node name="Label4" type="Label" parent="HeadingInd/Needle"]
+margin_left = 17.3086
+margin_top = 223.461
+margin_right = 153.309
+margin_bottom = 302.461
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 180.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "S"
 
-[node name="Polygon2D4" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( 127, 127 )
-rotation = 2.35619
-scale = Vector2( 0.0200116, 0.109 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+[node name="Label5" type="Label" parent="HeadingInd/Needle"]
+margin_left = 225.0
+margin_top = -18.8462
+margin_right = 361.0
+margin_bottom = 60.1538
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 90.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "E"
 
-[node name="Polygon2D6" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( -127, -127 )
-rotation = -0.785398
-scale = Vector2( 0.0200116, 0.109 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+[node name="Label6" type="Label" parent="HeadingInd/Needle"]
+margin_left = -221.153
+margin_top = 31.1538
+margin_right = -85.1533
+margin_bottom = 110.154
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 270.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "W"
 
-[node name="Polygon2D7" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( -180, 0 )
-rotation = 1.5708
-scale = Vector2( 0.0200116, 0.109 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+[node name="Label7" type="Label" parent="HeadingInd/Needle"]
+margin_left = -128.846
+margin_top = -95.7695
+margin_right = 7.15381
+margin_bottom = -16.7695
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 315.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "NW"
 
-[node name="Polygon2D8" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( -127, 127 )
-rotation = 0.785398
-scale = Vector2( 0.0200116, 0.109 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+[node name="Label8" type="Label" parent="HeadingInd/Needle"]
+margin_left = 98.0771
+margin_top = -130.385
+margin_right = 234.077
+margin_bottom = -51.3848
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 45.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "NE"
 
-[node name="Polygon2D5" type="Polygon2D" parent="HeadingInd/Circle"]
-position = Vector2( 0, 180 )
-rotation = 3.14159
-scale = Vector2( 0.0200116, 0.109 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+[node name="Label9" type="Label" parent="HeadingInd/Needle"]
+margin_left = 125.001
+margin_top = 100.385
+margin_right = 261.001
+margin_bottom = 179.385
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 135.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "SE"
 
-[node name="Label" type="Label" parent="HeadingInd"]
-margin_left = -54.5349
-margin_top = -131.691
-margin_right = 65.4651
-margin_bottom = -52.6909
+[node name="Label10" type="Label" parent="HeadingInd/Needle"]
+margin_left = -98.0762
+margin_top = 127.308
+margin_right = 37.9238
+margin_bottom = 206.308
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 225.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "SW"
+
+[node name="PanelContainer" type="PanelContainer" parent="HeadingInd"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = 96.5385
+margin_right = 75.0
+margin_bottom = 192.538
+rect_min_size = Vector2( 80, 50 )
+
+[node name="Label" type="Label" parent="HeadingInd/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 143.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+
+[node name="Label2" type="Label" parent="HeadingInd/PanelContainer"]
+margin_left = 7.0
+margin_top = 8.0
+margin_right = 143.0
+margin_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -430,40 +377,210 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "HDG"
 
-[node name="PanelContainer" type="PanelContainer" parent="HeadingInd"]
+[node name="Border" type="Panel" parent="HeadingInd"]
+margin_left = -225.0
+margin_top = -230.385
+margin_right = 230.0
+margin_bottom = 224.615
+custom_styles/panel = SubResource( 1 )
+
+[node name="Forward" type="Polygon2D" parent="HeadingInd"]
+rotation = -3.14159
+color = Color( 0.00784314, 0, 1, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -10, -18, -17, -10, -20, 0, 0, 0, 20, 0, 17, -10, 10, -18, 0, -200 )
+
+[node name="Forward2" type="Polygon2D" parent="HeadingInd"]
+color = Color( 1, 0, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -10, -18, -17, -10, -20, 0, 0, 0, 20, 0, 17, -10, 10, -18, 0, -200 )
+
+[node name="TiltInd" type="Node2D" parent="."]
+position = Vector2( -59.231, 426.923 )
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 3 )
+
+[node name="Circle" type="Polygon2D" parent="TiltInd"]
+antialiased = true
+polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
+
+[node name="Polygon2D" type="Polygon2D" parent="TiltInd/Circle"]
+position = Vector2( 0, -180 )
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="TiltInd/Circle"]
+position = Vector2( 127, -127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="TiltInd/Circle"]
+position = Vector2( -127, -127 )
+rotation = -0.785398
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Label" type="Label" parent="TiltInd"]
+margin_left = -54.535
+margin_top = 85.4746
+margin_right = 65.465
+margin_bottom = 164.475
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "LIST"
+
+[node name="PanelContainer" type="PanelContainer" parent="TiltInd"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.0
-margin_top = 54.6243
-margin_right = 75.0
-margin_bottom = 165.624
-rect_min_size = Vector2( 80, 50 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = -200.0
+margin_top = -50.0
+margin_right = -50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 99.646, 50 )
 
-[node name="Label" type="Label" parent="HeadingInd/PanelContainer"]
+[node name="Label" type="Label" parent="TiltInd/PanelContainer"]
 margin_left = 7.0
-margin_top = 14.0
+margin_top = 9.0
 margin_right = 143.0
-margin_bottom = 96.0
+margin_bottom = 91.0
+custom_fonts/font = ExtResource( 1 )
+text = "-11"
+align = 1
+
+[node name="Needle" type="Polygon2D" parent="TiltInd"]
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -5, -150, -5, 0, -60, 0, -45, 30, -20, 40, 20, 40, 45, 30, 60, 0, 5, 0, 5, -150, 0, -200 )
+
+[node name="Border" type="Panel" parent="TiltInd"]
+margin_left = -225.0
+margin_top = -230.385
+margin_right = 230.0
+margin_bottom = 224.615
+custom_styles/panel = SubResource( 1 )
+
+[node name="SpeedInd" type="Node2D" parent="."]
+position = Vector2( -61.5386, 318.461 )
+rotation = -1.9635
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Circle" type="Polygon2D" parent="SpeedInd"]
+antialiased = true
+polygon = PoolVector2Array( 0, -220, 110, -190, 190, -110, 220, 0, 190, 110, 110, 190, 0, 220, -110, 190, -190, 110, -220, 0, -190, -110, -110, -190 )
+
+[node name="Polygon2D" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 0, -180 )
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 127, -127 )
+rotation = 0.785398
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 180, 0 )
+rotation = 1.5708
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 127, 127 )
+rotation = 2.35619
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( 0, 180 )
+rotation = 3.14159
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="Polygon2D6" type="Polygon2D" parent="SpeedInd/Circle"]
+position = Vector2( -127, 127 )
+rotation = 3.92699
+scale = Vector2( 0.0200116, 0.33628 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -100, -100, -100, 100, 100, 100, 100, -100 )
+
+[node name="PanelContainer" type="PanelContainer" parent="SpeedInd"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.89746
+margin_top = -78.6309
+margin_right = 145.103
+margin_bottom = 17.3691
+rect_min_size = Vector2( 80, 50 )
+rect_rotation = 112.5
+
+[node name="Label" type="Label" parent="SpeedInd/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 143.0
+margin_bottom = 89.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 1
 
-[node name="Needle" type="Position2D" parent="HeadingInd"]
+[node name="Label" type="Label" parent="SpeedInd"]
+margin_left = -82.209
+margin_top = -123.145
+margin_right = 97.791
+margin_bottom = -44.145
+grow_horizontal = 2
+grow_vertical = 2
+rect_rotation = 112.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "SPEED"
 
-[node name="Polygon2D" type="Polygon2D" parent="HeadingInd/Needle"]
-rotation = -1.5708
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -10, -20, 10, -20, 40, 20, 0, 150, -40, 20 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="HeadingInd/Needle"]
-rotation = -1.5708
+[node name="Needle" type="Polygon2D" parent="SpeedInd"]
 color = Color( 1, 0, 0, 1 )
 antialiased = true
 invert_border = 0.1
-polygon = PoolVector2Array( -40, -20, -20, 10, 20, 10, 40, -20, 0, -170 )
+polygon = PoolVector2Array( -5, -150, -5, 0, 5, 0, 5, -150, 0, -200 )
+
+[node name="Polygon2D" type="Polygon2D" parent="SpeedInd/Needle"]
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -20, -20, 20, -20, 40, 0, 20, 20, -20, 20, -40, 0 )
+
+[node name="Border" type="Panel" parent="SpeedInd"]
+margin_left = -225.0
+margin_top = -230.385
+margin_right = 230.0
+margin_bottom = 224.615
+custom_styles/panel = SubResource( 1 )

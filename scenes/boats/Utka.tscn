@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://src/Boat.gd" type="Script" id=1]
 [ext_resource path="res://src/CargoSlots.gd" type="Script" id=2]
@@ -24,7 +24,6 @@
 [ext_resource path="res://src/WaterLevel.gd" type="Script" id=22]
 [ext_resource path="res://src/CameraPivot.gd" type="Script" id=23]
 [ext_resource path="res://materials/sail_material.tres" type="Material" id=24]
-[ext_resource path="res://src/Flag.gd" type="Script" id=25]
 [ext_resource path="res://src/SinkScreen.gd" type="Script" id=26]
 [ext_resource path="res://src/MapIndicator.gd" type="Script" id=27]
 [ext_resource path="res://src/Crosshair.gd" type="Script" id=28]
@@ -90,8 +89,8 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.496324, 0.981818 ), 0.0, 0
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="CylinderShape" id=15]
-radius = 4.23384
 height = 13.0976
+radius = 4.23384
 
 [sub_resource type="BoxShape" id=16]
 extents = Vector3( 2.03019, 1, 3.66044 )
@@ -381,7 +380,6 @@ direct_force = 150.0
 [node name="Bom" type="MeshInstance" parent="Bom"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0 )
 mesh = ExtResource( 35 )
-material/0 = null
 
 [node name="mainsail" type="MeshInstance" parent="Bom"]
 transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 2.84217e-14, 0, 1, 0, 0, 0 )
@@ -511,13 +509,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.915, -1.09519 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.463968, 0 )
 layers = 2
 mesh = ExtResource( 34 )
-material/0 = null
 
 [node name="keel" type="MeshInstance" parent="Boat"]
 transform = Transform( 0.76706, 0, 0, 0, 0.256025, 0.723072, 0, -0.723072, 0.256025, 0, -0.013, -0.509 )
 layers = 2
 mesh = ExtResource( 36 )
-material/0 = null
 
 [node name="CollisionShape2" type="CollisionShape" parent="Boat"]
 transform = Transform( 0.76706, 0, 0, 0, 0.256025, 0.723072, 0, -0.723072, 0.256025, 0, -0.013, -0.509 )
@@ -552,17 +548,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5312, -0.779 )
 width = 0.0921735
 height = 6.02287
 depth = 0.102501
-
-[node name="Flag" type="Position3D" parent="Boat/Mast"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75104, 0 )
-script = ExtResource( 25 )
-
-[node name="CSGBox" type="CSGBox" parent="Boat/Mast/Flag"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168691, 0.524074 )
-visible = false
-width = 0.0239318
-height = 0.385346
-depth = 1.0733
 
 [node name="PelzaczTop" type="Position3D" parent="Boat/Mast"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.62916, 0 )
@@ -729,8 +714,8 @@ margin_left = -113.5
 margin_top = -26.0
 margin_right = 113.5
 margin_bottom = 26.0
-custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 10 )
 text = "YOU SANK"
 __meta__ = {
 "_edit_use_anchors_": false

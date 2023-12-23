@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/ViewportShaderTest.gd" type="Script" id=1]
+
+[sub_resource type="ViewportTexture" id=14]
+viewport_path = NodePath("Water/ViewportCopy")
+
+[sub_resource type="Shader" id=15]
+code = "shader_type canvas_item;
+
+//void fragment(){
+//	float l  = length(UV - vec2(0.5));
+//	COLOR = texture(TEXTURE, vec2(l,l) + vec2(0.5)) - vec4(0,1,0,0);
+//}"
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 15 )
+
+[sub_resource type="ViewportTexture" id=11]
+viewport_path = NodePath("Water/Viewport")
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+uniform sampler2D selfcopy_texture;
+uniform bool animation_active = false;
+
+// r displacement
+// g: negative displacement
+// b: vertical velocity
+//float dis(vec4 pixel) { return pixel.r; }
+//float vel(vec4 pixel) { return pixel.b; }
+
+void fragment(){
+	float delta = 1.0/30.0;
+	float offset = SCREEN_PIXEL_SIZE.x;
+	
+	vec2 adjs[] = {
+					 vec2(0,		-offset),
+					 vec2(-offset,	0),
+					 vec2(offset,	0),
+					 vec2(0,		offset)
+					};
+					
+	float s0 = texture(selfcopy_texture, SCREEN_UV).r;
+	float s1 = texture(selfcopy_texture, SCREEN_UV + adjs[0]).r;
+	float s2 = texture(selfcopy_texture, SCREEN_UV + adjs[1]).r;
+	float s3 = texture(selfcopy_texture, SCREEN_UV + adjs[2]).r;
+	float s4 = texture(selfcopy_texture, SCREEN_UV + adjs[3]).r;
+	
+	float d = 0.5;
+//	if(distance(SCREEN_UV, vec2(0.5)) < SCREEN_PIXEL_SIZE.x * 5.0){
+//		d = smoothstep(4.5,0.5, length(SCREEN_UV - vec2(0.5)));
+//	}
+	
+	d +=  -(s0 - 0.5)*2.0  +  (s1+s2+s3+s4 - 2.0);
+	d *= 0.99;
+	d = d * 0.5 + 0.5; 
+   
+	COLOR = vec4(0,0,0,1);
+	
+	if(animation_active){
+		COLOR = vec4(d,d,d,1.0);//max(before, after * 0.99);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 2 )
+shader_param/animation_active = false
+
+[sub_resource type="ImageTexture" id=5]
+resource_local_to_scene = true
+size = Vector2( 512, 512 )
+
+[sub_resource type="ViewportTexture" id=13]
+viewport_path = NodePath("Water/Viewport")
+
+[node name="ViewportShaderTest" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -171.0
+margin_top = -141.0
+margin_right = 1829.0
+margin_bottom = 1859.0
+color = Color( 0.105882, 0.239216, 0.298039, 1 )
+
+[node name="CopuTest" type="Sprite" parent="."]
+position = Vector2( 1208, 362 )
+scale = Vector2( 0.0378865, 0.0352266 )
+texture = SubResource( 14 )
+
+[node name="Water" type="Sprite" parent="."]
+material = SubResource( 16 )
+position = Vector2( 571.474, 477 )
+scale = Vector2( 1.8, 1.836 )
+texture = SubResource( 11 )
+
+[node name="Viewport" type="Viewport" parent="Water"]
+size = Vector2( 512, 512 )
+
+[node name="Sprite" type="Sprite" parent="Water/Viewport"]
+material = SubResource( 4 )
+position = Vector2( 256, 256 )
+texture = SubResource( 5 )
+
+[node name="ViewportCopy" type="Viewport" parent="Water"]
+size = Vector2( 512, 512 )
+
+[node name="Sprite" type="Sprite" parent="Water/ViewportCopy"]
+position = Vector2( 256, 256 )
+texture = SubResource( 13 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1133.0
+margin_top = 192.0
+margin_right = 3133.0
+margin_bottom = 2192.0
+rect_scale = Vector2( 0.13979, 0.131958 )
+color = Color( 0.105882, 0.239216, 0.298039, 1 )

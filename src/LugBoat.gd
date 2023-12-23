@@ -1,5 +1,11 @@
 extends BasicBoat
 
+export(float) var front_wave_offset:float = 1 setget set_front_wave_offset
+export(float) var front_scale:float = 0.15 setget set_front_scale
+export(float) var trail_radius:float = 25 setget set_trail_radius
+export(float) var trail_segment_length = 35 setget set_trail_segment_length
+#export(float) var front_scale_rate:float = 0.4 setget set_front_scale_rate
+
 #onready var floater = $FloaterBow
 #onready var floater2 = $FloaterStern
 #onready var floater3 = $FloaterPort
@@ -7,6 +13,7 @@ extends BasicBoat
 #onready var keelForceOffset = $KeelForceOffset
 onready var debug = $ForceDebug
 onready var rudder = $Rudder
+onready var bow_particles = $BowParticles
 #onready var mooring_bow_l = $"../MooringBowL"
 #onready var mooring_bow_r = $"../MooringBowR"
 onready var mooring_bow_l_end = $"MooringBowLEnd"
@@ -26,7 +33,16 @@ func _ready():
 	save_manager.call_deferred("update_data",self)
 	set_sail_trim(10.0)
 	
+	set_front_wave_offset(front_wave_offset)
+	set_front_scale(front_scale)
+	set_trail_radius(trail_radius)
+	set_trail_segment_length(trail_segment_length)
+#	set_front_scale_rate(front_scale_rate)
+	
 	anim.play("fold",-1,10.0,false)
+	
+	
+	
 #	assert(mooring_bow_l)
 #	assert(mooring_bow_r)
 
@@ -34,6 +50,39 @@ func _ready():
 #	update_water_level(delta)
 #	update_hit_level(delta)
 	#update_moorings(delta)
+	
+func _process(delta):
+	var glob_pos = global_transform.origin
+	var forward = -linear_velocity
+	var direction = atan2(forward.x, forward.z)
+	var horizontal_velocity = Vector2(linear_velocity.x, linear_velocity.z)
+	var horizontal_vel_len = horizontal_velocity.length()
+	waterMesh.set_trail_position(glob_pos)
+	waterMesh.set_trail_direction(direction - (PI/2.0))
+	waterMesh.set_trail_speed(horizontal_vel_len * 40.0)
+	waterMesh.set_front_direction(global_transform.basis.z)
+	bow_particles.emitting = (horizontal_vel_len > 1.5)
+	bow_particles.process_material.initial_velocity = horizontal_vel_len
+	
+func set_front_wave_offset(val:float):
+	front_wave_offset = val
+	if waterMesh: waterMesh.set_front_offset(val)
+	
+func set_front_scale(val:float):
+	front_scale = val
+	if waterMesh: waterMesh.set_front_scale(val)
+	
+func set_trail_radius(val:float):
+	trail_radius = val
+	if waterMesh: waterMesh.set_trail_radius(val)
+	
+func set_trail_segment_length(val):
+	trail_segment_length = val
+	if waterMesh: waterMesh.set_trail_segment_length(val)
+	
+#func set_front_scale_rate(val:float):
+#	front_scale_rate = val
+#	if waterMesh: waterMesh.set_front_offset_rate(val)
 
 #################################
 # CATCHING ITEMS				#
@@ -165,8 +214,21 @@ func set_floaters_enabled(en:bool):
 		f.enabled = en
 	
 func special():
+	$"../AnimationPlayer".play("paddles_reset")
+	yield($"../AnimationPlayer","animation_finished")
 	$"../AnimationPlayer".play("paddle")
 	#apply_torque_impulse(Vector3.DOWN * 10.0)
+	
+func special_alt():
+	$"../AnimationPlayer".play("paddles_reset")
+	yield($"../AnimationPlayer","animation_finished")
+	$"../AnimationPlayer".play("paddle2")
+	
+func apply_local_impulse(position:Vector3, impulse):
+	var global_pos:Vector3 = global_transform.basis.xform(position)
+	var global_imp:Vector3 = global_transform.basis.xform(impulse)
+	apply_impulse(global_pos, global_imp)
+	
 	
 func _on_sink():
 	print("ON SINK RESPAWN")

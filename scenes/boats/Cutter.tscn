@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://src/ForceDebug.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ComonCamera.tscn" type="PackedScene" id=2]
@@ -41,9 +41,17 @@
 [ext_resource path="res://materials/black_material.tres" type="Material" id=39]
 [ext_resource path="res://materials/roof_material.tres" type="Material" id=40]
 [ext_resource path="res://src/Kapstan.gd" type="Script" id=41]
-[ext_resource path="res://textures/smoke/smoke3.png" type="Texture" id=42]
+[ext_resource path="res://addons/kenney_particle_pack/fire_02.png" type="Texture" id=42]
 [ext_resource path="res://souds/watersplash2.wav" type="AudioStream" id=43]
 [ext_resource path="res://souds/sailboat-cockpit-at-12kn-wind-speed-17465.mp3" type="AudioStream" id=44]
+[ext_resource path="res://materials/green_light_material.tres" type="Material" id=45]
+[ext_resource path="res://materials/gold_material.tres" type="Material" id=46]
+[ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=47]
+[ext_resource path="res://src/SteeringPoint.gd" type="Script" id=48]
+[ext_resource path="res://src/MouseArea.gd" type="Script" id=49]
+[ext_resource path="res://scenes/IconBaner.tscn" type="PackedScene" id=50]
+[ext_resource path="res://souds/hamp-rope-creaks-49202.mp3" type="AudioStream" id=51]
+[ext_resource path="res://scenes/Flag.tscn" type="PackedScene" id=52]
 
 [sub_resource type="SpatialMaterial" id=56]
 params_cull_mode = 2
@@ -122,6 +130,14 @@ surfaces/4 = {
 "vertex_count": 1612
 }
 
+[sub_resource type="SpatialMaterial" id=62]
+params_cull_mode = 2
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=63]
+params_cull_mode = 2
+albedo_color = Color( 0.94902, 0.847059, 0.6, 1 )
+
 [sub_resource type="ConvexPolygonShape" id=12]
 points = PoolVector3Array( -2.03218, -0.0233499, 1, -2.03218, -0.0233499, 1, -2.03218, -0.0233499, 1, -2.03218, -0.0233499, 1, -2.25484, 0.933002, 1, -2.25484, 0.933002, 1, -2.25484, 0.933002, 1, -2.25484, 0.933002, 1, -2.1554, -0.0903477, -1, -2.1554, -0.0903477, -1, -2.1554, -0.0903477, -1, -2.1554, -0.0903477, -1, -2.41676, 1, -1, -2.41676, 1, -1, -2.41676, 1, -1, -2.41676, 1, -1, 2.03218, -0.0233499, 1, 2.03218, -0.0233499, 1, 2.03218, -0.0233499, 1, 2.03218, -0.0233499, 1, 2.25484, 0.933002, 1, 2.25484, 0.933002, 1, 2.25484, 0.933002, 1, 2.25484, 0.933002, 1, 2.1554, -0.0903477, -1, 2.1554, -0.0903477, -1, 2.1554, -0.0903477, -1, 2.1554, -0.0903477, -1, 2.41676, 1, -1, 2.41676, 1, -1, 2.41676, 1, -1, 2.41676, 1, -1, -1.51788, 0.294612, 4.26955, -1.51788, 0.294612, 4.26955, -1.51788, 0.294612, 4.26955, -1.51788, 0.294612, 4.26955, -1.89625, 0.954212, 4.26955, -1.89625, 0.954212, 4.26955, -1.89625, 0.954212, 4.26955, -1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.89625, 0.954212, 4.26955, 1.51788, 0.294612, 4.26955, 1.51788, 0.294612, 4.26955, 1.51788, 0.294612, 4.26955, 1.51788, 0.294612, 4.26955, -0.351848, 0.408146, 4.95381, -0.351848, 0.408146, 4.95381, -0.351848, 0.408146, 4.95381, -0.351848, 0.408146, 4.95381, -1.72215, 1.38219, 5.84383, -1.72215, 1.38219, 5.84383, -1.72215, 1.38219, 5.84383, -1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 1.72215, 1.38219, 5.84383, 0.351848, 0.408146, 4.95381, 0.351848, 0.408146, 4.95381, 0.351848, 0.408146, 4.95381, 0.351848, 0.408146, 4.95381, -2.2401, 1.14406, -3.95342, -2.2401, 1.14406, -3.95342, -2.2401, 1.14406, -3.95342, -2.2401, 1.14406, -3.95342, -1.82128, -0.0903477, -3.95342, -1.82128, -0.0903477, -3.95342, -1.82128, -0.0903477, -3.95342, -1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 1.82128, -0.0903477, -3.95342, 2.2401, 1.14406, -3.95342, 2.2401, 1.14406, -3.95342, 2.2401, 1.14406, -3.95342, 2.2401, 1.14406, -3.95342, -1.85359, 1.29219, -5.4805, -1.85359, 1.29219, -5.4805, -1.85359, 1.29219, -5.4805, -1.85359, 1.29219, -5.4805, -1.1019, -0.0903477, -5.4805, -1.1019, -0.0903477, -5.4805, -1.1019, -0.0903477, -5.4805, -1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.1019, -0.0903477, -5.4805, 1.85359, 1.29219, -5.4805, 1.85359, 1.29219, -5.4805, 1.85359, 1.29219, -5.4805, 1.85359, 1.29219, -5.4805, -0.942581, 1.47012, -6.67151, -0.942581, 1.47012, -6.67151, -0.942581, 1.47012, -6.67151, -0.942581, 1.47012, -6.67151, -0.311245, -0.0903477, -6.67151, -0.311245, -0.0903477, -6.67151, -0.311245, -0.0903477, -6.67151, -0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.311245, -0.0903477, -6.67151, 0.942581, 1.47012, -6.67151, 0.942581, 1.47012, -6.67151, 0.942581, 1.47012, -6.67151, 0.942581, 1.47012, -6.67151, -0.117588, 1.51527, -7.2852, -0.117588, 1.51527, -7.2852, -0.117588, 1.51527, -7.2852, -0.117588, 1.51527, -7.2852, -0.0454393, -0.0903478, -7.16186, -0.0454393, -0.0903478, -7.16186, -0.0454393, -0.0903478, -7.16186, -0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.0454393, -0.0903478, -7.16186, 0.117588, 1.51527, -7.2852, 0.117588, 1.51527, -7.2852, 0.117588, 1.51527, -7.2852, 0.117588, 1.51527, -7.2852, -1.31147, -0.798939, -0.978204, -1.31147, -0.798939, -0.978204, -1.31147, -0.798939, -0.978204, -1.31147, -0.798939, -0.978204, -1.12603, -0.731941, 1.0218, -1.12603, -0.731941, 1.0218, -1.12603, -0.731941, 1.0218, -1.12603, -0.731941, 1.0218, 1.31147, -0.798939, -0.978204, 1.31147, -0.798939, -0.978204, 1.31147, -0.798939, -0.978204, 1.31147, -0.798939, -0.978204, 1.12603, -0.731941, 1.0218, 1.12603, -0.731941, 1.0218, 1.12603, -0.731941, 1.0218, 1.12603, -0.731941, 1.0218, -0.279917, -0.413979, 4.29135, -0.279917, -0.413979, 4.29135, -0.279917, -0.413979, 4.29135, -0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, 0.279917, -0.413979, 4.29135, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, -0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.128262, 0.0447346, 4.70517, 0.744234, -0.798939, -3.93163, 0.744234, -0.798939, -3.93163, 0.744234, -0.798939, -3.93163, 0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, -0.744234, -0.798939, -3.93163, 0.263601, -0.798939, -5.4587, 0.263601, -0.798939, -5.4587, 0.263601, -0.798939, -5.4587, 0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, -0.263601, -0.798939, -5.4587, 0.311245, -0.798939, -6.17307, 0.311245, -0.798939, -6.17307, 0.311245, -0.798939, -6.17307, -0.311245, -0.798939, -6.17307, -0.311245, -0.798939, -6.17307, -0.311245, -0.798939, -6.17307, 0.0454393, -0.798939, -6.78156, 0.0454393, -0.798939, -6.78156, 0.0454393, -0.798939, -6.78156, -0.0454393, -0.798939, -6.78156, -0.0454393, -0.798939, -6.78156, -0.0454393, -0.798939, -6.78156, -0.30591, -1.28671, -0.967693, -0.30591, -1.28671, -0.967693, -0.30591, -1.28671, -0.967693, -0.30591, -1.28671, -0.967693, -0.132296, -1.39464, 1.03231, -0.132296, -1.39464, 1.03231, -0.132296, -1.39464, 1.03231, -0.132296, -1.39464, 1.03231, 0.30591, -1.28671, -0.967693, 0.30591, -1.28671, -0.967693, 0.30591, -1.28671, -0.967693, 0.30591, -1.28671, -0.967693, 0.132296, -1.39464, 1.03231, 0.132296, -1.39464, 1.03231, 0.132296, -1.39464, 1.03231, 0.132296, -1.39464, 1.03231, -0.137683, -1.50937, 2.76488, -0.137683, -1.50937, 2.76488, -0.137683, -1.50937, 2.76488, -0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, 0.137683, -1.50937, 2.76488, -0.128262, -1.00831, 4.18663, -0.128262, -1.00831, 4.18663, -0.128262, -1.00831, 4.18663, 0.128262, -1.00831, 4.18663, 0.128262, -1.00831, 4.18663, 0.128262, -1.00831, 4.18663, 0.0788333, -1.10066, -3.92112, 0.0788333, -1.10066, -3.92112, 0.0788333, -1.10066, -3.92112, 0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, -0.0788333, -1.10066, -3.92112, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, 0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, -0.0689405, -1.03864, -5.44819, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, 0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -0.0842435, -1.04445, -6.28153, -2.41676, 1.64491, -0.955797, -2.41676, 1.64491, -0.955797, -2.41676, 1.64491, -0.955797, -2.41676, 1.64491, -0.955797, -2.25484, 1.57791, 1.0442, -2.25484, 1.57791, 1.0442, -2.25484, 1.57791, 1.0442, -2.25484, 1.57791, 1.0442, 2.41676, 1.64491, -0.955797, 2.41676, 1.64491, -0.955797, 2.41676, 1.64491, -0.955797, 2.41676, 1.64491, -0.955797, 2.25484, 1.57791, 1.0442, 2.25484, 1.57791, 1.0442, 2.25484, 1.57791, 1.0442, 2.25484, 1.57791, 1.0442, 1.89625, 1.59912, 4.31375, 1.89625, 1.59912, 4.31375, 1.89625, 1.59912, 4.31375, 1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, -1.89625, 1.59912, 4.31375, 1.72215, 2.00402, 6.02044, 1.72215, 2.00402, 6.02044, 1.72215, 2.00402, 6.02044, -1.72215, 2.00402, 6.02044, -1.72215, 2.00402, 6.02044, -1.72215, 2.00402, 6.02044, -2.2401, 1.78897, -3.90922, -2.2401, 1.78897, -3.90922, -2.2401, 1.78897, -3.90922, -2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, 2.2401, 1.78897, -3.90922, -1.85359, 1.9371, -5.4363, -1.85359, 1.9371, -5.4363, -1.85359, 1.9371, -5.4363, -1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, 1.85359, 1.9371, -5.4363, -0.942581, 2.11503, -6.62731, -0.942581, 2.11503, -6.62731, -0.942581, 2.11503, -6.62731, -0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, 0.942581, 2.11503, -6.62731, -0.117588, 2.16018, -7.24099, -0.117588, 2.16018, -7.24099, -0.117588, 2.16018, -7.24099, 0.117588, 2.16018, -7.24099, 0.117588, 2.16018, -7.24099, 0.117588, 2.16018, -7.24099, -0.128262, -1.79975, 4.37466, -0.128262, -1.79975, 4.37466, -0.128262, -1.79975, 4.37466, -0.128262, -1.79975, 4.37466, -0.128262, -0.17016, 4.79001, -0.128262, -0.17016, 4.79001, -0.128262, -0.17016, 4.79001, 0.128262, -0.17016, 4.79001, 0.128262, -0.17016, 4.79001, 0.128262, -0.17016, 4.79001, 0.128262, -1.79975, 4.37466, 0.128262, -1.79975, 4.37466, 0.128262, -1.79975, 4.37466, 0.128262, -1.79975, 4.37466, -0.0681689, -1.5016, -0.967693, -0.0681689, -1.5016, -0.967693, -0.0681689, -1.5016, -0.967693, -0.0681689, -1.5016, -0.967693, -0.132296, -1.62446, 1.03231, -0.132296, -1.62446, 1.03231, -0.132296, -1.62446, 1.03231, -0.132296, -1.62446, 1.03231, 0.0681689, -1.5016, -0.967693, 0.0681689, -1.5016, -0.967693, 0.0681689, -1.5016, -0.967693, 0.0681689, -1.5016, -0.967693, 0.132296, -1.62446, 1.03231, 0.132296, -1.62446, 1.03231, 0.132296, -1.62446, 1.03231, 0.132296, -1.62446, 1.03231, -0.137683, -1.72145, 2.76488, -0.137683, -1.72145, 2.76488, -0.137683, -1.72145, 2.76488, -0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.137683, -1.72145, 2.76488, 0.0788333, -1.31556, -3.92112, 0.0788333, -1.31556, -3.92112, 0.0788333, -1.31556, -3.92112, 0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, -0.0788333, -1.31556, -3.92112, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, 0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819, -0.0689405, -1.20384, -5.44819 )
 
@@ -164,6 +180,10 @@ surfaces/1 = {
 }
 
 [sub_resource type="SphereShape" id=15]
+
+[sub_resource type="CylinderShape" id=1]
+height = 0.16
+radius = 0.146394
 
 [sub_resource type="ArrayMesh" id=16]
 surfaces/0 = {
@@ -516,113 +536,25 @@ edge_edges = PoolIntArray( 7, 9, 0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 8,
 face_edges = PoolIntArray( 71, 0, 8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31, 114, 113, 112, 119, 118, 117, 116, 115, 99, 98, 97, 96, 103, 102, 101, 100, 80, 81, 82, 83, 84, 85, 86, 87, 128, 129, 130, 131, 132, 133, 134, 135, 112, 113, 114, 115, 116, 117, 118, 119, 128, 129, 130, 131, 132, 133, 134, 135 )
 face_surfaces = PoolIntArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="Gradient" id=32]
-offsets = PoolRealArray( 0, 0.502146, 0.763949, 0.991416 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.352941, 1, 1, 1, 0, 1, 1, 1, 0 )
+[sub_resource type="ParticlesMaterial" id=64]
+direction = Vector3( 0, 1, 0 )
+spread = 60.0
+initial_velocity = 3.05
+angular_velocity = 121.35
+angular_velocity_random = 1.0
 
-[sub_resource type="GradientTexture" id=33]
-gradient = SubResource( 32 )
-width = 512
+[sub_resource type="SpatialMaterial" id=45]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 42 )
 
-[sub_resource type="Curve" id=34]
-min_value = 1.0
-max_value = 2.0
-_data = [ Vector2( 0.0078125, 1 ), 0.0, 1.87475, 0, 0, Vector2( 1, 1.48182 ), 0.162368, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=35]
-width = 512
-curve = SubResource( 34 )
-
-[sub_resource type="ParticlesMaterial" id=55]
-direction = Vector3( 0, 0, 1 )
-spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-scale = 2.0
-scale_curve = SubResource( 35 )
-color_ramp = SubResource( 33 )
-
-[sub_resource type="Shader" id=37]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_never, cull_back, depth_test_disable, unshaded;
-
-uniform sampler2D albedo_texture : hint_albedo;
-uniform vec4 albedo : hint_color = vec4(1.0);
-uniform bool use_vertex_color = false;
-uniform float uv_scale = 2.0;
-
-varying vec3 decal_half_scale;
-varying vec3 decal_right;
-varying vec3 decal_up;
-varying vec3 decal_forward;
-
-//Checks if the given point is in the decal's boundaries using an oriented bounding box defined by the decal's tranform
-bool is_point_in_decal_bounds(vec3 point, vec3 decal_position)
-{
-	vec3 scale = decal_half_scale * 2.0;
-	vec3 p = point - decal_position;
-	return abs(dot(p, decal_right)) <= scale.x && abs(dot(p, decal_forward)) <= scale.y && abs(dot(p, decal_up)) <= scale.z;
-}
-
-
-void vertex()
-{
-	vec3 world_position = (WORLD_MATRIX*vec4(0.0, 0.0, 0.0, 1.0)).xyz;
-	UV = world_position.xy;
-	UV2 = vec2(world_position.z,0.0);
-	
-	decal_right = (WORLD_MATRIX*vec4(1.0, 0.0, 0.0, 1.0)).xyz - world_position;
-	decal_forward = (WORLD_MATRIX*vec4(0.0, 0.0, -1.0, 1.0)).xyz - world_position;
-	decal_up = (WORLD_MATRIX*vec4(0.0, 1.0, 0.0, 1.0)).xyz - world_position;
-	decal_half_scale = vec3(length(decal_right), length(decal_forward), length(decal_up)) / 2.0;
-	decal_right = normalize(decal_right);
-	decal_forward = normalize(decal_forward);
-	decal_up = normalize(decal_up);
-}
-
-void fragment ()
-{
-	//Compute world position using the depth buffer
-	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
-	vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
-	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	view.xyz /= view.w;
-	vec4 world = CAMERA_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	vec3 world_position = world.xyz / world.w;
-	
-	vec3 decal_position = vec3(UV.xy, UV2.x);
-	
-	
-	if(is_point_in_decal_bounds(world_position, decal_position))
-	{
-		vec4 local_position = (vec4(world_position - decal_position, 0.0)) * WORLD_MATRIX;
-		vec2 uv_coords = (
-							vec2(local_position.x, -local_position.z)  / 
-							(uv_scale*(decal_half_scale.xy * 2.0 * decal_half_scale.xy))
-						) - vec2(0.5);
-		//uv_coords *= uv_scale;
-		TRANSMISSION = vec3(1.0) - local_position.xyz / 100.0;
-		vec3 color = (use_vertex_color)?vec3(COLOR[0],COLOR[1],COLOR[2]):albedo.rgb;
-		float alpha = (use_vertex_color)?COLOR[3]:albedo.a;
-		ALBEDO = texture(albedo_texture, uv_coords).rgb * color;
-		ALPHA = texture(albedo_texture, uv_coords).a * alpha;
-	}else{
-		ALPHA = 0.0;
-	}
-}
-"
-
-[sub_resource type="ShaderMaterial" id=38]
-shader = SubResource( 37 )
-shader_param/albedo = Color( 1, 1, 1, 0.207843 )
-shader_param/use_vertex_color = true
-shader_param/uv_scale = 1.775
-shader_param/albedo_texture = ExtResource( 42 )
-
-[sub_resource type="CylinderMesh" id=39]
-material = SubResource( 38 )
-top_radius = 2.0
-bottom_radius = 2.0
-height = 4.0
+[sub_resource type="QuadMesh" id=65]
+material = SubResource( 45 )
 
 [sub_resource type="BoxShape" id=40]
 extents = Vector3( 0.108656, 0.176351, 5.65409 )
@@ -674,7 +606,7 @@ face_surfaces = PoolIntArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 [sub_resource type="BoxShape" id=44]
 extents = Vector3( 0.438827, 0.395129, 3.45305 )
 
-[sub_resource type="SpatialMaterial" id=45]
+[sub_resource type="SpatialMaterial" id=66]
 flags_use_point_size = true
 vertex_color_use_as_albedo = true
 
@@ -845,6 +777,7 @@ tracks/5/keys = {
 
 [node name="Flag" type="SoftBody" parent="."]
 transform = Transform( 0.975265, 0.156053, -1.27528e-07, 0.221038, -0.688537, -2.89034e-08, -1.50996e-07, -1.14148e-14, -0.866, 1.71548, 6.11207, 0.0570133 )
+visible = false
 mesh = ExtResource( 7 )
 material/0 = SubResource( 56 )
 pinned_points = [ 6, 7, 50 ]
@@ -860,6 +793,7 @@ attachments/2/offset = Vector3( 1.67747, 6.17622, -1.25556 )
 
 [node name="Flag2" type="SoftBody" parent="."]
 transform = Transform( -0.969016, 0.172899, -1.20797e-07, 0.246999, 0.678311, 2.12728e-08, 1.52885e-07, -8.07012e-09, -0.8, -1.715, 6.112, 0.00648855 )
+visible = false
 mesh = ExtResource( 7 )
 skeleton = NodePath("../Flag")
 material/0 = SubResource( 56 )
@@ -946,6 +880,10 @@ can_sleep = false
 angular_damp = 0.6
 script = ExtResource( 4 )
 connect_ui = true
+front_wave_offset = 250.0
+front_scale = 0.291
+trail_radius = 75.0
+trail_segment_length = 110.0
 sheet_max_l = 14.587
 sheet_min_l = 1.129
 jibsheet_max_l = 19.078
@@ -954,6 +892,11 @@ jibsheet_min_l = 5.55
 [node name="Boat" type="MeshInstance" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 0.997816, -0.0660554, 0, 0.0660554, 0.997816, 0, 0.00146198, -0.325374 )
 mesh = SubResource( 57 )
+material/0 = SubResource( 62 )
+material/1 = ExtResource( 37 )
+material/2 = ExtResource( 37 )
+material/3 = ExtResource( 22 )
+material/4 = SubResource( 63 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649384, -0.238437 )
@@ -1008,6 +951,8 @@ script = ExtResource( 1 )
 [node name="RudderMesh" type="MeshInstance" parent="Boat/Rudder"]
 transform = Transform( 1, 0, 0, 0, 0.979336, 0.20224, 0, -0.20224, 0.979336, 0, 0.422259, 0.0224614 )
 mesh = SubResource( 58 )
+material/0 = ExtResource( 46 )
+material/1 = ExtResource( 37 )
 
 [node name="Tween" type="Tween" parent="Boat"]
 
@@ -1049,34 +994,100 @@ radius = 0.0794029
 transform = Transform( 0.943102, 0, 0, 0, 0.943102, 0, 0, 0, 0.943102, 0, 0, 0 )
 script = ExtResource( 41 )
 
-[node name="MainHaul" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+[node name="MainHaul" type="Spatial" parent="Boat/SteeringPointsCollection"]
 transform = Transform( -6.73794e-08, -1.54146, 0, 1.54146, -6.73794e-08, 0, 0, 0, 1.54146, -0.602557, 2.57038, -4.91945 )
+script = ExtResource( 48 )
 steered_obj = NodePath("../..")
 heave_func_name = "heave_mainhaul"
 ease_func_name = "ease_mainhaul"
 is_man_required = false
 
-[node name="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh" index="0"]
-radius = 0.15
+[node name="MouseArea" type="Area" parent="Boat/SteeringPointsCollection/MainHaul"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 49 )
+indicator = NodePath("../KapstanMesh/Ind")
 
-[node name="CSGBox2" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh" index="3"]
+[node name="Collision" type="CollisionShape" parent="Boat/SteeringPointsCollection/MainHaul/MouseArea"]
+shape = SubResource( 1 )
+
+[node name="Indicator" type="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul/MouseArea"]
+visible = false
+invert_faces = true
+radius = 0.139164
+height = 0.164
+material = ExtResource( 47 )
+
+[node name="Indicator" type="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul"]
+visible = false
+radius = 0.125044
+height = 0.139716
+material = ExtResource( 45 )
+
+[node name="IconBaner" parent="Boat/SteeringPointsCollection/MainHaul" instance=ExtResource( 50 )]
+visible = false
+dimentions = Vector2( 0.05, 0.05 )
+resolution = 1050
+
+[node name="KapstanMesh" type="Spatial" parent="Boat/SteeringPointsCollection/MainHaul"]
+transform = Transform( 0.943102, 0, 0, 0, 0.943102, 0, 0, 0, 0.943102, 0, 0, 0 )
+script = ExtResource( 41 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh"]
+radius = 0.15
+height = 0.0974135
+material = ExtResource( 39 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh"]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 0.0613737, 0 )
+radius = 0.0522155
+height = 0.0974135
+material = ExtResource( 38 )
+
+[node name="CSGBox" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh"]
+width = 0.0638954
+height = 0.0532023
+depth = 0.647393
+material = ExtResource( 46 )
+
+[node name="CSGBox2" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh"]
 transform = Transform( 0.5, -1.08893e-14, 0.866026, 6.70115e-15, 1, 8.70501e-15, -0.866026, 1.45086e-15, 0.5, 0, 0, 0 )
 width = 0.0638954
 height = 0.0532023
 depth = 0.647393
-material = ExtResource( 37 )
+material = ExtResource( 46 )
 
-[node name="CSGBox3" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh" index="4"]
+[node name="CSGBox3" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh"]
 transform = Transform( -0.5, -8.37641e-15, 0.866026, -1.67529e-15, 1, 8.70501e-15, -0.866026, 2.90166e-15, -0.5, 0, 0, 0 )
 width = 0.0638954
 height = 0.0532023
 depth = 0.647393
-material = ExtResource( 37 )
+material = ExtResource( 46 )
 
-[node name="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind" index="0"]
+[node name="Ind" type="Spatial" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh"]
+visible = false
+script = ExtResource( 41 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind"]
+invert_faces = true
 radius = 0.2
+height = 0.144463
+material = ExtResource( 35 )
 
-[node name="CSGBox2" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind" index="3"]
+[node name="CSGCylinder2" type="CSGCylinder" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind"]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 0.0613737, 0 )
+invert_faces = true
+radius = 0.0757048
+height = 0.1319
+material = ExtResource( 35 )
+
+[node name="CSGBox" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind"]
+invert_faces = true
+width = 0.101387
+height = 0.0889439
+depth = 0.675183
+material = ExtResource( 35 )
+
+[node name="CSGBox2" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind"]
 transform = Transform( 0.5, -7.53879e-15, 0.866026, 5.02586e-15, 1, 5.80337e-15, -0.866026, 1.45084e-15, 0.5, 0, 0, 0 )
 invert_faces = true
 width = 0.101387
@@ -1084,7 +1095,7 @@ height = 0.0889439
 depth = 0.675183
 material = ExtResource( 35 )
 
-[node name="CSGBox3" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind" index="4"]
+[node name="CSGBox3" type="CSGBox" parent="Boat/SteeringPointsCollection/MainHaul/KapstanMesh/Ind"]
 transform = Transform( -0.5, -5.02586e-15, 0.866026, 0, 1, 5.80337e-15, -0.866026, 2.90168e-15, -0.5, 0, 0, 0 )
 invert_faces = true
 width = 0.101387
@@ -1092,34 +1103,103 @@ height = 0.0889439
 depth = 0.675183
 material = ExtResource( 35 )
 
-[node name="JibHaul" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
+[node name="RopeSounds" type="AudioStreamPlayer" parent="Boat/SteeringPointsCollection/MainHaul"]
+stream = ExtResource( 51 )
+
+[node name="JibHaul" type="Spatial" parent="Boat/SteeringPointsCollection"]
 transform = Transform( -6.55671e-08, -1.5, 0, 1.5, -6.55671e-08, 0, 0, 0, 1.5, 0.594334, 2.57038, -4.91403 )
+script = ExtResource( 48 )
 steered_obj = NodePath("../..")
 heave_func_name = "heave_jibhaul"
 ease_func_name = "ease_jibhaul"
 is_man_required = false
 
-[node name="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh" index="0"]
-radius = 0.15
+[node name="MouseArea" type="Area" parent="Boat/SteeringPointsCollection/JibHaul"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 49 )
+indicator = NodePath("../KapstanMesh/Ind")
 
-[node name="CSGBox2" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh" index="3"]
+[node name="Collision" type="CollisionShape" parent="Boat/SteeringPointsCollection/JibHaul/MouseArea"]
+shape = SubResource( 1 )
+
+[node name="Indicator" type="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul/MouseArea"]
+visible = false
+invert_faces = true
+radius = 0.139164
+height = 0.164
+material = ExtResource( 47 )
+
+[node name="Indicator" type="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul"]
+visible = false
+radius = 0.125044
+height = 0.139716
+material = ExtResource( 45 )
+
+[node name="IconBaner" parent="Boat/SteeringPointsCollection/JibHaul" instance=ExtResource( 50 )]
+visible = false
+dimentions = Vector2( 0.05, 0.05 )
+resolution = 1050
+
+[node name="KapstanMesh" type="Spatial" parent="Boat/SteeringPointsCollection/JibHaul"]
+transform = Transform( 0.943102, 0, 0, 0, 0.943102, 0, 0, 0, 0.943102, 0, 0, 0 )
+script = ExtResource( 41 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh"]
+radius = 0.15
+height = 0.0974135
+material = ExtResource( 39 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh"]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 0.0613737, 0 )
+radius = 0.0522155
+height = 0.0974135
+material = ExtResource( 38 )
+
+[node name="CSGBox" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh"]
+width = 0.0638954
+height = 0.0532023
+depth = 0.647393
+material = ExtResource( 46 )
+
+[node name="CSGBox2" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh"]
 transform = Transform( 0.5, -3.15993e-15, 0.866026, 1.57997e-15, 1, 2.73658e-15, -0.866026, 3.81165e-21, 0.5, 0, 0, 0 )
 width = 0.0638954
 height = 0.0532023
 depth = 0.647393
-material = ExtResource( 37 )
+material = ExtResource( 46 )
 
-[node name="CSGBox3" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh" index="4"]
+[node name="CSGBox3" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh"]
 transform = Transform( -0.5, -2.36995e-15, 0.866026, 0, 1, 2.73658e-15, -0.866026, 1.36829e-15, -0.5, 0, 0, 0 )
 width = 0.0638954
 height = 0.0532023
 depth = 0.647393
-material = ExtResource( 37 )
+material = ExtResource( 46 )
 
-[node name="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind" index="0"]
+[node name="Ind" type="Spatial" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh"]
+visible = false
+script = ExtResource( 41 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind"]
+invert_faces = true
 radius = 0.2
+height = 0.144463
+material = ExtResource( 35 )
 
-[node name="CSGBox4" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind" index="3"]
+[node name="CSGCylinder2" type="CSGCylinder" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind"]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 0.0613737, 0 )
+invert_faces = true
+radius = 0.0757048
+height = 0.1319
+material = ExtResource( 35 )
+
+[node name="CSGBox" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind"]
+invert_faces = true
+width = 0.101387
+height = 0.0889439
+depth = 0.675183
+material = ExtResource( 35 )
+
+[node name="CSGBox4" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind"]
 transform = Transform( 0.5, -3.15993e-15, 0.866026, 1.57997e-15, 1, 2.73658e-15, -0.866026, 3.81165e-21, 0.5, 0, 0, 0 )
 invert_faces = true
 width = 0.101387
@@ -1127,13 +1207,16 @@ height = 0.0889439
 depth = 0.675183
 material = ExtResource( 35 )
 
-[node name="CSGBox5" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind" index="4"]
+[node name="CSGBox5" type="CSGBox" parent="Boat/SteeringPointsCollection/JibHaul/KapstanMesh/Ind"]
 transform = Transform( -0.5, -7.89984e-16, 0.866026, 3.15993e-15, 1, 2.73658e-15, -0.866026, 4.10487e-15, -0.5, 0, 0, 0 )
 invert_faces = true
 width = 0.101387
 height = 0.0889439
 depth = 0.675183
 material = ExtResource( 35 )
+
+[node name="RopeSounds" type="AudioStreamPlayer" parent="Boat/SteeringPointsCollection/JibHaul"]
+stream = ExtResource( 51 )
 
 [node name="BilgePump" parent="Boat/SteeringPointsCollection" instance=ExtResource( 25 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.28788, 2.16403, 3.07451 )
@@ -2425,14 +2508,6 @@ material/1 = ExtResource( 33 )
 script = ExtResource( 32 )
 ply_mesh = SubResource( 31 )
 
-[node name="WaterKeel" type="Particles" parent="Boat"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63086, 6.99882 )
-amount = 10
-lifetime = 6.0
-local_coords = false
-process_material = SubResource( 55 )
-draw_pass_1 = SubResource( 39 )
-
 [node name="AudioLoot" type="AudioStreamPlayer" parent="Boat"]
 stream = ExtResource( 43 )
 volume_db = -10.0
@@ -2441,6 +2516,20 @@ volume_db = -10.0
 stream = ExtResource( 44 )
 volume_db = -10.0
 autoplay = true
+
+[node name="Flag" parent="Boat" instance=ExtResource( 52 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71895, 6.01599, -1.2286 )
+
+[node name="Flag2" parent="Boat" instance=ExtResource( 52 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72379, 6.01599, -1.2286 )
+
+[node name="BowParticles" type="Particles" parent="Boat"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452326, -7.97834 )
+emitting = false
+amount = 32
+local_coords = false
+process_material = SubResource( 64 )
+draw_pass_1 = SubResource( 65 )
 
 [node name="Bom" type="RigidBody" parent="."]
 transform = Transform( -0.998, 0, -8.74228e-08, 0, 1, 0, 8.72479e-08, 0, -1, 0, 6.52576, 1.39559 )
@@ -2507,7 +2596,7 @@ shape = SubResource( 44 )
 
 [node name="ForceDebug" parent="fok_sheet" instance=ExtResource( 15 )]
 transform = Transform( -1.002, 0, 8.7598e-08, 0, 1, 0, -8.74227e-08, 0, -1, 0, 0.468008, 0.838769 )
-material_override = SubResource( 45 )
+material_override = SubResource( 66 )
 
 [node name="ForceOffset" type="Position3D" parent="fok_sheet"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.90857e-08, 1.54847, 1.28586 )
@@ -2524,6 +2613,16 @@ anims/fold = SubResource( 46 )
 anims/jib_fold = SubResource( 47 )
 
 [connection signal="current_changed" from="Boat/SteeringPointsCollection" to="Boat/Crew" method="_on_SteeringPointsCollection_current_changed"]
+[connection signal="eased" from="Boat/SteeringPointsCollection/MainHaul" to="Boat/SteeringPointsCollection/MainHaul/KapstanMesh" method="_on_eased"]
+[connection signal="heaved" from="Boat/SteeringPointsCollection/MainHaul" to="Boat/SteeringPointsCollection/MainHaul/KapstanMesh" method="_on_heaved"]
+[connection signal="change_visible" from="Boat/SteeringPointsCollection/MainHaul/MouseArea" to="Boat/SteeringPointsCollection/MainHaul/IconBaner" method="set_visible"]
+[connection signal="mouse_hoover" from="Boat/SteeringPointsCollection/MainHaul/MouseArea" to="Boat/SteeringPointsCollection/MainHaul" method="_on_MouseArea_mouse_hoover"]
+[connection signal="pressed" from="Boat/SteeringPointsCollection/MainHaul/MouseArea" to="Boat/SteeringPointsCollection/MainHaul" method="_on_MouseArea_pressed"]
+[connection signal="eased" from="Boat/SteeringPointsCollection/JibHaul" to="Boat/SteeringPointsCollection/JibHaul/KapstanMesh" method="_on_eased"]
+[connection signal="heaved" from="Boat/SteeringPointsCollection/JibHaul" to="Boat/SteeringPointsCollection/JibHaul/KapstanMesh" method="_on_heaved"]
+[connection signal="change_visible" from="Boat/SteeringPointsCollection/JibHaul/MouseArea" to="Boat/SteeringPointsCollection/JibHaul/IconBaner" method="set_visible"]
+[connection signal="mouse_hoover" from="Boat/SteeringPointsCollection/JibHaul/MouseArea" to="Boat/SteeringPointsCollection/JibHaul" method="_on_MouseArea_mouse_hoover"]
+[connection signal="pressed" from="Boat/SteeringPointsCollection/JibHaul/MouseArea" to="Boat/SteeringPointsCollection/JibHaul" method="_on_MouseArea_pressed"]
 [connection signal="eased" from="Boat/SteeringPointsCollection/BilgePump" to="Boat/SteeringPointsCollection/BilgePump/AnimationPlayer" method="play" binds= [ "pump" ]]
 [connection signal="heaved" from="Boat/SteeringPointsCollection/BilgePump" to="Boat/SteeringPointsCollection/BilgePump/AnimationPlayer" method="play" binds= [ "pump" ]]
 [connection signal="eased" from="Boat/SteeringPointsCollection/RepairStand" to="Boat/SteeringPointsCollection/RepairStand/AnimationPlayer" method="play" binds= [ "repair" ]]
@@ -2533,9 +2632,8 @@ anims/jib_fold = SubResource( 47 )
 [connection signal="body_entered" from="Boat/ItemCatchArea" to="Boat" method="_on_ItemCatchArea_body_entered"]
 [connection signal="body_exited" from="Boat/ItemCatchArea" to="Boat" method="_on_ItemCatchArea_body_exited"]
 
+[editable path="Boat/CameraPivot/ComonCamera"]
 [editable path="Boat/SteeringPointsCollection/MainSheet"]
-[editable path="Boat/SteeringPointsCollection/MainHaul"]
-[editable path="Boat/SteeringPointsCollection/JibHaul"]
 [editable path="Boat/SteeringPointsCollection/BilgePump"]
 [editable path="Boat/SteeringPointsCollection/RepairStand"]
 [editable path="Boat/SteeringPointsCollection/RJibSheet"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://materials/black_material.tres" type="Material" id=1]
 [ext_resource path="res://materials/wood_materia.tres" type="Material" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=7]
 [ext_resource path="res://souds/explosions/explosion01.wav" type="AudioStream" id=8]
 [ext_resource path="res://souds/cannon_miss.ogg" type="AudioStream" id=9]
+[ext_resource path="res://addons/kenney_particle_pack/fire_01.png" type="Texture" id=10]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.285068, 0.850679, 1 )
@@ -31,18 +32,25 @@ spread = 10.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 200.0
 initial_velocity_random = 0.7
+angular_velocity = 100.0
+angular_velocity_random = 1.0
 linear_accel = -100.0
+scale = 15.0
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 10 )
 
-[sub_resource type="SphereMesh" id=7]
-material = SubResource( 6 )
-radial_segments = 8
-rings = 8
+[sub_resource type="QuadMesh" id=15]
+material = SubResource( 14 )
 
 [sub_resource type="SphereShape" id=8]
 radius = 0.287145
@@ -61,6 +69,15 @@ linear_accel = -100.0
 scale = 3.0
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id=7]
+material = SubResource( 6 )
+radial_segments = 8
+rings = 8
 
 [sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0, 0.7897, 0.995708, 1 )
@@ -135,7 +152,7 @@ explosiveness = 0.9
 visibility_aabb = AABB( -3.22553, -3.19567, -13.7374, 6.45107, 6.39135, 27.4748 )
 local_coords = false
 process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 7 )
+draw_pass_1 = SubResource( 15 )
 
 [node name="ShootPos" type="Position3D" parent="CanonBarrel"]
 transform = Transform( 1, 0, 0, 0, 0.999494, -0.0318118, 0, 0.0318118, 0.999494, 0, 0.0676084, -2.83301 )

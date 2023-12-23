@@ -2,12 +2,14 @@ extends RigidBody
 class_name BasicBoat
 
 onready var waterManager = $"/root/Root/WaterManager"
+onready var waterMesh = $"/root/Root/WaterMesh"
 onready var islandManager = $"/root/Root/IslandsManager"
 onready var water_bar = $"/root/Ui/WaterLevel"
 onready var hunger_bar = $"/root/Ui/HungerLevel"
 onready var uimessages = $"/root/Ui/UIMessages"
 onready var player_control = $"../Control"
 onready var cargo_hold = $CargoHold
+onready var floaterBow = $FloaterBow
 
 onready var bom = $"../Bom"
 onready var jib = $"../fok_sheet"
@@ -41,6 +43,7 @@ func _ready():
 	#assert(bom)
 	assert(hunger_bar)
 	assert(player_control)
+	assert(waterMesh)
 	
 	if hinge_bom:
 		sail_trim = hinge_bom.get("angular_limit/upper")
@@ -50,6 +53,7 @@ func _ready():
 		call_deferred("subscribe_to_indicators")
 		water_bar.value = 0
 		water_bar.set_hit_level(0)
+		
 
 func set_current():
 	call_deferred("subscribe_to_indicators")
@@ -76,13 +80,19 @@ func get_boats(array:Array):
 	array.append(self)
 
 func subscribe_to_indicators():
-	$"/root/Ui/Indicators".set_boat(self)
+	var boom = get_parent().get_node("Bom")
+	assert(boom)
+	assert(is_instance_valid(boom))
+	$"/root/Ui/Indicators".set_boat(self, boom)
 
+
+#var pos_offset: Vector2
 func _physics_process(delta):
+	var glob_pos = global_transform.origin	
 	check_sinking()
 	#print("B, ", self)
 	#print(">>>>>>>>> Physics Proces")
-	var global_pos = to_global(Vector3())
+	
 	#VERTICAL DUMP
 	var vel_vert = Vector3(
 			0, linear_velocity.y, 0)
@@ -94,7 +104,7 @@ func _physics_process(delta):
 	var local_vel = global_transform.basis.xform_inv(global_vel)
 	var local_vel_h  = Vector3(local_vel.x, 0,0)
 	var global_vel_h = global_transform.basis.xform(local_vel_h)
-	add_force(- mass * global_vel_h *delta * keel_force, keel_pos - global_pos)
+	add_force(- mass * global_vel_h *delta * keel_force, keel_pos - glob_pos)
 	
 	#GRAVITY
 	var gravity_force = Vector3(0,-9.8,0)
@@ -107,14 +117,8 @@ func _physics_process(delta):
 	#WATER LEVEL
 	if not godmode:
 		update_water_level(delta)
-		
-	#WATERKEEL
-	if has_node("WaterKeel"):
-		var waterkeel = get_node("WaterKeel")
-		waterkeel.emitting \
-		 = (linear_velocity.length_squared() > 0.50)
-			
-		
+
+
 func _on_sink():
 	pass
 		

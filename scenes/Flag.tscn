@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Flag.gd" type="Script" id=1]
+[ext_resource path="res://materials/flag_material.tres" type="Material" id=2]
+
+[node name="Flag" type="ImmediateGeometry"]
+material_override = ExtResource( 2 )
+script = ExtResource( 1 )
+segment_size = 0.176
+begin_width = 0.356
+end_width = 0.061
+gravity = 0.2

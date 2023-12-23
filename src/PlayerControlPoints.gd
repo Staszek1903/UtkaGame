@@ -58,6 +58,8 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("special") and boat.has_method("special"):
 		boat.special()
+	if Input.is_action_just_pressed("special_alt") and boat.has_method("special_alt"):
+		boat.special_alt()
 		
 		
 	if prev_key_pressed != key_pressed:

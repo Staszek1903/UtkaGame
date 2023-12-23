@@ -15,7 +15,7 @@ far = 2000.0
 script = ExtResource( 2 )
 
 [node name="BulBulMesh" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0775461 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2 )
 mesh = SubResource( 37 )
 material/0 = ExtResource( 1 )
 

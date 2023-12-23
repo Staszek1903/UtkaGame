@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/ply/nodes/ply.gd" type="Script" id=1]
-[ext_resource path="res://materials/wood_materia.tres" type="Material" id=2]
+[ext_resource path="res://materials/black_material.tres" type="Material" id=2]
 [ext_resource path="res://scenes/objects/Floater.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/catchable.gd" type="Script" id=4]
 [ext_resource path="res://addons/ply/resources/ply_mesh.gd" type="Script" id=5]
-[ext_resource path="res://materials/dark_grey_material.tres" type="Material" id=6]
+[ext_resource path="res://materials/wood_materia.tres" type="Material" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -53,8 +53,8 @@ script = ExtResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
-material/1 = ExtResource( 6 )
+material/0 = ExtResource( 6 )
+material/1 = ExtResource( 2 )
 
 [node name="PlyEditor" type="Node" parent="MeshInstance"]
 script = ExtResource( 1 )

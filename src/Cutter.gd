@@ -1,7 +1,14 @@
 extends BasicBoat
-#onready var keelForceOffset = $KeelForceOffset
+
+export(float) var front_wave_offset:float = 1 setget set_front_wave_offset
+export(float) var front_scale:float = 0.25 setget set_front_scale
+export(float) var trail_radius:float = 25 setget set_trail_radius
+export(float) var trail_segment_length = 35 setget set_trail_segment_length
+#export(float) var front_scale_rate:float = 0.25 setget set_front_scale_rate
+
 onready var debug = $ForceDebug
 onready var rudder = $Rudder
+onready var bow_particles = $BowParticles
 
 onready var anim = $"../AnimationPlayer"
 onready var save_manager = $"/root/Root/SaveManager"
@@ -21,11 +28,48 @@ func _ready():
 	heave_ljibsheet(0.0)
 	heave_rjibsheet(0.0)
 	
+	set_front_wave_offset(front_wave_offset)
+	set_front_scale(front_scale)
+	set_trail_radius(trail_radius)
+	set_trail_segment_length(trail_segment_length)
+#	set_front_scale_rate(front_scale_rate)
+	
+	
 	anim.play("jib_fold",-1,10.0,false)
 	yield(anim, "animation_finished")
 	anim.play("fold",-1,10.0,false)
 	
+func _process(delta):
+	var glob_pos = global_transform.origin
+	var forward = -linear_velocity
+	var direction = atan2(forward.x, forward.z)
+	var horizontal_velocity = Vector2(linear_velocity.x, linear_velocity.z)
+	var horizontal_vel_len = horizontal_velocity.length()
+	waterMesh.set_trail_position(glob_pos)
+	waterMesh.set_trail_direction(direction - (PI/2.0))
+	waterMesh.set_trail_speed(horizontal_vel_len * 40.0)
+	waterMesh.set_front_direction(global_transform.basis.z)
+	bow_particles.emitting = (horizontal_vel_len > 1.5)
 	
+func set_front_wave_offset(val:float):
+	front_wave_offset = val
+	if waterMesh: waterMesh.set_front_offset(val)
+	
+func set_front_scale(val:float):
+	front_scale = val
+	if waterMesh: waterMesh.set_front_scale(val)
+	
+func set_trail_radius(val:float):
+	trail_radius = val
+	if waterMesh: waterMesh.set_trail_radius(val)
+	
+func set_trail_segment_length(val):
+	trail_segment_length = val
+	if waterMesh: waterMesh.set_trail_segment_length(val)
+	
+#func set_front_scale_rate(val:float):
+#	front_scale_rate = val
+#	if waterMesh: waterMesh.set_front_offset_rate(val)
 	
 func remove_mockups():
 	yield(get_tree(), "idle_frame")

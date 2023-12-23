@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/ForceDebug.gd" type="Script" id=1]
 [ext_resource path="res://models/lug_boat_mesh.tres" type="ArrayMesh" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://models/Wood.material" type="Material" id=4]
 [ext_resource path="res://src/NPCBoat.gd" type="Script" id=5]
 [ext_resource path="res://src/PidController.gd" type="Script" id=6]
-[ext_resource path="res://src/Flag.gd" type="Script" id=7]
 [ext_resource path="res://src/NpcControl.gd" type="Script" id=8]
 [ext_resource path="res://models/lug_boat_helm.gltf" type="PackedScene" id=9]
 [ext_resource path="res://models/LugSail.tres" type="ArrayMesh" id=10]
@@ -136,14 +135,10 @@ shape = SubResource( 2 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.537103, 0 )
 layers = 2
 mesh = ExtResource( 2 )
-material/0 = null
-material/1 = null
-material/2 = null
 
 [node name="Bowsprit" type="MeshInstance" parent="Boat"]
 transform = Transform( -0.286304, 9.99911e-10, -2.50596e-08, 7.28653e-10, -0.285486, -0.0197494, -6.43917e-09, -0.0245445, 0.0728822, -0.113968, 3.67973, -3.13545 )
 mesh = SubResource( 3 )
-material/0 = null
 
 [node name="FloaterMast" parent="Boat" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.99868, -0.776187 )
@@ -167,17 +162,6 @@ impulseMultipier = 20.0
 
 [node name="KeelForceOffset" type="Position3D" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.476957, -1.95286 )
-
-[node name="Flag" type="Position3D" parent="Boat"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.28224, -0.779 )
-visible = false
-script = ExtResource( 7 )
-
-[node name="CSGBox" type="CSGBox" parent="Boat/Flag"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168691, 0.524074 )
-width = 0.0239318
-height = 0.385346
-depth = 1.0733
 
 [node name="ForceDebug" type="ImmediateGeometry" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18867, 0 )
@@ -267,12 +251,10 @@ transform = Transform( 1, -8.88178e-16, -1.42109e-14, -3.9968e-15, 1, 4.47035e-0
 [node name="Boom" type="MeshInstance" parent="Bom"]
 transform = Transform( 0.156224, 0, -3.55271e-15, 0, 0.156099, 0.00622855, 3.55271e-15, -0.00622855, 0.156099, -0.0362239, -0.597129, 0.976756 )
 mesh = SubResource( 13 )
-material/0 = null
 
 [node name="Pik" type="MeshInstance" parent="Bom"]
 transform = Transform( 0.156224, 2.12467e-16, -5.32481e-15, 0, 0.156099, 0.00622854, 5.32908e-15, -0.00622854, 0.156099, -0.0362239, -0.597129, 0.976756 )
 mesh = SubResource( 14 )
-material/0 = null
 
 [node name="Sail" type="MeshInstance" parent="Bom"]
 transform = Transform( -4.3799e-08, 1.002, 0, -1, -4.37114e-08, 7.45058e-09, 7.45058e-09, -6.39488e-14, 1, -0.0751663, 2.46437, -0.371751 )

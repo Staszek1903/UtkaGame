@@ -6,7 +6,7 @@
 [ext_resource path="res://materials/green_light_material.tres" type="Material" id=4]
 [ext_resource path="res://materials/black_material.tres" type="Material" id=5]
 [ext_resource path="res://materials/silver_metalic_material.tres" type="Material" id=6]
-[ext_resource path="res://materials/wood_materia.tres" type="Material" id=7]
+[ext_resource path="res://materials/gold_material.tres" type="Material" id=7]
 [ext_resource path="res://src/Kapstan.gd" type="Script" id=8]
 [ext_resource path="res://materials/light_material.tres" type="Material" id=9]
 [ext_resource path="res://materials/yellow_indicator_material.tres" type="Material" id=10]
@@ -66,6 +66,13 @@ height = 0.0532023
 depth = 0.647393
 material = ExtResource( 7 )
 
+[node name="CSGBoxA" type="CSGBox" parent="KapstanMesh"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+width = 0.0638954
+height = 0.0532023
+depth = 0.647393
+material = ExtResource( 7 )
+
 [node name="Ind" type="Spatial" parent="KapstanMesh"]
 visible = false
 script = ExtResource( 8 )
@@ -84,6 +91,14 @@ height = 0.1319
 material = ExtResource( 9 )
 
 [node name="CSGBox" type="CSGBox" parent="KapstanMesh/Ind"]
+invert_faces = true
+width = 0.101387
+height = 0.0889439
+depth = 0.675183
+material = ExtResource( 9 )
+
+[node name="CSGBoxA" type="CSGBox" parent="KapstanMesh/Ind"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 invert_faces = true
 width = 0.101387
 height = 0.0889439

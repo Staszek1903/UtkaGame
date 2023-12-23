@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/ForceDebug.gd" type="Script" id=2]
 [ext_resource path="res://src/Rudder.gd" type="Script" id=3]
 [ext_resource path="res://src/Boat.gd" type="Script" id=4]
 [ext_resource path="res://src/Sail.gd" type="Script" id=5]
 [ext_resource path="res://src/CameraPivot.gd" type="Script" id=6]
-[ext_resource path="res://src/Flag.gd" type="Script" id=7]
 [ext_resource path="res://scenes/objects/Floater.tscn" type="PackedScene" id=8]
 [ext_resource path="res://models/boat.obj" type="ArrayMesh" id=9]
 [ext_resource path="res://models/rudder.obj" type="ArrayMesh" id=10]
@@ -73,12 +72,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.90473, 0 )
 [node name="boat" type="MeshInstance" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.463968, 0 )
 mesh = ExtResource( 9 )
-material/0 = null
 
 [node name="keel" type="MeshInstance" parent="Boat"]
 transform = Transform( 0.76706, 0, 0, 0, 0.256025, 0.723072, 0, -0.723072, 0.256025, 0, -0.013, -0.509 )
 mesh = ExtResource( 11 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.463968, 0 )
@@ -97,16 +94,6 @@ width = 0.0921735
 height = 5.30645
 depth = 0.102501
 
-[node name="Flag" type="Position3D" parent="Boat/Mast"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65527, 0 )
-script = ExtResource( 7 )
-
-[node name="CSGBox" type="CSGBox" parent="Boat/Mast/Flag"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168691, 0.524074 )
-width = 0.0239318
-height = 0.385346
-depth = 1.0733
-
 [node name="ForceDebug" type="ImmediateGeometry" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18867, 0 )
 material_override = SubResource( 2 )
@@ -123,7 +110,6 @@ visible = false
 [node name="Rudder" type="MeshInstance" parent="Boat/Rudder"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 mesh = ExtResource( 10 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat/Rudder"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.472123, 0.227822 )
@@ -160,12 +146,10 @@ script = ExtResource( 5 )
 [node name="Bom" type="MeshInstance" parent="Bom"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0 )
 mesh = ExtResource( 13 )
-material/0 = null
 
 [node name="mainsail" type="MeshInstance" parent="Bom"]
 transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 2.84217e-14, 0, 1, 0, 0, 0 )
 mesh = ExtResource( 12 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Bom"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 5.68434e-14, 0, 1, 1.05553e-07, 0, -1.20498 )

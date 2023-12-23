@@ -10,28 +10,24 @@ export(float) var zoom_speed = 0.5
 
 onready var camera = $ComonCamera
 onready var inverted = $"/root/Ui/CheatConsole".mouse_y_inverted
+onready var boat = get_parent()
 
 var angle = 0
 var pitch = 0
 
 func _ready():
-	pass # Replace with function body.
+	assert(boat and is_instance_valid(boat))
 
 func _process(_delta):
 	pass
-	
-#	var rot = get_parent().global_transform.basis.inverse()
-#	transform = rot
-	
+#	transform.basis = Basis()
+
 	global_transform.basis = Basis()
+#	rotate(Vector3.RIGHT, pitch)
+#	rotate(Vector3.UP, angle)
 	global_rotate(Vector3.RIGHT, pitch)
-	global_rotate(Vector3.UP, angle)
-	
-	
-	#var speed = Input.get_last_mouse_speed()
-	#angle += speed.x/10000
-	#if Input.is_action_pressed("ui_right"): angle += 0.1
-	#if Input.is_action_pressed("ui_left"): angle -= 0.1
+	global_rotate(Vector3.UP, boat.global_transform.basis.get_euler().y + angle)
+
 
 var pressed = false
 func _input(event):
