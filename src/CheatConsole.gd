@@ -121,7 +121,8 @@ func give_(args = []):
 			return
 	
 	var hold = get_boat_hold()
-	hold.add_items({item:count})
+	var result = hold.add_items({item:count})
+	if not result: cout("%s not in capacity" % [item])
 	
 
 func unlockall_(_args = []):

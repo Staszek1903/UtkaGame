@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://src/ForceDebug.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ComonCamera.tscn" type="PackedScene" id=2]
@@ -41,7 +41,6 @@
 [ext_resource path="res://materials/black_material.tres" type="Material" id=39]
 [ext_resource path="res://materials/roof_material.tres" type="Material" id=40]
 [ext_resource path="res://src/Kapstan.gd" type="Script" id=41]
-[ext_resource path="res://addons/kenney_particle_pack/fire_02.png" type="Texture" id=42]
 [ext_resource path="res://souds/watersplash2.wav" type="AudioStream" id=43]
 [ext_resource path="res://souds/sailboat-cockpit-at-12kn-wind-speed-17465.mp3" type="AudioStream" id=44]
 [ext_resource path="res://materials/green_light_material.tres" type="Material" id=45]
@@ -551,7 +550,6 @@ params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_texture = ExtResource( 42 )
 
 [sub_resource type="QuadMesh" id=65]
 material = SubResource( 45 )

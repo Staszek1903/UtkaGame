@@ -143,6 +143,7 @@ contact_monitor = true
 can_sleep = false
 angular_damp = 0.6
 script = ExtResource( 4 )
+godmode = true
 
 [node name="Boat" type="MeshInstance" parent="Boat"]
 transform = Transform( 1, 0, 0, 0, 0.997816, -0.0660554, 0, 0.0660554, 0.997816, 0, 0.0134407, -0.333001 )

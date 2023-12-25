@@ -23,7 +23,8 @@ onready var sail_trim setget set_sail_trim
 export(float) var keel_force: float = 60.0
 export(bool) var connect_ui:bool = false
 
-var godmode:bool = false
+## will not take water or get hungry when in godmode
+export(bool) var godmode:bool = false
 
 export(float) var hunger_time:float = 240.0
 var hunger:float = 0

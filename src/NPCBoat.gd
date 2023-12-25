@@ -1,8 +1,9 @@
 extends BasicBoat
 
 onready var rudder = $Rudder
-export(bool) var sails_active = false setget set_sails_active
 
+export(bool) var sails_active = false setget set_sails_active
+export(int) var npc_hp:int = 10
 	
 func set_sails_active(val:bool):
 	sails_active = val
@@ -45,3 +46,8 @@ func _on_sink():
 	var spawn = $ItemSpawn
 	spawn.spawn_all()
 	spawn.free_items()
+	set_floaters_enabled(false)
+	
+func receive_damage(dmg:int = 1):
+	npc_hp -= dmg
+	if npc_hp <= 0 : _on_sink()

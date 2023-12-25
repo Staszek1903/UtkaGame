@@ -12,11 +12,15 @@ func _ready():
 		var node = get_node(key)
 		for child in node.get_children():
 			child.visible = false
+		
+		if not key in capacity:
+			capacity[key] = default_capacity
 	
-func add_items(items_to_add:Dictionary):
+func add_items(items_to_add:Dictionary) -> bool:
 	for i in items_to_add.keys():
 		if not i in capacity:
-			capacity[i] = default_capacity
+			return false
+#			capacity[i] = default_capacity
 		
 		var before:int = 0
 		
@@ -38,6 +42,7 @@ func add_items(items_to_add:Dictionary):
 				)
 
 	update_text()
+	return true
 	
 	
 	

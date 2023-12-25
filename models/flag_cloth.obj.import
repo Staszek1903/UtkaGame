@@ -16,4 +16,5 @@ dest_files=[ "res://.import/flag_cloth.obj-b1ec004ae1090c6669ad546b159e9c15.mesh
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

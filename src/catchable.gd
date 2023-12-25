@@ -22,3 +22,7 @@ func remove_catchable():
 	print("REMOVE CATCHABLE")
 	emit_signal("freed",self)
 	queue_free()
+
+onready var particles = $Particles
+func _process(delta):
+	if particles: particles.global_transform.basis = Basis()

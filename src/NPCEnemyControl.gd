@@ -181,7 +181,8 @@ func update_agr(delta):
 			agr_timer += delta
 			
 #		AudioStreamPlayer3D
-	
+
+var sail_rotation:float = 0.0
 func update_sail():
 	var wind_vector:Vector3 = wind_man.global_wind_vector
 	var forward_vect:Vector3 = -boat.global_transform.basis.z
@@ -191,5 +192,6 @@ func update_sail():
 	relative_wind_angle = clamp(relative_wind_angle, 0.0, PI*0.5)
 	#print("to wind ", relative_wind_angle, " ", side)
 	
-	var sail_rotation = -relative_wind_angle * side * 0.9
+	var target_sail_rotation = -relative_wind_angle * side * 0.9
+	sail_rotation = (sail_rotation * 0.99) + (target_sail_rotation * 0.01)
 	bom.transform.basis = Basis(Vector3.UP, sail_rotation)
