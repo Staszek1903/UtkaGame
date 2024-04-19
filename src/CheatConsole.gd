@@ -123,7 +123,11 @@ func give_(args = []):
 	var hold = get_boat_hold()
 	var result = hold.add_items({item:count})
 	if not result: cout("%s not in capacity" % [item])
-	
+
+func capacity_(args = []):
+	var hold = get_boat_hold()
+	for name in hold.capacity:
+		cout("%s: %d" % [name, hold.capacity[name]])
 
 func unlockall_(_args = []):
 	get_tree().call_group("production_building", "set_state", 1)

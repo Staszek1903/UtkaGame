@@ -13,13 +13,15 @@ export(float) var trail_segment_length = 35 setget set_trail_segment_length
 #onready var keelForceOffset = $KeelForceOffset
 onready var debug = $ForceDebug
 onready var rudder = $Rudder
-onready var bow_particles = $BowParticles
+onready var bow_particlesL = $BowParticlesL
+onready var bow_particlesR = $BowParticlesR
 #onready var mooring_bow_l = $"../MooringBowL"
 #onready var mooring_bow_r = $"../MooringBowR"
 onready var mooring_bow_l_end = $"MooringBowLEnd"
 onready var mooring_bow_r_end = $"MooringBowREnd"
-onready var anim = $"../AnimationPlayer"
+onready var anim:AnimationPlayer = $"../AnimationPlayer"
 onready var save_manager = $"/root/Root/SaveManager"
+onready var sail_mesh:ImmediateGeometry = $"../Bom/CustomSail"
 #export(float) var keel_force: float = 60.0
 
 #onready var sail_trim = hinge_bom.get("angular_limit/upper") setget set_sail_trim
@@ -30,6 +32,7 @@ func _ready():
 	assert(bom)
 	assert(hinge_bom)
 	assert(save_manager)
+	assert(sail_mesh)
 	save_manager.call_deferred("update_data",self)
 	set_sail_trim(10.0)
 	
@@ -39,8 +42,12 @@ func _ready():
 	set_trail_segment_length(trail_segment_length)
 #	set_front_scale_rate(front_scale_rate)
 	
-	anim.play("fold",-1,10.0,false)
-	
+#	sail_mesh.regen_mesh = true
+#	anim.current_animation = "fold"
+#	anim.stop(false)
+#	anim.seek(main_haulyard, true)
+	#sail_mesh.regen_mesh = true
+	anim.play("fold", -1, 2)
 	
 	
 #	assert(mooring_bow_l)
@@ -61,8 +68,10 @@ func _process(delta):
 	waterMesh.set_trail_direction(direction - (PI/2.0))
 	waterMesh.set_trail_speed(horizontal_vel_len * 40.0)
 	waterMesh.set_front_direction(global_transform.basis.z)
-	bow_particles.emitting = (horizontal_vel_len > 1.5)
-	bow_particles.process_material.initial_velocity = horizontal_vel_len
+	bow_particlesL.emitting = (horizontal_vel_len > 1.0)
+	bow_particlesL.process_material.initial_velocity = horizontal_vel_len
+	bow_particlesR.emitting = (horizontal_vel_len > 1.0)
+	bow_particlesR.process_material.initial_velocity = horizontal_vel_len
 	
 func set_front_wave_offset(val:float):
 	front_wave_offset = val
@@ -165,13 +174,22 @@ func heave_sheets(delta):
 	return(sail_trim != 0.0)
 	
 var main_haulyard:float = 1.0
-	
+
+#var sail_regen_vals = [0.01, 0.5, 0.99]#[0.01, 0.33, 0.5, 0.7, 0.9, 0.99]
+#func check_sail_mesh_regen(prev_val:float, next_val:float):
+#	for val in sail_regen_vals:
+#		if ((prev_val - val) * (next_val - val)) < 0.0:
+#			print("mainhaul prev: ", prev_val, " next: ", next_val)
+#			sail_mesh.regen_mesh = true
+
 func heave_mainhaul(delta):
 #	if bom.sail_amount < 0.5:
 #		$"../AnimationPlayer".play_backwards("fold")
+#	var prev_val = main_haulyard
 	main_haulyard -= 0.5*delta
-	main_haulyard = clamp(main_haulyard, 0.0, 1.0)
-	#print("HAUL: ", main_haulyard)
+	main_haulyard = clamp(main_haulyard, 0, 1)
+	
+#	check_sail_mesh_regen(prev_val, main_haulyard)
 	anim.current_animation = "fold"
 	anim.stop(false)
 	anim.seek(main_haulyard, true)
@@ -181,8 +199,11 @@ func heave_mainhaul(delta):
 func ease_mainhaul(delta):
 #	if bom.sail_amount > 0.5:
 #		$"../AnimationPlayer".play("fold")
+#	var prev_val = main_haulyard
 	main_haulyard += 0.5*delta
-	main_haulyard = clamp(main_haulyard, 0.0, 1.0)
+	main_haulyard = clamp(main_haulyard, 0, 1)
+
+#	check_sail_mesh_regen(prev_val, main_haulyard)
 	anim.current_animation = "fold"
 	anim.stop(false)
 	anim.seek(main_haulyard, true)

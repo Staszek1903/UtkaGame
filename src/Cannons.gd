@@ -3,7 +3,7 @@ extends Spatial
 onready var camera_pivot = $"../CameraPivot"
 onready var camera = $"../CameraPivot/ComonCamera"
 onready var cannons = [$Cannon1, $Cannon4, $Cannon2, $Cannon5, $Cannon3, $Cannon6]
-onready var main_sail_mat = $"../../MainSail".get_surface_material(0)
+onready var main_sail_mat = $"../../Bom/CustomSail".material_override
 onready var uimessages = $"/root/Ui/UIMessages"
 
 var cannons_count:int = 0 setget set_cannons_cout
@@ -42,17 +42,12 @@ func fire():
 			yield(get_tree().create_timer(delay), "timeout")
 
 var prev_sail_alpha:float = 0.0
-var prev_tranparent:bool = false
 func _input(event):
 	if not camera.current: return
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_RIGHT:
 		aim = event.pressed
-		if aim: 
-			prev_sail_alpha = main_sail_mat.albedo_color.a
-			prev_tranparent = main_sail_mat.flags_transparent
-		main_sail_mat.albedo_color.a = min(0.9,prev_sail_alpha) if aim else prev_sail_alpha
-		main_sail_mat.flags_transparent = aim if aim else prev_tranparent
+		main_sail_mat.set_shader_param("see_through", aim)
 		update_aim()
 		
 #	elif event is InputEventMouseMotion and aim:

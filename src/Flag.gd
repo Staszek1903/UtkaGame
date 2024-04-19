@@ -1,3 +1,4 @@
+tool
 extends ImmediateGeometry
 
 export(int) var nodes_size:int = 8 setget set_nodes_size
@@ -7,10 +8,21 @@ export(float) var end_width = 0.1
 export(float) var gravity = 1.0
 
 onready var last_postion:Vector3 = global_transform.origin
-onready var boat_body = get_parent()
+onready var boat_body:RigidBody = get_parent()
 onready var wind_manager = $"/root/WindManager"
 
-var nodes = []
+var nodes:Array = []
+
+class WindManagerMock:
+	var global_wind_vector = Vector3(1,0,0)
+	var wind_speed = 5.0
+	
+var wind_manage_mock = WindManagerMock.new()
+
+export(float) var dir:float = 0.0 setget set_dir
+func set_dir(val:float):
+	dir = val
+	wind_manage_mock.global_wind_vector = Vector3(cos(val), 0, sin(val))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,8 +35,12 @@ func set_nodes_size(value:int):
 		nodes.append(Vector3(0,0,0))
 
 func _process(delta):
-	assert(boat_body)
-	assert(wind_manager)
+	if nodes.size() != nodes_size: set_nodes_size(nodes_size)
+	if not boat_body: 
+		boat_body = RigidBody.new()
+		get_parent().add_child(boat_body)
+	if not wind_manager: wind_manager = wind_manage_mock
+	
 	var position = global_transform.origin
 	var displacement = position - last_postion 
 	var wind:Vector3 = wind_manager.global_wind_vector * wind_manager.wind_speed
@@ -59,9 +75,11 @@ func draw_flag():
 			normal = (nodes[i] - nodes[i+1]).cross(up).normalized()
 		else:
 			normal = (nodes[i-1] - nodes[i]).cross(up).normalized()
-			
+		
+		set_uv(Vector2(i*segment_size, width*0.5))
 		set_normal(normal)
 		add_vertex(nodes[i] + up * width * 0.5)
+		set_uv(Vector2(i*segment_size, -width*0.5))
 		set_normal(normal)
 		add_vertex(nodes[i] - up * width * 0.5)
 	end()

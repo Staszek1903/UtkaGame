@@ -4,6 +4,7 @@ extends RigidBody
 onready var force_offset = $ForceOffset
 onready var debug = $ForceDebug
 onready var wind_manager = $"/root/WindManager"
+onready var sail_mesh:ImmediateGeometry = $CustomSail
 #onready var mainsailanim:AnimationPlayer = $"../MainSailPlayer"
 #onready var foksailanim:AnimationPlayer = $"../FokAnimPlayer"
 
@@ -65,10 +66,12 @@ func _physics_process(delta):
 	
 	var direct: float = s * direct_force
 	var lift: float  = dead_zone* -clamp(c,-1,0) * lift_force
-	global_force =  wind_side * (lift + direct) * global_force_normal
+	var sail_force:float = wind_side * (lift + direct)
+	global_force =  sail_force * global_force_normal
 	#print("angle: ", rad2deg(wind_angle))
 	#print("dead: ", dead_zone)
 
+	if sail_mesh: sail_mesh.force = Vector3(sail_force / 500.0, -1, 0)
 	if is_sail_up: add_force(global_force * sail_amount * delta, global_offset) 
 
 	#var sail_fill = (lift + direct) / (lift_force + direct_force)

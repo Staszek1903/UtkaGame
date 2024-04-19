@@ -273,11 +273,15 @@ func repair_hit_level(delta):
 func wood_msg_unsupress():
 	wood_msg_suppress = false
 
+export(Resource) var sail_material:Resource
 func set_hit_level(val):
 	val = clamp(val, 0, max_hit_level)
 	hit_level = val
 	if player_control.current:
 		water_bar.set_hit_level(val)
+	if sail_material:
+		sail_material.set_shader_param("damage_scale", float(hit_level) / 9.0)
+	
 	
 
 func receive_damage(dmg:int = 1):

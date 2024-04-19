@@ -558,9 +558,8 @@ volume_db = -10.0
 
 [node name="Msg" type="Label" parent="UIMessages"]
 visible = false
-margin_top = 360.0
 margin_right = 275.0
-margin_bottom = 416.0
+margin_bottom = 56.0
 custom_fonts/font = ExtResource( 16 )
 text = "SAMPLE TEXT"
 __meta__ = {
@@ -576,6 +575,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 key = 90
 message = "press to paddle"
@@ -656,6 +656,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -705,6 +706,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -754,6 +756,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -803,6 +806,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -852,6 +856,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -901,6 +906,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -950,6 +956,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -999,6 +1006,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1048,6 +1056,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1097,6 +1106,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false

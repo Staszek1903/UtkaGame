@@ -27,7 +27,7 @@ var play_audio:int = 0
 func _process(_delta):
 	if play_audio > 0:
 		play_audio -= 1
-		print(play_audio)
+		#print(play_audio)
 		if audio and emit_rope_sound and not audio.playing: audio.playing = true
 	else:
 		if audio and emit_rope_sound: audio.playing = false
@@ -52,7 +52,7 @@ func steer_heave(delta):
 	if is_man_required and not is_manned: return
 	#heave_func.call_func(delta)
 	var result = steered_node.call(heave_func_name, delta)
-	print("result: ", result)
+	#print("result: ", result)
 	if result: 
 		emit_signal("heaved")
 		play_audio += 1
@@ -61,7 +61,7 @@ func steer_ease(delta):
 	if is_man_required and not is_manned: return
 	#ease_func.call_func(delta)
 	var result = steered_node.call(ease_func_name, delta)
-	print("result: ", result)
+	#print("result: ", result)
 	if result: 
 		emit_signal("eased")
 		play_audio += 1

@@ -1,0 +1,340 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/name_font_indicatorst.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_color = Color( 1, 1, 1, 1 )
+shadow_size = 416
+
+[node name="WindHints" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.647059 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -410.0
+margin_top = -498.0
+margin_right = 390.0
+margin_bottom = 302.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="shipR1" type="Polygon2D" parent="."]
+position = Vector2( 205, -220 )
+rotation = 0.785398
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="filling" type="Polygon2D" parent="shipR1"]
+scale = Vector2( 0.9, 0.95 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="MainSail" type="Polygon2D" parent="shipR1"]
+rotation = 2.79253
+scale = Vector2( 2, -1 )
+color = Color( 0.745098, 0.552941, 0.552941, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 120, -5.27551, 72.3165, -6.30872, 29.4244, -4, -4, 0, -8, 3.04999, -5.9826, 3.17206, 2.95837, -1.35461, 31.838, -2.61761, 70.3818 )
+
+[node name="shipR2" type="Polygon2D" parent="."]
+position = Vector2( 300, 0 )
+rotation = 1.5708
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="filling" type="Polygon2D" parent="shipR2"]
+scale = Vector2( 0.9, 0.95 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="MainSail2" type="Polygon2D" parent="shipR2"]
+rotation = 2.13803
+scale = Vector2( 2, -1 )
+color = Color( 0.745098, 0.552941, 0.552941, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 120, -5.27551, 72.3165, -6.30872, 29.4244, -4, -4, 0, -8, 3.04999, -5.9826, 3.17206, 2.95837, -1.35461, 31.838, -2.61761, 70.3818 )
+
+[node name="shipR3" type="Polygon2D" parent="."]
+position = Vector2( 135, 250 )
+rotation = 2.70526
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="filling" type="Polygon2D" parent="shipR3"]
+scale = Vector2( 0.9, 0.95 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="MainSail2" type="Polygon2D" parent="shipR3"]
+rotation = 1.5708
+scale = Vector2( 2, -1 )
+color = Color( 0.745098, 0.552941, 0.552941, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 120, -5.27551, 72.3165, -6.30872, 29.4244, -4, -4, 0, -8, 3.04999, -5.9826, 3.17206, 2.95837, -1.35461, 31.838, -2.61761, 70.3818 )
+
+[node name="shipL1" type="Polygon2D" parent="."]
+position = Vector2( -205, -220 )
+rotation = -0.785398
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="filling" type="Polygon2D" parent="shipL1"]
+scale = Vector2( 0.9, 0.95 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="MainSail" type="Polygon2D" parent="shipL1"]
+rotation = 0.349066
+scale = Vector2( 2, 1 )
+color = Color( 0.745098, 0.552941, 0.552941, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 120, -5.27551, 72.3165, -6.30872, 29.4244, -4, -4, 0, -8, 3.04999, -5.9826, 3.17206, 2.95837, -1.35461, 31.838, -2.61761, 70.3818 )
+
+[node name="shipL2" type="Polygon2D" parent="."]
+position = Vector2( -300, 0 )
+rotation = -1.5708
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="filling" type="Polygon2D" parent="shipL2"]
+scale = Vector2( 0.9, 0.95 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="MainSail2" type="Polygon2D" parent="shipL2"]
+rotation = 1.00356
+scale = Vector2( 2, 1 )
+color = Color( 0.745098, 0.552941, 0.552941, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 120, -5.27551, 72.3165, -6.30872, 29.4244, -4, -4, 0, -8, 3.04999, -5.9826, 3.17206, 2.95837, -1.35461, 31.838, -2.61761, 70.3818 )
+
+[node name="shipL3" type="Polygon2D" parent="."]
+position = Vector2( -135, 250 )
+rotation = -2.70526
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="filling" type="Polygon2D" parent="shipL3"]
+scale = Vector2( 0.9, 0.95 )
+antialiased = true
+polygon = PoolVector2Array( 0, -160, -36.668, -113.348, -60.0015, -60.0151, -63.335, 9.98492, -43.335, 119.985, 43.332, 119.985, 63.332, 6.65161, 59.9985, -60.0151, 39.9985, -113.348 )
+
+[node name="MainSail2" type="Polygon2D" parent="shipL3"]
+rotation = 1.5708
+scale = Vector2( 2, 1 )
+color = Color( 0.745098, 0.552941, 0.552941, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 120, -5.27551, 72.3165, -6.30872, 29.4244, -4, -4, 0, -8, 3.04999, -5.9826, 3.17206, 2.95837, -1.35461, 31.838, -2.61761, 70.3818 )
+
+[node name="NoGoZonePoly" type="Polygon2D" parent="."]
+position = Vector2( 0, -204 )
+scale = Vector2( 2, -1 )
+color = Color( 1, 0, 0, 0.584314 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -109, 292, -60, 324, 0, 334, 54, 328, 110, 292, 0, 0 )
+
+[node name="Polygon2D" type="Polygon2D" parent="NoGoZonePoly"]
+visible = false
+scale = Vector2( 0.5, 1 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -20, -20, 20, -20, 40, 0, 20, 20, -20, 20, -40, 0 )
+
+[node name="Needle" type="Polygon2D" parent="."]
+position = Vector2( 0, -204 )
+scale = Vector2( 2, -1 )
+color = Color( 0, 0.529412, 1, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( -25, 210, 0, 225, 25, 210, 0, 0 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Needle"]
+visible = false
+scale = Vector2( 0.5, 1 )
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( -20, -20, 20, -20, 40, 0, 20, 20, -20, 20, -40, 0 )
+
+[node name="NeedleAux" type="Polygon2D" parent="."]
+position = Vector2( 0, -296 )
+scale = Vector2( 2, -1 )
+color = Color( 1, 0.937255, 0, 1 )
+antialiased = true
+invert_border = 0.1
+polygon = PoolVector2Array( 0, 230, -15, 220, 0, 170, 15, 220 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = -170.0
+margin_top = -140.0
+margin_right = 187.0
+margin_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Points
+of
+sail"
+align = 1
+
+[node name="NoGoZone" type="Label" parent="."]
+margin_left = -140.0
+margin_top = -482.0
+margin_right = 224.0
+margin_bottom = -403.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.8, 0.8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "NO GO ZONE"
+
+[node name="ApparentWind" type="Label" parent="."]
+margin_left = 60.0
+margin_top = -410.0
+margin_right = 555.0
+margin_bottom = -331.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.6, 0.6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "<- Apparent Wind"
+
+[node name="RealWind" type="Label" parent="."]
+margin_left = -248.0
+margin_top = -530.0
+margin_right = 247.0
+margin_bottom = -451.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.6, 0.6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Real Wind ->"
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 480.0
+margin_top = -50.0
+margin_right = 975.0
+margin_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "beam
+reach"
+
+[node name="Label5" type="Label" parent="."]
+margin_left = -592.0
+margin_top = -50.0
+margin_right = -97.0
+margin_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "beam
+reach"
+
+[node name="Label6" type="Label" parent="."]
+margin_left = -504.0
+margin_top = -310.0
+margin_right = -9.0
+margin_bottom = -149.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "close
+hauled"
+
+[node name="Label7" type="Label" parent="."]
+margin_left = 336.0
+margin_top = -310.0
+margin_right = 831.0
+margin_bottom = -149.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "close
+hauled"
+
+[node name="Label8" type="Label" parent="."]
+margin_left = 234.0
+margin_top = 230.0
+margin_right = 729.0
+margin_bottom = 391.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "broad
+reach"
+
+[node name="Label9" type="Label" parent="."]
+margin_left = -362.0
+margin_top = 230.0
+margin_right = 133.0
+margin_bottom = 391.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "broad
+reach"

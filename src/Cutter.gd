@@ -2,13 +2,14 @@ extends BasicBoat
 
 export(float) var front_wave_offset:float = 1 setget set_front_wave_offset
 export(float) var front_scale:float = 0.25 setget set_front_scale
-export(float) var trail_radius:float = 25 setget set_trail_radius
-export(float) var trail_segment_length = 35 setget set_trail_segment_length
+export(float) var trail_radius:float = 25.0 setget set_trail_radius
+export(float) var trail_segment_length = 35.0 setget set_trail_segment_length
 #export(float) var front_scale_rate:float = 0.25 setget set_front_scale_rate
 
 onready var debug = $ForceDebug
 onready var rudder = $Rudder
-onready var bow_particles = $BowParticles
+onready var bow_particlesL = $BowParticlesL
+onready var bow_particlesR = $BowParticlesR
 
 onready var anim = $"../AnimationPlayer"
 onready var save_manager = $"/root/Root/SaveManager"
@@ -49,7 +50,10 @@ func _process(delta):
 	waterMesh.set_trail_direction(direction - (PI/2.0))
 	waterMesh.set_trail_speed(horizontal_vel_len * 40.0)
 	waterMesh.set_front_direction(global_transform.basis.z)
-	bow_particles.emitting = (horizontal_vel_len > 1.5)
+	bow_particlesL.emitting = (horizontal_vel_len > 1.0)
+	bow_particlesL.process_material.initial_velocity = horizontal_vel_len/2.0
+	bow_particlesR.emitting = (horizontal_vel_len > 1.0)
+	bow_particlesR.process_material.initial_velocity = horizontal_vel_len/2.0
 	
 func set_front_wave_offset(val:float):
 	front_wave_offset = val

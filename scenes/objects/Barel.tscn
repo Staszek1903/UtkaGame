@@ -59,7 +59,7 @@ depthBeforeSubmerged = 0.001
 apply_gravity = true
 
 [node name="Particles" type="Particles" parent="."]
-amount = 4
+amount = 3
 lifetime = 3.0
 local_coords = false
 process_material = SubResource( 4 )

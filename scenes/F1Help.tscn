@@ -34,11 +34,11 @@ shadow_size = 416
 [node name="F1Help" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_scale = Vector2( 2, 2 )
 mouse_filter = 2
 script = ExtResource( 4 )
 
 [node name="Label3" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0.6 )
 margin_left = 45.0
 margin_top = 4.0
 margin_right = 174.0

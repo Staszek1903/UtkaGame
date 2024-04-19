@@ -110,6 +110,7 @@ BossHp="*res://scenes/BossHP.tscn"
 WindManager="*res://scenes/WindManager.tscn"
 CashWallet="res://scenes/CashWallet.tscn"
 Ui="*res://scenes/UI.tscn"
+WindHints="*res://scenes/WindHints.tscn"
 
 [display]
 
